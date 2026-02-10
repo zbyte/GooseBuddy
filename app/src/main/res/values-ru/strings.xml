@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">GooseBuddy</string>
+    <string name="action_settings">Настройки</string>
+    <string name="menu_home">Действия после запуска</string>
+    <string name="menu_gallery">Улучшения климата</string>
+</resources>
