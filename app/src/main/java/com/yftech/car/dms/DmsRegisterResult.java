@@ -5,24 +5,20 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class DmsRegisterResult implements Parcelable {
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public DmsRegisterResult createFromParcel(Parcel in) {
+            DmsRegisterResult mParam = new DmsRegisterResult(in);
+            mParam.mErrorCode = in.readInt();
+            mParam.mFaceId = in.readLong();
+            return mParam;
+        }
+
+        public DmsRegisterResult[] newArray(int size) {
+            return new DmsRegisterResult[size];
+        }
+    };
     private int mErrorCode;
     private long mFaceId;
-
-    static {
-        DmsRegisterResult.CREATOR = new Parcelable.Creator() {
-            public DmsRegisterResult createFromParcel(Parcel in) {
-                DmsRegisterResult mParam = new DmsRegisterResult(in);
-                mParam.mErrorCode = in.readInt();
-                mParam.mFaceId = in.readLong();
-                return mParam;
-            }
-
-            public DmsRegisterResult[] newArray(int size) {
-                return new DmsRegisterResult[size];
-            }
-        };
-    }
 
     public DmsRegisterResult(int mErrorCode, long mFaceId) {
         this.mErrorCode = mErrorCode;

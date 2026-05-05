@@ -5,9 +5,10 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 
@@ -29,16 +30,12 @@ public class CarInputManager {
         }
     }
 
-    static final class CarInputManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
+    static final class CarInputManagerGlobal extends ICarInputCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
         private static final String SERVICE_NAME = "car_input";
-        private static final CarInputManagerGlobal gCarInputManager;
+        private static final CarInputManagerGlobal gCarInputManager = new CarInputManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarInputService mCarInputService;
         private final Object mLock;
-
-        static {
-            CarInputManagerGlobal.gCarInputManager = new CarInputManagerGlobal();
-        }
 
         private CarInputManagerGlobal() {
             this.mLock = new Object();
@@ -66,7 +63,7 @@ public class CarInputManager {
 
         private boolean connectCarInputServiceLocked() {
             if(CarInputManagerGlobal.mCarInputService == null || CarInputManagerGlobal.mCarInputService.asBinder() == null || !CarInputManagerGlobal.mCarInputService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_input");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_input");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -78,13 +75,13 @@ public class CarInputManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarInputManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarInputManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
             return false;
         }
 
@@ -245,12 +242,8 @@ public class CarInputManager {
     }
 
     public static final String SERVICE_NAME = "car_input";
-    private static final String TAG;
+    private static final String TAG = "CarInputManager";
     private static volatile CarInputManager mInstance;
-
-    static {
-        CarInputManager.TAG = "CarInputManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

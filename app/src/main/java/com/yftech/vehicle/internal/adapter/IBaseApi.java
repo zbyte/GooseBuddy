@@ -8,15 +8,15 @@ public interface IBaseApi {
 
         public final int value;
 
-        private EnableState(int v1) {
-            this.value = v1;
+        private EnableState(int value) {
+            this.value = value;
         }
 
-        public static EnableState valueOf(int v) {
-            if(v == EnableState.DISABLED.value) {
+        public static EnableState valueOf(int value) {
+            if(value == EnableState.DISABLED.value) {
                 return EnableState.DISABLED;
             }
-            return v == EnableState.ENABLED.value ? EnableState.ENABLED : EnableState.__UNKNOWN__;
+            return value == EnableState.ENABLED.value ? EnableState.ENABLED : EnableState.__UNKNOWN__;
         }
     }
 
@@ -27,15 +27,15 @@ public interface IBaseApi {
 
         public final int value;
 
-        private EnableStateOp(int v1) {
-            this.value = v1;
+        private EnableStateOp(int value) {
+            this.value = value;
         }
 
-        public static EnableStateOp valueOf(int v) {
-            if(v == EnableStateOp.DISABLED.value) {
+        public static EnableStateOp valueOf(int value) {
+            if(value == EnableStateOp.DISABLED.value) {
                 return EnableStateOp.DISABLED;
             }
-            return v == EnableStateOp.ENABLED.value ? EnableStateOp.ENABLED : EnableStateOp.__UNKNOWN__;
+            return value == EnableStateOp.ENABLED.value ? EnableStateOp.ENABLED : EnableStateOp.__UNKNOWN__;
         }
     }
 
@@ -46,15 +46,15 @@ public interface IBaseApi {
 
         public final int value;
 
-        private SwitchState(int v1) {
-            this.value = v1;
+        private SwitchState(int value) {
+            this.value = value;
         }
 
-        public static SwitchState valueOf(int v) {
-            if(v == SwitchState.TURN_ON.value) {
+        public static SwitchState valueOf(int value) {
+            if(value == SwitchState.TURN_ON.value) {
                 return SwitchState.TURN_ON;
             }
-            return v == SwitchState.TURN_OFF.value ? SwitchState.TURN_OFF : SwitchState.__UNKNOWN__;
+            return value == SwitchState.TURN_OFF.value ? SwitchState.TURN_OFF : SwitchState.__UNKNOWN__;
         }
     }
 
@@ -65,15 +65,15 @@ public interface IBaseApi {
 
         public final int value;
 
-        private SwitchStateOp(int v1) {
-            this.value = v1;
+        private SwitchStateOp(int value) {
+            this.value = value;
         }
 
-        public static SwitchStateOp valueOf(int v) {
-            if(v == SwitchStateOp.TURN_ON.value) {
+        public static SwitchStateOp valueOf(int value) {
+            if(value == SwitchStateOp.TURN_ON.value) {
                 return SwitchStateOp.TURN_ON;
             }
-            return v == SwitchStateOp.TURN_OFF.value ? SwitchStateOp.TURN_OFF : SwitchStateOp.__UNKNOWN__;
+            return value == SwitchStateOp.TURN_OFF.value ? SwitchStateOp.TURN_OFF : SwitchStateOp.__UNKNOWN__;
         }
     }
 

@@ -10,21 +10,21 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private AutoHoldState(int v1) {
-            this.value = v1;
+        private AutoHoldState(int value) {
+            this.value = value;
         }
 
-        public static AutoHoldState valueOf(int v) {
-            if(v == AutoHoldState.OFF.value) {
+        public static AutoHoldState valueOf(int value) {
+            if(value == AutoHoldState.OFF.value) {
                 return AutoHoldState.OFF;
             }
-            if(v == AutoHoldState.ON.value) {
+            if(value == AutoHoldState.ON.value) {
                 return AutoHoldState.ON;
             }
-            if(v == AutoHoldState.STANDBY.value) {
+            if(value == AutoHoldState.STANDBY.value) {
                 return AutoHoldState.STANDBY;
             }
-            return v == AutoHoldState.FAILURE.value ? AutoHoldState.FAILURE : AutoHoldState.__UNKNOWN__;
+            return value == AutoHoldState.FAILURE.value ? AutoHoldState.FAILURE : AutoHoldState.__UNKNOWN__;
         }
     }
 
@@ -39,27 +39,27 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private AvdcMode(int v1) {
-            this.value = v1;
+        private AvdcMode(int value) {
+            this.value = value;
         }
 
-        public static AvdcMode valueOf(int v) {
-            if(v == AvdcMode.INVALID.value) {
+        public static AvdcMode valueOf(int value) {
+            if(value == AvdcMode.INVALID.value) {
                 return AvdcMode.INVALID;
             }
-            if(v == AvdcMode.MODEST_MODEL.value) {
+            if(value == AvdcMode.MODEST_MODEL.value) {
                 return AvdcMode.MODEST_MODEL;
             }
-            if(v == AvdcMode.RADICAL_MODEL.value) {
+            if(value == AvdcMode.RADICAL_MODEL.value) {
                 return AvdcMode.RADICAL_MODEL;
             }
-            if(v == AvdcMode.ON_LOW_ADHESION_ROAD.value) {
+            if(value == AvdcMode.ON_LOW_ADHESION_ROAD.value) {
                 return AvdcMode.ON_LOW_ADHESION_ROAD;
             }
-            if(v == AvdcMode.ADAPTIVE_MODEL.value) {
+            if(value == AvdcMode.ADAPTIVE_MODEL.value) {
                 return AvdcMode.ADAPTIVE_MODEL;
             }
-            return v == AvdcMode.OFF.value ? AvdcMode.OFF : AvdcMode.__UNKNOWN__;
+            return value == AvdcMode.OFF.value ? AvdcMode.OFF : AvdcMode.__UNKNOWN__;
         }
     }
 
@@ -71,18 +71,18 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private CDCStyleMode(int v1) {
-            this.value = v1;
+        private CDCStyleMode(int value) {
+            this.value = value;
         }
 
-        public static CDCStyleMode valueOf(int v) {
-            if(v == CDCStyleMode.NO_COMMAND.value) {
+        public static CDCStyleMode valueOf(int value) {
+            if(value == CDCStyleMode.NO_COMMAND.value) {
                 return CDCStyleMode.NO_COMMAND;
             }
-            if(v == CDCStyleMode.COMFORT_MODE.value) {
+            if(value == CDCStyleMode.COMFORT_MODE.value) {
                 return CDCStyleMode.COMFORT_MODE;
             }
-            return v == CDCStyleMode.SPORT_MODE.value ? CDCStyleMode.SPORT_MODE : CDCStyleMode.__UNKNOWN__;
+            return value == CDCStyleMode.SPORT_MODE.value ? CDCStyleMode.SPORT_MODE : CDCStyleMode.__UNKNOWN__;
         }
     }
 
@@ -102,42 +102,42 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private DriveMode(int v1) {
-            this.value = v1;
+        private DriveMode(int value) {
+            this.value = value;
         }
 
-        public static DriveMode valueOf(int v) {
-            if(v == DriveMode.NOT_VALID.value) {
+        public static DriveMode valueOf(int value) {
+            if(value == DriveMode.NOT_VALID.value) {
                 return DriveMode.NOT_VALID;
             }
-            if(v == DriveMode.ECO_PRO_MODE.value) {
+            if(value == DriveMode.ECO_PRO_MODE.value) {
                 return DriveMode.ECO_PRO_MODE;
             }
-            if(v == DriveMode.COMFORT_MODE.value) {
+            if(value == DriveMode.COMFORT_MODE.value) {
                 return DriveMode.COMFORT_MODE;
             }
-            if(v == DriveMode.SPORT_MODE.value) {
+            if(value == DriveMode.SPORT_MODE.value) {
                 return DriveMode.SPORT_MODE;
             }
-            if(v == DriveMode.INDIVIDUAL_MODE.value) {
+            if(value == DriveMode.INDIVIDUAL_MODE.value) {
                 return DriveMode.INDIVIDUAL_MODE;
             }
-            if(v == DriveMode.SPORT_PLUS_MODE.value) {
+            if(value == DriveMode.SPORT_PLUS_MODE.value) {
                 return DriveMode.SPORT_PLUS_MODE;
             }
-            if(v == DriveMode.AI_MODE.value) {
+            if(value == DriveMode.AI_MODE.value) {
                 return DriveMode.AI_MODE;
             }
-            if(v == DriveMode.OFFROAD_MODE.value) {
+            if(value == DriveMode.OFFROAD_MODE.value) {
                 return DriveMode.OFFROAD_MODE;
             }
-            if(v == DriveMode.ATS_SAND.value) {
+            if(value == DriveMode.ATS_SAND.value) {
                 return DriveMode.ATS_SAND;
             }
-            if(v == DriveMode.ATS_MUD.value) {
+            if(value == DriveMode.ATS_MUD.value) {
                 return DriveMode.ATS_MUD;
             }
-            return v == DriveMode.ATS_SNOW.value ? DriveMode.ATS_SNOW : DriveMode.__UNKNOWN__;
+            return value == DriveMode.ATS_SNOW.value ? DriveMode.ATS_SNOW : DriveMode.__UNKNOWN__;
         }
     }
 
@@ -145,26 +145,22 @@ public interface ICarDrive extends IBaseApi {
         NORMAL_MODE(0),
         ECO_MODE(1),
         SPORT_MODE(2),
-        OFFROAD_MODE(3),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private DriveModeHev(int v1) {
-            this.value = v1;
+        private DriveModeHev(int value) {
+            this.value = value;
         }
 
-        public static DriveModeHev valueOf(int v) {
-            if(v == DriveModeHev.NORMAL_MODE.value) {
+        public static DriveModeHev valueOf(int value) {
+            if(value == DriveModeHev.NORMAL_MODE.value) {
                 return DriveModeHev.NORMAL_MODE;
             }
-            if(v == DriveModeHev.ECO_MODE.value) {
+            if(value == DriveModeHev.ECO_MODE.value) {
                 return DriveModeHev.ECO_MODE;
             }
-            if(v == DriveModeHev.SPORT_MODE.value) {
-                return DriveModeHev.SPORT_MODE;
-            }
-            return v == DriveModeHev.OFFROAD_MODE.value ? DriveModeHev.OFFROAD_MODE : DriveModeHev.__UNKNOWN__;
+            return value == DriveModeHev.SPORT_MODE.value ? DriveModeHev.SPORT_MODE : DriveModeHev.__UNKNOWN__;
         }
     }
 
@@ -172,34 +168,26 @@ public interface ICarDrive extends IBaseApi {
         NORMAL(0),
         ECO(1),
         SPORT(2),
-        WINTER(3),
-        MANUAL(4),
-        SPORT_PLUS(5),
+        SPORT_PLUS(3),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private DriveSystemMode(int v1) {
-            this.value = v1;
+        private DriveSystemMode(int value) {
+            this.value = value;
         }
 
-        public static DriveSystemMode valueOf(int v) {
-            if(v == DriveSystemMode.NORMAL.value) {
+        public static DriveSystemMode valueOf(int value) {
+            if(value == DriveSystemMode.NORMAL.value) {
                 return DriveSystemMode.NORMAL;
             }
-            if(v == DriveSystemMode.ECO.value) {
+            if(value == DriveSystemMode.ECO.value) {
                 return DriveSystemMode.ECO;
             }
-            if(v == DriveSystemMode.SPORT.value) {
+            if(value == DriveSystemMode.SPORT.value) {
                 return DriveSystemMode.SPORT;
             }
-            if(v == DriveSystemMode.WINTER.value) {
-                return DriveSystemMode.WINTER;
-            }
-            if(v == DriveSystemMode.MANUAL.value) {
-                return DriveSystemMode.MANUAL;
-            }
-            return v == DriveSystemMode.SPORT_PLUS.value ? DriveSystemMode.SPORT_PLUS : DriveSystemMode.__UNKNOWN__;
+            return value == DriveSystemMode.SPORT_PLUS.value ? DriveSystemMode.SPORT_PLUS : DriveSystemMode.__UNKNOWN__;
         }
     }
 
@@ -211,18 +199,18 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private EPSStyle(int v1) {
-            this.value = v1;
+        private EPSStyle(int value) {
+            this.value = value;
         }
 
-        public static EPSStyle valueOf(int v) {
-            if(v == EPSStyle.COMFORT.value) {
+        public static EPSStyle valueOf(int value) {
+            if(value == EPSStyle.COMFORT.value) {
                 return EPSStyle.COMFORT;
             }
-            if(v == EPSStyle.LIGHT.value) {
+            if(value == EPSStyle.LIGHT.value) {
                 return EPSStyle.LIGHT;
             }
-            return v == EPSStyle.SPORT.value ? EPSStyle.SPORT : EPSStyle.__UNKNOWN__;
+            return value == EPSStyle.SPORT.value ? EPSStyle.SPORT : EPSStyle.__UNKNOWN__;
         }
     }
 
@@ -235,21 +223,21 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private EpsModeState(int v1) {
-            this.value = v1;
+        private EpsModeState(int value) {
+            this.value = value;
         }
 
-        public static EpsModeState valueOf(int v) {
-            if(v == EpsModeState.NOT_READY.value) {
+        public static EpsModeState valueOf(int value) {
+            if(value == EpsModeState.NOT_READY.value) {
                 return EpsModeState.NOT_READY;
             }
-            if(v == EpsModeState.READY.value) {
+            if(value == EpsModeState.READY.value) {
                 return EpsModeState.READY;
             }
-            if(v == EpsModeState.IN_TRANSITION.value) {
+            if(value == EpsModeState.IN_TRANSITION.value) {
                 return EpsModeState.IN_TRANSITION;
             }
-            return v == EpsModeState.FAULT.value ? EpsModeState.FAULT : EpsModeState.__UNKNOWN__;
+            return value == EpsModeState.FAULT.value ? EpsModeState.FAULT : EpsModeState.__UNKNOWN__;
         }
     }
 
@@ -265,26 +253,26 @@ public interface ICarDrive extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private EspState(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private EspState(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static EspState valueOf(int v) {
-            if(v == EspState.ESP_ON.rx) {
+        public static EspState valueOf(int value) {
+            if(value == EspState.ESP_ON.rx) {
                 return EspState.ESP_ON;
             }
-            if(v == EspState.TCS_OFF.rx) {
+            if(value == EspState.TCS_OFF.rx) {
                 return EspState.TCS_OFF;
             }
-            if(v == EspState.ESP_OFF.rx) {
+            if(value == EspState.ESP_OFF.rx) {
                 return EspState.ESP_OFF;
             }
-            if(v == EspState.ESP_FAILURE.rx) {
+            if(value == EspState.ESP_FAILURE.rx) {
                 return EspState.ESP_FAILURE;
             }
-            return v == EspState.TCS_OFF_VDC_OFF.rx ? EspState.TCS_OFF_VDC_OFF : EspState.__UNKNOWN__;
+            return value == EspState.TCS_OFF_VDC_OFF.rx ? EspState.TCS_OFF_VDC_OFF : EspState.__UNKNOWN__;
         }
     }
 
@@ -298,24 +286,24 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private EspStyle(int v1) {
-            this.value = v1;
+        private EspStyle(int value) {
+            this.value = value;
         }
 
-        public static EspStyle valueOf(int v) {
-            if(v == EspStyle.NORMAL.value) {
+        public static EspStyle valueOf(int value) {
+            if(value == EspStyle.NORMAL.value) {
                 return EspStyle.NORMAL;
             }
-            if(v == EspStyle.SNOW.value) {
+            if(value == EspStyle.SNOW.value) {
                 return EspStyle.SNOW;
             }
-            if(v == EspStyle.MUD.value) {
+            if(value == EspStyle.MUD.value) {
                 return EspStyle.MUD;
             }
-            if(v == EspStyle.SAND.value) {
+            if(value == EspStyle.SAND.value) {
                 return EspStyle.SAND;
             }
-            return v == EspStyle.SPORT.value ? EspStyle.SPORT : EspStyle.__UNKNOWN__;
+            return value == EspStyle.SPORT.value ? EspStyle.SPORT : EspStyle.__UNKNOWN__;
         }
     }
 
@@ -330,27 +318,27 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private GasPedalLevel(int v1) {
-            this.value = v1;
+        private GasPedalLevel(int value) {
+            this.value = value;
         }
 
-        public static GasPedalLevel valueOf(int v) {
-            if(v == GasPedalLevel.INVALID.value) {
+        public static GasPedalLevel valueOf(int value) {
+            if(value == GasPedalLevel.INVALID.value) {
                 return GasPedalLevel.INVALID;
             }
-            if(v == GasPedalLevel.LEVEL_1.value) {
+            if(value == GasPedalLevel.LEVEL_1.value) {
                 return GasPedalLevel.LEVEL_1;
             }
-            if(v == GasPedalLevel.LEVEL_2.value) {
+            if(value == GasPedalLevel.LEVEL_2.value) {
                 return GasPedalLevel.LEVEL_2;
             }
-            if(v == GasPedalLevel.LEVEL_3.value) {
+            if(value == GasPedalLevel.LEVEL_3.value) {
                 return GasPedalLevel.LEVEL_3;
             }
-            if(v == GasPedalLevel.LEVEL_4.value) {
+            if(value == GasPedalLevel.LEVEL_4.value) {
                 return GasPedalLevel.LEVEL_4;
             }
-            return v == GasPedalLevel.LEVEL_5.value ? GasPedalLevel.LEVEL_5 : GasPedalLevel.__UNKNOWN__;
+            return value == GasPedalLevel.LEVEL_5.value ? GasPedalLevel.LEVEL_5 : GasPedalLevel.__UNKNOWN__;
         }
     }
 
@@ -364,47 +352,43 @@ public interface ICarDrive extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private HdcState(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private HdcState(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static HdcState valueOf(int v) {
-            if(v == HdcState.HDC_OFF.rx) {
+        public static HdcState valueOf(int value) {
+            if(value == HdcState.HDC_OFF.rx) {
                 return HdcState.HDC_OFF;
             }
-            if(v == HdcState.HDC_ON.rx) {
+            if(value == HdcState.HDC_ON.rx) {
                 return HdcState.HDC_ON;
             }
-            return v == HdcState.HDC_FAILURE.rx ? HdcState.HDC_FAILURE : HdcState.__UNKNOWN__;
+            return value == HdcState.HDC_FAILURE.rx ? HdcState.HDC_FAILURE : HdcState.__UNKNOWN__;
         }
     }
 
     public static enum MemoryDriveMode {
-        NOT_MEMORY(1, 0),
-        MEMORY(2, 1),
-        NOT_USED(3, -1),
+        MEMORY(1, 2),
+        NOT_MEMORY(0, 1),
         __UNKNOWN__(-1, -1);
 
         private final int rx;
         private final int tx;
         public final int value;
 
-        private MemoryDriveMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private MemoryDriveMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static MemoryDriveMode valueOf(int v) {
-            if(v == MemoryDriveMode.NOT_MEMORY.rx) {
-                return MemoryDriveMode.NOT_MEMORY;
-            }
-            if(v == MemoryDriveMode.MEMORY.rx) {
+        public static MemoryDriveMode valueOf(int value) {
+            if(value == MemoryDriveMode.MEMORY.rx) {
                 return MemoryDriveMode.MEMORY;
             }
-            return v == MemoryDriveMode.NOT_USED.rx ? MemoryDriveMode.NOT_USED : MemoryDriveMode.__UNKNOWN__;
+            return value == MemoryDriveMode.NOT_MEMORY.rx ? MemoryDriveMode.NOT_MEMORY : MemoryDriveMode.__UNKNOWN__;
         }
     }
 
@@ -417,17 +401,17 @@ public interface ICarDrive extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private MemoryDriveMode_A9E(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private MemoryDriveMode_A9E(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static MemoryDriveMode_A9E valueOf(int v) {
-            if(v == MemoryDriveMode_A9E.MEMORY.rx) {
+        public static MemoryDriveMode_A9E valueOf(int value) {
+            if(value == MemoryDriveMode_A9E.MEMORY.rx) {
                 return MemoryDriveMode_A9E.MEMORY;
             }
-            return v == MemoryDriveMode_A9E.NOT_MEMORY.rx ? MemoryDriveMode_A9E.NOT_MEMORY : MemoryDriveMode_A9E.__UNKNOWN__;
+            return value == MemoryDriveMode_A9E.NOT_MEMORY.rx ? MemoryDriveMode_A9E.NOT_MEMORY : MemoryDriveMode_A9E.__UNKNOWN__;
         }
     }
 
@@ -444,33 +428,33 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private MrrAccMode(int v1) {
-            this.value = v1;
+        private MrrAccMode(int value) {
+            this.value = value;
         }
 
-        public static MrrAccMode valueOf(int v) {
-            if(v == MrrAccMode.OFF.value) {
+        public static MrrAccMode valueOf(int value) {
+            if(value == MrrAccMode.OFF.value) {
                 return MrrAccMode.OFF;
             }
-            if(v == MrrAccMode.PASSIVE.value) {
+            if(value == MrrAccMode.PASSIVE.value) {
                 return MrrAccMode.PASSIVE;
             }
-            if(v == MrrAccMode.STANDBY.value) {
+            if(value == MrrAccMode.STANDBY.value) {
                 return MrrAccMode.STANDBY;
             }
-            if(v == MrrAccMode.ACTIVE_CONTROL.value) {
+            if(value == MrrAccMode.ACTIVE_CONTROL.value) {
                 return MrrAccMode.ACTIVE_CONTROL;
             }
-            if(v == MrrAccMode.BRAKE_ONLY.value) {
+            if(value == MrrAccMode.BRAKE_ONLY.value) {
                 return MrrAccMode.BRAKE_ONLY;
             }
-            if(v == MrrAccMode.OVER_RIDE.value) {
+            if(value == MrrAccMode.OVER_RIDE.value) {
                 return MrrAccMode.OVER_RIDE;
             }
-            if(v == MrrAccMode.STAND_WAIT.value) {
+            if(value == MrrAccMode.STAND_WAIT.value) {
                 return MrrAccMode.STAND_WAIT;
             }
-            return v == MrrAccMode.FAILURE.value ? MrrAccMode.FAILURE : MrrAccMode.__UNKNOWN__;
+            return value == MrrAccMode.FAILURE.value ? MrrAccMode.FAILURE : MrrAccMode.__UNKNOWN__;
         }
     }
 
@@ -493,51 +477,51 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private TcuDriveMode(int v1) {
-            this.value = v1;
+        private TcuDriveMode(int value) {
+            this.value = value;
         }
 
-        public static TcuDriveMode valueOf(int v) {
-            if(v == TcuDriveMode.NORMAL.value) {
+        public static TcuDriveMode valueOf(int value) {
+            if(value == TcuDriveMode.NORMAL.value) {
                 return TcuDriveMode.NORMAL;
             }
-            if(v == TcuDriveMode.SPORT.value) {
+            if(value == TcuDriveMode.SPORT.value) {
                 return TcuDriveMode.SPORT;
             }
-            if(v == TcuDriveMode.WINTER.value) {
+            if(value == TcuDriveMode.WINTER.value) {
                 return TcuDriveMode.WINTER;
             }
-            if(v == TcuDriveMode.UPSLOPE_ONE.value) {
+            if(value == TcuDriveMode.UPSLOPE_ONE.value) {
                 return TcuDriveMode.UPSLOPE_ONE;
             }
-            if(v == TcuDriveMode.HOT_ONE.value) {
+            if(value == TcuDriveMode.HOT_ONE.value) {
                 return TcuDriveMode.HOT_ONE;
             }
-            if(v == TcuDriveMode.UPSLOPE_TWO.value) {
+            if(value == TcuDriveMode.UPSLOPE_TWO.value) {
                 return TcuDriveMode.UPSLOPE_TWO;
             }
-            if(v == TcuDriveMode.HOT_TWO.value) {
+            if(value == TcuDriveMode.HOT_TWO.value) {
                 return TcuDriveMode.HOT_TWO;
             }
-            if(v == TcuDriveMode.WUSP.value) {
+            if(value == TcuDriveMode.WUSP.value) {
                 return TcuDriveMode.WUSP;
             }
-            if(v == TcuDriveMode.CRUISE.value) {
+            if(value == TcuDriveMode.CRUISE.value) {
                 return TcuDriveMode.CRUISE;
             }
-            if(v == TcuDriveMode.TIPTRONIC.value) {
+            if(value == TcuDriveMode.TIPTRONIC.value) {
                 return TcuDriveMode.TIPTRONIC;
             }
-            if(v == TcuDriveMode.ECO.value) {
+            if(value == TcuDriveMode.ECO.value) {
                 return TcuDriveMode.ECO;
             }
-            if(v == TcuDriveMode.HIGH_ALTITUDE.value) {
+            if(value == TcuDriveMode.HIGH_ALTITUDE.value) {
                 return TcuDriveMode.HIGH_ALTITUDE;
             }
-            if(v == TcuDriveMode.SPORT_PLUS.value) {
+            if(value == TcuDriveMode.SPORT_PLUS.value) {
                 return TcuDriveMode.SPORT_PLUS;
             }
-            return v == TcuDriveMode.OFF_ROAD.value ? TcuDriveMode.OFF_ROAD : TcuDriveMode.__UNKNOWN__;
+            return value == TcuDriveMode.OFF_ROAD.value ? TcuDriveMode.OFF_ROAD : TcuDriveMode.__UNKNOWN__;
         }
     }
 
@@ -548,15 +532,15 @@ public interface ICarDrive extends IBaseApi {
 
         public final int value;
 
-        private VdcOffState(int v1) {
-            this.value = v1;
+        private VdcOffState(int value) {
+            this.value = value;
         }
 
-        public static VdcOffState valueOf(int v) {
-            if(v == VdcOffState.OFF.value) {
+        public static VdcOffState valueOf(int value) {
+            if(value == VdcOffState.OFF.value) {
                 return VdcOffState.OFF;
             }
-            return v == VdcOffState.ON.value ? VdcOffState.ON : VdcOffState.__UNKNOWN__;
+            return value == VdcOffState.ON.value ? VdcOffState.ON : VdcOffState.__UNKNOWN__;
         }
     }
 
@@ -565,29 +549,33 @@ public interface ICarDrive extends IBaseApi {
         ECO_MODE(1, 2),
         SPORT_MODE(2, 3),
         SPORT_PLUS_MODE(3, 4),
+        WINTER_MODE(4, 5),
         __UNKNOWN__(-1, -1);
 
         private final int rx;
         private final int tx;
         public final int value;
 
-        private XDriveMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private XDriveMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static XDriveMode valueOf(int v) {
-            if(v == XDriveMode.NORMAL_MODE.rx) {
+        public static XDriveMode valueOf(int value) {
+            if(value == XDriveMode.NORMAL_MODE.rx) {
                 return XDriveMode.NORMAL_MODE;
             }
-            if(v == XDriveMode.ECO_MODE.rx) {
+            if(value == XDriveMode.ECO_MODE.rx) {
                 return XDriveMode.ECO_MODE;
             }
-            if(v == XDriveMode.SPORT_MODE.rx) {
+            if(value == XDriveMode.SPORT_MODE.rx) {
                 return XDriveMode.SPORT_MODE;
             }
-            return v == XDriveMode.SPORT_PLUS_MODE.rx ? XDriveMode.SPORT_PLUS_MODE : XDriveMode.__UNKNOWN__;
+            if(value == XDriveMode.SPORT_PLUS_MODE.rx) {
+                return XDriveMode.SPORT_PLUS_MODE;
+            }
+            return value == XDriveMode.WINTER_MODE.rx ? XDriveMode.WINTER_MODE : XDriveMode.__UNKNOWN__;
         }
     }
 
@@ -602,7 +590,7 @@ public interface ICarDrive extends IBaseApi {
     public static final int DRIVE_MODE = 0xB3;
     public static final int DRIVE_MODE_HEV = 406;
     public static final int DRIVE_MODE_SETTING = 71;
-    public static final int DRIVE_SYSTEM_MODE = 0x105;
+    public static final int DRIVE_SYSTEM_MODE = 0xB3;
     public static final int EMS_ENGINE_WAVE_SETTING = 73;
     public static final int EMS_ENGINE_WAVE_STATE = 0xB5;
     public static final int EPB_IND_STATE = 674;

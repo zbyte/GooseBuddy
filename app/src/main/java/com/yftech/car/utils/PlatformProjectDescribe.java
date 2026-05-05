@@ -1,7 +1,5 @@
 package com.yftech.car.utils;
 
-import android.os.SystemProperties;
-
 public class PlatformProjectDescribe {
     public static enum Platform {
         UNKNOWN,
@@ -107,10 +105,10 @@ public class PlatformProjectDescribe {
     private static final String VEHICLE_TYPE_PT025 = "yfve";
 
     public static Platform getPlatform() {
-        if("msmnile8295".equals(SystemProperties.get("ro.yftech.product.platform", null))) {
+        if("msmnile8295".equals(SystemPropertiesHelper.get("ro.yftech.product.platform", null))) {
             return Platform.QTI8295;
         }
-        String s = SystemProperties.get("ro.board.platform", null);
+        String s = SystemPropertiesHelper.get("ro.board.platform", null);
         if("ac8x".equals(s)) {
             return Platform.ATC8015;
         }
@@ -121,10 +119,10 @@ public class PlatformProjectDescribe {
     }
 
     public static Project getProject() {
-        if("CAR049".equals(SystemProperties.get("ro.yf.build.product", null))) {
+        if("CAR049".equals(SystemPropertiesHelper.get("ro.yf.build.product", null))) {
             return Project.CAR049;
         }
-        String s = SystemProperties.get("ro.build.product", null);
+        String s = SystemPropertiesHelper.get("ro.build.product", null);
         if("CBIHU12".equals(s)) {
             return Project.CBIHU12;
         }
@@ -201,8 +199,8 @@ public class PlatformProjectDescribe {
     }
 
     public static VehicleType getVehicleType() {
-        SystemProperties.get("ro.yf.product.brand", null);
-        String s = SystemProperties.get("ro.product.vendor.brand", null);
+        SystemPropertiesHelper.get("ro.yf.product.brand", null);
+        String s = SystemPropertiesHelper.get("ro.product.vendor.brand", null);
         if("A58".equals(s)) {
             return VehicleType.CBIHU12_A58;
         }

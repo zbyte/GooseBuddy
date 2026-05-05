@@ -4,11 +4,14 @@ import android.os.Handler;
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
+
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class CarPhoneLinkMediaManager {
@@ -17,15 +20,11 @@ public class CarPhoneLinkMediaManager {
         }
     }
 
-    static final class CarPhoneLinkMediaManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarPhoneLinkMediaManagerGlobal gCarPhoneLinkMediaManager;
+    static final class CarPhoneLinkMediaManagerGlobal extends ICarPhoneLinkMediaCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarPhoneLinkMediaManagerGlobal gCarPhoneLinkMediaManager = new CarPhoneLinkMediaManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarPhoneLinkMediaService mCarPhoneLinkMediaService;
         private final Object mLock;
-
-        static {
-            CarPhoneLinkMediaManagerGlobal.gCarPhoneLinkMediaManager = new CarPhoneLinkMediaManagerGlobal();
-        }
 
         private CarPhoneLinkMediaManagerGlobal() {
             this.mLock = new Object();
@@ -53,7 +52,7 @@ public class CarPhoneLinkMediaManager {
 
         private boolean connectCarPhoneLinkServiceLocked() {
             if(CarPhoneLinkMediaManagerGlobal.mCarPhoneLinkMediaService == null || CarPhoneLinkMediaManagerGlobal.mCarPhoneLinkMediaService.asBinder() == null || !CarPhoneLinkMediaManagerGlobal.mCarPhoneLinkMediaService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_phonelinkmedia");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_phonelinkmedia");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -66,13 +65,14 @@ public class CarPhoneLinkMediaManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("CarPhoneLinkMediaManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarPhoneLinkMediaManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -185,12 +185,8 @@ public class CarPhoneLinkMediaManager {
     }
 
     public static final String SERVICE_NAME = "car_phonelinkmedia";
-    private static final String TAG;
+    private static final String TAG = "CarPhoneLinkMediaManager";
     private static volatile CarPhoneLinkMediaManager mInstance;
-
-    static {
-        CarPhoneLinkMediaManager.TAG = "CarPhoneLinkMediaManager";
-    }
 
     // String Decryptor: 7 succeeded, 0 failed
     static String access$000() {

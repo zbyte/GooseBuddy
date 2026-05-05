@@ -3,11 +3,14 @@ package com.yftech.car.tsp;
 import android.os.Handler;
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
+
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class TspManager {
@@ -22,15 +25,11 @@ public class TspManager {
         }
     }
 
-    static final class TspManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final TspManagerGlobal intance;
+    static final class TspManagerGlobal extends ITspCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final TspManagerGlobal intance = new TspManagerGlobal();
         private final ArrayMap mCallbackMap;
         private final Object mLock;
         private static ITspService mService;
-
-        static {
-            TspManagerGlobal.intance = new TspManagerGlobal();
-        }
 
         private TspManagerGlobal() {
             this.mLock = new Object();
@@ -53,7 +52,7 @@ public class TspManager {
 
         private boolean connectServiceLocked() {
             if(TspManagerGlobal.mService == null || TspManagerGlobal.mService.asBinder() == null || !TspManagerGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_tsp");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_tsp");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -65,13 +64,14 @@ public class TspManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("TspManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("TspManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -170,12 +170,8 @@ public class TspManager {
     }
 
     public static final String SERVICE_NAME = "car_tsp";
-    private static final String TAG;
+    private static final String TAG = "TspManager";
     private static volatile TspManager mInstance;
-
-    static {
-        TspManager.TAG = "TspManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

@@ -8,16 +8,16 @@ public interface ICarDashBoard {
     public static abstract class AbsDashBoardInfo {
         private int dashBoardSource;
 
-        public AbsDashBoardInfo(int v) {
-            this.dashBoardSource = v;
+        public AbsDashBoardInfo(int source) {
+            this.dashBoardSource = source;
         }
 
         public int getDashBoardSource() {
             return this.dashBoardSource;
         }
 
-        public void setDashBoardSource(int v) {
-            this.dashBoardSource = v;
+        public void setDashBoardSource(int source) {
+            this.dashBoardSource = source;
         }
 
         public abstract byte[] toBytes();
@@ -46,7 +46,6 @@ public interface ICarDashBoard {
             this.mBtState = 0;
         }
 
-        // String Decryptor: 1 succeeded, 0 failed
         public byte[] getDataArray() {
             return new byte[]{this.mUsb1State, this.mCarLifeState, this.mCarPlayState, this.mBtState, this.mUsb2State};
         }
@@ -88,12 +87,12 @@ public interface ICarDashBoard {
             this.talkTimes = 0;
         }
 
-        public boolean isInfoDiff(BtInfo iCarDashBoard$BtInfo0) {
-            return iCarDashBoard$BtInfo0 == null ? true : this.mBtCallNumber != iCarDashBoard$BtInfo0.mBtCallNumber;
+        public boolean isInfoDiff(BtInfo b) {
+            return b == null ? true : this.mBtCallNumber != b.mBtCallNumber;
         }
 
-        public void setInfoDiff(BtInfo iCarDashBoard$BtInfo0) {
-            this.mBtCallNumber = iCarDashBoard$BtInfo0.mBtCallNumber;
+        public void setInfoDiff(BtInfo b) {
+            this.mBtCallNumber = b.mBtCallNumber;
         }
 
         @Override  // com.yftech.vehicle.internal.adapter.ICarDashBoard$AbsDashBoardInfo
@@ -115,10 +114,10 @@ public interface ICarDashBoard {
             this.mDabProgramName = "";
         }
 
-        public DABInfo(String s) {
+        public DABInfo(String dabProgramName) {
             super(15);
             this.mDabProgramName = "";
-            this.mDabProgramName = s;
+            this.mDabProgramName = dabProgramName;
         }
 
         @Override  // com.yftech.vehicle.internal.adapter.ICarDashBoard$AbsDashBoardInfo
@@ -138,429 +137,420 @@ public interface ICarDashBoard {
         static AbsDashBoardInfo mAbsInfo;
         DashBoardType mDashBoardType;
 
-        private DashBoardDataFormater(DashBoardType iCarDashBoard$DashBoardType0) {
+        private DashBoardDataFormater(DashBoardType type) {
             this.TAG = "DashBoardDataFormater";
-            this.mDashBoardType = iCarDashBoard$DashBoardType0;
+            this.mDashBoardType = type;
         }
 
-        public static DashBoardDataFormater get(DashBoardType iCarDashBoard$DashBoardType0) {
+        public static DashBoardDataFormater get(DashBoardType type) {
             if(DashBoardDataFormater.instance == null) {
-                DashBoardDataFormater.instance = new DashBoardDataFormater(iCarDashBoard$DashBoardType0);
+                DashBoardDataFormater.instance = new DashBoardDataFormater(type);
             }
             return DashBoardDataFormater.instance;
         }
 
-        public byte[] getDashBoardInfoDataByteArray(AbsDashBoardInfo iCarDashBoard$AbsDashBoardInfo0) {
-            String s8;
-            String s6;
-            int v9;
-            byte b;
-            int v6;
-            int v5;
-            int v4;
-            boolean z;
-            int v;
-            if(iCarDashBoard$AbsDashBoardInfo0 == null) {
+        public byte[] getDashBoardInfoDataByteArray(AbsDashBoardInfo info) {
+            int f0;
+            int f00;
+            int f000;
+            boolean isAm;
+            if(info == null) {
                 Log.w(this.TAG, "formartMediaInfoDataBytes() info is null");
                 return null;
             }
             try {
-                Log.w(this.TAG, " info:" + iCarDashBoard$AbsDashBoardInfo0.toString());
-                if(!DashBoardType.MCU_CA1105.equals(this.mDashBoardType)) {
-                    return null;
-                }
-                switch(iCarDashBoard$AbsDashBoardInfo0.getDashBoardSource()) {
-                    case 1: {
-                        if(!(iCarDashBoard$AbsDashBoardInfo0 instanceof RadioInfo)) {
-                            Log.w(this.TAG, "formartDashBoardInfoDataBytes() AbsDashBoardInfo is not RadioInfo");
-                            return null;
-                        }
-                        if(DashBoardDataFormater.mAbsInfo != null && (DashBoardDataFormater.mAbsInfo instanceof RadioInfo)) {
-                            RadioInfo iCarDashBoard$RadioInfo0 = (RadioInfo)DashBoardDataFormater.mAbsInfo;
-                            if(iCarDashBoard$RadioInfo0.isInfoDiff(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0))) {
-                                iCarDashBoard$RadioInfo0.setInfoDiff(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0));
-                                v = 1;
+                Log.w(this.TAG, " info:" + info.toString());
+                byte[] byteArray = null;
+                if(DashBoardType.MCU_CA1105.equals(this.mDashBoardType)) {
+                    boolean isMediaUpdate = false;
+                    boolean isRadioUpdate = false;
+                    switch(info.getDashBoardSource()) {
+                        case 1: {
+                            if(!(info instanceof RadioInfo)) {
+                                Log.w(this.TAG, "formartDashBoardInfoDataBytes() AbsDashBoardInfo is not RadioInfo");
+                                return null;
+                            }
+                            if(DashBoardDataFormater.mAbsInfo == null || !(DashBoardDataFormater.mAbsInfo instanceof RadioInfo)) {
+                                DashBoardDataFormater.mAbsInfo = new RadioInfo();
+                                isRadioUpdate = true;
                             }
                             else {
-                                v = 0;
+                                RadioInfo mRadioInfoTemp = (RadioInfo)DashBoardDataFormater.mAbsInfo;
+                                if(mRadioInfoTemp.isInfoDiff(((RadioInfo)info))) {
+                                    mRadioInfoTemp.setInfoDiff(((RadioInfo)info));
+                                    isRadioUpdate = true;
+                                }
                             }
-                        } else {
-                            DashBoardDataFormater.mAbsInfo = new RadioInfo();
-                            v = 1;
-                        }
-                        Log.d(this.TAG, "formartDashBoardInfoDataBytes() isRadioUpdate =" + ((boolean)v));
-                        byte[] arr_b = new byte[20];
-                        arr_b[0] = (byte)this.mDashBoardType.ordinal();
-                        arr_b[1] = 3;
-                        arr_b[2] = 17;
-                        arr_b[3] = (byte)v;
-                        arr_b[4] = 0;
-                        switch(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mBandType) {
-                            case 3: 
-                            case 4: 
-                            case 5: {
-                                z = true;
-                                break;
+                            Log.d(this.TAG, "formartDashBoardInfoDataBytes() isRadioUpdate =" + isRadioUpdate);
+                            byteArray = new byte[20];
+                            byteArray[0] = (byte)this.mDashBoardType.ordinal();
+                            byteArray[1] = 3;
+                            byteArray[2] = 17;
+                            byteArray[3] = (byte)(isRadioUpdate ? 1 : 0);
+                            byteArray[4] = 0;
+                            switch(((RadioInfo)info).mBandType) {
+                                case 0: 
+                                case 1: 
+                                case 2: {
+                                    isAm = false;
+                                    break;
+                                }
+                                case 3: 
+                                case 4: 
+                                case 5: {
+                                    isAm = true;
+                                    break;
+                                }
+                                default: {
+                                    isAm = false;
+                                }
                             }
-                            default: {
-                                z = false;
+                            byteArray[5] = (byte) (isAm ? 16 : 1);
+                            byteArray[6] = 1;
+                            if(((RadioInfo)info).isPrefebIndex) {
+                                byteArray[7] = 1;
+                                byteArray[8] = ((RadioInfo)info).mPrefebIndex;
                             }
-                        }
-                        arr_b[5] = z ? 16 : 1;
-                        arr_b[6] = 1;
-                        if(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).isPrefebIndex) {
-                            arr_b[7] = 1;
-                            arr_b[8] = ((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mPrefebIndex;
-                        }
-                        else {
-                            arr_b[7] = 0;
-                            arr_b[8] = 0;
-                        }
-                        if(z) {
-                            int v1 = 0xF0;
-                            int v2 = ((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 100000 / 1000;
-                            int v3 = ((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 100000 / 100 % 10;
-                            if(v2 != 0) {
-                                v1 = v2 << 4;
+                            else {
+                                byteArray[7] = 0;
+                                byteArray[8] = 0;
                             }
-                            else if(v3 == 0) {
-                                v3 = 15;
+                            if(isAm) {
+                                //int f1000_h = 0xF0;
+                                int f1000_h = ((RadioInfo)info).mFrequency % 100000 / 1000;
+                                int f1000_l = ((RadioInfo)info).mFrequency % 100000 / 100 % 10;
+                                if(f1000_h != 0) {
+                                    f1000_h = f1000_h << 4;
+                                }
+                                else if(f1000_l == 0) {
+                                    f1000_l = 15;
+                                }
+                                f000 = f1000_h | f1000_l;
+                                f00 = Integer.parseInt(String.valueOf(((RadioInfo)info).mFrequency % 100000 % 100), 16);
+                                f0 = Integer.parseInt(String.valueOf(((RadioInfo)info).mFrequency % 10000 % 10), 16);
                             }
-                            v4 = v1 | v3;
-                            v5 = Integer.parseInt(String.valueOf(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 100000 % 100), 16);
-                            v6 = Integer.parseInt(String.valueOf(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 10000 % 10), 16);
-                        }
-                        else {
-                            int v7 = ((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 1000000 / 100000;
-                            if(v7 == 0) {
-                                v7 = 15;
+                            else {
+                                int f1000_l = ((RadioInfo)info).mFrequency % 1000000 / 100000;
+                                if(f1000_l == 0) {
+                                    f1000_l = 15;
+                                }
+                                f000 = 0xF0 | f1000_l;
+                                f00 = Integer.parseInt(String.valueOf(((RadioInfo)info).mFrequency % 1000000 / 1000 % 100), 16);
+                                f0 = Integer.parseInt(String.valueOf(((RadioInfo)info).mFrequency % 1000000 / 100 % 10 + 10), 16);
                             }
-                            v4 = v7 | 0xF0;
-                            v5 = Integer.parseInt(String.valueOf(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 1000000 / 1000 % 100), 16);
-                            v6 = Integer.parseInt(String.valueOf(((RadioInfo)iCarDashBoard$AbsDashBoardInfo0).mFrequency % 1000000 / 100 % 10 + 10), 16);
+                            byteArray[9] = (byte)f000;
+                            byteArray[10] = (byte)f00;
+                            byteArray[11] = (byte)f0;
+                            byteArray[12] = -16;
+                            byteArray[13] = (byte) (isAm ? 2 : 1);
+                            byteArray[14] = 4;
+                            byteArray[15] = 0;
+                            byteArray[16] = 0;
+                            byteArray[17] = 0;
+                            byteArray[18] = 4;
+                            byteArray[19] = 0;
+                            return byteArray;
                         }
-                        arr_b[9] = (byte)v4;
-                        arr_b[10] = (byte)v5;
-                        arr_b[11] = (byte)v6;
-                        arr_b[12] = -16;
-                        arr_b[13] = z ? 2 : 1;
-                        arr_b[14] = 4;
-                        arr_b[15] = 0;
-                        arr_b[16] = 0;
-                        arr_b[17] = 0;
-                        arr_b[18] = 4;
-                        arr_b[19] = 0;
-                        return arr_b;
-                    }
-                    case 4: {
-                        if(!(iCarDashBoard$AbsDashBoardInfo0 instanceof BtInfo)) {
-                            Log.w(this.TAG, "formartDashBoardInfoDataBytes() BT BtInfo is null or AbsDashBoardInfo is not BtInfo");
-                            return null;
-                        }
-                        String s = ((BtInfo)iCarDashBoard$AbsDashBoardInfo0).mBtCallNumber;
-                        String s1 = ((BtInfo)iCarDashBoard$AbsDashBoardInfo0).mBtName;
-                        if(s != null && !"".equals(s)) {
-                            s = s + " ";
-                        }
-                        byte[] arr_b1 = s == null ? new byte[0] : s.getBytes(StandardCharsets.UTF_16BE);
-                        int v8 = arr_b1 == null ? 0 : arr_b1.length;
-                        if(v8 >= 50) {
-                            String s2 = s.substring(0, 21) + "... ";
-                            arr_b1 = s2 == null ? new byte[0] : s2.getBytes(StandardCharsets.UTF_16BE);
-                            v8 = arr_b1 == null ? 0 : arr_b1.length;
-                        }
-                        if(s1 != null && !"".equals(s1)) {
-                            arr_b1 = s1 + " " == null ? new byte[0] : (s1 + " ").getBytes(StandardCharsets.UTF_16BE);
-                            v8 = arr_b1 == null ? 0 : arr_b1.length;
-                            if(v8 >= 50) {
-                                String s3 = (s1 + " ").substring(0, 21) + "... ";
-                                arr_b1 = s3 == null ? new byte[0] : s3.getBytes(StandardCharsets.UTF_16BE);
-                                v8 = arr_b1 == null ? 0 : arr_b1.length;
+                        case 4: {
+                            if(!(info instanceof BtInfo)) {
+                                Log.w(this.TAG, "formartDashBoardInfoDataBytes() BT BtInfo is null or AbsDashBoardInfo is not BtInfo");
+                                return null;
                             }
-                        }
-                        Log.d(this.TAG, "callStrLen= " + v8);
-                        byte[] arr_b2 = new byte[v8 + 7];
-                        arr_b2[0] = (byte)this.mDashBoardType.ordinal();
-                        arr_b2[1] = 4;
-                        arr_b2[2] = (byte)(v8 + 4);
-                    alab1:
-                        switch(((BtInfo)iCarDashBoard$AbsDashBoardInfo0).mPhoneSourceType) {
-                            case 0: 
-                            case 1: {
-                                switch(((BtInfo)iCarDashBoard$AbsDashBoardInfo0).mBtStatus) {
-                                    case 2: {
-                                        b = 11;
-                                        break alab1;
+                            String mBtCallNumber = ((BtInfo)info).mBtCallNumber;
+                            String mBtName = ((BtInfo)info).mBtName;
+                            if(mBtCallNumber != null && !"".equals(mBtCallNumber)) {
+                                mBtCallNumber = mBtCallNumber + " ";
+                            }
+                            byte[] mBtCallStringByteArr = mBtCallNumber == null ? new byte[0] : mBtCallNumber.getBytes(StandardCharsets.UTF_16BE);
+                            int callStrLen = mBtCallStringByteArr == null ? 0 : mBtCallStringByteArr.length;
+                            if(callStrLen >= 50) {
+                                mBtCallNumber = mBtCallNumber.substring(0, 21) + "... ";
+                                mBtCallStringByteArr = mBtCallNumber == null ? new byte[0] : mBtCallNumber.getBytes(StandardCharsets.UTF_16BE);
+                                callStrLen = mBtCallStringByteArr == null ? 0 : mBtCallStringByteArr.length;
+                            }
+                            if(mBtName != null && !"".equals(mBtName)) {
+                                mBtCallStringByteArr = mBtName + " " == null ? new byte[0] : (mBtName + " ").getBytes(StandardCharsets.UTF_16BE);
+                                callStrLen = mBtCallStringByteArr == null ? 0 : mBtCallStringByteArr.length;
+                                if(callStrLen >= 50) {
+                                    mBtName = (mBtName + " ").substring(0, 21) + "... ";
+                                    mBtCallStringByteArr = mBtName == null ? new byte[0] : mBtName.getBytes(StandardCharsets.UTF_16BE);
+                                    callStrLen = mBtCallStringByteArr == null ? 0 : mBtCallStringByteArr.length;
+                                }
+                            }
+                            Log.d(this.TAG, "callStrLen= " + callStrLen);
+                            byteArray = new byte[callStrLen + 7];
+                            byteArray[0] = (byte)this.mDashBoardType.ordinal();
+                            byteArray[1] = 4;
+                            byteArray[2] = (byte)(callStrLen + 4);
+                            byte callState = 3;
+                        alab1:
+                            switch(((BtInfo)info).mPhoneSourceType) {
+                                case 0: 
+                                case 1: {
+                                    switch(((BtInfo)info).mBtStatus) {
+                                        case 2: {
+                                            callState = 11;
+                                            break alab1;
+                                        }
+                                        case 3: {
+                                            callState = 4;
+                                            break alab1;
+                                        }
+                                        case 4: {
+                                            callState = 2;
+                                            break alab1;
+                                        }
+                                        default: {
+                                            break alab1;
+                                        }
                                     }
-                                    case 3: {
-                                        b = 4;
-                                        break alab1;
-                                    }
-                                    case 4: {
-                                        b = 2;
-                                        break alab1;
-                                    }
-                                    default: {
-                                        b = 3;
-                                        break alab1;
+                                }
+                                default: {
+                                    switch(((BtInfo)info).mBtStatus) {
+                                        case 2: {
+                                            callState = 1;
+                                            break;
+                                        }
+                                        case 4: {
+                                            callState = 8;
+                                        }
                                     }
                                 }
                             }
-                            default: {
-                                switch(((BtInfo)iCarDashBoard$AbsDashBoardInfo0).mBtStatus) {
-                                    case 2: {
-                                        b = 1;
-                                        break;
-                                    }
-                                    case 4: {
-                                        b = 8;
-                                        break;
-                                    }
-                                    default: {
-                                        b = 3;
-                                    }
-                                }
+                            byteArray[3] = callState;
+                            byteArray[4] = (byte)(((BtInfo)info).mIsMute ? 1 : 0);
+                            byteArray[5] = 4;
+                            byteArray[6] = (byte)callStrLen;
+                            if(callStrLen > 0) {
+                                System.arraycopy(mBtCallStringByteArr, 0, byteArray, 7, callStrLen);
+                                return byteArray;
                             }
+                            break;
                         }
-                        arr_b2[3] = b;
-                        arr_b2[4] = (byte)((BtInfo)iCarDashBoard$AbsDashBoardInfo0).mIsMute;
-                        arr_b2[5] = 4;
-                        arr_b2[6] = (byte)v8;
-                        if(v8 > 0) {
-                            System.arraycopy(arr_b1, 0, arr_b2, 7, v8);
-                            return arr_b2;
-                        }
-                        return arr_b2;
-                    }
-                    case 5: 
-                    case 9: 
-                    case 12: 
-                    case 13: {
-                        if(!(iCarDashBoard$AbsDashBoardInfo0 instanceof MediaInfo)) {
-                            Log.w(this.TAG, "formartDashBoardInfoDataBytes() USB  AbsDashBoardInfo is not MediaInfo");
-                            return null;
-                        }
-                        if(((MediaInfo)iCarDashBoard$AbsDashBoardInfo0).title == null || ((MediaInfo)iCarDashBoard$AbsDashBoardInfo0).artist == null) {
-                            Log.w(this.TAG, "formartDashBoardInfoDataBytes() USB MediaInfo.title is null or AbsDashBoardInfo is not MediaInfo");
-                            return null;
-                        }
-                        if(DashBoardDataFormater.mAbsInfo != null && (DashBoardDataFormater.mAbsInfo instanceof MediaInfo)) {
-                            MediaInfo iCarDashBoard$MediaInfo0 = (MediaInfo)DashBoardDataFormater.mAbsInfo;
-                            if(iCarDashBoard$MediaInfo0.isInfoDiff(((MediaInfo)iCarDashBoard$AbsDashBoardInfo0))) {
-                                iCarDashBoard$MediaInfo0.setInfoDiff(((MediaInfo)iCarDashBoard$AbsDashBoardInfo0));
-                                v9 = 1;
+                        case 5: 
+                        case 9: 
+                        case 12: 
+                        case 13: {
+                            if(!(info instanceof MediaInfo)) {
+                                Log.w(this.TAG, "formartDashBoardInfoDataBytes() USB  AbsDashBoardInfo is not MediaInfo");
+                                return null;
+                            }
+                            if(((MediaInfo)info).title == null || ((MediaInfo)info).artist == null) {
+                                Log.w(this.TAG, "formartDashBoardInfoDataBytes() USB MediaInfo.title is null or AbsDashBoardInfo is not MediaInfo");
+                                return null;
+                            }
+                            if(DashBoardDataFormater.mAbsInfo == null || !(DashBoardDataFormater.mAbsInfo instanceof MediaInfo)) {
+                                DashBoardDataFormater.mAbsInfo = new MediaInfo(((MediaInfo)info).getDashBoardSource());
+                                isMediaUpdate = true;
                             }
                             else {
-                                v9 = 0;
+                                MediaInfo mMediaInfoTemp = (MediaInfo)DashBoardDataFormater.mAbsInfo;
+                                if(mMediaInfoTemp.isInfoDiff(((MediaInfo)info))) {
+                                    mMediaInfoTemp.setInfoDiff(((MediaInfo)info));
+                                    isMediaUpdate = true;
+                                }
                             }
-                        } else {
-                            DashBoardDataFormater.mAbsInfo = new MediaInfo(((MediaInfo)iCarDashBoard$AbsDashBoardInfo0).getDashBoardSource());
-                            v9 = 1;
+                            Log.d(this.TAG, "formartDashBoardInfoDataBytes() isMediaUpdate =" + isMediaUpdate + ",so return byte [] null?");
+                            if(!isMediaUpdate) {
+                                return null;
+                            }
+                            String mTitle = ((MediaInfo)info).title;
+                            String mArtist = ((MediaInfo)info).artist;
+                            int titleLen = mTitle == null ? 0 : mTitle.getBytes(StandardCharsets.UTF_16BE).length;
+                            int artistLen = mArtist == null ? 0 : mArtist.getBytes(StandardCharsets.UTF_16BE).length;
+                            if(artistLen + 2 > 20) {
+                                mArtist = mArtist.substring(0, 9);
+                            }
+                            else {
+                                for(int i = 0; i < (18 - artistLen) / 2; ++i) {
+                                    mArtist = mArtist + " ";
+                                }
+                            }
+                            artistLen = (mArtist == null ? 0 : mArtist.getBytes(StandardCharsets.UTF_16BE).length) + 2;
+                            if(titleLen > 18) {
+                                mTitle = mTitle.substring(0, 6) + "...";
+                                titleLen = mTitle == null ? 0 : mTitle.getBytes(StandardCharsets.UTF_16BE).length;
+                            }
+                            Log.w(this.TAG, "formartDashBoardInfoDataBytes() USB MediaInfo.mTitle=" + mTitle + ",mArtist=" + mArtist);
+                            int dataLen = titleLen + 16 + artistLen + 4;
+                            byteArray = new byte[dataLen + 3];
+                            byteArray[0] = (byte)this.mDashBoardType.ordinal();
+                            byteArray[1] = 2;
+                            byteArray[2] = (byte)dataLen;
+                            byteArray[3] = (byte)(isMediaUpdate ? 1 : 0);
+                            byteArray[4] = 0;
+                            byteArray[5] = 4;
+                            if(info.getDashBoardSource() == 5) {
+                                byteArray[5] = 5;
+                            }
+                            if(info.getDashBoardSource() == 12) {
+                                byteArray[5] = 18;
+                            }
+                            if(info.getDashBoardSource() == 13) {
+                                byteArray[5] = 15;
+                            }
+                            byteArray[6] = 1;
+                            byteArray[7] = 0;
+                            byteArray[8] = 0;
+                            byteArray[9] = 0;
+                            byteArray[10] = 0;
+                            byteArray[11] = 4;
+                            byteArray[12] = (byte)titleLen;
+                            if(titleLen != 0) {
+                                System.arraycopy(mTitle.getBytes(StandardCharsets.UTF_16BE), 0, byteArray, 13, titleLen);
+                            }
+                            byteArray[titleLen + 13] = 1;
+                            byteArray[titleLen + 14] = 1;
+                            byteArray[titleLen + 15] = 1;
+                            byteArray[titleLen + 16] = 2;
+                            byteArray[titleLen + 17] = 4;
+                            byteArray[titleLen + 18] = 0;
+                            byteArray[titleLen + 19] = 0;
+                            byteArray[titleLen + 20] = 0;
+                            byteArray[titleLen + 21] = 4;
+                            byteArray[titleLen + 22] = (byte)artistLen;
+                            if(artistLen != 0 && artistLen != 2) {
+                                System.arraycopy(mArtist.getBytes(StandardCharsets.UTF_16BE), 0, byteArray, titleLen + 23, artistLen - 2);
+                                return byteArray;
+                            }
+                            break;
                         }
-                        Log.d(this.TAG, "formartDashBoardInfoDataBytes() isMediaUpdate =" + ((boolean)v9) + ",so return byte [] null?");
-                        if(v9 == 0) {
+                        default: {
                             return null;
                         }
-                        String s4 = ((MediaInfo)iCarDashBoard$AbsDashBoardInfo0).title;
-                        String s5 = ((MediaInfo)iCarDashBoard$AbsDashBoardInfo0).artist;
-                        int v10 = s4 == null ? 0 : s4.getBytes(StandardCharsets.UTF_16BE).length;
-                        int v11 = s5 == null ? 0 : s5.getBytes(StandardCharsets.UTF_16BE).length;
-                        if(v11 + 2 > 20) {
-                            s6 = s5.substring(0, 9);
-                        }
-                        else {
-                            String s7 = s5;
-                            int v12 = 0;
-                            while(v12 < (18 - v11) / 2) {
-                                ++v12;
-                                s7 = s7 + " ";
-                            }
-                            s6 = s7;
-                        }
-                        int v13 = (s6 == null ? 0 : s6.getBytes(StandardCharsets.UTF_16BE).length) + 2;
-                        if(v10 > 18) {
-                            s8 = s4.substring(0, 6) + "...";
-                            v10 = s8 == null ? 0 : s8.getBytes(StandardCharsets.UTF_16BE).length;
-                        }
-                        else {
-                            s8 = s4;
-                        }
-                        Log.w(this.TAG, "formartDashBoardInfoDataBytes() USB MediaInfo.mTitle=" + s8 + ",mArtist=" + s6);
-                        int v14 = v10 + 16 + v13 + 4;
-                        byte[] arr_b3 = new byte[3 + v14];
-                        arr_b3[0] = (byte)this.mDashBoardType.ordinal();
-                        arr_b3[1] = 2;
-                        arr_b3[2] = (byte)v14;
-                        arr_b3[3] = (byte)v9;
-                        arr_b3[4] = 0;
-                        arr_b3[5] = 4;
-                        if(iCarDashBoard$AbsDashBoardInfo0.getDashBoardSource() == 5) {
-                            arr_b3[5] = 5;
-                        }
-                        if(iCarDashBoard$AbsDashBoardInfo0.getDashBoardSource() == 12) {
-                            arr_b3[5] = 18;
-                        }
-                        if(iCarDashBoard$AbsDashBoardInfo0.getDashBoardSource() == 13) {
-                            arr_b3[5] = 15;
-                        }
-                        arr_b3[6] = 1;
-                        arr_b3[7] = 0;
-                        arr_b3[8] = 0;
-                        arr_b3[9] = 0;
-                        arr_b3[10] = 0;
-                        arr_b3[11] = 4;
-                        arr_b3[12] = (byte)v10;
-                        if(v10 != 0) {
-                            System.arraycopy(s8.getBytes(StandardCharsets.UTF_16BE), 0, arr_b3, 13, v10);
-                        }
-                        arr_b3[13 + v10] = 1;
-                        arr_b3[14 + v10] = 1;
-                        arr_b3[15 + v10] = 1;
-                        arr_b3[16 + v10] = 2;
-                        arr_b3[17 + v10] = 4;
-                        arr_b3[18 + v10] = 0;
-                        arr_b3[19 + v10] = 0;
-                        arr_b3[20 + v10] = 0;
-                        arr_b3[21 + v10] = 4;
-                        arr_b3[22 + v10] = (byte)v13;
-                        if(v13 != 0 && v13 != 2) {
-                            System.arraycopy(s6.getBytes(StandardCharsets.UTF_16BE), 0, arr_b3, 23 + v10, v13 - 2);
-                        }
-                        return arr_b3;
-                    }
-                    default: {
-                        return null;
                     }
                 }
+                return byteArray;
             }
-            catch(Exception exception0) {
-                Log.e(this.TAG, "formartDashBoardInfoDataBytes() Exception " + exception0.getMessage());
+            catch(Exception e) {
+                Log.e(this.TAG, "formartDashBoardInfoDataBytes() Exception " + e.getMessage());
                 return null;
             }
         }
 
-        public byte[] getDashBoardItemUnitByteArray(SetItemUnitInfo iCarDashBoard$SetItemUnitInfo0) {
+        public byte[] getDashBoardItemUnitByteArray(SetItemUnitInfo unitItem) {
             try {
-                byte[] arr_b = new byte[12];
-                if(iCarDashBoard$SetItemUnitInfo0 == null) {
+                byte[] byteArray = new byte[12];
+                if(unitItem == null) {
                     return null;
                 }
-                arr_b[0] = 5;
-                arr_b[1] = 4;
-                arr_b[2] = (byte)iCarDashBoard$SetItemUnitInfo0.mUnitFuelConsumption;
-                arr_b[3] = (byte)iCarDashBoard$SetItemUnitInfo0.mUnitTemperature;
-                arr_b[4] = (byte)iCarDashBoard$SetItemUnitInfo0.mUnitPressure;
-                arr_b[5] = (byte)iCarDashBoard$SetItemUnitInfo0.mUnitDistance;
-                Log.d(this.TAG, StringFormart.byte2hex(arr_b));
-                return arr_b;
+                byteArray[0] = 5;
+                byteArray[1] = 4;
+                byteArray[2] = (byte)unitItem.mUnitFuelConsumption;
+                byteArray[3] = (byte)unitItem.mUnitTemperature;
+                byteArray[4] = (byte)unitItem.mUnitPressure;
+                byteArray[5] = (byte)unitItem.mUnitDistance;
+                Log.d(this.TAG, StringFormart.byte2hex(byteArray));
+                return byteArray;
             }
-            catch(Exception exception0) {
-                Log.e(this.TAG, "setDashBoardItemUnit()  Exception ", exception0);
+            catch(Exception e) {
+                Log.e(this.TAG, "setDashBoardItemUnit()  Exception ", e);
                 return null;
             }
         }
 
-        public byte[] getDashBoardLanguageByteArray(int v) {
+        public byte[] getDashBoardLanguageByteArray(int language) {
             try {
-                if(v == 0) {
+                if(language == 0) {
                     Log.w(this.TAG, "setDashBoardLanguage() language ==0 unknown ! ");
                     return null;
                 }
-                byte[] arr_b = new byte[12];
-                arr_b[0] = 6;
-                arr_b[1] = 1;
-                if(v != 1) {
-                    switch(v) {
-                        case 5: {
-                            arr_b[2] = 5;
-                            return arr_b;
-                        }
-                        case 6: {
-                            arr_b[2] = 6;
-                            return arr_b;
-                        }
-                        default: {
-                            return arr_b;
-                        }
+                byte[] byteArray = new byte[12];
+                byteArray[0] = 6;
+                byteArray[1] = 1;
+                switch(language) {
+                    case 1: {
+                        byteArray[2] = 1;
+                        return byteArray;
+                    }
+                    case 5: {
+                        byteArray[2] = 5;
+                        return byteArray;
+                    }
+                    case 6: {
+                        byteArray[2] = 6;
+                        return byteArray;
+                    }
+                    default: {
+                        return byteArray;
                     }
                 }
-                arr_b[2] = 1;
-                return arr_b;
             }
-            catch(Exception exception0) {
+            catch(Exception e) {
+                Log.e(this.TAG, "setDashBoardLanguage()  Exception ", e);
+                return null;
             }
-            Log.e(this.TAG, "setDashBoardLanguage()  Exception ", exception0);
-            return null;
         }
 
-        public byte[] getDashBoardMsgDataByteArray(AbsDashBoardMsg iCarDashBoard$AbsDashBoardMsg0) {
-            if(iCarDashBoard$AbsDashBoardMsg0 == null) {
+        public byte[] getDashBoardMsgDataByteArray(AbsDashBoardMsg msg) {
+            if(msg == null) {
                 Log.w(this.TAG, "getDashBoardMsgDataByteArray() msg is null");
             }
             try {
                 if(DashBoardType.MCU_CA1105.equals(this.mDashBoardType)) {
-                    byte[] arr_b = new byte[10];
-                    arr_b[0] = (byte)this.mDashBoardType.ordinal();
-                    arr_b[1] = (byte)0xE0;
-                    arr_b[2] = 1;
-                    if((iCarDashBoard$AbsDashBoardMsg0 instanceof DashBoardMsgAudio)) {
-                        arr_b[3] = 8;
-                        arr_b[4] = 5;
-                        arr_b[5] = 0;
-                        arr_b[6] = 19;
-                        switch(((DashBoardMsgAudio)iCarDashBoard$AbsDashBoardMsg0).audioState) {
+                    byte[] data = new byte[10];
+                    data[0] = (byte)this.mDashBoardType.ordinal();
+                    data[1] = (byte)0xE0;
+                    data[2] = 1;
+                    if((msg instanceof DashBoardMsgAudio)) {
+                        data[3] = 8;
+                        data[4] = 5;
+                        data[5] = 0;
+                        data[6] = 19;
+                        switch(((DashBoardMsgAudio)msg).audioState) {
                             case 0: {
-                                arr_b[6] = 0;
-                                arr_b[7] = 0;
+                                data[6] = 0;
+                                data[7] = 0;
                                 break;
                             }
                             case 38: {
-                                arr_b[7] = 38;
+                                data[7] = 38;
                                 break;
                             }
                             case 41: {
-                                arr_b[7] = 41;
+                                data[7] = 41;
                                 break;
                             }
                             case 55: {
-                                arr_b[7] = 55;
+                                data[7] = 55;
                                 break;
                             }
                             case 58: {
-                                arr_b[7] = 58;
+                                data[7] = 58;
                                 break;
                             }
                             default: {
-                                arr_b[7] = -1;
+                                data[7] = -1;
                             }
                         }
-                        arr_b[8] = 4;
-                        arr_b[9] = 0;
-                        return arr_b;
+                        data[8] = 4;
+                        data[9] = 0;
+                        return data;
                     }
-                    if((iCarDashBoard$AbsDashBoardMsg0 instanceof DashBoardMsgVoice)) {
-                        arr_b[3] = 9;
-                        arr_b[4] = 4;
-                        arr_b[5] = ((DashBoardMsgVoice)iCarDashBoard$AbsDashBoardMsg0).voiceAction;
-                        arr_b[6] = 8;
+                    if((msg instanceof DashBoardMsgVoice)) {
+                        data[3] = 9;
+                        data[4] = 4;
+                        data[5] = ((DashBoardMsgVoice)msg).voiceAction;
+                        data[6] = 8;
+                        return data;
                     }
-                    return arr_b;
+                    return data;
                 }
             }
-            catch(Exception exception0) {
-                Log.e(this.TAG, "getDashBoardMsgDataByteArray()  Exception ", exception0);
+            catch(Exception e) {
+                Log.e(this.TAG, "getDashBoardMsgDataByteArray()  Exception ", e);
             }
             return null;
         }
 
-        public byte[] getDashBoardSourceDataByteArray(int v, AbsDashBoardInfo iCarDashBoard$AbsDashBoardInfo0) {
-            if(iCarDashBoard$AbsDashBoardInfo0 == null) {
+        public byte[] getDashBoardSourceDataByteArray(int source, AbsDashBoardInfo info) {
+            if(info == null) {
                 Log.w(this.TAG, "getDashBoardSourceDataByteArray() info is null");
             }
             try {
-                AbsDashBoardInfo iCarDashBoard$AbsDashBoardInfo1 = this.getDashBoardSourceFormatInfo(v, iCarDashBoard$AbsDashBoardInfo0);
+                AbsDashBoardInfo iCarDashBoard$AbsDashBoardInfo1 = this.getDashBoardSourceFormatInfo(source, info);
                 if(DashBoardType.MCU_CA1105.equals(this.mDashBoardType)) {
-                    switch(v) {
+                    switch(source) {
                         case 1: 
                         case 4: 
                         case 5: 
@@ -577,25 +567,25 @@ public interface ICarDashBoard {
                             break;
                         }
                         default: {
-                            byte[] arr_b = new byte[23];
-                            arr_b[0] = (byte)this.mDashBoardType.ordinal();
-                            arr_b[1] = 2;
-                            arr_b[2] = 20;
+                            byte[] byteArray = new byte[23];
+                            byteArray[0] = (byte)this.mDashBoardType.ordinal();
+                            byteArray[1] = 2;
+                            byteArray[2] = 20;
                             DashBoardDataFormater.mAbsInfo = null;
-                            return arr_b;
+                            return byteArray;
                         }
                     }
                 }
             }
-            catch(Exception exception0) {
-                Log.e(this.TAG, "getDashBoardSourceDataByteArray() Exception ", exception0);
+            catch(Exception e) {
+                Log.e(this.TAG, "getDashBoardSourceDataByteArray() Exception ", e);
             }
             return null;
         }
 
-        private AbsDashBoardInfo getDashBoardSourceFormatInfo(int v, AbsDashBoardInfo iCarDashBoard$AbsDashBoardInfo0) {
-            if(iCarDashBoard$AbsDashBoardInfo0 == null) {
-                switch(v) {
+        private AbsDashBoardInfo getDashBoardSourceFormatInfo(int source, AbsDashBoardInfo info) {
+            if(info == null) {
+                switch(source) {
                     case 4: {
                         return new BtInfo();
                     }
@@ -603,17 +593,17 @@ public interface ICarDashBoard {
                     case 9: 
                     case 12: 
                     case 13: {
-                        iCarDashBoard$AbsDashBoardInfo0 = new MediaInfo(v);
-                        iCarDashBoard$AbsDashBoardInfo0.title = "--";
-                        iCarDashBoard$AbsDashBoardInfo0.artist = "--";
-                        return iCarDashBoard$AbsDashBoardInfo0;
+                        MediaInfo media = new MediaInfo(source);
+                        media.title = "--";
+                        media.artist = "--";
+                        return media;
                     }
                     default: {
                         return null;
                     }
                 }
             }
-            return iCarDashBoard$AbsDashBoardInfo0;
+            return info;
         }
 
         public boolean isSendMediaInfoOnly() {
@@ -633,7 +623,7 @@ public interface ICarDashBoard {
 
     public static class DashBoardMsgVoice extends AbsDashBoardMsg {
         public static final byte VOICE_ACTION_END = 2;
-        public static final byte VOICE_ACTION_START;
+        public static final byte VOICE_ACTION_START = 1;
         public byte voiceAction;
 
     }
@@ -666,14 +656,14 @@ public interface ICarDashBoard {
         QNX_SOCKET,
         MCU_IHU12;
 
-        public static DashBoardType valueOf(int v) {
-            if(v == DashBoardType.MCU_CA1105.ordinal()) {
+        public static DashBoardType valueOf(int value) {
+            if(value == DashBoardType.MCU_CA1105.ordinal()) {
                 return DashBoardType.MCU_CA1105;
             }
-            if(v == DashBoardType.QNX_SOCKET.ordinal()) {
+            if(value == DashBoardType.QNX_SOCKET.ordinal()) {
                 return DashBoardType.QNX_SOCKET;
             }
-            return v == DashBoardType.MCU_IHU12.ordinal() ? DashBoardType.MCU_IHU12 : DashBoardType.UNKNOWN;
+            return value == DashBoardType.MCU_IHU12.ordinal() ? DashBoardType.MCU_IHU12 : DashBoardType.UNKNOWN;
         }
     }
 
@@ -700,7 +690,7 @@ public interface ICarDashBoard {
         public static final byte PLAY_TYPE_REPEAT_ONE = 1;
         public static final byte STATUS_PAUSE = 1;
         public static final byte STATUS_PLAY = 2;
-        public static final byte STATUS_STOP;
+        public static final byte STATUS_STOP = 0;
         public String artist;
         public int current;
         public boolean isMute;
@@ -709,58 +699,55 @@ public interface ICarDashBoard {
         public String title;
         public int total;
 
-        public MediaInfo(int v) {
-            super(v);
+        public MediaInfo(int source) {
+            super(source);
         }
 
-        public MediaInfo(int v, String s, String s1, int v1, int v2, int v3) {
-            super(v);
-            this.title = s;
-            this.artist = s1;
-            this.current = v1;
-            this.total = v2;
-            this.status = v3;
+        public MediaInfo(int source, String title, String artist, int current, int total, int status) {
+            super(source);
+            this.title = title;
+            this.artist = artist;
+            this.current = current;
+            this.total = total;
+            this.status = status;
         }
 
-        public MediaInfo(int v, String s, String s1, int v1, int v2, int v3, int v4, boolean z) {
-            super(v);
-            this.title = s;
-            this.artist = s1;
-            this.current = v1;
-            this.total = v2;
-            this.status = v3;
-            this.playType = v4;
-            this.isMute = z;
+        public MediaInfo(int source, String title, String artist, int current, int total, int status, int playType, boolean isMute) {
+            super(source);
+            this.title = title;
+            this.artist = artist;
+            this.current = current;
+            this.total = total;
+            this.status = status;
+            this.playType = playType;
+            this.isMute = isMute;
         }
 
-        public boolean isInfoDiff(MediaInfo iCarDashBoard$MediaInfo0) {
-            if(iCarDashBoard$MediaInfo0 == null) {
-                return true;
-            }
-            return this.getDashBoardSource() == iCarDashBoard$MediaInfo0.getDashBoardSource() ? this.title != null && iCarDashBoard$MediaInfo0.title == null || this.title == null && iCarDashBoard$MediaInfo0.title != null || this.title != null && iCarDashBoard$MediaInfo0.title != null && !this.title.equals(iCarDashBoard$MediaInfo0.title) || this.artist != null && iCarDashBoard$MediaInfo0.artist == null || this.artist == null && iCarDashBoard$MediaInfo0.artist != null || this.artist != null && iCarDashBoard$MediaInfo0.artist != null && !this.artist.equals(iCarDashBoard$MediaInfo0.artist) : true;
+        public boolean isInfoDiff(MediaInfo m) {
+            return m == null ? true : this.getDashBoardSource() != m.getDashBoardSource() || this.title != null && m.title == null || this.title == null && m.title != null || this.title != null && m.title != null && !this.title.equals(m.title) || this.artist != null && m.artist == null || this.artist == null && m.artist != null || this.artist != null && m.artist != null && !this.artist.equals(m.artist);
         }
 
-        public void setInfoDiff(MediaInfo iCarDashBoard$MediaInfo0) {
-            this.title = iCarDashBoard$MediaInfo0.title;
-            this.artist = iCarDashBoard$MediaInfo0.artist;
-            this.setDashBoardSource(iCarDashBoard$MediaInfo0.getDashBoardSource());
+        public void setInfoDiff(MediaInfo m) {
+            this.title = m.title;
+            this.artist = m.artist;
+            this.setDashBoardSource(m.getDashBoardSource());
         }
 
         @Override  // com.yftech.vehicle.internal.adapter.ICarDashBoard$AbsDashBoardInfo
         public byte[] toBytes() {
-            byte[] arr_b = new byte[0x109];
-            arr_b[0x101] = (byte)(this.current >> 8 & 0xFF);
-            arr_b[0x102] = (byte)(this.current & 0xFF);
-            arr_b[0x105] = (byte)(this.total >> 8 & 0xFF);
-            arr_b[0x106] = (byte)(this.total & 0xFF);
-            arr_b[0x109] = (byte)this.status;
+            byte[] resultArr = new byte[0x109];
+            resultArr[0x101] = (byte)(this.current >> 8 & 0xFF);
+            resultArr[0x102] = (byte)(this.current & 0xFF);
+            resultArr[0x105] = (byte)(this.total >> 8 & 0xFF);
+            resultArr[0x106] = (byte)(this.total & 0xFF);
+            resultArr[0x109] = (byte)this.status;
             if(this.title != null) {
-                System.arraycopy(this.title.getBytes(StandardCharsets.UTF_8), 0, arr_b, 0, this.title.getBytes(StandardCharsets.UTF_8).length);
+                System.arraycopy(this.title.getBytes(StandardCharsets.UTF_8), 0, resultArr, 0, this.title.getBytes(StandardCharsets.UTF_8).length);
             }
             if(this.artist != null) {
-                System.arraycopy(this.artist.getBytes(StandardCharsets.UTF_8), 0, arr_b, 0x80, this.artist.getBytes(StandardCharsets.UTF_8).length);
+                System.arraycopy(this.artist.getBytes(StandardCharsets.UTF_8), 0, resultArr, 0x80, this.artist.getBytes(StandardCharsets.UTF_8).length);
             }
-            return arr_b;
+            return resultArr;
         }
 
         @Override  // com.yftech.vehicle.internal.adapter.ICarDashBoard$AbsDashBoardInfo
@@ -831,24 +818,24 @@ public interface ICarDashBoard {
 
         public final int value;
 
-        private PhoneAction(int v1) {
-            this.value = v1;
+        private PhoneAction(int value) {
+            this.value = value;
         }
 
-        public static PhoneAction valueOf(int v) {
-            if(v == PhoneAction.MUTE_MIC.value) {
+        public static PhoneAction valueOf(int value) {
+            if(value == PhoneAction.MUTE_MIC.value) {
                 return PhoneAction.MUTE_MIC;
             }
-            if(v == PhoneAction.USE_HANDSET.value) {
+            if(value == PhoneAction.USE_HANDSET.value) {
                 return PhoneAction.USE_HANDSET;
             }
-            if(v == PhoneAction.ENDING_CALL.value) {
+            if(value == PhoneAction.ENDING_CALL.value) {
                 return PhoneAction.ENDING_CALL;
             }
-            if(v == PhoneAction.REFUSE_CALL.value) {
+            if(value == PhoneAction.REFUSE_CALL.value) {
                 return PhoneAction.REFUSE_CALL;
             }
-            return v == PhoneAction.ANSWER_CALL.value ? PhoneAction.ANSWER_CALL : PhoneAction.__UNKNOWN__;
+            return value == PhoneAction.ANSWER_CALL.value ? PhoneAction.ANSWER_CALL : PhoneAction.__UNKNOWN__;
         }
     }
 
@@ -872,30 +859,30 @@ public interface ICarDashBoard {
             super(1);
         }
 
-        public RadioInfo(int v, byte b, boolean z, byte b1, int v1) {
-            super(v);
-            this.mBandType = b;
-            this.isPrefebIndex = z;
-            this.mPrefebIndex = b1;
-            this.mFrequency = v1;
+        public RadioInfo(int source, byte mBandType, boolean isPrefebIndex, byte mPrefebIndex, int mFrequency) {
+            super(source);
+            this.mBandType = mBandType;
+            this.isPrefebIndex = isPrefebIndex;
+            this.mPrefebIndex = mPrefebIndex;
+            this.mFrequency = mFrequency;
         }
 
-        public RadioInfo(int v, byte b, boolean z, byte b1, int v1, byte b2) {
-            super(v);
-            this.mBandType = b;
-            this.isPrefebIndex = z;
-            this.mPrefebIndex = b1;
-            this.mFrequency = v1;
-            this.scanMode = b2;
+        public RadioInfo(int source, byte mBandType, boolean isPrefebIndex, byte mPrefebIndex, int mFrequency, byte scanMode) {
+            super(source);
+            this.mBandType = mBandType;
+            this.isPrefebIndex = isPrefebIndex;
+            this.mPrefebIndex = mPrefebIndex;
+            this.mFrequency = mFrequency;
+            this.scanMode = scanMode;
         }
 
-        public boolean isInfoDiff(RadioInfo iCarDashBoard$RadioInfo0) {
-            return iCarDashBoard$RadioInfo0 == null ? true : this.mBandType != iCarDashBoard$RadioInfo0.mBandType || this.mFrequency != iCarDashBoard$RadioInfo0.mFrequency;
+        public boolean isInfoDiff(RadioInfo r) {
+            return r == null ? true : this.mBandType != r.mBandType || this.mFrequency != r.mFrequency;
         }
 
-        public void setInfoDiff(RadioInfo iCarDashBoard$RadioInfo0) {
-            this.mBandType = iCarDashBoard$RadioInfo0.mBandType;
-            this.mFrequency = iCarDashBoard$RadioInfo0.mFrequency;
+        public void setInfoDiff(RadioInfo r) {
+            this.mBandType = r.mBandType;
+            this.mFrequency = r.mFrequency;
         }
 
         @Override  // com.yftech.vehicle.internal.adapter.ICarDashBoard$AbsDashBoardInfo
@@ -918,38 +905,54 @@ public interface ICarDashBoard {
     }
 
     public static class SetItemUnitInfo {
-        public static int DISTANCE_M = 1;
-        public static int DISTANCE_MILE = 2;
-        public static int FUEL_CONSUMPTION_KM_KWH = 81;
-        public static int FUEL_CONSUMPTION_KM_L = 1;
-        public static int FUEL_CONSUMPTION_KWH_100KM = 82;
-        public static int FUEL_CONSUMPTION_KWH_MILE = 84;
-        public static int FUEL_CONSUMPTION_L_100KM = 2;
-        public static int FUEL_CONSUMPTION_MILES_KWH = 83;
-        public static int FUEL_CONSUMPTION_MPG_UK = 4;
-        public static int FUEL_CONSUMPTION_MPG_US = 3;
-        public static byte PRESSURE_BAR = 3;
-        public static byte PRESSURE_KGF_CM2 = 4;
-        public static byte PRESSURE_KPA = 1;
-        public static byte PRESSURE_PSI = 2;
-        public static byte TEMPERATURE_DEG_C = 1;
-        public static byte TEMPERATURE_DEG_F = 2;
+        public static int DISTANCE_M;
+        public static int DISTANCE_MILE;
+        public static int FUEL_CONSUMPTION_KM_KWH;
+        public static int FUEL_CONSUMPTION_KM_L;
+        public static int FUEL_CONSUMPTION_KWH_100KM;
+        public static int FUEL_CONSUMPTION_KWH_MILE;
+        public static int FUEL_CONSUMPTION_L_100KM;
+        public static int FUEL_CONSUMPTION_MILES_KWH;
+        public static int FUEL_CONSUMPTION_MPG_UK;
+        public static int FUEL_CONSUMPTION_MPG_US;
+        public static byte PRESSURE_BAR;
+        public static byte PRESSURE_KGF_CM2;
+        public static byte PRESSURE_KPA;
+        public static byte PRESSURE_PSI;
+        public static byte TEMPERATURE_DEG_C;
+        public static byte TEMPERATURE_DEG_F;
         public int mUnitDistance;
         public int mUnitFuelConsumption;
         public int mUnitPressure;
         public int mUnitTemperature;
 
         static {
+            SetItemUnitInfo.PRESSURE_KGF_CM2 = 4;
+            SetItemUnitInfo.PRESSURE_BAR = 3;
+            SetItemUnitInfo.PRESSURE_PSI = 2;
+            SetItemUnitInfo.PRESSURE_KPA = 1;
+            SetItemUnitInfo.TEMPERATURE_DEG_C = 1;
+            SetItemUnitInfo.TEMPERATURE_DEG_F = 2;
+            SetItemUnitInfo.DISTANCE_MILE = 2;
+            SetItemUnitInfo.DISTANCE_M = 1;
+            SetItemUnitInfo.FUEL_CONSUMPTION_KWH_MILE = 84;
+            SetItemUnitInfo.FUEL_CONSUMPTION_MILES_KWH = 83;
+            SetItemUnitInfo.FUEL_CONSUMPTION_KWH_100KM = 82;
+            SetItemUnitInfo.FUEL_CONSUMPTION_KM_KWH = 81;
+            SetItemUnitInfo.FUEL_CONSUMPTION_MPG_UK = 4;
+            SetItemUnitInfo.FUEL_CONSUMPTION_MPG_US = 3;
+            SetItemUnitInfo.FUEL_CONSUMPTION_L_100KM = 2;
+            SetItemUnitInfo.FUEL_CONSUMPTION_KM_L = 1;
         }
 
         public SetItemUnitInfo() {
         }
 
-        private SetItemUnitInfo(int v, int v1, int v2, int v3) {
-            this.mUnitPressure = v;
-            this.mUnitTemperature = v1;
-            this.mUnitDistance = v2;
-            this.mUnitFuelConsumption = v3;
+        private SetItemUnitInfo(int unitPressure, int unitTemperature, int unitDistance, int unitFuelConsumption) {
+            this.mUnitPressure = unitPressure;
+            this.mUnitTemperature = unitTemperature;
+            this.mUnitDistance = unitDistance;
+            this.mUnitFuelConsumption = unitFuelConsumption;
         }
 
         @Override
@@ -957,8 +960,8 @@ public interface ICarDashBoard {
             return "SetItemUnitInfo{mUnitPressure=" + this.mUnitPressure + ", mUnitTemperature=" + this.mUnitTemperature + ", mUnitDistance=" + this.mUnitDistance + ", mUnitFuelConsumption=" + this.mUnitFuelConsumption + '}';
         }
 
-        public static SetItemUnitInfo valueOf(byte[] arr_b) {
-            return new SetItemUnitInfo(((int)arr_b[0]), ((int)arr_b[1]), ((int)arr_b[2]), ((int)arr_b[3]));
+        public static SetItemUnitInfo valueOf(byte[] value) {
+            return new SetItemUnitInfo(((int)value[0]), ((int)value[1]), ((int)value[2]), ((int)value[3]));
         }
     }
 
@@ -969,15 +972,15 @@ public interface ICarDashBoard {
 
         public final int value;
 
-        private TimeFormatMode(int v1) {
-            this.value = v1;
+        private TimeFormatMode(int value) {
+            this.value = value;
         }
 
-        public static TimeFormatMode valueOf(int v) {
-            if(v == TimeFormatMode.MODE_12H.value) {
+        public static TimeFormatMode valueOf(int value) {
+            if(value == TimeFormatMode.MODE_12H.value) {
                 return TimeFormatMode.MODE_12H;
             }
-            return v == TimeFormatMode.MODE_24H.value ? TimeFormatMode.MODE_24H : TimeFormatMode.__UNKNOWN__;
+            return value == TimeFormatMode.MODE_24H.value ? TimeFormatMode.MODE_24H : TimeFormatMode.__UNKNOWN__;
         }
     }
 

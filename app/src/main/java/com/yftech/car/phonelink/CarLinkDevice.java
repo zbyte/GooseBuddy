@@ -5,14 +5,30 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class CarLinkDevice implements Parcelable {
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public CarLinkDevice createFromParcel(Parcel in) {
+            CarLinkDevice link = new CarLinkDevice();
+            link.phoneType = in.readString();
+            link.deviceName = in.readString();
+            link.deviceId = in.readString();
+            link.connectedStatus = in.readInt();
+            link.connectedType = in.readInt();
+            link.macAddress = in.readString();
+            link.status = in.readInt();
+            return link;
+        }
+
+        public CarLinkDevice[] newArray(int size) {
+            return new CarLinkDevice[size];
+        }
+    };
     public static final int STATUS_CONNECTED_CONNECTED = 1;
     public static final int STATUS_CONNECTED_DISCONNECTED = 0;
     public static final int STATUS_DEVICE_DISABLE = 0;
     public static final int STATUS_DEVICE_ENABLE = 1;
     public static final int TYPE_CONNECTED_UNKNOW = 2;
     public static final int TYPE_CONNECTED_USB = 1;
-    public static final int TYPE_CONNECTED_WIRELESS;
+    public static final int TYPE_CONNECTED_WIRELESS = 0;
     private int connectedStatus;
     private int connectedType;
     private String deviceId;
@@ -20,26 +36,6 @@ public class CarLinkDevice implements Parcelable {
     private String macAddress;
     private String phoneType;
     private int status;
-
-    static {
-        CarLinkDevice.CREATOR = new Parcelable.Creator() {
-            public CarLinkDevice createFromParcel(Parcel in) {
-                CarLinkDevice link = new CarLinkDevice();
-                link.phoneType = in.readString();
-                link.deviceName = in.readString();
-                link.deviceId = in.readString();
-                link.connectedStatus = in.readInt();
-                link.connectedType = in.readInt();
-                link.macAddress = in.readString();
-                link.status = in.readInt();
-                return link;
-            }
-
-            public CarLinkDevice[] newArray(int size) {
-                return new CarLinkDevice[size];
-            }
-        };
-    }
 
     public CarLinkDevice() {
         this.status = 1;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:paddingTop="20.0dp" android:paddingBottom="20.0dp" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:id="@+id/tvTitle" style="@style/ItemTitleStyle"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="20.0dp">
+        <com.yftech.settings.widget.SwitchMultiButton android:id="@+id/switchMultiButton" style="@style/ItemSwitchMultiButtonStyle"/>
+        <TextView android:id="@+id/tvDescribe" android:layout_marginTop="14.0dp" style="@style/ItemDescribeStyle"/>
+    </LinearLayout>
+</LinearLayout>

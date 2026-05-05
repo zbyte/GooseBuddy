@@ -10,21 +10,21 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private CarMode(int v1) {
-            this.value = v1;
+        private CarMode(int value) {
+            this.value = value;
         }
 
-        public static CarMode valueOf(int v) {
-            if(v == CarMode.CAR_MODE1.value) {
+        public static CarMode valueOf(int value) {
+            if(value == CarMode.CAR_MODE1.value) {
                 return CarMode.CAR_MODE1;
             }
-            if(v == CarMode.CAR_MODE2.value) {
+            if(value == CarMode.CAR_MODE2.value) {
                 return CarMode.CAR_MODE2;
             }
-            if(v == CarMode.CAR_MODE3.value) {
+            if(value == CarMode.CAR_MODE3.value) {
                 return CarMode.CAR_MODE3;
             }
-            return v == CarMode.CAR_MODE4.value ? CarMode.CAR_MODE4 : CarMode.__UNKNOWN__;
+            return value == CarMode.CAR_MODE4.value ? CarMode.CAR_MODE4 : CarMode.__UNKNOWN__;
         }
     }
 
@@ -69,16 +69,16 @@ public interface Ihu23IHostConfig {
         public final byte byteIndex;
         public final byte startBit;
 
-        private Config(int v1, int v2) {
-            this.byteIndex = (byte)v1;
-            this.startBit = (byte)v2;
+        private Config(int byteIndex, int startBit) {
+            this.byteIndex = (byte)byteIndex;
+            this.startBit = (byte)startBit;
             this.bitSize = 1;
         }
 
-        private Config(int v1, int v2, int v3) {
-            this.byteIndex = (byte)v1;
-            this.startBit = (byte)v2;
-            this.bitSize = (byte)(v3 - v2 + 1);
+        private Config(int byteIndex, int startBit, int endBit) {
+            this.byteIndex = (byte)byteIndex;
+            this.startBit = (byte)startBit;
+            this.bitSize = (byte)(endBit - startBit + 1);
         }
     }
 
@@ -89,15 +89,15 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private EngineeringMode(int v1) {
-            this.value = v1;
+        private EngineeringMode(int value) {
+            this.value = value;
         }
 
-        public static EngineeringMode valueOf(int v) {
-            if(v == EngineeringMode.CLOSE.value) {
+        public static EngineeringMode valueOf(int value) {
+            if(value == EngineeringMode.CLOSE.value) {
                 return EngineeringMode.CLOSE;
             }
-            return v == EngineeringMode.OPEN.value ? EngineeringMode.OPEN : EngineeringMode.__UNKNOWN__;
+            return value == EngineeringMode.OPEN.value ? EngineeringMode.OPEN : EngineeringMode.__UNKNOWN__;
         }
     }
 
@@ -111,24 +111,24 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private HvacDisplayTime(int v1) {
-            this.value = v1;
+        private HvacDisplayTime(int value) {
+            this.value = value;
         }
 
-        public static HvacDisplayTime valueOf(int v) {
-            if(v == HvacDisplayTime.NOT_PRESENT.value) {
+        public static HvacDisplayTime valueOf(int value) {
+            if(value == HvacDisplayTime.NOT_PRESENT.value) {
                 return HvacDisplayTime.NOT_PRESENT;
             }
-            if(v == HvacDisplayTime.FIVE_SECOND.value) {
+            if(value == HvacDisplayTime.FIVE_SECOND.value) {
                 return HvacDisplayTime.FIVE_SECOND;
             }
-            if(v == HvacDisplayTime.TEN_SECOND.value) {
+            if(value == HvacDisplayTime.TEN_SECOND.value) {
                 return HvacDisplayTime.TEN_SECOND;
             }
-            if(v == HvacDisplayTime.FIFTEEN_SECOND.value) {
+            if(value == HvacDisplayTime.FIFTEEN_SECOND.value) {
                 return HvacDisplayTime.FIFTEEN_SECOND;
             }
-            return v == HvacDisplayTime.THIRTY_SECOND.value ? HvacDisplayTime.THIRTY_SECOND : HvacDisplayTime.__UNKNOWN__;
+            return value == HvacDisplayTime.THIRTY_SECOND.value ? HvacDisplayTime.THIRTY_SECOND : HvacDisplayTime.__UNKNOWN__;
         }
     }
 
@@ -140,18 +140,18 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private InterfaceSound(int v1) {
-            this.value = v1;
+        private InterfaceSound(int value) {
+            this.value = value;
         }
 
-        public static InterfaceSound valueOf(int v) {
-            if(v == InterfaceSound.NOT_PRESENT.value) {
+        public static InterfaceSound valueOf(int value) {
+            if(value == InterfaceSound.NOT_PRESENT.value) {
                 return InterfaceSound.NOT_PRESENT;
             }
-            if(v == InterfaceSound.ON.value) {
+            if(value == InterfaceSound.ON.value) {
                 return InterfaceSound.ON;
             }
-            return v == InterfaceSound.OFF.value ? InterfaceSound.OFF : InterfaceSound.__UNKNOWN__;
+            return value == InterfaceSound.OFF.value ? InterfaceSound.OFF : InterfaceSound.__UNKNOWN__;
         }
     }
 
@@ -164,21 +164,21 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private Keytone(int v1) {
-            this.value = v1;
+        private Keytone(int value) {
+            this.value = value;
         }
 
-        public static Keytone valueOf(int v) {
-            if(v == Keytone.NOT_PRESENT.value) {
+        public static Keytone valueOf(int value) {
+            if(value == Keytone.NOT_PRESENT.value) {
                 return Keytone.NOT_PRESENT;
             }
-            if(v == Keytone.MODERN.value) {
+            if(value == Keytone.MODERN.value) {
                 return Keytone.MODERN;
             }
-            if(v == Keytone.VINTAGE.value) {
+            if(value == Keytone.VINTAGE.value) {
                 return Keytone.VINTAGE;
             }
-            return v == Keytone.NO_KEYTONE.value ? Keytone.NO_KEYTONE : Keytone.__UNKNOWN__;
+            return value == Keytone.NO_KEYTONE.value ? Keytone.NO_KEYTONE : Keytone.__UNKNOWN__;
         }
     }
 
@@ -199,45 +199,45 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private Language(int v1) {
-            this.value = v1;
+        private Language(int value) {
+            this.value = value;
         }
 
-        public static Language valueOf(int v) {
-            if(v == Language.CHINESE.value) {
+        public static Language valueOf(int value) {
+            if(value == Language.CHINESE.value) {
                 return Language.CHINESE;
             }
-            if(v == Language.ENGLISH.value) {
+            if(value == Language.ENGLISH.value) {
                 return Language.ENGLISH;
             }
-            if(v == Language.ARABIC_RESERVED.value) {
+            if(value == Language.ARABIC_RESERVED.value) {
                 return Language.ARABIC_RESERVED;
             }
-            if(v == Language.RUSSIAN_RESERVED.value) {
+            if(value == Language.RUSSIAN_RESERVED.value) {
                 return Language.RUSSIAN_RESERVED;
             }
-            if(v == Language.CHINESE_PLUSENGLISH.value) {
+            if(value == Language.CHINESE_PLUSENGLISH.value) {
                 return Language.CHINESE_PLUSENGLISH;
             }
-            if(v == Language.SPANISH.value) {
+            if(value == Language.SPANISH.value) {
                 return Language.SPANISH;
             }
-            if(v == Language.INDONESIAN.value) {
+            if(value == Language.INDONESIAN.value) {
                 return Language.INDONESIAN;
             }
-            if(v == Language.THAI.value) {
+            if(value == Language.THAI.value) {
                 return Language.THAI;
             }
-            if(v == Language.MALAY.value) {
+            if(value == Language.MALAY.value) {
                 return Language.MALAY;
             }
-            if(v == Language.VIETNAMESE.value) {
+            if(value == Language.VIETNAMESE.value) {
                 return Language.VIETNAMESE;
             }
-            if(v == Language.TRADITIONAL_CHINESE.value) {
+            if(value == Language.TRADITIONAL_CHINESE.value) {
                 return Language.TRADITIONAL_CHINESE;
             }
-            return v == Language.PORTUGUESE.value ? Language.PORTUGUESE : Language.__UNKNOWN__;
+            return value == Language.PORTUGUESE.value ? Language.PORTUGUESE : Language.__UNKNOWN__;
         }
     }
 
@@ -249,18 +249,18 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private NumberOfScreen(int v1) {
-            this.value = v1;
+        private NumberOfScreen(int value) {
+            this.value = value;
         }
 
-        public static NumberOfScreen valueOf(int v) {
-            if(v == NumberOfScreen.TOW.value) {
+        public static NumberOfScreen valueOf(int value) {
+            if(value == NumberOfScreen.TOW.value) {
                 return NumberOfScreen.TOW;
             }
-            if(v == NumberOfScreen.THREE.value) {
+            if(value == NumberOfScreen.THREE.value) {
                 return NumberOfScreen.THREE;
             }
-            return v == NumberOfScreen.ONE.value ? NumberOfScreen.ONE : NumberOfScreen.__UNKNOWN__;
+            return value == NumberOfScreen.ONE.value ? NumberOfScreen.ONE : NumberOfScreen.__UNKNOWN__;
         }
     }
 
@@ -273,21 +273,21 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RadarVolumeAdjustment(int v1) {
-            this.value = v1;
+        private RadarVolumeAdjustment(int value) {
+            this.value = value;
         }
 
-        public static RadarVolumeAdjustment valueOf(int v) {
-            if(v == RadarVolumeAdjustment.NOT_PRESENT.value) {
+        public static RadarVolumeAdjustment valueOf(int value) {
+            if(value == RadarVolumeAdjustment.NOT_PRESENT.value) {
                 return RadarVolumeAdjustment.NOT_PRESENT;
             }
-            if(v == RadarVolumeAdjustment.LOW.value) {
+            if(value == RadarVolumeAdjustment.LOW.value) {
                 return RadarVolumeAdjustment.LOW;
             }
-            if(v == RadarVolumeAdjustment.MIDDLE.value) {
+            if(value == RadarVolumeAdjustment.MIDDLE.value) {
                 return RadarVolumeAdjustment.MIDDLE;
             }
-            return v == RadarVolumeAdjustment.HIGH.value ? RadarVolumeAdjustment.HIGH : RadarVolumeAdjustment.__UNKNOWN__;
+            return value == RadarVolumeAdjustment.HIGH.value ? RadarVolumeAdjustment.HIGH : RadarVolumeAdjustment.__UNKNOWN__;
         }
     }
 
@@ -300,21 +300,21 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RadioConfiguration(int v1) {
-            this.value = v1;
+        private RadioConfiguration(int value) {
+            this.value = value;
         }
 
-        public static RadioConfiguration valueOf(int v) {
-            if(v == RadioConfiguration.NOT_PRESENT.value) {
+        public static RadioConfiguration valueOf(int value) {
+            if(value == RadioConfiguration.NOT_PRESENT.value) {
                 return RadioConfiguration.NOT_PRESENT;
             }
-            if(v == RadioConfiguration.FM.value) {
+            if(value == RadioConfiguration.FM.value) {
                 return RadioConfiguration.FM;
             }
-            if(v == RadioConfiguration.AM.value) {
+            if(value == RadioConfiguration.AM.value) {
                 return RadioConfiguration.AM;
             }
-            return v == RadioConfiguration.FM_PLUSAM.value ? RadioConfiguration.FM_PLUSAM : RadioConfiguration.__UNKNOWN__;
+            return value == RadioConfiguration.FM_PLUSAM.value ? RadioConfiguration.FM_PLUSAM : RadioConfiguration.__UNKNOWN__;
         }
     }
 
@@ -327,21 +327,21 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RadioDABAndRDSConfig(int v1) {
-            this.value = v1;
+        private RadioDABAndRDSConfig(int value) {
+            this.value = value;
         }
 
-        public static RadioDABAndRDSConfig valueOf(int v) {
-            if(v == RadioDABAndRDSConfig.NOT_PRESENT.value) {
+        public static RadioDABAndRDSConfig valueOf(int value) {
+            if(value == RadioDABAndRDSConfig.NOT_PRESENT.value) {
                 return RadioDABAndRDSConfig.NOT_PRESENT;
             }
-            if(v == RadioDABAndRDSConfig.DAB_RDS.value) {
+            if(value == RadioDABAndRDSConfig.DAB_RDS.value) {
                 return RadioDABAndRDSConfig.DAB_RDS;
             }
-            if(v == RadioDABAndRDSConfig.DAB.value) {
+            if(value == RadioDABAndRDSConfig.DAB.value) {
                 return RadioDABAndRDSConfig.DAB;
             }
-            return v == RadioDABAndRDSConfig.RDS.value ? RadioDABAndRDSConfig.RDS : RadioDABAndRDSConfig.__UNKNOWN__;
+            return value == RadioDABAndRDSConfig.RDS.value ? RadioDABAndRDSConfig.RDS : RadioDABAndRDSConfig.__UNKNOWN__;
         }
     }
 
@@ -360,39 +360,39 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RadioFrequency(int v1) {
-            this.value = v1;
+        private RadioFrequency(int value) {
+            this.value = value;
         }
 
-        public static RadioFrequency valueOf(int v) {
-            if(v == RadioFrequency.CHINA_MIDDLEEAST_AFRICA.value) {
+        public static RadioFrequency valueOf(int value) {
+            if(value == RadioFrequency.CHINA_MIDDLEEAST_AFRICA.value) {
                 return RadioFrequency.CHINA_MIDDLEEAST_AFRICA;
             }
-            if(v == RadioFrequency.EUROPE1.value) {
+            if(value == RadioFrequency.EUROPE1.value) {
                 return RadioFrequency.EUROPE1;
             }
-            if(v == RadioFrequency.EUROPE2.value) {
+            if(value == RadioFrequency.EUROPE2.value) {
                 return RadioFrequency.EUROPE2;
             }
-            if(v == RadioFrequency.EASTERN_EUROPE1.value) {
+            if(value == RadioFrequency.EASTERN_EUROPE1.value) {
                 return RadioFrequency.EASTERN_EUROPE1;
             }
-            if(v == RadioFrequency.EASTERN_EUROPE2.value) {
+            if(value == RadioFrequency.EASTERN_EUROPE2.value) {
                 return RadioFrequency.EASTERN_EUROPE2;
             }
-            if(v == RadioFrequency.AUSTRALIA.value) {
+            if(value == RadioFrequency.AUSTRALIA.value) {
                 return RadioFrequency.AUSTRALIA;
             }
-            if(v == RadioFrequency.USA.value) {
+            if(value == RadioFrequency.USA.value) {
                 return RadioFrequency.USA;
             }
-            if(v == RadioFrequency.LATIN_AMERICA.value) {
+            if(value == RadioFrequency.LATIN_AMERICA.value) {
                 return RadioFrequency.LATIN_AMERICA;
             }
-            if(v == RadioFrequency.SOUTHEAST_ASIA.value) {
+            if(value == RadioFrequency.SOUTHEAST_ASIA.value) {
                 return RadioFrequency.SOUTHEAST_ASIA;
             }
-            return v == RadioFrequency.JAPAN.value ? RadioFrequency.JAPAN : RadioFrequency.__UNKNOWN__;
+            return value == RadioFrequency.JAPAN.value ? RadioFrequency.JAPAN : RadioFrequency.__UNKNOWN__;
         }
     }
 
@@ -403,15 +403,15 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RemindingMaintenanceCycle(int v1) {
-            this.value = v1;
+        private RemindingMaintenanceCycle(int value) {
+            this.value = value;
         }
 
-        public static RemindingMaintenanceCycle valueOf(int v) {
-            if(v == RemindingMaintenanceCycle.CLOSE.value) {
+        public static RemindingMaintenanceCycle valueOf(int value) {
+            if(value == RemindingMaintenanceCycle.CLOSE.value) {
                 return RemindingMaintenanceCycle.CLOSE;
             }
-            return v == RemindingMaintenanceCycle.OPEN.value ? RemindingMaintenanceCycle.OPEN : RemindingMaintenanceCycle.__UNKNOWN__;
+            return value == RemindingMaintenanceCycle.OPEN.value ? RemindingMaintenanceCycle.OPEN : RemindingMaintenanceCycle.__UNKNOWN__;
         }
     }
 
@@ -422,15 +422,15 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RemindingResetCycle(int v1) {
-            this.value = v1;
+        private RemindingResetCycle(int value) {
+            this.value = value;
         }
 
-        public static RemindingResetCycle valueOf(int v) {
-            if(v == RemindingResetCycle.CLOSE.value) {
+        public static RemindingResetCycle valueOf(int value) {
+            if(value == RemindingResetCycle.CLOSE.value) {
                 return RemindingResetCycle.CLOSE;
             }
-            return v == RemindingResetCycle.OPEN.value ? RemindingResetCycle.OPEN : RemindingResetCycle.__UNKNOWN__;
+            return value == RemindingResetCycle.OPEN.value ? RemindingResetCycle.OPEN : RemindingResetCycle.__UNKNOWN__;
         }
     }
 
@@ -441,15 +441,15 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private RepeatSetting(int v1) {
-            this.value = v1;
+        private RepeatSetting(int value) {
+            this.value = value;
         }
 
-        public static RepeatSetting valueOf(int v) {
-            if(v == RepeatSetting.CLOSE.value) {
+        public static RepeatSetting valueOf(int value) {
+            if(value == RepeatSetting.CLOSE.value) {
                 return RepeatSetting.CLOSE;
             }
-            return v == RepeatSetting.OPEN.value ? RepeatSetting.OPEN : RepeatSetting.__UNKNOWN__;
+            return value == RepeatSetting.OPEN.value ? RepeatSetting.OPEN : RepeatSetting.__UNKNOWN__;
         }
     }
 
@@ -460,15 +460,15 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private SdvcCurveConfiguration(int v1) {
-            this.value = v1;
+        private SdvcCurveConfiguration(int value) {
+            this.value = value;
         }
 
-        public static SdvcCurveConfiguration valueOf(int v) {
-            if(v == SdvcCurveConfiguration.SVC1.value) {
+        public static SdvcCurveConfiguration valueOf(int value) {
+            if(value == SdvcCurveConfiguration.SVC1.value) {
                 return SdvcCurveConfiguration.SVC1;
             }
-            return v == SdvcCurveConfiguration.SVC2.value ? SdvcCurveConfiguration.SVC2 : SdvcCurveConfiguration.__UNKNOWN__;
+            return value == SdvcCurveConfiguration.SVC2.value ? SdvcCurveConfiguration.SVC2 : SdvcCurveConfiguration.__UNKNOWN__;
         }
     }
 
@@ -480,18 +480,18 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private Usb(int v1) {
-            this.value = v1;
+        private Usb(int value) {
+            this.value = value;
         }
 
-        public static Usb valueOf(int v) {
-            if(v == Usb.NOT_PRESENT.value) {
+        public static Usb valueOf(int value) {
+            if(value == Usb.NOT_PRESENT.value) {
                 return Usb.NOT_PRESENT;
             }
-            if(v == Usb.ONE.value) {
+            if(value == Usb.ONE.value) {
                 return Usb.ONE;
             }
-            return v == Usb.TWO.value ? Usb.TWO : Usb.__UNKNOWN__;
+            return value == Usb.TWO.value ? Usb.TWO : Usb.__UNKNOWN__;
         }
     }
 
@@ -503,18 +503,18 @@ public interface Ihu23IHostConfig {
 
         public final int value;
 
-        private Wifi(int v1) {
-            this.value = v1;
+        private Wifi(int value) {
+            this.value = value;
         }
 
-        public static Wifi valueOf(int v) {
-            if(v == Wifi.NOT_PRESENT.value) {
+        public static Wifi valueOf(int value) {
+            if(value == Wifi.NOT_PRESENT.value) {
                 return Wifi.NOT_PRESENT;
             }
-            if(v == Wifi.AP_STA_RESPECTIVELY.value) {
+            if(value == Wifi.AP_STA_RESPECTIVELY.value) {
                 return Wifi.AP_STA_RESPECTIVELY;
             }
-            return v == Wifi.AP_STA_SIMULTANEOUSLY.value ? Wifi.AP_STA_SIMULTANEOUSLY : Wifi.__UNKNOWN__;
+            return value == Wifi.AP_STA_SIMULTANEOUSLY.value ? Wifi.AP_STA_SIMULTANEOUSLY : Wifi.__UNKNOWN__;
         }
     }
 

@@ -5,9 +5,10 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 
@@ -47,15 +48,11 @@ public class CarSoundEffectManager {
         }
     }
 
-    static final class CarSoundEffectManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarSoundEffectManagerGlobal CAR_SOUND_EFFECT_MANAGER_GLOBAL;
+    static final class CarSoundEffectManagerGlobal extends ICarSoundEffectCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarSoundEffectManagerGlobal CAR_SOUND_EFFECT_MANAGER_GLOBAL = new CarSoundEffectManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarSoundEffectService mCarSoundEffectService;
         private final Object mLock;
-
-        static {
-            CarSoundEffectManagerGlobal.CAR_SOUND_EFFECT_MANAGER_GLOBAL = new CarSoundEffectManagerGlobal();
-        }
 
         private CarSoundEffectManagerGlobal() {
             this.mLock = new Object();
@@ -83,7 +80,7 @@ public class CarSoundEffectManager {
 
         private boolean connectCarSoundEffectServiceLocked() {
             if(CarSoundEffectManagerGlobal.mCarSoundEffectService == null || CarSoundEffectManagerGlobal.mCarSoundEffectService.asBinder() == null || !CarSoundEffectManagerGlobal.mCarSoundEffectService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_sound_effect");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_sound_effect");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -95,13 +92,13 @@ public class CarSoundEffectManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("CarSoundEffectManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarSoundEffectManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
             return false;
         }
 
@@ -690,12 +687,8 @@ public class CarSoundEffectManager {
     public static final int SCENE_SOUND_EFFECT_MOVIE = 0;
     public static final int SCENE_SOUND_EFFECT_NONE = -1;
     public static final String SERVICE_NAME = "car_sound_effect";
-    private static final String TAG;
+    private static final String TAG = "CarSoundEffectManager";
     private static volatile CarSoundEffectManager mInstance;
-
-    static {
-        CarSoundEffectManager.TAG = "CarSoundEffectManager";
-    }
 
     static String access$000() {
         return "CarSoundEffectManager";

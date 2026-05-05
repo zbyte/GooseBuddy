@@ -5,25 +5,22 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OtaManager {
-    static final class OtaManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final OtaManagerGlobal OTA_MANAGER_GLOBAL;
+    static final class OtaManagerGlobal extends IOtaStateChangeListener.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final OtaManagerGlobal OTA_MANAGER_GLOBAL = new OtaManagerGlobal();
         private final ArrayMap mCallbackMap;
         private final Object mLock;
         private IOtaService mOtaService;
         private final List mServiceStartRunnable;
-
-        static {
-            OtaManagerGlobal.OTA_MANAGER_GLOBAL = new OtaManagerGlobal();
-        }
 
         private OtaManagerGlobal() {
             this.mLock = new Object();
@@ -47,7 +44,7 @@ public class OtaManager {
 
         private boolean connectOtaServiceLocked() {
             if(this.mOtaService == null || this.mOtaService.asBinder() == null || !this.mOtaService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_ota");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_ota");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -59,13 +56,14 @@ public class OtaManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("OtaManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("OtaManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -215,12 +213,8 @@ public class OtaManager {
     }
 
     public static final String SERVICE_NAME = "car_ota";
-    private static final String TAG;
+    private static final String TAG = "OtaManager";
     public static volatile OtaManager mInstance;
-
-    static {
-        OtaManager.TAG = "OtaManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$100() {

@@ -2,21 +2,18 @@ package com.yftech.car.cartrack;
 
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
-import android.os.ServiceManager;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.Map;
 
 public class CarTrackManager {
     static final class CollectUpManagerGlobal implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CollectUpManagerGlobal intance;
+        private static final CollectUpManagerGlobal intance = new CollectUpManagerGlobal();
         private final Object mLock;
         private static ICarTrackService mService;
-
-        static {
-            CollectUpManagerGlobal.intance = new CollectUpManagerGlobal();
-        }
 
         private CollectUpManagerGlobal() {
             this.mLock = new Object();
@@ -36,24 +33,25 @@ public class CarTrackManager {
 
         private boolean connectServiceLocked() {
             if(CollectUpManagerGlobal.mService == null || CollectUpManagerGlobal.mService.asBinder() == null || !CollectUpManagerGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_track");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_track");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
-                        CollectUpManagerGlobal.mService = Stub.asInterface(iBinder0);
+                        CollectUpManagerGlobal.mService = ICarTrackService.Stub.asInterface(iBinder0);
                         return true;
                     }
                     Log.e("CarTrackManager", "the car dms service not started!connected service fail!");
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("CarTrackManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarTrackManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -91,12 +89,8 @@ public class CarTrackManager {
     }
 
     public static final String SERVICE_NAME = "car_track";
-    private static final String TAG;
+    private static final String TAG = "CarTrackManager";
     private static volatile CarTrackManager mInstance;
-
-    static {
-        CarTrackManager.TAG = "CarTrackManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

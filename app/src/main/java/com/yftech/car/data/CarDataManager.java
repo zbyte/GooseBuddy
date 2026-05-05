@@ -5,10 +5,11 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 
 public class CarDataManager {
     public static abstract class CarDataCallback {
@@ -16,16 +17,12 @@ public class CarDataManager {
         }
     }
 
-    static final class CarDataManagerGlobal extends Stub implements IBinder.DeathRecipient, Runnable {
-        private static final CarDataManagerGlobal CAR_DATA_MANAGER_GLOBAL;
+    static final class CarDataManagerGlobal extends com.yftech.car.data.ICarDataCallback.Stub implements IBinder.DeathRecipient, Runnable {
+        private static final CarDataManagerGlobal CAR_DATA_MANAGER_GLOBAL = new CarDataManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarDataService mCarDataService;
         private Thread mConnectingThread;
         private final Object mLock;
-
-        static {
-            CarDataManagerGlobal.CAR_DATA_MANAGER_GLOBAL = new CarDataManagerGlobal();
-        }
 
         private CarDataManagerGlobal() {
             this.mLock = new Object();
@@ -53,7 +50,7 @@ public class CarDataManager {
 
         private boolean connectCarDataServiceLocked() {
             if(CarDataManagerGlobal.mCarDataService == null || CarDataManagerGlobal.mCarDataService.asBinder() == null || !CarDataManagerGlobal.mCarDataService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_data");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_data");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -65,13 +62,13 @@ public class CarDataManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarDataManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarDataManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
             return false;
         }
 
@@ -80,20 +77,18 @@ public class CarDataManager {
         }
 
         public CarData get(CarData data) {
-            RemoteException e;
             synchronized(this.mLock) {
                 try {
                     CarDataManagerGlobal.mCarDataService = this.getCarDataService();
                     return CarDataManagerGlobal.mCarDataService.get(data);
                 }
                 catch(RemoteException remoteException0) {
-                    e = remoteException0;
+                    remoteException0.printStackTrace();
                 }
                 catch(NullPointerException nullPointerException0) {
-                    e = nullPointerException0;
+                    nullPointerException0.printStackTrace();;
                 }
             }
-            e.printStackTrace();
             return null;
         }
 
@@ -153,13 +148,12 @@ public class CarDataManager {
                     return CarDataManagerGlobal.mCarDataService.set(data, persistence);
                 }
                 catch(RemoteException remoteException0) {
-                    e = remoteException0;
+                    remoteException0.printStackTrace();
                 }
                 catch(NullPointerException nullPointerException0) {
-                    e = nullPointerException0;
+                    nullPointerException0.printStackTrace();
                 }
             }
-            e.printStackTrace();
             return false;
         }
 
@@ -180,11 +174,7 @@ public class CarDataManager {
     }
 
     public static final String SERVICE_NAME = "car_data";
-    private static final String TAG;
-
-    static {
-        CarDataManager.TAG = "CarDataManager";
-    }
+    private static final String TAG = "CarDataManager";
 
     // String Decryptor: 6 succeeded, 0 failed
     static String access$000() {
@@ -199,7 +189,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueString();
     }
 
@@ -207,7 +197,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueBoolean();
     }
 
@@ -215,7 +205,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueByte();
     }
 
@@ -223,7 +213,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueDouble();
     }
 
@@ -231,7 +221,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueFloat();
     }
 
@@ -239,7 +229,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueInt();
     }
 
@@ -247,7 +237,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueLong();
     }
 
@@ -255,7 +245,7 @@ public class CarDataManager {
         if(TextUtils.isEmpty(key)) {
             return defaultValue;
         }
-        CarData carData = CarDataManager.get(new CarData(new CarDataEntry(key, defaultValue)));
+        CarData carData = CarDataManager.get(new CarData(new CarData.CarDataEntry(key, defaultValue)));
         return carData == null ? defaultValue : carData.getDataEntry(key).getValueShort();
     }
 
@@ -275,35 +265,35 @@ public class CarDataManager {
     }
 
     public static boolean set(String key, String value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setBoolean(String key, boolean value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setByte(String key, byte value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setDouble(String key, double value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setFloat(String key, float value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setInt(String key, int value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setLong(String key, long value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static boolean setShort(String key, short value, boolean persistence) {
-        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarDataEntry(key, value)), persistence);
+        return TextUtils.isEmpty(key) ? false : CarDataManager.set(new CarData(new CarData.CarDataEntry(key, value)), persistence);
     }
 
     public static void unregisterCarDataCallback(CarDataCallback callback) {

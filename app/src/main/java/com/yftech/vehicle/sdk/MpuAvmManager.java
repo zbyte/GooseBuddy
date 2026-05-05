@@ -1,6 +1,6 @@
 package com.yftech.vehicle.sdk;
 
-import android.os.SystemProperties;
+import com.yftech.car.utils.SystemPropertiesHelper;
 import com.yftech.vehicle.internal.BaseApiManager;
 import com.yftech.vehicle.internal.SignalReceiver;
 import com.yftech.vehicle.internal.adapter.IMpuAvm.AvmCalibrationState;
@@ -62,7 +62,7 @@ public class MpuAvmManager extends BaseApiManager implements IMpuAvm {
 
     public String getAvmVersion() {
         try {
-            return SystemProperties.get("persist.version.avm.software ", "20200619V1.0");
+            return SystemPropertiesHelper.get("persist.version.avm.software ", "20200619V1.0");
         }
         catch(Exception unused_ex) {
             return "20200619V1.0";

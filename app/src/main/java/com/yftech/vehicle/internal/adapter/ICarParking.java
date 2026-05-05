@@ -8,15 +8,15 @@ public interface ICarParking extends IBaseApi {
 
         public final int value;
 
-        private PASErrorFlag(int v1) {
-            this.value = v1;
+        private PASErrorFlag(int value) {
+            this.value = value;
         }
 
-        public static PASErrorFlag valueOf(int v) {
-            if(v == PASErrorFlag.NOT_FAULT.value) {
+        public static PASErrorFlag valueOf(int value) {
+            if(value == PASErrorFlag.NOT_FAULT.value) {
                 return PASErrorFlag.NOT_FAULT;
             }
-            return v == PASErrorFlag.FAULT.value ? PASErrorFlag.FAULT : PASErrorFlag.__UNKNOWN__;
+            return value == PASErrorFlag.FAULT.value ? PASErrorFlag.FAULT : PASErrorFlag.__UNKNOWN__;
         }
     }
 
@@ -29,21 +29,21 @@ public interface ICarParking extends IBaseApi {
 
         public final int value;
 
-        private PASSystemFailureFlag(int v1) {
-            this.value = v1;
+        private PASSystemFailureFlag(int value) {
+            this.value = value;
         }
 
-        public static PASSystemFailureFlag valueOf(int v) {
-            if(v == PASSystemFailureFlag.NOT_FAILURE.value) {
+        public static PASSystemFailureFlag valueOf(int value) {
+            if(value == PASSystemFailureFlag.NOT_FAILURE.value) {
                 return PASSystemFailureFlag.NOT_FAILURE;
             }
-            if(v == PASSystemFailureFlag.FRONT_FAILURE.value) {
+            if(value == PASSystemFailureFlag.FRONT_FAILURE.value) {
                 return PASSystemFailureFlag.FRONT_FAILURE;
             }
-            if(v == PASSystemFailureFlag.REAR_FAILURE.value) {
+            if(value == PASSystemFailureFlag.REAR_FAILURE.value) {
                 return PASSystemFailureFlag.REAR_FAILURE;
             }
-            return v == PASSystemFailureFlag.SYSTEM_FAILURE.value ? PASSystemFailureFlag.SYSTEM_FAILURE : PASSystemFailureFlag.__UNKNOWN__;
+            return value == PASSystemFailureFlag.SYSTEM_FAILURE.value ? PASSystemFailureFlag.SYSTEM_FAILURE : PASSystemFailureFlag.__UNKNOWN__;
         }
     }
 
@@ -54,15 +54,15 @@ public interface ICarParking extends IBaseApi {
 
         public final int value;
 
-        private PASSystemType(int v1) {
-            this.value = v1;
+        private PASSystemType(int value) {
+            this.value = value;
         }
 
-        public static PASSystemType valueOf(int v) {
-            if(v == PASSystemType.RPA.value) {
+        public static PASSystemType valueOf(int value) {
+            if(value == PASSystemType.RPA.value) {
                 return PASSystemType.RPA;
             }
-            return v == PASSystemType.APA.value ? PASSystemType.APA : PASSystemType.__UNKNOWN__;
+            return value == PASSystemType.APA.value ? PASSystemType.APA : PASSystemType.__UNKNOWN__;
         }
     }
 
@@ -77,27 +77,27 @@ public interface ICarParking extends IBaseApi {
 
         public final int value;
 
-        private PASWarnTone(int v1) {
-            this.value = v1;
+        private PASWarnTone(int value) {
+            this.value = value;
         }
 
-        public static PASWarnTone valueOf(int v) {
-            if(v == PASWarnTone.NOT_ACTIVE.value) {
+        public static PASWarnTone valueOf(int value) {
+            if(value == PASWarnTone.NOT_ACTIVE.value) {
                 return PASWarnTone.NOT_ACTIVE;
             }
-            if(v == PASWarnTone.CONTINUOUS_TONE.value) {
+            if(value == PASWarnTone.CONTINUOUS_TONE.value) {
                 return PASWarnTone.CONTINUOUS_TONE;
             }
-            if(v == PASWarnTone.FAST_INTERMITTENT_TONE.value) {
+            if(value == PASWarnTone.FAST_INTERMITTENT_TONE.value) {
                 return PASWarnTone.FAST_INTERMITTENT_TONE;
             }
-            if(v == PASWarnTone.MEDIUM_SPEED_INTERMITTENT_TONE.value) {
+            if(value == PASWarnTone.MEDIUM_SPEED_INTERMITTENT_TONE.value) {
                 return PASWarnTone.MEDIUM_SPEED_INTERMITTENT_TONE;
             }
-            if(v == PASWarnTone.SLOW_INTERMITTENT_TONE.value) {
+            if(value == PASWarnTone.SLOW_INTERMITTENT_TONE.value) {
                 return PASWarnTone.SLOW_INTERMITTENT_TONE;
             }
-            return v == PASWarnTone.MUTE.value ? PASWarnTone.MUTE : PASWarnTone.__UNKNOWN__;
+            return value == PASWarnTone.MUTE.value ? PASWarnTone.MUTE : PASWarnTone.__UNKNOWN__;
         }
     }
 

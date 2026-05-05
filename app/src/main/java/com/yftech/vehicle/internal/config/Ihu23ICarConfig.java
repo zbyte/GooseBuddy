@@ -8,15 +8,15 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private AirConditionType(int v1) {
-            this.value = v1;
+        private AirConditionType(int value) {
+            this.value = value;
         }
 
-        public static AirConditionType valueOf(int v) {
-            if(v == AirConditionType.MANUAL.value) {
+        public static AirConditionType valueOf(int value) {
+            if(value == AirConditionType.MANUAL.value) {
                 return AirConditionType.MANUAL;
             }
-            return v == AirConditionType.AUTO.value ? AirConditionType.AUTO : AirConditionType.__UNKNOWN__;
+            return value == AirConditionType.AUTO.value ? AirConditionType.AUTO : AirConditionType.__UNKNOWN__;
         }
     }
 
@@ -28,18 +28,18 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private AirConditioningZones(int v1) {
-            this.value = v1;
+        private AirConditioningZones(int value) {
+            this.value = value;
         }
 
-        public static AirConditioningZones valueOf(int v) {
-            if(v == AirConditioningZones.SINGLE_ZONE.value) {
+        public static AirConditioningZones valueOf(int value) {
+            if(value == AirConditioningZones.SINGLE_ZONE.value) {
                 return AirConditioningZones.SINGLE_ZONE;
             }
-            if(v == AirConditioningZones.DUAL_ZONES.value) {
+            if(value == AirConditioningZones.DUAL_ZONES.value) {
                 return AirConditioningZones.DUAL_ZONES;
             }
-            return v == AirConditioningZones.THREE_ZONES.value ? AirConditioningZones.THREE_ZONES : AirConditioningZones.__UNKNOWN__;
+            return value == AirConditioningZones.THREE_ZONES.value ? AirConditioningZones.THREE_ZONES : AirConditioningZones.__UNKNOWN__;
         }
     }
 
@@ -54,27 +54,27 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private CameraNumber(int v1) {
-            this.value = v1;
+        private CameraNumber(int value) {
+            this.value = value;
         }
 
-        public static CameraNumber valueOf(int v) {
-            if(v == CameraNumber.NONE.value) {
+        public static CameraNumber valueOf(int value) {
+            if(value == CameraNumber.NONE.value) {
                 return CameraNumber.NONE;
             }
-            if(v == CameraNumber.RVC.value) {
+            if(value == CameraNumber.RVC.value) {
                 return CameraNumber.RVC;
             }
-            if(v == CameraNumber.SVM.value) {
+            if(value == CameraNumber.SVM.value) {
                 return CameraNumber.SVM;
             }
-            if(v == CameraNumber.SVM_PLUSAPA.value) {
+            if(value == CameraNumber.SVM_PLUSAPA.value) {
                 return CameraNumber.SVM_PLUSAPA;
             }
-            if(v == CameraNumber.SVM_PLUSFAPA.value) {
+            if(value == CameraNumber.SVM_PLUSFAPA.value) {
                 return CameraNumber.SVM_PLUSFAPA;
             }
-            return v == CameraNumber.SVM_PLUSAVP.value ? CameraNumber.SVM_PLUSAVP : CameraNumber.__UNKNOWN__;
+            return value == CameraNumber.SVM_PLUSAVP.value ? CameraNumber.SVM_PLUSAVP : CameraNumber.__UNKNOWN__;
         }
     }
 
@@ -102,6 +102,7 @@ public interface Ihu23ICarConfig {
         RL_SPEAKER(4, 3),
         RR_SPEAKER(4, 4),
         STEERING_WHEEL_KEY(4, 5),
+        OTA_SWITCH(5, 7),
         TBOX_CONNECTION_MODE(6, 0, 1),
         B_CALL_SWITCH(6, 4),
         E_CALL_SWITCH(6, 5),
@@ -140,6 +141,7 @@ public interface Ihu23ICarConfig {
         RADAR_NUMBER(12, 3, 5),
         AUTOHOLD(12, 7),
         STANDARD_AND_HD_CAMERA_CONFIGURATION(12, 6),
+        FRONT_FOG_LAMP(14, 2),
         ADAPTIVE_HIGH_BEAM(14, 3),
         CONTROL_HIGH_BEAM_ASSISTANT(14, 4),
         CLOSE_WINDOW_WHILE_LOCK(14, 5),
@@ -211,6 +213,7 @@ public interface Ihu23ICarConfig {
         ESP_OFF_SWITCH(28, 4),
         HDC_SWITCH(28, 5),
         EBOOSTER_MODE(28, 6),
+        DRIVING_MODE_TYPE(29, 4, 6),
         LEFT_RIGHT_HAND_DRIVE_VEHICLES(35, 6),
         ULTRAVIOLET_RAY(39, 0),
         UNLOCK_VENTILATION(39, 1),
@@ -230,16 +233,16 @@ public interface Ihu23ICarConfig {
         public final byte byteIndex;
         public final byte startBit;
 
-        private Config(int v1, int v2) {
-            this.byteIndex = (byte)v1;
-            this.startBit = (byte)v2;
+        private Config(int byteIndex, int startBit) {
+            this.byteIndex = (byte)byteIndex;
+            this.startBit = (byte)startBit;
             this.bitSize = 1;
         }
 
-        private Config(int v1, int v2, int v3) {
-            this.byteIndex = (byte)v1;
-            this.startBit = (byte)v2;
-            this.bitSize = (byte)(v3 - v2 + 1);
+        private Config(int byteIndex, int startBit, int endBit) {
+            this.byteIndex = (byte)byteIndex;
+            this.startBit = (byte)startBit;
+            this.bitSize = (byte)(endBit - startBit + 1);
         }
     }
 
@@ -250,15 +253,34 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private DriveType(int v1) {
-            this.value = v1;
+        private DriveType(int value) {
+            this.value = value;
         }
 
-        public static DriveType valueOf(int v) {
-            if(v == DriveType.TWO_WHEEL_DRIVE.value) {
+        public static DriveType valueOf(int value) {
+            if(value == DriveType.TWO_WHEEL_DRIVE.value) {
                 return DriveType.TWO_WHEEL_DRIVE;
             }
-            return v == DriveType.FOUR_WHEEL_DRIVE.value ? DriveType.FOUR_WHEEL_DRIVE : DriveType.__UNKNOWN__;
+            return value == DriveType.FOUR_WHEEL_DRIVE.value ? DriveType.FOUR_WHEEL_DRIVE : DriveType.__UNKNOWN__;
+        }
+    }
+
+    public static enum DrivingModeType {
+        ECO_NORMAL_SPORT(0),
+        ECO_IPEDAL(1),
+        __UNKNOWN__(-1);
+
+        public final int value;
+
+        private DrivingModeType(int value) {
+            this.value = value;
+        }
+
+        public static DrivingModeType valueOf(int value) {
+            if(value == DrivingModeType.ECO_NORMAL_SPORT.value) {
+                return DrivingModeType.ECO_NORMAL_SPORT;
+            }
+            return value == DrivingModeType.ECO_IPEDAL.value ? DrivingModeType.ECO_IPEDAL : DrivingModeType.__UNKNOWN__;
         }
     }
 
@@ -271,21 +293,21 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private LaneChangeAssist(int v1) {
-            this.value = v1;
+        private LaneChangeAssist(int value) {
+            this.value = value;
         }
 
-        public static LaneChangeAssist valueOf(int v) {
-            if(v == LaneChangeAssist.NOT_PRESENT.value) {
+        public static LaneChangeAssist valueOf(int value) {
+            if(value == LaneChangeAssist.NOT_PRESENT.value) {
                 return LaneChangeAssist.NOT_PRESENT;
             }
-            if(v == LaneChangeAssist.LEFT.value) {
+            if(value == LaneChangeAssist.LEFT.value) {
                 return LaneChangeAssist.LEFT;
             }
-            if(v == LaneChangeAssist.RIGHT.value) {
+            if(value == LaneChangeAssist.RIGHT.value) {
                 return LaneChangeAssist.RIGHT;
             }
-            return v == LaneChangeAssist.LEFT_AND_RIGHT.value ? LaneChangeAssist.LEFT_AND_RIGHT : LaneChangeAssist.__UNKNOWN__;
+            return value == LaneChangeAssist.LEFT_AND_RIGHT.value ? LaneChangeAssist.LEFT_AND_RIGHT : LaneChangeAssist.__UNKNOWN__;
         }
     }
 
@@ -296,15 +318,15 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private LeftRightHandDriveVehicles(int v1) {
-            this.value = v1;
+        private LeftRightHandDriveVehicles(int value) {
+            this.value = value;
         }
 
-        public static LeftRightHandDriveVehicles valueOf(int v) {
-            if(v == LeftRightHandDriveVehicles.LEFT.value) {
+        public static LeftRightHandDriveVehicles valueOf(int value) {
+            if(value == LeftRightHandDriveVehicles.LEFT.value) {
                 return LeftRightHandDriveVehicles.LEFT;
             }
-            return v == LeftRightHandDriveVehicles.RIGHT.value ? LeftRightHandDriveVehicles.RIGHT : LeftRightHandDriveVehicles.__UNKNOWN__;
+            return value == LeftRightHandDriveVehicles.RIGHT.value ? LeftRightHandDriveVehicles.RIGHT : LeftRightHandDriveVehicles.__UNKNOWN__;
         }
     }
 
@@ -319,27 +341,27 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private LoudspeakerNumber(int v1) {
-            this.value = v1;
+        private LoudspeakerNumber(int value) {
+            this.value = value;
         }
 
-        public static LoudspeakerNumber valueOf(int v) {
-            if(v == LoudspeakerNumber.FOUR.value) {
+        public static LoudspeakerNumber valueOf(int value) {
+            if(value == LoudspeakerNumber.FOUR.value) {
                 return LoudspeakerNumber.FOUR;
             }
-            if(v == LoudspeakerNumber.SIX.value) {
+            if(value == LoudspeakerNumber.SIX.value) {
                 return LoudspeakerNumber.SIX;
             }
-            if(v == LoudspeakerNumber.EIGHT.value) {
+            if(value == LoudspeakerNumber.EIGHT.value) {
                 return LoudspeakerNumber.EIGHT;
             }
-            if(v == LoudspeakerNumber.TEN.value) {
+            if(value == LoudspeakerNumber.TEN.value) {
                 return LoudspeakerNumber.TEN;
             }
-            if(v == LoudspeakerNumber.THIRTEEN.value) {
+            if(value == LoudspeakerNumber.THIRTEEN.value) {
                 return LoudspeakerNumber.THIRTEEN;
             }
-            return v == LoudspeakerNumber.TWO.value ? LoudspeakerNumber.TWO : LoudspeakerNumber.__UNKNOWN__;
+            return value == LoudspeakerNumber.TWO.value ? LoudspeakerNumber.TWO : LoudspeakerNumber.__UNKNOWN__;
         }
     }
 
@@ -352,21 +374,21 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private LoudspeakerSupplier(int v1) {
-            this.value = v1;
+        private LoudspeakerSupplier(int value) {
+            this.value = value;
         }
 
-        public static LoudspeakerSupplier valueOf(int v) {
-            if(v == LoudspeakerSupplier.LONGDA.value) {
+        public static LoudspeakerSupplier valueOf(int value) {
+            if(value == LoudspeakerSupplier.LONGDA.value) {
                 return LoudspeakerSupplier.LONGDA;
             }
-            if(v == LoudspeakerSupplier.FOSTER.value) {
+            if(value == LoudspeakerSupplier.FOSTER.value) {
                 return LoudspeakerSupplier.FOSTER;
             }
-            if(v == LoudspeakerSupplier.ALPINE.value) {
+            if(value == LoudspeakerSupplier.ALPINE.value) {
                 return LoudspeakerSupplier.ALPINE;
             }
-            return v == LoudspeakerSupplier.HARMAN.value ? LoudspeakerSupplier.HARMAN : LoudspeakerSupplier.__UNKNOWN__;
+            return value == LoudspeakerSupplier.HARMAN.value ? LoudspeakerSupplier.HARMAN : LoudspeakerSupplier.__UNKNOWN__;
         }
     }
 
@@ -383,33 +405,33 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private RadarNumber(int v1) {
-            this.value = v1;
+        private RadarNumber(int value) {
+            this.value = value;
         }
 
-        public static RadarNumber valueOf(int v) {
-            if(v == RadarNumber.NONE.value) {
+        public static RadarNumber valueOf(int value) {
+            if(value == RadarNumber.NONE.value) {
                 return RadarNumber.NONE;
             }
-            if(v == RadarNumber.FRONT_0_REAR_3.value) {
+            if(value == RadarNumber.FRONT_0_REAR_3.value) {
                 return RadarNumber.FRONT_0_REAR_3;
             }
-            if(v == RadarNumber.FRONT_0_REAR_4.value) {
+            if(value == RadarNumber.FRONT_0_REAR_4.value) {
                 return RadarNumber.FRONT_0_REAR_4;
             }
-            if(v == RadarNumber.FRONT_2_REAR_3.value) {
+            if(value == RadarNumber.FRONT_2_REAR_3.value) {
                 return RadarNumber.FRONT_2_REAR_3;
             }
-            if(v == RadarNumber.FRONT_2_REAR_4.value) {
+            if(value == RadarNumber.FRONT_2_REAR_4.value) {
                 return RadarNumber.FRONT_2_REAR_4;
             }
-            if(v == RadarNumber.FRONT_4_REAR_4.value) {
+            if(value == RadarNumber.FRONT_4_REAR_4.value) {
                 return RadarNumber.FRONT_4_REAR_4;
             }
-            if(v == RadarNumber.FRONT_4_MID_4_REAR_4.value) {
+            if(value == RadarNumber.FRONT_4_MID_4_REAR_4.value) {
                 return RadarNumber.FRONT_4_MID_4_REAR_4;
             }
-            return v == RadarNumber.FRONT_6_REAR_6.value ? RadarNumber.FRONT_6_REAR_6 : RadarNumber.__UNKNOWN__;
+            return value == RadarNumber.FRONT_6_REAR_6.value ? RadarNumber.FRONT_6_REAR_6 : RadarNumber.__UNKNOWN__;
         }
     }
 
@@ -422,21 +444,21 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private RearDefrostAndRearviewMirrorHeating(int v1) {
-            this.value = v1;
+        private RearDefrostAndRearviewMirrorHeating(int value) {
+            this.value = value;
         }
 
-        public static RearDefrostAndRearviewMirrorHeating valueOf(int v) {
-            if(v == RearDefrostAndRearviewMirrorHeating.NOT_PRESENT.value) {
+        public static RearDefrostAndRearviewMirrorHeating valueOf(int value) {
+            if(value == RearDefrostAndRearviewMirrorHeating.NOT_PRESENT.value) {
                 return RearDefrostAndRearviewMirrorHeating.NOT_PRESENT;
             }
-            if(v == RearDefrostAndRearviewMirrorHeating.REAR_DEFROST_AND_REARVIEW_MIRROR_HEATING.value) {
+            if(value == RearDefrostAndRearviewMirrorHeating.REAR_DEFROST_AND_REARVIEW_MIRROR_HEATING.value) {
                 return RearDefrostAndRearviewMirrorHeating.REAR_DEFROST_AND_REARVIEW_MIRROR_HEATING;
             }
-            if(v == RearDefrostAndRearviewMirrorHeating.REAR_DEFROS.value) {
+            if(value == RearDefrostAndRearviewMirrorHeating.REAR_DEFROS.value) {
                 return RearDefrostAndRearviewMirrorHeating.REAR_DEFROS;
             }
-            return v == RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING.value ? RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING : RearDefrostAndRearviewMirrorHeating.__UNKNOWN__;
+            return value == RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING.value ? RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING : RearDefrostAndRearviewMirrorHeating.__UNKNOWN__;
         }
     }
 
@@ -447,15 +469,15 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private StandardAndHdCameraConfiguration(int v1) {
-            this.value = v1;
+        private StandardAndHdCameraConfiguration(int value) {
+            this.value = value;
         }
 
-        public static StandardAndHdCameraConfiguration valueOf(int v) {
-            if(v == StandardAndHdCameraConfiguration.STANDARD_DEFINITION.value) {
+        public static StandardAndHdCameraConfiguration valueOf(int value) {
+            if(value == StandardAndHdCameraConfiguration.STANDARD_DEFINITION.value) {
                 return StandardAndHdCameraConfiguration.STANDARD_DEFINITION;
             }
-            return v == StandardAndHdCameraConfiguration.HIGH_DEFINITION.value ? StandardAndHdCameraConfiguration.HIGH_DEFINITION : StandardAndHdCameraConfiguration.__UNKNOWN__;
+            return value == StandardAndHdCameraConfiguration.HIGH_DEFINITION.value ? StandardAndHdCameraConfiguration.HIGH_DEFINITION : StandardAndHdCameraConfiguration.__UNKNOWN__;
         }
     }
 
@@ -467,18 +489,18 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private TboxConnectionMode(int v1) {
-            this.value = v1;
+        private TboxConnectionMode(int value) {
+            this.value = value;
         }
 
-        public static TboxConnectionMode valueOf(int v) {
-            if(v == TboxConnectionMode.NO_CONNECTION.value) {
+        public static TboxConnectionMode valueOf(int value) {
+            if(value == TboxConnectionMode.NO_CONNECTION.value) {
                 return TboxConnectionMode.NO_CONNECTION;
             }
-            if(v == TboxConnectionMode.USB.value) {
+            if(value == TboxConnectionMode.USB.value) {
                 return TboxConnectionMode.USB;
             }
-            return v == TboxConnectionMode.ETH.value ? TboxConnectionMode.ETH : TboxConnectionMode.__UNKNOWN__;
+            return value == TboxConnectionMode.ETH.value ? TboxConnectionMode.ETH : TboxConnectionMode.__UNKNOWN__;
         }
     }
 
@@ -489,18 +511,18 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private VehiclePlatform(int v1) {
-            this.value = v1;
+        private VehiclePlatform(int value) {
+            this.value = value;
         }
 
-        public static VehiclePlatform valueOf(int v) {
-            if(v == VehiclePlatform.NONE.value) {
+        public static VehiclePlatform valueOf(int value) {
+            if(value == VehiclePlatform.NONE.value) {
                 return VehiclePlatform.NONE;
             }
-            if(v == VehiclePlatform.A29_Y.value) {
+            if(value == VehiclePlatform.A29_Y.value) {
                 return VehiclePlatform.A29_Y;
             }
-            return v == 77 ? VehiclePlatform.A29_Y : VehiclePlatform.__UNKNOWN__;
+            return value == 77 ? VehiclePlatform.A29_Y : VehiclePlatform.__UNKNOWN__;
         }
     }
 
@@ -513,21 +535,21 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private VehicleType(int v1) {
-            this.value = v1;
+        private VehicleType(int value) {
+            this.value = value;
         }
 
-        public static VehicleType valueOf(int v) {
-            if(v == VehicleType.TRADITIONAL_CAR.value) {
+        public static VehicleType valueOf(int value) {
+            if(value == VehicleType.TRADITIONAL_CAR.value) {
                 return VehicleType.TRADITIONAL_CAR;
             }
-            if(v == VehicleType.EV.value) {
+            if(value == VehicleType.EV.value) {
                 return VehicleType.EV;
             }
-            if(v == VehicleType.HEV.value) {
+            if(value == VehicleType.HEV.value) {
                 return VehicleType.HEV;
             }
-            return v == VehicleType.TRADITIONAL_CAR_MASTER.value ? VehicleType.TRADITIONAL_CAR_MASTER : VehicleType.__UNKNOWN__;
+            return value == VehicleType.TRADITIONAL_CAR_MASTER.value ? VehicleType.TRADITIONAL_CAR_MASTER : VehicleType.__UNKNOWN__;
         }
     }
 
@@ -540,21 +562,21 @@ public interface Ihu23ICarConfig {
 
         public final int value;
 
-        private WalAndApu(int v1) {
-            this.value = v1;
+        private WalAndApu(int value) {
+            this.value = value;
         }
 
-        public static WalAndApu valueOf(int v) {
-            if(v == WalAndApu.NOT_PRESENT.value) {
+        public static WalAndApu valueOf(int value) {
+            if(value == WalAndApu.NOT_PRESENT.value) {
                 return WalAndApu.NOT_PRESENT;
             }
-            if(v == WalAndApu.WAL.value) {
+            if(value == WalAndApu.WAL.value) {
                 return WalAndApu.WAL;
             }
-            if(v == WalAndApu.APU.value) {
+            if(value == WalAndApu.APU.value) {
                 return WalAndApu.APU;
             }
-            return v == WalAndApu.WAL_AND_APU.value ? WalAndApu.WAL_AND_APU : WalAndApu.__UNKNOWN__;
+            return value == WalAndApu.WAL_AND_APU.value ? WalAndApu.WAL_AND_APU : WalAndApu.__UNKNOWN__;
         }
     }
 

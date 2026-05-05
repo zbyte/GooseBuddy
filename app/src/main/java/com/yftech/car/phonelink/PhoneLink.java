@@ -38,7 +38,18 @@ public class PhoneLink implements Parcelable {
     public static final int CARPLAY_TELEPHONY_PHONY_KEY_POUND = 16;
     public static final int CARPLAY_TELEPHONY_PHONY_KEY_STAR = 15;
     public static final int CARPLAY_TELEPHONY_UP = 0;
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public PhoneLink createFromParcel(Parcel in) {
+            PhoneLink link = new PhoneLink();
+            link.type = in.readInt();
+            link.supportList = in.readArrayList(String.class.getClassLoader());
+            return link;
+        }
+
+        public PhoneLink[] newArray(int size) {
+            return new PhoneLink[size];
+        }
+    };
     public static final int FAIL_CONNECTED_CARPLAY_DISABLE = 10000;
     public static final int FAIL_CONNECTED_CARPLAY_NOSUPPORT = 1;
     public static final int FAIL_CONNECTED_UNKNOW = 0;
@@ -60,24 +71,9 @@ public class PhoneLink implements Parcelable {
     public static final int PHONE_TYPE_INVALID = -1;
     public static final int PHONE_TYPE_IPHONE = 1;
     public static final int VR_STATUS_ACTIVE = 1;
-    public static final int VR_STATUS_IDEL;
+    public static final int VR_STATUS_IDEL = 0;
     private ArrayList supportList;
     private int type;
-
-    static {
-        PhoneLink.CREATOR = new Parcelable.Creator() {
-            public PhoneLink createFromParcel(Parcel in) {
-                PhoneLink link = new PhoneLink();
-                link.type = in.readInt();
-                link.supportList = in.readArrayList(String.class.getClassLoader());
-                return link;
-            }
-
-            public PhoneLink[] newArray(int size) {
-                return new PhoneLink[size];
-            }
-        };
-    }
 
     public PhoneLink() {
     }

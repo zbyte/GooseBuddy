@@ -14,33 +14,33 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private Gears(int v1) {
-            this.value = v1;
+        private Gears(int value) {
+            this.value = value;
         }
 
-        public static Gears valueOf(int v) {
-            if(v == Gears.N_GEAR.value) {
+        public static Gears valueOf(int value) {
+            if(value == Gears.N_GEAR.value) {
                 return Gears.N_GEAR;
             }
-            if(v == Gears.LEVEL_1.value) {
+            if(value == Gears.LEVEL_1.value) {
                 return Gears.LEVEL_1;
             }
-            if(v == Gears.LEVEL_2.value) {
+            if(value == Gears.LEVEL_2.value) {
                 return Gears.LEVEL_2;
             }
-            if(v == Gears.LEVEL_3.value) {
+            if(value == Gears.LEVEL_3.value) {
                 return Gears.LEVEL_3;
             }
-            if(v == Gears.LEVEL_4.value) {
+            if(value == Gears.LEVEL_4.value) {
                 return Gears.LEVEL_4;
             }
-            if(v == Gears.LEVEL_5.value) {
+            if(value == Gears.LEVEL_5.value) {
                 return Gears.LEVEL_5;
             }
-            if(v == Gears.LEVEL_6.value) {
+            if(value == Gears.LEVEL_6.value) {
                 return Gears.LEVEL_6;
             }
-            return v == Gears.LEVEL_ERRO.value ? Gears.LEVEL_ERRO : Gears.__UNKNOWN__;
+            return value == Gears.LEVEL_ERRO.value ? Gears.LEVEL_ERRO : Gears.__UNKNOWN__;
         }
     }
 
@@ -53,21 +53,21 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private HandlebarKeyHeat(int v1) {
-            this.value = v1;
+        private HandlebarKeyHeat(int value) {
+            this.value = value;
         }
 
-        public static HandlebarKeyHeat valueOf(int v) {
-            if(v == HandlebarKeyHeat.OFF.value) {
+        public static HandlebarKeyHeat valueOf(int value) {
+            if(value == HandlebarKeyHeat.OFF.value) {
                 return HandlebarKeyHeat.OFF;
             }
-            if(v == HandlebarKeyHeat.LEVEL_1.value) {
+            if(value == HandlebarKeyHeat.LEVEL_1.value) {
                 return HandlebarKeyHeat.LEVEL_1;
             }
-            if(v == HandlebarKeyHeat.LEVEL_2.value) {
+            if(value == HandlebarKeyHeat.LEVEL_2.value) {
                 return HandlebarKeyHeat.LEVEL_2;
             }
-            return v == HandlebarKeyHeat.LEVEL_3.value ? HandlebarKeyHeat.LEVEL_3 : HandlebarKeyHeat.__UNKNOWN__;
+            return value == HandlebarKeyHeat.LEVEL_3.value ? HandlebarKeyHeat.LEVEL_3 : HandlebarKeyHeat.__UNKNOWN__;
         }
     }
 
@@ -79,18 +79,18 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private KnobLeftRightKey(int v1) {
-            this.value = v1;
+        private KnobLeftRightKey(int value) {
+            this.value = value;
         }
 
-        public static KnobLeftRightKey valueOf(int v) {
-            if(v == KnobLeftRightKey.RELEASE.value) {
+        public static KnobLeftRightKey valueOf(int value) {
+            if(value == KnobLeftRightKey.RELEASE.value) {
                 return KnobLeftRightKey.RELEASE;
             }
-            if(v == KnobLeftRightKey.RIGHT_PRESS.value) {
+            if(value == KnobLeftRightKey.RIGHT_PRESS.value) {
                 return KnobLeftRightKey.RIGHT_PRESS;
             }
-            return v == KnobLeftRightKey.LEFT_PRESS.value ? KnobLeftRightKey.LEFT_PRESS : KnobLeftRightKey.__UNKNOWN__;
+            return value == KnobLeftRightKey.LEFT_PRESS.value ? KnobLeftRightKey.LEFT_PRESS : KnobLeftRightKey.__UNKNOWN__;
         }
     }
 
@@ -102,18 +102,18 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private KnobUpDownKey(int v1) {
-            this.value = v1;
+        private KnobUpDownKey(int value) {
+            this.value = value;
         }
 
-        public static KnobUpDownKey valueOf(int v) {
-            if(v == KnobUpDownKey.RELEASE.value) {
+        public static KnobUpDownKey valueOf(int value) {
+            if(value == KnobUpDownKey.RELEASE.value) {
                 return KnobUpDownKey.RELEASE;
             }
-            if(v == KnobUpDownKey.GOUP_PRESS.value) {
+            if(value == KnobUpDownKey.GOUP_PRESS.value) {
                 return KnobUpDownKey.GOUP_PRESS;
             }
-            return v == KnobUpDownKey.GODOWN_PRESS.value ? KnobUpDownKey.GODOWN_PRESS : KnobUpDownKey.__UNKNOWN__;
+            return value == KnobUpDownKey.GODOWN_PRESS.value ? KnobUpDownKey.GODOWN_PRESS : KnobUpDownKey.__UNKNOWN__;
         }
     }
 
@@ -124,15 +124,15 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private MOTOIGNStatus(int v1) {
-            this.value = v1;
+        private MOTOIGNStatus(int value) {
+            this.value = value;
         }
 
-        public static MOTOIGNStatus valueOf(int v) {
-            if(v == MOTOIGNStatus.OFF.value) {
+        public static MOTOIGNStatus valueOf(int value) {
+            if(value == MOTOIGNStatus.OFF.value) {
                 return MOTOIGNStatus.OFF;
             }
-            return v == MOTOIGNStatus.ON.value ? MOTOIGNStatus.ON : MOTOIGNStatus.__UNKNOWN__;
+            return value == MOTOIGNStatus.ON.value ? MOTOIGNStatus.ON : MOTOIGNStatus.__UNKNOWN__;
         }
     }
 
@@ -145,21 +145,21 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private PreviewModeKey(int v1) {
-            this.value = v1;
+        private PreviewModeKey(int value) {
+            this.value = value;
         }
 
-        public static PreviewModeKey valueOf(int v) {
-            if(v == PreviewModeKey.ENTER.value) {
+        public static PreviewModeKey valueOf(int value) {
+            if(value == PreviewModeKey.ENTER.value) {
                 return PreviewModeKey.ENTER;
             }
-            if(v == PreviewModeKey.MODE1.value) {
+            if(value == PreviewModeKey.MODE1.value) {
                 return PreviewModeKey.MODE1;
             }
-            if(v == PreviewModeKey.MODE2.value) {
+            if(value == PreviewModeKey.MODE2.value) {
                 return PreviewModeKey.MODE2;
             }
-            return v == PreviewModeKey.MODE3.value ? PreviewModeKey.MODE3 : PreviewModeKey.__UNKNOWN__;
+            return value == PreviewModeKey.MODE3.value ? PreviewModeKey.MODE3 : PreviewModeKey.__UNKNOWN__;
         }
     }
 
@@ -171,18 +171,18 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private RightModeKey(int v1) {
-            this.value = v1;
+        private RightModeKey(int value) {
+            this.value = value;
         }
 
-        public static RightModeKey valueOf(int v) {
-            if(v == RightModeKey.MODE1.value) {
+        public static RightModeKey valueOf(int value) {
+            if(value == RightModeKey.MODE1.value) {
                 return RightModeKey.MODE1;
             }
-            if(v == RightModeKey.MODE2.value) {
+            if(value == RightModeKey.MODE2.value) {
                 return RightModeKey.MODE2;
             }
-            return v == RightModeKey.MODE3.value ? RightModeKey.MODE3 : RightModeKey.__UNKNOWN__;
+            return value == RightModeKey.MODE3.value ? RightModeKey.MODE3 : RightModeKey.__UNKNOWN__;
         }
     }
 
@@ -195,21 +195,21 @@ public interface CarMoto extends IBaseApi {
 
         public final int value;
 
-        private TurnLightInfo(int v1) {
-            this.value = v1;
+        private TurnLightInfo(int value) {
+            this.value = value;
         }
 
-        public static TurnLightInfo valueOf(int v) {
-            if(v == TurnLightInfo.OFF.value) {
+        public static TurnLightInfo valueOf(int value) {
+            if(value == TurnLightInfo.OFF.value) {
                 return TurnLightInfo.OFF;
             }
-            if(v == TurnLightInfo.BLINK.value) {
+            if(value == TurnLightInfo.BLINK.value) {
                 return TurnLightInfo.BLINK;
             }
-            if(v == TurnLightInfo.LEFT_LIGHT.value) {
+            if(value == TurnLightInfo.LEFT_LIGHT.value) {
                 return TurnLightInfo.LEFT_LIGHT;
             }
-            return v == TurnLightInfo.RIGHT_LIGHT.value ? TurnLightInfo.RIGHT_LIGHT : TurnLightInfo.__UNKNOWN__;
+            return value == TurnLightInfo.RIGHT_LIGHT.value ? TurnLightInfo.RIGHT_LIGHT : TurnLightInfo.__UNKNOWN__;
         }
     }
 

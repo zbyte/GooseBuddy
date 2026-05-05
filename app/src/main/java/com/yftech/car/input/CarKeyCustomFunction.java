@@ -12,7 +12,15 @@ public class CarKeyCustomFunction implements Parcelable {
     public static final int AIR_CONDITION_AUTO_MODE = 1;
     public static final int AVM = 10;
     public static final int BACK = 4;
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR  = new Parcelable.Creator() {
+        public CarKeyCustomFunction createFromParcel(Parcel in) {
+            return new CarKeyCustomFunction(in);
+        }
+
+        public CarKeyCustomFunction[] newArray(int size) {
+            return new CarKeyCustomFunction[size];
+        }
+    };
     public static final int CUSTOM_KEY_SET = 24;
     public static final int EFFICIENCY = 29;
     public static final int FRAGRANCE = 8;
@@ -43,18 +51,6 @@ public class CarKeyCustomFunction implements Parcelable {
     public int action;
     public int code;
     public int longCode;
-
-    static {
-        CarKeyCustomFunction.CREATOR = new Parcelable.Creator() {
-            public CarKeyCustomFunction createFromParcel(Parcel in) {
-                return new CarKeyCustomFunction(in);
-            }
-
-            public CarKeyCustomFunction[] newArray(int size) {
-                return new CarKeyCustomFunction[size];
-            }
-        };
-    }
 
     public CarKeyCustomFunction() {
     }

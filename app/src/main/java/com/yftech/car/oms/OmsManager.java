@@ -3,12 +3,14 @@ package com.yftech.car.oms;
 import android.os.Handler;
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class OmsManager {
@@ -23,15 +25,11 @@ public class OmsManager {
         }
     }
 
-    static final class OmsManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final OmsManagerGlobal intance;
+    static final class OmsManagerGlobal extends IOmsCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final OmsManagerGlobal intance = new OmsManagerGlobal();
         private final ArrayMap mCallbackMap;
         private final Object mLock;
         private static IOmsService mService;
-
-        static {
-            OmsManagerGlobal.intance = new OmsManagerGlobal();
-        }
 
         private OmsManagerGlobal() {
             this.mLock = new Object();
@@ -54,7 +52,7 @@ public class OmsManager {
 
         private boolean connectServiceLocked() {
             if(OmsManagerGlobal.mService == null || OmsManagerGlobal.mService.asBinder() == null || !OmsManagerGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_oms");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_oms");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -66,13 +64,14 @@ public class OmsManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("OmsManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("OmsManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -159,12 +158,8 @@ public class OmsManager {
     }
 
     public static final String SERVICE_NAME = "car_oms";
-    private static final String TAG;
+    private static final String TAG = "OmsManager";
     private static volatile OmsManager mInstance;
-
-    static {
-        OmsManager.TAG = "OmsManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

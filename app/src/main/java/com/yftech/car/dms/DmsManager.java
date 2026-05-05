@@ -3,13 +3,15 @@ package com.yftech.car.dms;
 import android.os.Handler;
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class DmsManager {
@@ -27,15 +29,11 @@ public class DmsManager {
         }
     }
 
-    static final class DmsManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final DmsManagerGlobal intance;
+    static final class DmsManagerGlobal extends IDmsCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final DmsManagerGlobal intance = new DmsManagerGlobal();
         private final ArrayMap mCallbackMap;
         private final Object mLock;
         private static IDmsService mService;
-
-        static {
-            DmsManagerGlobal.intance = new DmsManagerGlobal();
-        }
 
         private DmsManagerGlobal() {
             this.mLock = new Object();
@@ -58,7 +56,7 @@ public class DmsManager {
 
         private boolean connectServiceLocked() {
             if(DmsManagerGlobal.mService == null || DmsManagerGlobal.mService.asBinder() == null || !DmsManagerGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_dms");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_dms");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -70,13 +68,14 @@ public class DmsManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("DmsManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("DmsManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -176,12 +175,8 @@ public class DmsManager {
     }
 
     public static final String SERVICE_NAME = "car_dms";
-    private static final String TAG;
+    private static final String TAG = "DmsManager";
     private static volatile DmsManager mInstance;
-
-    static {
-        DmsManager.TAG = "DmsManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

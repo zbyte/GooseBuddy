@@ -11,8 +11,8 @@ public interface ISignalCallback extends IInterface {
         static class Proxy implements ISignalCallback {
             private IBinder mRemote;
 
-            Proxy(IBinder iBinder0) {
-                this.mRemote = iBinder0;
+            Proxy(IBinder remote) {
+                this.mRemote = remote;
             }
 
             @Override  // android.os.IInterface
@@ -25,12 +25,12 @@ public interface ISignalCallback extends IInterface {
             }
 
             @Override  // com.yftech.vehicle.internal.ISignalCallback
-            public void onValueChanged(int v, byte[] arr_b) throws RemoteException {
+            public void onValueChanged(int signal_id, byte[] value) throws RemoteException {
                 Parcel parcel0 = Parcel.obtain();
                 try {
                     parcel0.writeInterfaceToken("com.yftech.vehicle.internal.ISignalCallback");
-                    parcel0.writeInt(v);
-                    parcel0.writeByteArray(arr_b);
+                    parcel0.writeInt(signal_id);
+                    parcel0.writeByteArray(value);
                     this.mRemote.transact(1, parcel0, null, 1);
                 }
                 finally {
@@ -51,28 +51,28 @@ public interface ISignalCallback extends IInterface {
             return this;
         }
 
-        public static ISignalCallback asInterface(IBinder iBinder0) {
-            if(iBinder0 == null) {
+        public static ISignalCallback asInterface(IBinder obj) {
+            if(obj == null) {
                 return null;
             }
-            IInterface iInterface0 = iBinder0.queryLocalInterface("com.yftech.vehicle.internal.ISignalCallback");
-            return iInterface0 != null && (iInterface0 instanceof ISignalCallback) ? ((ISignalCallback)iInterface0) : new Proxy(iBinder0);
+            IInterface iInterface0 = obj.queryLocalInterface("com.yftech.vehicle.internal.ISignalCallback");
+            return iInterface0 != null && (iInterface0 instanceof ISignalCallback) ? ((ISignalCallback)iInterface0) : new Proxy(obj);
         }
 
         @Override  // android.os.Binder
-        public boolean onTransact(int v, Parcel parcel0, Parcel parcel1, int v1) throws RemoteException {
-            switch(v) {
+        public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            switch(code) {
                 case 1: {
-                    parcel0.enforceInterface("com.yftech.vehicle.internal.ISignalCallback");
-                    this.onValueChanged(parcel0.readInt(), parcel0.createByteArray());
+                    data.enforceInterface("com.yftech.vehicle.internal.ISignalCallback");
+                    this.onValueChanged(data.readInt(), data.createByteArray());
                     return true;
                 }
                 case 0x5F4E5446: {
-                    parcel1.writeString("com.yftech.vehicle.internal.ISignalCallback");
+                    reply.writeString("com.yftech.vehicle.internal.ISignalCallback");
                     return true;
                 }
                 default: {
-                    return super.onTransact(v, parcel0, parcel1, v1);
+                    return super.onTransact(code, data, reply, flags);
                 }
             }
         }

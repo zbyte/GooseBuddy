@@ -4,6 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
 
 public interface ICarInputService extends IInterface {
@@ -221,7 +222,7 @@ public interface ICarInputService extends IInterface {
                     reply.writeNoException();
                     if(carKeyCustomFunction0 != null) {
                         reply.writeInt(1);
-                        carKeyCustomFunction0.writeToParcel(reply, 1);
+                        carKeyCustomFunction0.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     reply.writeInt(0);

@@ -4,9 +4,10 @@ import android.os.Handler;
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 
@@ -16,15 +17,11 @@ public class CarInfoLoaderManager {
         }
     }
 
-    static final class CarInfoLoaderGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarInfoLoaderGlobal intance;
+    static final class CarInfoLoaderGlobal extends ICarInfoLoaderCallBack.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarInfoLoaderGlobal intance = new CarInfoLoaderGlobal();
         private final ArrayMap mCallbackMap;
         private final Object mLock;
         private static ICarInfoLoader mService;
-
-        static {
-            CarInfoLoaderGlobal.intance = new CarInfoLoaderGlobal();
-        }
 
         private CarInfoLoaderGlobal() {
             this.mLock = new Object();
@@ -45,7 +42,7 @@ public class CarInfoLoaderManager {
 
         private boolean connectServiceLocked() {
             if(CarInfoLoaderGlobal.mService == null || CarInfoLoaderGlobal.mService.asBinder() == null || !CarInfoLoaderGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_carinfoloader");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_carinfoloader");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -57,13 +54,14 @@ public class CarInfoLoaderManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("CarInfoLoaderManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarInfoLoaderManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -147,12 +145,8 @@ public class CarInfoLoaderManager {
     public static final int ERRORCODE_FAIL = 1;
     public static final int ERRORCODE_SUCCESS = 0;
     public static final String SERVICE_NAME = "car_carinfoloader";
-    private static final String TAG;
+    private static final String TAG = "CarInfoLoaderManager";
     private static volatile CarInfoLoaderManager mInstance;
-
-    static {
-        CarInfoLoaderManager.TAG = "CarInfoLoaderManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

@@ -6,25 +6,23 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.os.Process;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.text.TextUtils;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarTBoxManager {
-    static final class CarTboxManagerGlobal extends Stub implements IBinder.DeathRecipient, Runnable {
-        private static final CarTboxManagerGlobal CAR_TBOX_MANAGER_GLOBAL = null;
+    static final class CarTboxManagerGlobal extends ICarTBoxCallback.Stub implements IBinder.DeathRecipient, Runnable {
+        private static final CarTboxManagerGlobal CAR_TBOX_MANAGER_GLOBAL = new CarTboxManagerGlobal();
         private static final String SERVICE_NAME = "car_tbox";
         private final ArrayMap mCallbackMap;
         private static ICarTBoxService mCarTBoxService;
         private Thread mConnectingThread;
         private final Object mLock;
-
-        static {
-            CarTboxManagerGlobal.CAR_TBOX_MANAGER_GLOBAL = new CarTboxManagerGlobal();
-        }
 
         private CarTboxManagerGlobal() {
             this.mLock = new Object();
@@ -53,7 +51,7 @@ public class CarTBoxManager {
         private boolean connectCarTboxServiceLocked() {
             if(CarTboxManagerGlobal.mCarTBoxService == null || CarTboxManagerGlobal.mCarTBoxService.asBinder() == null || !CarTboxManagerGlobal.mCarTBoxService.asBinder().isBinderAlive()) {
                 CarTboxManagerGlobal.mCarTBoxService = null;
-                IBinder iBinder0 = ServiceManager.getService("car_tbox");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_tbox");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -65,13 +63,14 @@ public class CarTBoxManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarTBoxManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarTBoxManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -821,7 +820,7 @@ public class CarTBoxManager {
     public static final byte SIM_STATE_LOCKED = 1;
     public static final byte SIM_STATE_NORMAL = 0;
     public static final byte SIM_STATE_NO_EXIST = 2;
-    private static final String TAG = null;
+    private static final String TAG = "CarTBoxManager";
     public static final int TSP_END = 5;
     public static final int TSP_START = 1;
     public static final byte TSP_TYPE_HTTP = 2;
@@ -829,10 +828,6 @@ public class CarTBoxManager {
     public static final byte TSP_TYPE_TCP = 1;
     public static final int USER_STOP = 0xF3;
     private static volatile CarTBoxManager mInstance;
-
-    static {
-        CarTBoxManager.TAG = "CarTBoxManager";
-    }
 
     // String Decryptor: 6 succeeded, 0 failed
     static String access$000() {

@@ -5,30 +5,26 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class DmsInitParam implements Parcelable {
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public DmsInitParam createFromParcel(Parcel in) {
+            DmsInitParam mParam = new DmsInitParam(in);
+            mParam.mCameraImageProcessType = in.readInt();
+            mParam.mCameraImageFormat = in.readInt();
+            mParam.mCameraImageSizeProcessType = in.readInt();
+            mParam.mCameraImageSizeImageWidth = in.readInt();
+            mParam.mCameraImageSizeImageHeight = in.readInt();
+            return mParam;
+        }
+
+        public DmsInitParam[] newArray(int size) {
+            return new DmsInitParam[size];
+        }
+    };
     private int mCameraImageFormat;
     private int mCameraImageProcessType;
     private int mCameraImageSizeImageHeight;
     private int mCameraImageSizeImageWidth;
     private int mCameraImageSizeProcessType;
-
-    static {
-        DmsInitParam.CREATOR = new Parcelable.Creator() {
-            public DmsInitParam createFromParcel(Parcel in) {
-                DmsInitParam mParam = new DmsInitParam(in);
-                mParam.mCameraImageProcessType = in.readInt();
-                mParam.mCameraImageFormat = in.readInt();
-                mParam.mCameraImageSizeProcessType = in.readInt();
-                mParam.mCameraImageSizeImageWidth = in.readInt();
-                mParam.mCameraImageSizeImageHeight = in.readInt();
-                return mParam;
-            }
-
-            public DmsInitParam[] newArray(int size) {
-                return new DmsInitParam[size];
-            }
-        };
-    }
 
     public DmsInitParam(int mCameraImageProcessType, int mCameraImageFormat, int mCameraImageSizeProcessType, int mCameraImageSizeImageWidth, int mCameraImageSizeImageHeight) {
         this.mCameraImageProcessType = mCameraImageProcessType;

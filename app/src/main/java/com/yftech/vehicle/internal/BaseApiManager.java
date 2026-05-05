@@ -1,81 +1,81 @@
 package com.yftech.vehicle.internal;
 
 public abstract class BaseApiManager {
-    public byte[] getSignalDataValue(int v) {
+    public byte[] getSignalDataValue(int signalId) {
         synchronized(this) {
-            return CarManager.get().getSignalDataValue(v);
+            return CarManager.get().getSignalDataValue(signalId);
         }
     }
 
-    public Number getSignalValue(int v) {
+    public Number getSignalValue(int signalId) {
         synchronized(this) {
-            return CarManager.get().getSignalValue(v);
+            return CarManager.get().getSignalValue(signalId);
         }
     }
 
-    public Number[] getSignalsValue(int[] arr_v) {
+    public Number[] getSignalsValue(int[] signalsId) {
         synchronized(this) {
-            return CarManager.get().getSignalsValue(arr_v);
+            return CarManager.get().getSignalsValue(signalsId);
         }
     }
 
-    public void registerReceiver(Object object0) {
+    public void registerReceiver(Object receiver) {
         synchronized(this) {
-            CarManager.get().registerReceiver(object0);
+            CarManager.get().registerReceiver(receiver);
         }
     }
 
-    public boolean setSignalValue(int v, byte b) {
+    public boolean setSignalValue(int signalId, byte value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, b);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, double f) {
+    public boolean setSignalValue(int signalId, double value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, f);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, float f) {
+    public boolean setSignalValue(int signalId, float value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, f);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, int v1) {
+    public boolean setSignalValue(int signalId, int value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, v1);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, long v1) {
+    public boolean setSignalValue(int signalId, long value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, v1);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, short v1) {
+    public boolean setSignalValue(int signalId, short value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, v1);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, boolean z) {
+    public boolean setSignalValue(int signalId, boolean value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, z);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public boolean setSignalValue(int v, byte[] arr_b) {
+    public boolean setSignalValue(int signalId, byte[] value) {
         synchronized(this) {
-            return CarManager.get().setSignalValue(v, arr_b);
+            return CarManager.get().setSignalValue(signalId, value);
         }
     }
 
-    public void unregisterReceiver(Object object0) {
+    public void unregisterReceiver(Object receiver) {
         synchronized(this) {
-            CarManager.get().unregisterReceiver(object0);
+            CarManager.get().unregisterReceiver(receiver);
         }
     }
 }

@@ -115,7 +115,7 @@ public class MonitorServiceRestartManager {
                 if(this.mMonitorThread != null) {
                     this.mMonitorThread.exit();
                 }
-                this.mMonitorThread = new MonitorThread(this);
+                this.mMonitorThread = new MonitorThread();
                 this.mMonitorThread.start();
             }
             if(this.mMonitorTaskQueue.containsKey(serviceName)) {

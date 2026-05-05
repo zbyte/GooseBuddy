@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:paddingTop="22.0dp"
+    android:paddingBottom="22.0dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <TextView android:id="@+id/tvTitle" style="@style/ItemTitleStyle"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="20.0dp">
+        <com.yftech.settings.widget.SwitchCompatButton android:id="@+id/switcher" style="@style/style_switch" app:showText="false" android:clickable="true"/>
+        <TextView android:id="@+id/tvDescribe" android:layout_marginTop="12.0dp" style="@style/ItemDescribeStyle"/>
+        <com.yftech.settings.widget.SwitchMultiButton android:id="@+id/switchMultiButton" android:layout_marginTop="22.0dp" style="@style/ItemSwitchMultiButtonStyle"/>
+    </LinearLayout>
+</LinearLayout>

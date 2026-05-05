@@ -12,27 +12,27 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private AvdcMode(int v1) {
-            this.value = v1;
+        private AvdcMode(int value) {
+            this.value = value;
         }
 
-        public static AvdcMode valueOf(int v) {
-            if(v == AvdcMode.INVALID.value) {
+        public static AvdcMode valueOf(int value) {
+            if(value == AvdcMode.INVALID.value) {
                 return AvdcMode.INVALID;
             }
-            if(v == AvdcMode.MODEST_MODEL.value) {
+            if(value == AvdcMode.MODEST_MODEL.value) {
                 return AvdcMode.MODEST_MODEL;
             }
-            if(v == AvdcMode.RADICAL_MODEL.value) {
+            if(value == AvdcMode.RADICAL_MODEL.value) {
                 return AvdcMode.RADICAL_MODEL;
             }
-            if(v == AvdcMode.ON_LOW_ADHESION_ROAD.value) {
+            if(value == AvdcMode.ON_LOW_ADHESION_ROAD.value) {
                 return AvdcMode.ON_LOW_ADHESION_ROAD;
             }
-            if(v == AvdcMode.ADAPTIVE_MODEL.value) {
+            if(value == AvdcMode.ADAPTIVE_MODEL.value) {
                 return AvdcMode.ADAPTIVE_MODEL;
             }
-            return v == AvdcMode.OFF.value ? AvdcMode.OFF : AvdcMode.__UNKNOWN__;
+            return value == AvdcMode.OFF.value ? AvdcMode.OFF : AvdcMode.__UNKNOWN__;
         }
     }
 
@@ -43,15 +43,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargActive(int v1) {
-            this.value = v1;
+        private ChargActive(int value) {
+            this.value = value;
         }
 
-        public static ChargActive valueOf(int v) {
-            if(v == ChargActive.NOT_CHARGING.value) {
+        public static ChargActive valueOf(int value) {
+            if(value == ChargActive.NOT_CHARGING.value) {
                 return ChargActive.NOT_CHARGING;
             }
-            return v == ChargActive.CHARGING.value ? ChargActive.CHARGING : ChargActive.__UNKNOWN__;
+            return value == ChargActive.CHARGING.value ? ChargActive.CHARGING : ChargActive.__UNKNOWN__;
         }
     }
 
@@ -62,15 +62,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargEnd(int v1) {
-            this.value = v1;
+        private ChargEnd(int value) {
+            this.value = value;
         }
 
-        public static ChargEnd valueOf(int v) {
-            if(v == ChargEnd.NO_COMMAND.value) {
+        public static ChargEnd valueOf(int value) {
+            if(value == ChargEnd.NO_COMMAND.value) {
                 return ChargEnd.NO_COMMAND;
             }
-            return v == ChargEnd.END_CHARGE.value ? ChargEnd.END_CHARGE : ChargEnd.__UNKNOWN__;
+            return value == ChargEnd.END_CHARGE.value ? ChargEnd.END_CHARGE : ChargEnd.__UNKNOWN__;
         }
     }
 
@@ -81,15 +81,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargState(int v1) {
-            this.value = v1;
+        private ChargState(int value) {
+            this.value = value;
         }
 
-        public static ChargState valueOf(int v) {
-            if(v == ChargState.CHARGE_CURRENT_VOLTAGE_INTERFACE.value) {
+        public static ChargState valueOf(int value) {
+            if(value == ChargState.CHARGE_CURRENT_VOLTAGE_INTERFACE.value) {
                 return ChargState.CHARGE_CURRENT_VOLTAGE_INTERFACE;
             }
-            return v == ChargState.BLANK_MODULE_INTERFACE.value ? ChargState.BLANK_MODULE_INTERFACE : ChargState.__UNKNOWN__;
+            return value == ChargState.BLANK_MODULE_INTERFACE.value ? ChargState.BLANK_MODULE_INTERFACE : ChargState.__UNKNOWN__;
         }
     }
 
@@ -101,18 +101,18 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargeFullNoticeLevel(int v1) {
-            this.value = v1;
+        private ChargeFullNoticeLevel(int value) {
+            this.value = value;
         }
 
-        public static ChargeFullNoticeLevel valueOf(int v) {
-            if(v == ChargeFullNoticeLevel.NO_NOTICE.value) {
+        public static ChargeFullNoticeLevel valueOf(int value) {
+            if(value == ChargeFullNoticeLevel.NO_NOTICE.value) {
                 return ChargeFullNoticeLevel.NO_NOTICE;
             }
-            if(v == ChargeFullNoticeLevel.LEVEL_2.value) {
+            if(value == ChargeFullNoticeLevel.LEVEL_2.value) {
                 return ChargeFullNoticeLevel.LEVEL_2;
             }
-            return v == ChargeFullNoticeLevel.LEVEL_3.value ? ChargeFullNoticeLevel.LEVEL_3 : ChargeFullNoticeLevel.__UNKNOWN__;
+            return value == ChargeFullNoticeLevel.LEVEL_3.value ? ChargeFullNoticeLevel.LEVEL_3 : ChargeFullNoticeLevel.__UNKNOWN__;
         }
     }
 
@@ -123,15 +123,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargeMode(int v1) {
-            this.value = v1;
+        private ChargeMode(int value) {
+            this.value = value;
         }
 
-        public static ChargeMode valueOf(int v) {
-            if(v == ChargeMode.IMMEDIATELY.value) {
+        public static ChargeMode valueOf(int value) {
+            if(value == ChargeMode.IMMEDIATELY.value) {
                 return ChargeMode.IMMEDIATELY;
             }
-            return v == ChargeMode.BOOKING.value ? ChargeMode.BOOKING : ChargeMode.__UNKNOWN__;
+            return value == ChargeMode.BOOKING.value ? ChargeMode.BOOKING : ChargeMode.__UNKNOWN__;
         }
     }
 
@@ -152,45 +152,45 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargeSocPercent(int v1) {
-            this.value = v1;
+        private ChargeSocPercent(int value) {
+            this.value = value;
         }
 
-        public static ChargeSocPercent valueOf(int v) {
-            if(v == ChargeSocPercent.NO_COMMAND.value) {
+        public static ChargeSocPercent valueOf(int value) {
+            if(value == ChargeSocPercent.NO_COMMAND.value) {
                 return ChargeSocPercent.NO_COMMAND;
             }
-            if(v == ChargeSocPercent.PERC_50.value) {
+            if(value == ChargeSocPercent.PERC_50.value) {
                 return ChargeSocPercent.PERC_50;
             }
-            if(v == ChargeSocPercent.PERC_55.value) {
+            if(value == ChargeSocPercent.PERC_55.value) {
                 return ChargeSocPercent.PERC_55;
             }
-            if(v == ChargeSocPercent.PERC_60.value) {
+            if(value == ChargeSocPercent.PERC_60.value) {
                 return ChargeSocPercent.PERC_60;
             }
-            if(v == ChargeSocPercent.PERC_65.value) {
+            if(value == ChargeSocPercent.PERC_65.value) {
                 return ChargeSocPercent.PERC_65;
             }
-            if(v == ChargeSocPercent.PERC_70.value) {
+            if(value == ChargeSocPercent.PERC_70.value) {
                 return ChargeSocPercent.PERC_70;
             }
-            if(v == ChargeSocPercent.PERC_75.value) {
+            if(value == ChargeSocPercent.PERC_75.value) {
                 return ChargeSocPercent.PERC_75;
             }
-            if(v == ChargeSocPercent.PERC_80.value) {
+            if(value == ChargeSocPercent.PERC_80.value) {
                 return ChargeSocPercent.PERC_80;
             }
-            if(v == ChargeSocPercent.PERC_85.value) {
+            if(value == ChargeSocPercent.PERC_85.value) {
                 return ChargeSocPercent.PERC_85;
             }
-            if(v == ChargeSocPercent.PERC_90.value) {
+            if(value == ChargeSocPercent.PERC_90.value) {
                 return ChargeSocPercent.PERC_90;
             }
-            if(v == ChargeSocPercent.PERC_95.value) {
+            if(value == ChargeSocPercent.PERC_95.value) {
                 return ChargeSocPercent.PERC_95;
             }
-            return v == ChargeSocPercent.PERC_100.value ? ChargeSocPercent.PERC_100 : ChargeSocPercent.__UNKNOWN__;
+            return value == ChargeSocPercent.PERC_100.value ? ChargeSocPercent.PERC_100 : ChargeSocPercent.__UNKNOWN__;
         }
     }
 
@@ -212,48 +212,48 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ChargeWarmTime(int v1) {
-            this.value = v1;
+        private ChargeWarmTime(int value) {
+            this.value = value;
         }
 
-        public static ChargeWarmTime valueOf(int v) {
-            if(v == ChargeWarmTime.HOUR_1.value) {
+        public static ChargeWarmTime valueOf(int value) {
+            if(value == ChargeWarmTime.HOUR_1.value) {
                 return ChargeWarmTime.HOUR_1;
             }
-            if(v == ChargeWarmTime.HOUR_2.value) {
+            if(value == ChargeWarmTime.HOUR_2.value) {
                 return ChargeWarmTime.HOUR_2;
             }
-            if(v == ChargeWarmTime.HOUR_3.value) {
+            if(value == ChargeWarmTime.HOUR_3.value) {
                 return ChargeWarmTime.HOUR_3;
             }
-            if(v == ChargeWarmTime.HOUR_4.value) {
+            if(value == ChargeWarmTime.HOUR_4.value) {
                 return ChargeWarmTime.HOUR_4;
             }
-            if(v == ChargeWarmTime.HOUR_5.value) {
+            if(value == ChargeWarmTime.HOUR_5.value) {
                 return ChargeWarmTime.HOUR_5;
             }
-            if(v == ChargeWarmTime.HOUR_6.value) {
+            if(value == ChargeWarmTime.HOUR_6.value) {
                 return ChargeWarmTime.HOUR_6;
             }
-            if(v == ChargeWarmTime.HOUR_7.value) {
+            if(value == ChargeWarmTime.HOUR_7.value) {
                 return ChargeWarmTime.HOUR_7;
             }
-            if(v == ChargeWarmTime.HOUR_8.value) {
+            if(value == ChargeWarmTime.HOUR_8.value) {
                 return ChargeWarmTime.HOUR_8;
             }
-            if(v == ChargeWarmTime.HOUR_9.value) {
+            if(value == ChargeWarmTime.HOUR_9.value) {
                 return ChargeWarmTime.HOUR_9;
             }
-            if(v == ChargeWarmTime.HOUR_10.value) {
+            if(value == ChargeWarmTime.HOUR_10.value) {
                 return ChargeWarmTime.HOUR_10;
             }
-            if(v == ChargeWarmTime.HOUR_11.value) {
+            if(value == ChargeWarmTime.HOUR_11.value) {
                 return ChargeWarmTime.HOUR_11;
             }
-            if(v == ChargeWarmTime.ON.value) {
+            if(value == ChargeWarmTime.ON.value) {
                 return ChargeWarmTime.ON;
             }
-            return v == ChargeWarmTime.OFF.value ? ChargeWarmTime.OFF : ChargeWarmTime.__UNKNOWN__;
+            return value == ChargeWarmTime.OFF.value ? ChargeWarmTime.OFF : ChargeWarmTime.__UNKNOWN__;
         }
     }
 
@@ -266,21 +266,21 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private DischgSetInfo(int v1) {
-            this.value = v1;
+        private DischgSetInfo(int value) {
+            this.value = value;
         }
 
-        public static DischgSetInfo valueOf(int v) {
-            if(v == DischgSetInfo.NO_INFORMATION.value) {
+        public static DischgSetInfo valueOf(int value) {
+            if(value == DischgSetInfo.NO_INFORMATION.value) {
                 return DischgSetInfo.NO_INFORMATION;
             }
-            if(v == DischgSetInfo.SET_SUCCEED_DISCHARGE_ALLOW.value) {
+            if(value == DischgSetInfo.SET_SUCCEED_DISCHARGE_ALLOW.value) {
                 return DischgSetInfo.SET_SUCCEED_DISCHARGE_ALLOW;
             }
-            if(v == DischgSetInfo.LOWER_THAN_SET_DISCHARGE_NOT_ALLOW.value) {
+            if(value == DischgSetInfo.LOWER_THAN_SET_DISCHARGE_NOT_ALLOW.value) {
                 return DischgSetInfo.LOWER_THAN_SET_DISCHARGE_NOT_ALLOW;
             }
-            return v == DischgSetInfo.LOWER_OIL_SET_ENGINE_NOT_ALLOW.value ? DischgSetInfo.LOWER_OIL_SET_ENGINE_NOT_ALLOW : DischgSetInfo.__UNKNOWN__;
+            return value == DischgSetInfo.LOWER_OIL_SET_ENGINE_NOT_ALLOW.value ? DischgSetInfo.LOWER_OIL_SET_ENGINE_NOT_ALLOW : DischgSetInfo.__UNKNOWN__;
         }
     }
 
@@ -297,33 +297,33 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private DriveModeEv(int v1) {
-            this.value = v1;
+        private DriveModeEv(int value) {
+            this.value = value;
         }
 
-        public static DriveModeEv valueOf(int v) {
-            if(v == DriveModeEv.INVALID.value) {
+        public static DriveModeEv valueOf(int value) {
+            if(value == DriveModeEv.INVALID.value) {
                 return DriveModeEv.INVALID;
             }
-            if(v == DriveModeEv.ECO_PLUS_MODE.value) {
+            if(value == DriveModeEv.ECO_PLUS_MODE.value) {
                 return DriveModeEv.ECO_PLUS_MODE;
             }
-            if(v == DriveModeEv.ECO_MODE.value) {
+            if(value == DriveModeEv.ECO_MODE.value) {
                 return DriveModeEv.ECO_MODE;
             }
-            if(v == DriveModeEv.NORMAL_MODE.value) {
+            if(value == DriveModeEv.NORMAL_MODE.value) {
                 return DriveModeEv.NORMAL_MODE;
             }
-            if(v == DriveModeEv.DRIVING_MODE.value) {
+            if(value == DriveModeEv.DRIVING_MODE.value) {
                 return DriveModeEv.DRIVING_MODE;
             }
-            if(v == DriveModeEv.SPORT_MODE.value) {
+            if(value == DriveModeEv.SPORT_MODE.value) {
                 return DriveModeEv.SPORT_MODE;
             }
-            if(v == DriveModeEv.IPEDAL_ON.value) {
+            if(value == DriveModeEv.IPEDAL_ON.value) {
                 return DriveModeEv.IPEDAL_ON;
             }
-            return v == DriveModeEv.IPEDAL_OFF.value ? DriveModeEv.IPEDAL_OFF : DriveModeEv.__UNKNOWN__;
+            return value == DriveModeEv.IPEDAL_OFF.value ? DriveModeEv.IPEDAL_OFF : DriveModeEv.__UNKNOWN__;
         }
     }
 
@@ -334,15 +334,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private EcoPlusMode(int v1) {
-            this.value = v1;
+        private EcoPlusMode(int value) {
+            this.value = value;
         }
 
-        public static EcoPlusMode valueOf(int v) {
-            if(v == EcoPlusMode.ON.value) {
+        public static EcoPlusMode valueOf(int value) {
+            if(value == EcoPlusMode.ON.value) {
                 return EcoPlusMode.ON;
             }
-            return v == EcoPlusMode.OFF.value ? EcoPlusMode.OFF : EcoPlusMode.__UNKNOWN__;
+            return value == EcoPlusMode.OFF.value ? EcoPlusMode.OFF : EcoPlusMode.__UNKNOWN__;
         }
     }
 
@@ -355,21 +355,21 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private EnergyModel(int v1) {
-            this.value = v1;
+        private EnergyModel(int value) {
+            this.value = value;
         }
 
-        public static EnergyModel valueOf(int v) {
-            if(v == EnergyModel.NORMAL.value) {
+        public static EnergyModel valueOf(int value) {
+            if(value == EnergyModel.NORMAL.value) {
                 return EnergyModel.NORMAL;
             }
-            if(v == EnergyModel.INTELLIGENT_HYBRID.value) {
+            if(value == EnergyModel.INTELLIGENT_HYBRID.value) {
                 return EnergyModel.INTELLIGENT_HYBRID;
             }
-            if(v == EnergyModel.ELECTICITY_DRIVE_FIRST.value) {
+            if(value == EnergyModel.ELECTICITY_DRIVE_FIRST.value) {
                 return EnergyModel.ELECTICITY_DRIVE_FIRST;
             }
-            return v == EnergyModel.ELECTICITY_CONSERVATION.value ? EnergyModel.ELECTICITY_CONSERVATION : EnergyModel.__UNKNOWN__;
+            return value == EnergyModel.ELECTICITY_CONSERVATION.value ? EnergyModel.ELECTICITY_CONSERVATION : EnergyModel.__UNKNOWN__;
         }
     }
 
@@ -381,18 +381,18 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private EngStartCfg(int v1) {
-            this.value = v1;
+        private EngStartCfg(int value) {
+            this.value = value;
         }
 
-        public static EngStartCfg valueOf(int v) {
-            if(v == EngStartCfg.NO_REQUEST.value) {
+        public static EngStartCfg valueOf(int value) {
+            if(value == EngStartCfg.NO_REQUEST.value) {
                 return EngStartCfg.NO_REQUEST;
             }
-            if(v == EngStartCfg.ENGINE_START_ENABLE.value) {
+            if(value == EngStartCfg.ENGINE_START_ENABLE.value) {
                 return EngStartCfg.ENGINE_START_ENABLE;
             }
-            return v == EngStartCfg.ENGINE_START_DISABLE.value ? EngStartCfg.ENGINE_START_DISABLE : EngStartCfg.__UNKNOWN__;
+            return value == EngStartCfg.ENGINE_START_DISABLE.value ? EngStartCfg.ENGINE_START_DISABLE : EngStartCfg.__UNKNOWN__;
         }
     }
 
@@ -407,27 +407,27 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private GasPedalLevel(int v1) {
-            this.value = v1;
+        private GasPedalLevel(int value) {
+            this.value = value;
         }
 
-        public static GasPedalLevel valueOf(int v) {
-            if(v == GasPedalLevel.INVALID.value) {
+        public static GasPedalLevel valueOf(int value) {
+            if(value == GasPedalLevel.INVALID.value) {
                 return GasPedalLevel.INVALID;
             }
-            if(v == GasPedalLevel.LEVEL_1.value) {
+            if(value == GasPedalLevel.LEVEL_1.value) {
                 return GasPedalLevel.LEVEL_1;
             }
-            if(v == GasPedalLevel.LEVEL_2.value) {
+            if(value == GasPedalLevel.LEVEL_2.value) {
                 return GasPedalLevel.LEVEL_2;
             }
-            if(v == GasPedalLevel.LEVEL_3.value) {
+            if(value == GasPedalLevel.LEVEL_3.value) {
                 return GasPedalLevel.LEVEL_3;
             }
-            if(v == GasPedalLevel.LEVEL_4.value) {
+            if(value == GasPedalLevel.LEVEL_4.value) {
                 return GasPedalLevel.LEVEL_4;
             }
-            return v == GasPedalLevel.LEVEL_5.value ? GasPedalLevel.LEVEL_5 : GasPedalLevel.__UNKNOWN__;
+            return value == GasPedalLevel.LEVEL_5.value ? GasPedalLevel.LEVEL_5 : GasPedalLevel.__UNKNOWN__;
         }
     }
 
@@ -438,15 +438,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private HealCheckNotice(int v1) {
-            this.value = v1;
+        private HealCheckNotice(int value) {
+            this.value = value;
         }
 
-        public static HealCheckNotice valueOf(int v) {
-            if(v == HealCheckNotice.NO_NOTICE.value) {
+        public static HealCheckNotice valueOf(int value) {
+            if(value == HealCheckNotice.NO_NOTICE.value) {
                 return HealCheckNotice.NO_NOTICE;
             }
-            return v == HealCheckNotice.NOTICE.value ? HealCheckNotice.NOTICE : HealCheckNotice.__UNKNOWN__;
+            return value == HealCheckNotice.NOTICE.value ? HealCheckNotice.NOTICE : HealCheckNotice.__UNKNOWN__;
         }
     }
 
@@ -459,21 +459,21 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private ObcConnState(int v1) {
-            this.value = v1;
+        private ObcConnState(int value) {
+            this.value = value;
         }
 
-        public static ObcConnState valueOf(int v) {
-            if(v == ObcConnState.DISCONNECTED.value) {
+        public static ObcConnState valueOf(int value) {
+            if(value == ObcConnState.DISCONNECTED.value) {
                 return ObcConnState.DISCONNECTED;
             }
-            if(v == ObcConnState.HALF_CONNECTED_CHARGING_V2V_V2L.value) {
+            if(value == ObcConnState.HALF_CONNECTED_CHARGING_V2V_V2L.value) {
                 return ObcConnState.HALF_CONNECTED_CHARGING_V2V_V2L;
             }
-            if(v == ObcConnState.CONNECTED_CHARGING_V2V.value) {
+            if(value == ObcConnState.CONNECTED_CHARGING_V2V.value) {
                 return ObcConnState.CONNECTED_CHARGING_V2V;
             }
-            return v == ObcConnState.CONNECTED_V2L.value ? ObcConnState.CONNECTED_V2L : ObcConnState.__UNKNOWN__;
+            return value == ObcConnState.CONNECTED_V2L.value ? ObcConnState.CONNECTED_V2L : ObcConnState.__UNKNOWN__;
         }
     }
 
@@ -484,15 +484,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private PlugAutoUnlockCfg(int v1) {
-            this.value = v1;
+        private PlugAutoUnlockCfg(int value) {
+            this.value = value;
         }
 
-        public static PlugAutoUnlockCfg valueOf(int v) {
-            if(v == PlugAutoUnlockCfg.NOT_AUTO_UNLOCK.value) {
+        public static PlugAutoUnlockCfg valueOf(int value) {
+            if(value == PlugAutoUnlockCfg.NOT_AUTO_UNLOCK.value) {
                 return PlugAutoUnlockCfg.NOT_AUTO_UNLOCK;
             }
-            return v == PlugAutoUnlockCfg.AUTO_UNLOCK.value ? PlugAutoUnlockCfg.AUTO_UNLOCK : PlugAutoUnlockCfg.__UNKNOWN__;
+            return value == PlugAutoUnlockCfg.AUTO_UNLOCK.value ? PlugAutoUnlockCfg.AUTO_UNLOCK : PlugAutoUnlockCfg.__UNKNOWN__;
         }
     }
 
@@ -503,55 +503,51 @@ public interface ICarEvDevice extends IBaseApi {
         EV(3),
         RANGE_EXTEND_MODE1(4),
         RANGE_EXTEND_MODE2(5),
-        ENGINE_MODE(6),
-        HEV_MODE(7),
-        REGENERATION_MODE(8),
-        RANGE_EXTEND_MODE3(9),
-        HEV_MODE2(10),
-        REGENERATION_MODE2(11),
+        ENGINE_MODE(7),
+        HEV_MODE(8),
+        REGENERATION_MODE(10),
+        RANGE_EXTEND_MODE3(6),
+        HEV_MODE2(9),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private PowerFlowMode(int v1) {
-            this.value = v1;
+        private PowerFlowMode(int value) {
+            this.value = value;
         }
 
-        public static PowerFlowMode valueOf(int v) {
-            if(v == PowerFlowMode.VEHICLE_INITIAL.value) {
+        public static PowerFlowMode valueOf(int value) {
+            if(value == PowerFlowMode.VEHICLE_INITIAL.value) {
                 return PowerFlowMode.VEHICLE_INITIAL;
             }
-            if(v == PowerFlowMode.VEHICLE_STANDBY.value) {
+            if(value == PowerFlowMode.VEHICLE_STANDBY.value) {
                 return PowerFlowMode.VEHICLE_STANDBY;
             }
-            if(v == PowerFlowMode.IDLE_CHARGE.value) {
+            if(value == PowerFlowMode.IDLE_CHARGE.value) {
                 return PowerFlowMode.IDLE_CHARGE;
             }
-            if(v == PowerFlowMode.EV.value) {
+            if(value == PowerFlowMode.EV.value) {
                 return PowerFlowMode.EV;
             }
-            if(v == PowerFlowMode.RANGE_EXTEND_MODE1.value) {
+            if(value == PowerFlowMode.RANGE_EXTEND_MODE1.value) {
                 return PowerFlowMode.RANGE_EXTEND_MODE1;
             }
-            if(v == PowerFlowMode.RANGE_EXTEND_MODE2.value) {
+            if(value == PowerFlowMode.RANGE_EXTEND_MODE2.value) {
                 return PowerFlowMode.RANGE_EXTEND_MODE2;
             }
-            if(v == PowerFlowMode.ENGINE_MODE.value) {
+            if(value == PowerFlowMode.ENGINE_MODE.value) {
                 return PowerFlowMode.ENGINE_MODE;
             }
-            if(v == PowerFlowMode.HEV_MODE.value) {
+            if(value == PowerFlowMode.HEV_MODE.value) {
                 return PowerFlowMode.HEV_MODE;
             }
-            if(v == PowerFlowMode.REGENERATION_MODE.value) {
+            if(value == PowerFlowMode.REGENERATION_MODE.value) {
                 return PowerFlowMode.REGENERATION_MODE;
             }
-            if(v == PowerFlowMode.RANGE_EXTEND_MODE3.value) {
+            if(value == PowerFlowMode.RANGE_EXTEND_MODE3.value) {
                 return PowerFlowMode.RANGE_EXTEND_MODE3;
             }
-            if(v == PowerFlowMode.HEV_MODE2.value) {
-                return PowerFlowMode.HEV_MODE2;
-            }
-            return v == PowerFlowMode.REGENERATION_MODE2.value ? PowerFlowMode.REGENERATION_MODE2 : PowerFlowMode.__UNKNOWN__;
+            return value == PowerFlowMode.HEV_MODE2.value ? PowerFlowMode.HEV_MODE2 : PowerFlowMode.__UNKNOWN__;
         }
     }
 
@@ -564,21 +560,21 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private RecpLevelAvail(int v1) {
-            this.value = v1;
+        private RecpLevelAvail(int value) {
+            this.value = value;
         }
 
-        public static RecpLevelAvail valueOf(int v) {
-            if(v == RecpLevelAvail.L0_L3.value) {
+        public static RecpLevelAvail valueOf(int value) {
+            if(value == RecpLevelAvail.L0_L3.value) {
                 return RecpLevelAvail.L0_L3;
             }
-            if(v == RecpLevelAvail.L0_L1_AND_L2.value) {
+            if(value == RecpLevelAvail.L0_L1_AND_L2.value) {
                 return RecpLevelAvail.L0_L1_AND_L2;
             }
-            if(v == RecpLevelAvail.L0.value) {
+            if(value == RecpLevelAvail.L0.value) {
                 return RecpLevelAvail.L0;
             }
-            return v == RecpLevelAvail.ALL_AVAILABLE.value ? RecpLevelAvail.ALL_AVAILABLE : RecpLevelAvail.__UNKNOWN__;
+            return value == RecpLevelAvail.ALL_AVAILABLE.value ? RecpLevelAvail.ALL_AVAILABLE : RecpLevelAvail.__UNKNOWN__;
         }
     }
 
@@ -592,24 +588,24 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private RecuperationLevel(int v1) {
-            this.value = v1;
+        private RecuperationLevel(int value) {
+            this.value = value;
         }
 
-        public static RecuperationLevel valueOf(int v) {
-            if(v == RecuperationLevel.NOT_VALID.value) {
+        public static RecuperationLevel valueOf(int value) {
+            if(value == RecuperationLevel.NOT_VALID.value) {
                 return RecuperationLevel.NOT_VALID;
             }
-            if(v == RecuperationLevel.LEVEL_0_OFF.value) {
+            if(value == RecuperationLevel.LEVEL_0_OFF.value) {
                 return RecuperationLevel.LEVEL_0_OFF;
             }
-            if(v == RecuperationLevel.LEVEL_1_LOW.value) {
+            if(value == RecuperationLevel.LEVEL_1_LOW.value) {
                 return RecuperationLevel.LEVEL_1_LOW;
             }
-            if(v == RecuperationLevel.LEVEL_2_MIDDLE.value) {
+            if(value == RecuperationLevel.LEVEL_2_MIDDLE.value) {
                 return RecuperationLevel.LEVEL_2_MIDDLE;
             }
-            return v == RecuperationLevel.LEVEL_3_HIGH.value ? RecuperationLevel.LEVEL_3_HIGH : RecuperationLevel.__UNKNOWN__;
+            return value == RecuperationLevel.LEVEL_3_HIGH.value ? RecuperationLevel.LEVEL_3_HIGH : RecuperationLevel.__UNKNOWN__;
         }
     }
 
@@ -623,24 +619,24 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private RecuperationLevelA9E(int v1) {
-            this.value = v1;
+        private RecuperationLevelA9E(int value) {
+            this.value = value;
         }
 
-        public static RecuperationLevelA9E valueOf(int v) {
-            if(v == RecuperationLevelA9E.NOT_VALID.value) {
+        public static RecuperationLevelA9E valueOf(int value) {
+            if(value == RecuperationLevelA9E.NOT_VALID.value) {
                 return RecuperationLevelA9E.NOT_VALID;
             }
-            if(v == RecuperationLevelA9E.LEVEL_1_OFF.value) {
+            if(value == RecuperationLevelA9E.LEVEL_1_OFF.value) {
                 return RecuperationLevelA9E.LEVEL_1_OFF;
             }
-            if(v == RecuperationLevelA9E.LEVEL_2_LOW.value) {
+            if(value == RecuperationLevelA9E.LEVEL_2_LOW.value) {
                 return RecuperationLevelA9E.LEVEL_2_LOW;
             }
-            if(v == RecuperationLevelA9E.LEVEL_3_MIDDLE.value) {
+            if(value == RecuperationLevelA9E.LEVEL_3_MIDDLE.value) {
                 return RecuperationLevelA9E.LEVEL_3_MIDDLE;
             }
-            return v == RecuperationLevelA9E.LEVEL_4_HIGH.value ? RecuperationLevelA9E.LEVEL_4_HIGH : RecuperationLevelA9E.__UNKNOWN__;
+            return value == RecuperationLevelA9E.LEVEL_4_HIGH.value ? RecuperationLevelA9E.LEVEL_4_HIGH : RecuperationLevelA9E.__UNKNOWN__;
         }
     }
 
@@ -651,15 +647,15 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private RepeatBookMode(int v1) {
-            this.value = v1;
+        private RepeatBookMode(int value) {
+            this.value = value;
         }
 
-        public static RepeatBookMode valueOf(int v) {
-            if(v == RepeatBookMode.NOT_REPEAT.value) {
+        public static RepeatBookMode valueOf(int value) {
+            if(value == RepeatBookMode.NOT_REPEAT.value) {
                 return RepeatBookMode.NOT_REPEAT;
             }
-            return v == RepeatBookMode.BOOKING.value ? RepeatBookMode.BOOKING : RepeatBookMode.__UNKNOWN__;
+            return value == RepeatBookMode.BOOKING.value ? RepeatBookMode.BOOKING : RepeatBookMode.__UNKNOWN__;
         }
     }
 
@@ -677,36 +673,36 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private SocProgress(int v1) {
-            this.value = v1;
+        private SocProgress(int value) {
+            this.value = value;
         }
 
-        public static SocProgress valueOf(int v) {
-            if(v == SocProgress.PROGRESS_0.value) {
+        public static SocProgress valueOf(int value) {
+            if(value == SocProgress.PROGRESS_0.value) {
                 return SocProgress.PROGRESS_0;
             }
-            if(v == SocProgress.PROGRESS_1.value) {
+            if(value == SocProgress.PROGRESS_1.value) {
                 return SocProgress.PROGRESS_1;
             }
-            if(v == SocProgress.PROGRESS_2.value) {
+            if(value == SocProgress.PROGRESS_2.value) {
                 return SocProgress.PROGRESS_2;
             }
-            if(v == SocProgress.PROGRESS_3.value) {
+            if(value == SocProgress.PROGRESS_3.value) {
                 return SocProgress.PROGRESS_3;
             }
-            if(v == SocProgress.PROGRESS_4.value) {
+            if(value == SocProgress.PROGRESS_4.value) {
                 return SocProgress.PROGRESS_4;
             }
-            if(v == SocProgress.PROGRESS_5.value) {
+            if(value == SocProgress.PROGRESS_5.value) {
                 return SocProgress.PROGRESS_5;
             }
-            if(v == SocProgress.PROGRESS_6.value) {
+            if(value == SocProgress.PROGRESS_6.value) {
                 return SocProgress.PROGRESS_6;
             }
-            if(v == SocProgress.PROGRESS_7.value) {
+            if(value == SocProgress.PROGRESS_7.value) {
                 return SocProgress.PROGRESS_7;
             }
-            return v == SocProgress.PROGRESS_8.value ? SocProgress.PROGRESS_8 : SocProgress.__UNKNOWN__;
+            return value == SocProgress.PROGRESS_8.value ? SocProgress.PROGRESS_8 : SocProgress.__UNKNOWN__;
         }
     }
 
@@ -719,21 +715,21 @@ public interface ICarEvDevice extends IBaseApi {
 
         public final int value;
 
-        private XDriveMode(int v1) {
-            this.value = v1;
+        private XDriveMode(int value) {
+            this.value = value;
         }
 
-        public static XDriveMode valueOf(int v) {
-            if(v == XDriveMode.INVALID_MODE.value) {
+        public static XDriveMode valueOf(int value) {
+            if(value == XDriveMode.INVALID_MODE.value) {
                 return XDriveMode.INVALID_MODE;
             }
-            if(v == XDriveMode.ECO_MODE.value) {
+            if(value == XDriveMode.ECO_MODE.value) {
                 return XDriveMode.ECO_MODE;
             }
-            if(v == XDriveMode.NORMAL_MODE.value) {
+            if(value == XDriveMode.NORMAL_MODE.value) {
                 return XDriveMode.NORMAL_MODE;
             }
-            return v == XDriveMode.SPORT_MODE.value ? XDriveMode.SPORT_MODE : XDriveMode.__UNKNOWN__;
+            return value == XDriveMode.SPORT_MODE.value ? XDriveMode.SPORT_MODE : XDriveMode.__UNKNOWN__;
         }
     }
 

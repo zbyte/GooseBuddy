@@ -11,8 +11,8 @@ public interface ICarService extends IInterface {
         static class Proxy implements ICarService {
             private IBinder mRemote;
 
-            Proxy(IBinder iBinder0) {
-                this.mRemote = iBinder0;
+            Proxy(IBinder remote) {
+                this.mRemote = remote;
             }
 
             @Override  // android.os.IInterface
@@ -25,12 +25,12 @@ public interface ICarService extends IInterface {
             }
 
             @Override  // com.yftech.vehicle.internal.ICarService
-            public byte[] getSignalValue(int v) throws RemoteException {
+            public byte[] getSignalValue(int signal_id) throws RemoteException {
                 Parcel parcel0 = Parcel.obtain();
                 Parcel parcel1 = Parcel.obtain();
                 try {
                     parcel0.writeInterfaceToken("com.yftech.vehicle.internal.ICarService");
-                    parcel0.writeInt(v);
+                    parcel0.writeInt(signal_id);
                     this.mRemote.transact(1, parcel0, parcel1, 0);
                     parcel1.readException();
                     return parcel1.createByteArray();
@@ -42,12 +42,12 @@ public interface ICarService extends IInterface {
             }
 
             @Override  // com.yftech.vehicle.internal.ICarService
-            public byte[] getSignalsValue(int[] arr_v) throws RemoteException {
+            public byte[] getSignalsValue(int[] signals_id) throws RemoteException {
                 Parcel parcel0 = Parcel.obtain();
                 Parcel parcel1 = Parcel.obtain();
                 try {
                     parcel0.writeInterfaceToken("com.yftech.vehicle.internal.ICarService");
-                    parcel0.writeIntArray(arr_v);
+                    parcel0.writeIntArray(signals_id);
                     this.mRemote.transact(2, parcel0, parcel1, 0);
                     parcel1.readException();
                     return parcel1.createByteArray();
@@ -59,12 +59,16 @@ public interface ICarService extends IInterface {
             }
 
             @Override  // com.yftech.vehicle.internal.ICarService
-            public void registerSignalCallback(ISignalCallback iSignalCallback0, int[] arr_v) throws RemoteException {
+            public void registerSignalCallback(ISignalCallback callback, int[] signals_id) throws RemoteException {
+                IBinder iBinder0 = null;
                 Parcel parcel0 = Parcel.obtain();
                 try {
                     parcel0.writeInterfaceToken("com.yftech.vehicle.internal.ICarService");
-                    parcel0.writeStrongBinder((iSignalCallback0 == null ? null : iSignalCallback0.asBinder()));
-                    parcel0.writeIntArray(arr_v);
+                    if(callback != null) {
+                        iBinder0 = callback.asBinder();
+                    }
+                    parcel0.writeStrongBinder(iBinder0);
+                    parcel0.writeIntArray(signals_id);
                     this.mRemote.transact(4, parcel0, null, 1);
                 }
                 finally {
@@ -73,20 +77,20 @@ public interface ICarService extends IInterface {
             }
 
             @Override  // com.yftech.vehicle.internal.ICarService
-            public boolean setSignalValue(int v, byte[] arr_b) throws RemoteException {
+            public boolean setSignalValue(int signal_id, byte[] value) throws RemoteException {
+                boolean _result = false;
                 Parcel parcel0 = Parcel.obtain();
                 Parcel parcel1 = Parcel.obtain();
                 try {
                     parcel0.writeInterfaceToken("com.yftech.vehicle.internal.ICarService");
-                    parcel0.writeInt(v);
-                    parcel0.writeByteArray(arr_b);
-                    boolean z = false;
+                    parcel0.writeInt(signal_id);
+                    parcel0.writeByteArray(value);
                     this.mRemote.transact(3, parcel0, parcel1, 0);
                     parcel1.readException();
                     if(parcel1.readInt() != 0) {
-                        z = true;
+                        _result = true;
                     }
-                    return z;
+                    return _result;
                 }
                 finally {
                     parcel1.recycle();
@@ -95,11 +99,15 @@ public interface ICarService extends IInterface {
             }
 
             @Override  // com.yftech.vehicle.internal.ICarService
-            public void unregisterSignalCallback(ISignalCallback iSignalCallback0) throws RemoteException {
+            public void unregisterSignalCallback(ISignalCallback callback) throws RemoteException {
+                IBinder iBinder0 = null;
                 Parcel parcel0 = Parcel.obtain();
                 try {
                     parcel0.writeInterfaceToken("com.yftech.vehicle.internal.ICarService");
-                    parcel0.writeStrongBinder((iSignalCallback0 == null ? null : iSignalCallback0.asBinder()));
+                    if(callback != null) {
+                        iBinder0 = callback.asBinder();
+                    }
+                    parcel0.writeStrongBinder(iBinder0);
                     this.mRemote.transact(5, parcel0, null, 1);
                 }
                 finally {
@@ -111,12 +119,12 @@ public interface ICarService extends IInterface {
         private static final String DESCRIPTOR = "com.yftech.vehicle.internal.ICarService";
         static final int TRANSACTION_getSignalValue = 1;
         static final int TRANSACTION_getSignalsValue = 2;
-        static final int TRANSACTION_registerSignalCallback = 4;
         static final int TRANSACTION_setSignalValue = 3;
+        static final int TRANSACTION_registerSignalCallback = 4;
         static final int TRANSACTION_unregisterSignalCallback = 5;
 
         public Stub() {
-            this.attachInterface(this, "com.yftech.vehicle.internal.ICarService");
+            this.attachInterface(this, DESCRIPTOR);
         }
 
         @Override  // android.os.IInterface
@@ -124,56 +132,56 @@ public interface ICarService extends IInterface {
             return this;
         }
 
-        public static ICarService asInterface(IBinder iBinder0) {
-            if(iBinder0 == null) {
+        public static ICarService asInterface(IBinder obj) {
+            if(obj == null) {
                 return null;
             }
-            IInterface iInterface0 = iBinder0.queryLocalInterface("com.yftech.vehicle.internal.ICarService");
-            return iInterface0 != null && (iInterface0 instanceof ICarService) ? ((ICarService)iInterface0) : new Proxy(iBinder0);
+            IInterface iInterface0 = obj.queryLocalInterface(DESCRIPTOR);
+            return iInterface0 != null && (iInterface0 instanceof ICarService) ? ((ICarService)iInterface0) : new Proxy(obj);
         }
 
         @Override  // android.os.Binder
-        public boolean onTransact(int v, Parcel parcel0, Parcel parcel1, int v1) throws RemoteException {
-            if(v != 0x5F4E5446) {
-                switch(v) {
-                    case 1: {
-                        parcel0.enforceInterface("com.yftech.vehicle.internal.ICarService");
-                        byte[] arr_b = this.getSignalValue(parcel0.readInt());
-                        parcel1.writeNoException();
-                        parcel1.writeByteArray(arr_b);
-                        return true;
-                    }
-                    case 2: {
-                        parcel0.enforceInterface("com.yftech.vehicle.internal.ICarService");
-                        byte[] arr_b1 = this.getSignalsValue(parcel0.createIntArray());
-                        parcel1.writeNoException();
-                        parcel1.writeByteArray(arr_b1);
-                        return true;
-                    }
-                    case 3: {
-                        parcel0.enforceInterface("com.yftech.vehicle.internal.ICarService");
-                        boolean z = this.setSignalValue(parcel0.readInt(), parcel0.createByteArray());
-                        parcel1.writeNoException();
-                        parcel1.writeInt(((int)z));
-                        return true;
-                    }
-                    case 4: {
-                        parcel0.enforceInterface("com.yftech.vehicle.internal.ICarService");
-                        this.registerSignalCallback(com.yftech.vehicle.internal.ISignalCallback.Stub.asInterface(parcel0.readStrongBinder()), parcel0.createIntArray());
-                        return true;
-                    }
-                    case 5: {
-                        parcel0.enforceInterface("com.yftech.vehicle.internal.ICarService");
-                        this.unregisterSignalCallback(com.yftech.vehicle.internal.ISignalCallback.Stub.asInterface(parcel0.readStrongBinder()));
-                        return true;
-                    }
-                    default: {
-                        return super.onTransact(v, parcel0, parcel1, v1);
-                    }
+        public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            switch(code) {
+                case TRANSACTION_getSignalValue: {
+                    data.enforceInterface(DESCRIPTOR);
+                    byte[] arr_b = this.getSignalValue(data.readInt());
+                    reply.writeNoException();
+                    reply.writeByteArray(arr_b);
+                    return true;
+                }
+                case TRANSACTION_getSignalsValue: {
+                    data.enforceInterface(DESCRIPTOR);
+                    byte[] arr_b1 = this.getSignalsValue(data.createIntArray());
+                    reply.writeNoException();
+                    reply.writeByteArray(arr_b1);
+                    return true;
+                }
+                case TRANSACTION_setSignalValue: {
+                    data.enforceInterface(DESCRIPTOR);
+                    boolean z = this.setSignalValue(data.readInt(), data.createByteArray());
+                    reply.writeNoException();
+                    reply.writeInt((z ? 1 : 0));
+                    return true;
+                }
+                case TRANSACTION_registerSignalCallback: {
+                    data.enforceInterface(DESCRIPTOR);
+                    this.registerSignalCallback(com.yftech.vehicle.internal.ISignalCallback.Stub.asInterface(data.readStrongBinder()), data.createIntArray());
+                    return true;
+                }
+                case TRANSACTION_unregisterSignalCallback: {
+                    data.enforceInterface(DESCRIPTOR);
+                    this.unregisterSignalCallback(com.yftech.vehicle.internal.ISignalCallback.Stub.asInterface(data.readStrongBinder()));
+                    return true;
+                }
+                case 0x5F4E5446: {
+                    reply.writeString(DESCRIPTOR);
+                    return true;
+                }
+                default: {
+                    return super.onTransact(code, data, reply, flags);
                 }
             }
-            parcel1.writeString("com.yftech.vehicle.internal.ICarService");
-            return true;
         }
     }
 

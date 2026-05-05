@@ -12,23 +12,23 @@ public interface ICarDoor extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private AutoUnlockState(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private AutoUnlockState(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static AutoUnlockState valueOf(int v) {
-            if(v == AutoUnlockState.NOT_ACTIVE.rx) {
+        public static AutoUnlockState valueOf(int value) {
+            if(value == AutoUnlockState.NOT_ACTIVE.rx) {
                 return AutoUnlockState.NOT_ACTIVE;
             }
-            if(v == AutoUnlockState.ACTIVE.rx) {
+            if(value == AutoUnlockState.ACTIVE.rx) {
                 return AutoUnlockState.ACTIVE;
             }
-            if(v == AutoUnlockState.NOT_USED.rx) {
+            if(value == AutoUnlockState.NOT_USED.rx) {
                 return AutoUnlockState.NOT_USED;
             }
-            return v == AutoUnlockState.NO_COMMAND.rx ? AutoUnlockState.NO_COMMAND : AutoUnlockState.__UNKNOWN__;
+            return value == AutoUnlockState.NO_COMMAND.rx ? AutoUnlockState.NO_COMMAND : AutoUnlockState.__UNKNOWN__;
         }
     }
 
@@ -43,27 +43,27 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private DoorLockBuzzerRequest(int v1) {
-            this.value = v1;
+        private DoorLockBuzzerRequest(int value) {
+            this.value = value;
         }
 
-        public static DoorLockBuzzerRequest valueOf(int v) {
-            if(v == DoorLockBuzzerRequest.TERMINATE.value) {
+        public static DoorLockBuzzerRequest valueOf(int value) {
+            if(value == DoorLockBuzzerRequest.TERMINATE.value) {
                 return DoorLockBuzzerRequest.TERMINATE;
             }
-            if(v == DoorLockBuzzerRequest.BUZZER_TYPE1.value) {
+            if(value == DoorLockBuzzerRequest.BUZZER_TYPE1.value) {
                 return DoorLockBuzzerRequest.BUZZER_TYPE1;
             }
-            if(v == DoorLockBuzzerRequest.BUZZER_TYPE2.value) {
+            if(value == DoorLockBuzzerRequest.BUZZER_TYPE2.value) {
                 return DoorLockBuzzerRequest.BUZZER_TYPE2;
             }
-            if(v == DoorLockBuzzerRequest.BUZZER_TYPE3.value) {
+            if(value == DoorLockBuzzerRequest.BUZZER_TYPE3.value) {
                 return DoorLockBuzzerRequest.BUZZER_TYPE3;
             }
-            if(v == DoorLockBuzzerRequest.BUZZER_TYPE4.value) {
+            if(value == DoorLockBuzzerRequest.BUZZER_TYPE4.value) {
                 return DoorLockBuzzerRequest.BUZZER_TYPE4;
             }
-            return v == DoorLockBuzzerRequest.BUZZER_TYPE5.value ? DoorLockBuzzerRequest.BUZZER_TYPE5 : DoorLockBuzzerRequest.__UNKNOWN__;
+            return value == DoorLockBuzzerRequest.BUZZER_TYPE5.value ? DoorLockBuzzerRequest.BUZZER_TYPE5 : DoorLockBuzzerRequest.__UNKNOWN__;
         }
     }
 
@@ -74,34 +74,34 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private DoorLockState(int v1) {
-            this.value = v1;
+        private DoorLockState(int value) {
+            this.value = value;
         }
 
-        public static DoorLockState valueOf(int v) {
-            if(v == DoorLockState.UNLOCK.value) {
+        public static DoorLockState valueOf(int value) {
+            if(value == DoorLockState.UNLOCK.value) {
                 return DoorLockState.UNLOCK;
             }
-            return v == DoorLockState.LOCK.value ? DoorLockState.LOCK : DoorLockState.__UNKNOWN__;
+            return value == DoorLockState.LOCK.value ? DoorLockState.LOCK : DoorLockState.__UNKNOWN__;
         }
     }
 
     public static enum DoorState {
-        CLOSED(1),
-        OPEN(2),
+        CLOSED(0),
+        OPEN(1),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private DoorState(int v1) {
-            this.value = v1;
+        private DoorState(int value) {
+            this.value = value;
         }
 
-        public static DoorState valueOf(int v) {
-            if(v == DoorState.CLOSED.value) {
+        public static DoorState valueOf(int value) {
+            if(value == DoorState.CLOSED.value) {
                 return DoorState.CLOSED;
             }
-            return v == DoorState.OPEN.value ? DoorState.OPEN : DoorState.__UNKNOWN__;
+            return value == DoorState.OPEN.value ? DoorState.OPEN : DoorState.__UNKNOWN__;
         }
     }
 
@@ -112,15 +112,15 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private EngineHoodState(int v1) {
-            this.value = v1;
+        private EngineHoodState(int value) {
+            this.value = value;
         }
 
-        public static EngineHoodState valueOf(int v) {
-            if(v == EngineHoodState.CLOSED.value) {
+        public static EngineHoodState valueOf(int value) {
+            if(value == EngineHoodState.CLOSED.value) {
                 return EngineHoodState.CLOSED;
             }
-            return v == EngineHoodState.OPEN.value ? EngineHoodState.OPEN : EngineHoodState.__UNKNOWN__;
+            return value == EngineHoodState.OPEN.value ? EngineHoodState.OPEN : EngineHoodState.__UNKNOWN__;
         }
     }
 
@@ -134,20 +134,20 @@ public interface ICarDoor extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private PEPSAutoTrunkOpenState(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private PEPSAutoTrunkOpenState(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static PEPSAutoTrunkOpenState valueOf(int v) {
-            if(v == PEPSAutoTrunkOpenState.NOT_ACTIVE.rx) {
+        public static PEPSAutoTrunkOpenState valueOf(int value) {
+            if(value == PEPSAutoTrunkOpenState.NOT_ACTIVE.rx) {
                 return PEPSAutoTrunkOpenState.NOT_ACTIVE;
             }
-            if(v == PEPSAutoTrunkOpenState.SATO_ACTIVE.rx) {
+            if(value == PEPSAutoTrunkOpenState.SATO_ACTIVE.rx) {
                 return PEPSAutoTrunkOpenState.SATO_ACTIVE;
             }
-            return v == PEPSAutoTrunkOpenState.SATO_AND_SOUNDREMINDER_ACTIVE.rx ? PEPSAutoTrunkOpenState.SATO_AND_SOUNDREMINDER_ACTIVE : PEPSAutoTrunkOpenState.__UNKNOWN__;
+            return value == PEPSAutoTrunkOpenState.SATO_AND_SOUNDREMINDER_ACTIVE.rx ? PEPSAutoTrunkOpenState.SATO_AND_SOUNDREMINDER_ACTIVE : PEPSAutoTrunkOpenState.__UNKNOWN__;
         }
     }
 
@@ -157,12 +157,12 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private PLGMControl(int v1) {
-            this.value = v1;
+        private PLGMControl(int value) {
+            this.value = value;
         }
 
-        public static PLGMControl valueOf(int v) {
-            return v == PLGMControl.CONTROL_1.value ? PLGMControl.CONTROL_1 : PLGMControl.__UNKNOWN__;
+        public static PLGMControl valueOf(int value) {
+            return value == PLGMControl.CONTROL_1.value ? PLGMControl.CONTROL_1 : PLGMControl.__UNKNOWN__;
         }
     }
 
@@ -174,18 +174,18 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private PLGMFunction(int v1) {
-            this.value = v1;
+        private PLGMFunction(int value) {
+            this.value = value;
         }
 
-        public static PLGMFunction valueOf(int v) {
-            if(v == PLGMFunction.FUNCTION_1.value) {
+        public static PLGMFunction valueOf(int value) {
+            if(value == PLGMFunction.FUNCTION_1.value) {
                 return PLGMFunction.FUNCTION_1;
             }
-            if(v == PLGMFunction.ENABLE.value) {
+            if(value == PLGMFunction.ENABLE.value) {
                 return PLGMFunction.ENABLE;
             }
-            return v == PLGMFunction.DISABLE.value ? PLGMFunction.DISABLE : PLGMFunction.__UNKNOWN__;
+            return value == PLGMFunction.DISABLE.value ? PLGMFunction.DISABLE : PLGMFunction.__UNKNOWN__;
         }
     }
 
@@ -195,12 +195,12 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private PLGMMaxLevel(int v1) {
-            this.value = v1;
+        private PLGMMaxLevel(int value) {
+            this.value = value;
         }
 
-        public static PLGMMaxLevel valueOf(int v) {
-            return v == PLGMMaxLevel.LEVEL_1.value ? PLGMMaxLevel.LEVEL_1 : PLGMMaxLevel.__UNKNOWN__;
+        public static PLGMMaxLevel valueOf(int value) {
+            return value == PLGMMaxLevel.LEVEL_1.value ? PLGMMaxLevel.LEVEL_1 : PLGMMaxLevel.__UNKNOWN__;
         }
     }
 
@@ -211,15 +211,15 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private PSDDoorSpeed(int v1) {
-            this.value = v1;
+        private PSDDoorSpeed(int value) {
+            this.value = value;
         }
 
-        public static PSDDoorSpeed valueOf(int v) {
-            if(v == PSDDoorSpeed.LOW_SPEED.value) {
+        public static PSDDoorSpeed valueOf(int value) {
+            if(value == PSDDoorSpeed.LOW_SPEED.value) {
                 return PSDDoorSpeed.LOW_SPEED;
             }
-            return v == PSDDoorSpeed.HIGH_SPEED.value ? PSDDoorSpeed.HIGH_SPEED : PSDDoorSpeed.__UNKNOWN__;
+            return value == PSDDoorSpeed.HIGH_SPEED.value ? PSDDoorSpeed.HIGH_SPEED : PSDDoorSpeed.__UNKNOWN__;
         }
     }
 
@@ -232,17 +232,17 @@ public interface ICarDoor extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private RemoteUnlockMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private RemoteUnlockMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static RemoteUnlockMode valueOf(int v) {
-            if(v == RemoteUnlockMode.ALL_DOORS.rx) {
+        public static RemoteUnlockMode valueOf(int value) {
+            if(value == RemoteUnlockMode.ALL_DOORS.rx) {
                 return RemoteUnlockMode.ALL_DOORS;
             }
-            return v == RemoteUnlockMode.DRIVER_DOOR.rx ? RemoteUnlockMode.DRIVER_DOOR : RemoteUnlockMode.__UNKNOWN__;
+            return value == RemoteUnlockMode.DRIVER_DOOR.rx ? RemoteUnlockMode.DRIVER_DOOR : RemoteUnlockMode.__UNKNOWN__;
         }
     }
 
@@ -254,18 +254,18 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private SlidingDoorCmd(int v1) {
-            this.value = v1;
+        private SlidingDoorCmd(int value) {
+            this.value = value;
         }
 
-        public static SlidingDoorCmd valueOf(int v) {
-            if(v == SlidingDoorCmd.STOP.value) {
+        public static SlidingDoorCmd valueOf(int value) {
+            if(value == SlidingDoorCmd.STOP.value) {
                 return SlidingDoorCmd.STOP;
             }
-            if(v == SlidingDoorCmd.OPEN.value) {
+            if(value == SlidingDoorCmd.OPEN.value) {
                 return SlidingDoorCmd.OPEN;
             }
-            return v == SlidingDoorCmd.CLOSE.value ? SlidingDoorCmd.CLOSE : SlidingDoorCmd.__UNKNOWN__;
+            return value == SlidingDoorCmd.CLOSE.value ? SlidingDoorCmd.CLOSE : SlidingDoorCmd.__UNKNOWN__;
         }
     }
 
@@ -278,21 +278,21 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private SlidingDoorOperation(int v1) {
-            this.value = v1;
+        private SlidingDoorOperation(int value) {
+            this.value = value;
         }
 
-        public static SlidingDoorOperation valueOf(int v) {
-            if(v == SlidingDoorOperation.INITIAL_MODE.value) {
+        public static SlidingDoorOperation valueOf(int value) {
+            if(value == SlidingDoorOperation.INITIAL_MODE.value) {
                 return SlidingDoorOperation.INITIAL_MODE;
             }
-            if(v == SlidingDoorOperation.STOP.value) {
+            if(value == SlidingDoorOperation.STOP.value) {
                 return SlidingDoorOperation.STOP;
             }
-            if(v == SlidingDoorOperation.OPENNING.value) {
+            if(value == SlidingDoorOperation.OPENNING.value) {
                 return SlidingDoorOperation.OPENNING;
             }
-            return v == SlidingDoorOperation.CLOSING.value ? SlidingDoorOperation.CLOSING : SlidingDoorOperation.__UNKNOWN__;
+            return value == SlidingDoorOperation.CLOSING.value ? SlidingDoorOperation.CLOSING : SlidingDoorOperation.__UNKNOWN__;
         }
     }
 
@@ -305,21 +305,21 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private SlidingDoorState(int v1) {
-            this.value = v1;
+        private SlidingDoorState(int value) {
+            this.value = value;
         }
 
-        public static SlidingDoorState valueOf(int v) {
-            if(v == SlidingDoorState.FULL_LATCH.value) {
+        public static SlidingDoorState valueOf(int value) {
+            if(value == SlidingDoorState.FULL_LATCH.value) {
                 return SlidingDoorState.FULL_LATCH;
             }
-            if(v == SlidingDoorState.HALF_LATCH.value) {
+            if(value == SlidingDoorState.HALF_LATCH.value) {
                 return SlidingDoorState.HALF_LATCH;
             }
-            if(v == SlidingDoorState.LATCH_OPEN.value) {
+            if(value == SlidingDoorState.LATCH_OPEN.value) {
                 return SlidingDoorState.LATCH_OPEN;
             }
-            return v == SlidingDoorState.FULL_OPEN.value ? SlidingDoorState.FULL_OPEN : SlidingDoorState.__UNKNOWN__;
+            return value == SlidingDoorState.FULL_OPEN.value ? SlidingDoorState.FULL_OPEN : SlidingDoorState.__UNKNOWN__;
         }
     }
 
@@ -335,30 +335,30 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private TailDoorCmd(int v1) {
-            this.value = v1;
+        private TailDoorCmd(int value) {
+            this.value = value;
         }
 
-        public static TailDoorCmd valueOf(int v) {
-            if(v == TailDoorCmd.STOP.value) {
+        public static TailDoorCmd valueOf(int value) {
+            if(value == TailDoorCmd.STOP.value) {
                 return TailDoorCmd.STOP;
             }
-            if(v == TailDoorCmd.FULLY_OPEN.value) {
+            if(value == TailDoorCmd.FULLY_OPEN.value) {
                 return TailDoorCmd.FULLY_OPEN;
             }
-            if(v == TailDoorCmd.FULLY_CLOSE.value) {
+            if(value == TailDoorCmd.FULLY_CLOSE.value) {
                 return TailDoorCmd.FULLY_CLOSE;
             }
-            if(v == TailDoorCmd.OPEN_TWENTY_PERCENT.value) {
+            if(value == TailDoorCmd.OPEN_TWENTY_PERCENT.value) {
                 return TailDoorCmd.OPEN_TWENTY_PERCENT;
             }
-            if(v == TailDoorCmd.OPEN_FORTY_PERCENT.value) {
+            if(value == TailDoorCmd.OPEN_FORTY_PERCENT.value) {
                 return TailDoorCmd.OPEN_FORTY_PERCENT;
             }
-            if(v == TailDoorCmd.OPEN_SIXTY_PERCENT.value) {
+            if(value == TailDoorCmd.OPEN_SIXTY_PERCENT.value) {
                 return TailDoorCmd.OPEN_SIXTY_PERCENT;
             }
-            return v == TailDoorCmd.OPEN_EIGHTY_PERCENT.value ? TailDoorCmd.OPEN_EIGHTY_PERCENT : TailDoorCmd.__UNKNOWN__;
+            return value == TailDoorCmd.OPEN_EIGHTY_PERCENT.value ? TailDoorCmd.OPEN_EIGHTY_PERCENT : TailDoorCmd.__UNKNOWN__;
         }
     }
 
@@ -373,27 +373,27 @@ public interface ICarDoor extends IBaseApi {
 
         public final int value;
 
-        private TailDoorState(int v1) {
-            this.value = v1;
+        private TailDoorState(int value) {
+            this.value = value;
         }
 
-        public static TailDoorState valueOf(int v) {
-            if(v == TailDoorState.FULLY_OPENED.value) {
+        public static TailDoorState valueOf(int value) {
+            if(value == TailDoorState.FULLY_OPENED.value) {
                 return TailDoorState.FULLY_OPENED;
             }
-            if(v == TailDoorState.FULLY_CLOSED.value) {
+            if(value == TailDoorState.FULLY_CLOSED.value) {
                 return TailDoorState.FULLY_CLOSED;
             }
-            if(v == TailDoorState.OPENING.value) {
+            if(value == TailDoorState.OPENING.value) {
                 return TailDoorState.OPENING;
             }
-            if(v == TailDoorState.CLOSING.value) {
+            if(value == TailDoorState.CLOSING.value) {
                 return TailDoorState.CLOSING;
             }
-            if(v == TailDoorState.HOLD.value) {
+            if(value == TailDoorState.HOLD.value) {
                 return TailDoorState.HOLD;
             }
-            return v == TailDoorState.TG_BRAKE.value ? TailDoorState.TG_BRAKE : TailDoorState.__UNKNOWN__;
+            return value == TailDoorState.TG_BRAKE.value ? TailDoorState.TG_BRAKE : TailDoorState.__UNKNOWN__;
         }
     }
 

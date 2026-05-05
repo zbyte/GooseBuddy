@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/bg_color" android:layout_width="match_parent" android:layout_height="match_parent" style="@style/ScrollStyle">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView android:text="@string/auto_heating_head" style="@style/TitleTextStyleNew"/>
+
+            <com.yftech.settings.widget.ItemSwitchDescribeView android:id="@+id/auto_heating_after_start" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/auto_heating_after_start" app:descString="@string/auto_heating_after_start_descr"/>
+            <com.yftech.settings.widget.ItemSeekBarDescribeView android:id="@+id/auto_heating_min_temperature" android:layout_width="match_parent" android:layout_height="wrap_content" app:contentVisible="true" app:titleString="@string/auto_heating_min_temperature" app:descString="@string/auto_heating_min_temperature_descr"/>
+            <com.yftech.settings.widget.ItemSeekBarDescribeView android:id="@+id/auto_heating_delay" android:layout_width="match_parent" android:layout_height="wrap_content" app:contentVisible="true" app:titleString="@string/auto_heating_delay" app:descString="@string/auto_heating_delay_descr"/>
+        </LinearLayout>
+
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/heating_group">
+            <androidx.appcompat.widget.AppCompatTextView android:text="@string/heating_switch_on_head" android:drawableStart="@drawable/ic_air_window_front_nor" style="@style/TitleTextStyleNew"/>
+
+            <com.yftech.settings.widget.ItemSwitchDescribeView android:id="@+id/front_defrost_turn_on" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/front_defrost_turn_on"/>
+            <com.yftech.settings.widget.ItemSwitchDescribeView android:id="@+id/rear_defrost_turn_on" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/rear_defrost_turn_on"/>
+            <com.yftech.settings.widget.ItemSwitchDescribeView android:id="@+id/steering_wheel_heating_turn_on" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/steering_wheel_heating_turn_on"/>
+        </LinearLayout>
+
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/seats_group">
+            <androidx.appcompat.widget.AppCompatTextView android:text="@string/seat_heating" android:drawableStart="@drawable/control_icon_r_seatheating_3" style="@style/TitleTextStyleNew"/>
+            <com.yftech.settings.widget.ItemOptionDescribeView android:id="@+id/sh_front_left" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/sh_front_left" app:switchTabs="@array/seat_heating_variants"/>
+            <com.yftech.settings.widget.ItemOptionDescribeView android:id="@+id/sh_front_right" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/sh_front_right" app:switchTabs="@array/seat_heating_variants"/>
+            <com.yftech.settings.widget.ItemOptionDescribeView android:id="@+id/sh_rear_left" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/sh_rear_left" app:switchTabs="@array/seat_heating_variants"/>
+            <com.yftech.settings.widget.ItemOptionDescribeView android:id="@+id/sh_rear_right" android:visibility="visible" android:layout_width="match_parent" android:layout_height="wrap_content" app:titleString="@string/sh_rear_right" app:switchTabs="@array/seat_heating_variants"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

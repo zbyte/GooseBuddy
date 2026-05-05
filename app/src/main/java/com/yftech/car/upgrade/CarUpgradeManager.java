@@ -5,9 +5,10 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.HashSet;
@@ -124,18 +125,14 @@ public class CarUpgradeManager {
         }
     }
 
-    static final class CarUpgradeManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarUpgradeManagerGlobal CAR_UPGRADE_MANAGER_GLOBAL;
+    static final class CarUpgradeManagerGlobal extends ICarUpgradeCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarUpgradeManagerGlobal CAR_UPGRADE_MANAGER_GLOBAL = new CarUpgradeManagerGlobal();
         private Set mAddUpgradeModuleList;
         private Set mAddUpgradeModuleListWhenStart;
         private final ArrayMap mCallbackMap;
         private static ICarUpgradeService mCarUpgradeService;
         private boolean mIsStartUpgrade;
         private final Object mLock;
-
-        static {
-            CarUpgradeManagerGlobal.CAR_UPGRADE_MANAGER_GLOBAL = new CarUpgradeManagerGlobal();
-        }
 
         private CarUpgradeManagerGlobal() {
             this.mLock = new Object();
@@ -212,7 +209,7 @@ public class CarUpgradeManager {
         private boolean connectCarUpgradeServiceLocked() {
             if(CarUpgradeManagerGlobal.mCarUpgradeService == null || CarUpgradeManagerGlobal.mCarUpgradeService.asBinder() == null || !CarUpgradeManagerGlobal.mCarUpgradeService.asBinder().isBinderAlive()) {
                 CarUpgradeManagerGlobal.mCarUpgradeService = null;
-                IBinder iBinder0 = ServiceManager.getService("car_upgrade");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_upgrade");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -224,13 +221,14 @@ public class CarUpgradeManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarUpgradeManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarUpgradeManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -503,7 +501,7 @@ public class CarUpgradeManager {
     public static final int SCREEN_UPGRADE_STATE_SUCCESS = 1;
     public static final int SCREEN_UPGRADE_STATE_UPGRADING = 7;
     public static final String SERVICE_NAME = "car_upgrade";
-    private static final String TAG = null;
+    private static final String TAG  = "CarUpgradeManager";
     public static final int UPGRADE_FAIL_SERVER_DIE = 0x7FFFFFFF;
     public static final int UPGRADE_MODULE_DSP = 4;
     public static final int UPGRADE_MODULE_MCU = 2;
@@ -512,10 +510,6 @@ public class CarUpgradeManager {
     public static final int UPGRADE_MODULE_SCREEN = 3;
     public static final int UPGRADE_MODULE_SCREEN_MCU = 5;
     private static volatile CarUpgradeManager mInstance;
-
-    static {
-        CarUpgradeManager.TAG = "CarUpgradeManager";
-    }
 
     // String Decryptor: 6 succeeded, 0 failed
     static String access$000() {

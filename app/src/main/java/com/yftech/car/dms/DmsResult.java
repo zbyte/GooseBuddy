@@ -5,30 +5,26 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class DmsResult implements Parcelable {
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public DmsResult createFromParcel(Parcel in) {
+            DmsResult link = new DmsResult();
+            link.mAlarmType = in.readInt();
+            link.mDistractLevel = in.readInt();
+            link.mDrowsyLevel = in.readInt();
+            link.mDrowsyMask = in.readInt();
+            link.mResult = in.readString();
+            return link;
+        }
+
+        public DmsResult[] newArray(int size) {
+            return new DmsResult[size];
+        }
+    };
     private int mAlarmType;
     private int mDistractLevel;
     private int mDrowsyLevel;
     private int mDrowsyMask;
     private String mResult;
-
-    static {
-        DmsResult.CREATOR = new Parcelable.Creator() {
-            public DmsResult createFromParcel(Parcel in) {
-                DmsResult link = new DmsResult();
-                link.mAlarmType = in.readInt();
-                link.mDistractLevel = in.readInt();
-                link.mDrowsyLevel = in.readInt();
-                link.mDrowsyMask = in.readInt();
-                link.mResult = in.readString();
-                return link;
-            }
-
-            public DmsResult[] newArray(int size) {
-                return new DmsResult[size];
-            }
-        };
-    }
 
     public DmsResult() {
     }

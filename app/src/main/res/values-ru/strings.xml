@@ -2,6 +2,43 @@
 <resources>
     <string name="app_name">GooseBuddy</string>
     <string name="action_settings">Настройки</string>
-    <string name="menu_home">Действия после запуска</string>
-    <string name="menu_gallery">Улучшения климата</string>
+
+    <string name="tab_automation">Автоматическое\nвключение</string>
+    <string name="tab_ac_helpers">Климат-контроль</string>
+    <string name="tab_title_system">Системные\nнастройки</string>
+    <string name="hvac_helpers_title">Обогрев переднего стекла</string>
+    <string name="hvac_decrease_defrost_wind_speed">Уменьшить скорость вентилятора</string>
+    <string name="hvac_decrease_descr">Уменьшить скорость вентилятора при включении обогрева переднего стекла</string>
+
+    <string name="active_safety_aid_speed_reminder_close">Закрыть</string>
+    <string name="hvac_defrost_wind_speed">Скорость вентилятора при обогреве</string>
+    <string name="steering_wheel_heating_title">Обогрев руля</string>
+    <string name="steering_wheel_heating_auto_off_option">Автовыключение обогрева руля</string>
+    <string name="steering_wheel_heating_auto_off_descr">Выключить обогрев руля через заданное количество минут</string>
+    <string name="steering_wheel_heating_auto_off_time">Время выключения</string>
+    <string name="seat_heating_auto_off_title">Автовыключение подогрева сидений</string>
+    <string name="seat_heating_auto_off_option">Автовыключение подогрева сидений</string>
+    <string name="seat_heating_auto_off_descr">Выключить подогрев сидений через заданное количество минут (для всех сидений)</string>
+    <string name="seat_heating_auto_off_time">Время выключения</string>
+    <string name="hvac_defrost_auto_switchoff_enabled">Автовыключение</string>
+    <string name="hvac_defrost_auto_switchoff_descr">Выключить обогрев переднего стекла через заданное количество минут</string>
+    <string name="hvac_defrost_auto_switchoff_time">Время выключения</string>
+    <string name="under_construction">В разработке</string>
+    <string name="front_defrost_turn_on">Переднее стекло</string>
+    <string name="rear_defrost_turn_on">Заднее стекло</string>
+    <string name="seat_heating">Обогрев сидений</string>
+    <string name="heating_off">ВЫКЛ</string>
+    <string name="sh_front_left">Переднее левое сиденье</string>
+    <string name="sh_front_right">Переднее правое сиденье</string>
+    <string name="sh_rear_left">Заднее левое сиденье</string>
+    <string name="sh_rear_right">Заднее правое сиденье</string>
+    <string name="steering_wheel_heating_turn_on">Обогрев руля</string>
+    <string name="heating_switch_on_head">Обогрев</string>
+    <string name="auto_heating_after_start">Сценарии обогрева</string>
+    <string name="auto_heating_after_start_descr">После запуска двигателя выполнить автосценарии обогрева</string>
+    <string name="auto_heating_min_temperature">Максимальная температура для запуска</string>
+    <string name="auto_heating_delay">Задержка между запусками</string>
+    <string name="auto_heating_head">Автосценарии</string>
+    <string name="auto_heating_min_temperature_descr">Если температура ниже указанной, сценарий обогрева запускается</string>
+    <string name="auto_heating_delay_descr">Если с момента предыдущего запуска прошло меньше указанного времени, сценарий обогрева не будет запущен.</string>
 </resources>

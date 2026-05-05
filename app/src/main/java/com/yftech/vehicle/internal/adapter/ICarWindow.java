@@ -16,59 +16,55 @@ public interface ICarWindow extends IBaseApi {
         NINETY_PERCENT_OPEN(12),
         CHANGE_OPEN(13),
         CHANGE_CLOSE(14),
-        WIND_BREATHE(105),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private WindowOpenPercent(int v1) {
-            this.value = v1;
+        private WindowOpenPercent(int value) {
+            this.value = value;
         }
 
-        public static WindowOpenPercent valueOf(int v) {
-            if(v == WindowOpenPercent.STOP.value) {
+        public static WindowOpenPercent valueOf(int value) {
+            if(value == WindowOpenPercent.STOP.value) {
                 return WindowOpenPercent.STOP;
             }
-            if(v == WindowOpenPercent.FULLY_OPEN.value) {
+            if(value == WindowOpenPercent.FULLY_OPEN.value) {
                 return WindowOpenPercent.FULLY_OPEN;
             }
-            if(v == WindowOpenPercent.FULLY_CLOSE.value) {
+            if(value == WindowOpenPercent.FULLY_CLOSE.value) {
                 return WindowOpenPercent.FULLY_CLOSE;
             }
-            if(v == WindowOpenPercent.TEN_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.TEN_PERCENT_OPEN.value) {
                 return WindowOpenPercent.TEN_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.TWENTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.TWENTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.TWENTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.THIRTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.THIRTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.THIRTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.FORTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.FORTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.FORTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.FIFTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.FIFTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.FIFTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.SIXTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.SIXTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.SIXTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.SEVENTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.SEVENTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.SEVENTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.EIGHTY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.EIGHTY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.EIGHTY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.NINETY_PERCENT_OPEN.value) {
+            if(value == WindowOpenPercent.NINETY_PERCENT_OPEN.value) {
                 return WindowOpenPercent.NINETY_PERCENT_OPEN;
             }
-            if(v == WindowOpenPercent.CHANGE_OPEN.value) {
+            if(value == WindowOpenPercent.CHANGE_OPEN.value) {
                 return WindowOpenPercent.CHANGE_OPEN;
             }
-            if(v == WindowOpenPercent.CHANGE_CLOSE.value) {
-                return WindowOpenPercent.CHANGE_CLOSE;
-            }
-            return v == WindowOpenPercent.WIND_BREATHE.value ? WindowOpenPercent.WIND_BREATHE : WindowOpenPercent.__UNKNOWN__;
+            return value == WindowOpenPercent.CHANGE_CLOSE.value ? WindowOpenPercent.CHANGE_CLOSE : WindowOpenPercent.__UNKNOWN__;
         }
     }
 
@@ -81,21 +77,21 @@ public interface ICarWindow extends IBaseApi {
 
         public final int value;
 
-        private WindowOperationState(int v1) {
-            this.value = v1;
+        private WindowOperationState(int value) {
+            this.value = value;
         }
 
-        public static WindowOperationState valueOf(int v) {
-            if(v == WindowOperationState.STOPED.value) {
+        public static WindowOperationState valueOf(int value) {
+            if(value == WindowOperationState.STOPED.value) {
                 return WindowOperationState.STOPED;
             }
-            if(v == WindowOperationState.CLOSING.value) {
+            if(value == WindowOperationState.CLOSING.value) {
                 return WindowOperationState.CLOSING;
             }
-            if(v == WindowOperationState.OPENING.value) {
+            if(value == WindowOperationState.OPENING.value) {
                 return WindowOperationState.OPENING;
             }
-            return v == WindowOperationState.ANTIPINCH_REVERSING.value ? WindowOperationState.ANTIPINCH_REVERSING : WindowOperationState.__UNKNOWN__;
+            return value == WindowOperationState.ANTIPINCH_REVERSING.value ? WindowOperationState.ANTIPINCH_REVERSING : WindowOperationState.__UNKNOWN__;
         }
     }
 
@@ -114,39 +110,39 @@ public interface ICarWindow extends IBaseApi {
 
         public final int value;
 
-        private WindowRoofOpenOpertion(int v1) {
-            this.value = v1;
+        private WindowRoofOpenOpertion(int value) {
+            this.value = value;
         }
 
-        public static WindowRoofOpenOpertion valueOf(int v) {
-            if(v == WindowRoofOpenOpertion.FULLY_CLOSED.value) {
+        public static WindowRoofOpenOpertion valueOf(int value) {
+            if(value == WindowRoofOpenOpertion.FULLY_CLOSED.value) {
                 return WindowRoofOpenOpertion.FULLY_CLOSED;
             }
-            if(v == WindowRoofOpenOpertion.SLIDE_OPEN.value) {
+            if(value == WindowRoofOpenOpertion.SLIDE_OPEN.value) {
                 return WindowRoofOpenOpertion.SLIDE_OPEN;
             }
-            if(v == WindowRoofOpenOpertion.TILT_UP.value) {
+            if(value == WindowRoofOpenOpertion.TILT_UP.value) {
                 return WindowRoofOpenOpertion.TILT_UP;
             }
-            if(v == WindowRoofOpenOpertion.OPENING.value) {
+            if(value == WindowRoofOpenOpertion.OPENING.value) {
                 return WindowRoofOpenOpertion.OPENING;
             }
-            if(v == WindowRoofOpenOpertion.CLOSING.value) {
+            if(value == WindowRoofOpenOpertion.CLOSING.value) {
                 return WindowRoofOpenOpertion.CLOSING;
             }
-            if(v == WindowRoofOpenOpertion.REVERSING.value) {
+            if(value == WindowRoofOpenOpertion.REVERSING.value) {
                 return WindowRoofOpenOpertion.REVERSING;
             }
-            if(v == WindowRoofOpenOpertion.POSITION_NOT_TRUSTED.value) {
+            if(value == WindowRoofOpenOpertion.POSITION_NOT_TRUSTED.value) {
                 return WindowRoofOpenOpertion.POSITION_NOT_TRUSTED;
             }
-            if(v == WindowRoofOpenOpertion.FULLY_OPENED.value) {
+            if(value == WindowRoofOpenOpertion.FULLY_OPENED.value) {
                 return WindowRoofOpenOpertion.FULLY_OPENED;
             }
-            if(v == WindowRoofOpenOpertion.COMFORT_POSITION.value) {
+            if(value == WindowRoofOpenOpertion.COMFORT_POSITION.value) {
                 return WindowRoofOpenOpertion.COMFORT_POSITION;
             }
-            return v == WindowRoofOpenOpertion.EXPANDED_SLIDE_OPEN.value ? WindowRoofOpenOpertion.EXPANDED_SLIDE_OPEN : WindowRoofOpenOpertion.__UNKNOWN__;
+            return value == WindowRoofOpenOpertion.EXPANDED_SLIDE_OPEN.value ? WindowRoofOpenOpertion.EXPANDED_SLIDE_OPEN : WindowRoofOpenOpertion.__UNKNOWN__;
         }
     }
 
@@ -168,48 +164,48 @@ public interface ICarWindow extends IBaseApi {
 
         public final int value;
 
-        private WindowRoofOpenState(int v1) {
-            this.value = v1;
+        private WindowRoofOpenState(int value) {
+            this.value = value;
         }
 
-        public static WindowRoofOpenState valueOf(int v) {
-            if(v == WindowRoofOpenState.STOP.value) {
+        public static WindowRoofOpenState valueOf(int value) {
+            if(value == WindowRoofOpenState.STOP.value) {
                 return WindowRoofOpenState.STOP;
             }
-            if(v == WindowRoofOpenState.FULLY_OPEN.value) {
+            if(value == WindowRoofOpenState.FULLY_OPEN.value) {
                 return WindowRoofOpenState.FULLY_OPEN;
             }
-            if(v == WindowRoofOpenState.FULLY_CLOSE.value) {
+            if(value == WindowRoofOpenState.FULLY_CLOSE.value) {
                 return WindowRoofOpenState.FULLY_CLOSE;
             }
-            if(v == WindowRoofOpenState.TILT_UP.value) {
+            if(value == WindowRoofOpenState.TILT_UP.value) {
                 return WindowRoofOpenState.TILT_UP;
             }
-            if(v == WindowRoofOpenState.SHADE_OPEN.value) {
+            if(value == WindowRoofOpenState.SHADE_OPEN.value) {
                 return WindowRoofOpenState.SHADE_OPEN;
             }
-            if(v == WindowRoofOpenState.SHADE_CLOS.value) {
+            if(value == WindowRoofOpenState.SHADE_CLOS.value) {
                 return WindowRoofOpenState.SHADE_CLOS;
             }
-            if(v == WindowRoofOpenState.TWENTY_PERCENT_OPEN.value) {
+            if(value == WindowRoofOpenState.TWENTY_PERCENT_OPEN.value) {
                 return WindowRoofOpenState.TWENTY_PERCENT_OPEN;
             }
-            if(v == WindowRoofOpenState.FORTY_PERCENT_OPEN.value) {
+            if(value == WindowRoofOpenState.FORTY_PERCENT_OPEN.value) {
                 return WindowRoofOpenState.FORTY_PERCENT_OPEN;
             }
-            if(v == WindowRoofOpenState.SIXTY_PERCENT_OPEN.value) {
+            if(value == WindowRoofOpenState.SIXTY_PERCENT_OPEN.value) {
                 return WindowRoofOpenState.SIXTY_PERCENT_OPEN;
             }
-            if(v == WindowRoofOpenState.EIGHTY_PERCENT_OPEN.value) {
+            if(value == WindowRoofOpenState.EIGHTY_PERCENT_OPEN.value) {
                 return WindowRoofOpenState.EIGHTY_PERCENT_OPEN;
             }
-            if(v == WindowRoofOpenState.ONE_HUNDRED_PERCENT_OPEN.value) {
+            if(value == WindowRoofOpenState.ONE_HUNDRED_PERCENT_OPEN.value) {
                 return WindowRoofOpenState.ONE_HUNDRED_PERCENT_OPEN;
             }
-            if(v == WindowRoofOpenState.CHANGE_OPEN.value) {
+            if(value == WindowRoofOpenState.CHANGE_OPEN.value) {
                 return WindowRoofOpenState.CHANGE_OPEN;
             }
-            return v == WindowRoofOpenState.CHANGE_CLOSE.value ? WindowRoofOpenState.CHANGE_CLOSE : WindowRoofOpenState.__UNKNOWN__;
+            return value == WindowRoofOpenState.CHANGE_CLOSE.value ? WindowRoofOpenState.CHANGE_CLOSE : WindowRoofOpenState.__UNKNOWN__;
         }
     }
 
@@ -226,33 +222,33 @@ public interface ICarWindow extends IBaseApi {
 
         public final int value;
 
-        private WindowRoofShadeOpenOpertion(int v1) {
-            this.value = v1;
+        private WindowRoofShadeOpenOpertion(int value) {
+            this.value = value;
         }
 
-        public static WindowRoofShadeOpenOpertion valueOf(int v) {
-            if(v == WindowRoofShadeOpenOpertion.FULLY_CLOSE.value) {
+        public static WindowRoofShadeOpenOpertion valueOf(int value) {
+            if(value == WindowRoofShadeOpenOpertion.FULLY_CLOSE.value) {
                 return WindowRoofShadeOpenOpertion.FULLY_CLOSE;
             }
-            if(v == WindowRoofShadeOpenOpertion.SLIDE_OPEN.value) {
+            if(value == WindowRoofShadeOpenOpertion.SLIDE_OPEN.value) {
                 return WindowRoofShadeOpenOpertion.SLIDE_OPEN;
             }
-            if(v == WindowRoofShadeOpenOpertion.NO_USED.value) {
+            if(value == WindowRoofShadeOpenOpertion.NO_USED.value) {
                 return WindowRoofShadeOpenOpertion.NO_USED;
             }
-            if(v == WindowRoofShadeOpenOpertion.OPENING.value) {
+            if(value == WindowRoofShadeOpenOpertion.OPENING.value) {
                 return WindowRoofShadeOpenOpertion.OPENING;
             }
-            if(v == WindowRoofShadeOpenOpertion.CLOSING.value) {
+            if(value == WindowRoofShadeOpenOpertion.CLOSING.value) {
                 return WindowRoofShadeOpenOpertion.CLOSING;
             }
-            if(v == WindowRoofShadeOpenOpertion.REVERSING.value) {
+            if(value == WindowRoofShadeOpenOpertion.REVERSING.value) {
                 return WindowRoofShadeOpenOpertion.REVERSING;
             }
-            if(v == WindowRoofShadeOpenOpertion.POSITION_NOT_TRUSTED.value) {
+            if(value == WindowRoofShadeOpenOpertion.POSITION_NOT_TRUSTED.value) {
                 return WindowRoofShadeOpenOpertion.POSITION_NOT_TRUSTED;
             }
-            return v == WindowRoofShadeOpenOpertion.FULLY_OPEN.value ? WindowRoofShadeOpenOpertion.FULLY_OPEN : WindowRoofShadeOpenOpertion.__UNKNOWN__;
+            return value == WindowRoofShadeOpenOpertion.FULLY_OPEN.value ? WindowRoofShadeOpenOpertion.FULLY_OPEN : WindowRoofShadeOpenOpertion.__UNKNOWN__;
         }
     }
 
@@ -270,36 +266,36 @@ public interface ICarWindow extends IBaseApi {
 
         public final int value;
 
-        private WindowRoofShadeOpenState(int v1) {
-            this.value = v1;
+        private WindowRoofShadeOpenState(int value) {
+            this.value = value;
         }
 
-        public static WindowRoofShadeOpenState valueOf(int v) {
-            if(v == WindowRoofShadeOpenState.ROOF_FULLY_CLOSE.value) {
+        public static WindowRoofShadeOpenState valueOf(int value) {
+            if(value == WindowRoofShadeOpenState.ROOF_FULLY_CLOSE.value) {
                 return WindowRoofShadeOpenState.ROOF_FULLY_CLOSE;
             }
-            if(v == WindowRoofShadeOpenState.ROOF_TILT_UP.value) {
+            if(value == WindowRoofShadeOpenState.ROOF_TILT_UP.value) {
                 return WindowRoofShadeOpenState.ROOF_TILT_UP;
             }
-            if(v == WindowRoofShadeOpenState.ROOF_COMFORT_POSITION.value) {
+            if(value == WindowRoofShadeOpenState.ROOF_COMFORT_POSITION.value) {
                 return WindowRoofShadeOpenState.ROOF_COMFORT_POSITION;
             }
-            if(v == WindowRoofShadeOpenState.ROOF_FULLY_OPEN.value) {
+            if(value == WindowRoofShadeOpenState.ROOF_FULLY_OPEN.value) {
                 return WindowRoofShadeOpenState.ROOF_FULLY_OPEN;
             }
-            if(v == WindowRoofShadeOpenState.SHADE_CLOSE.value) {
+            if(value == WindowRoofShadeOpenState.SHADE_CLOSE.value) {
                 return WindowRoofShadeOpenState.SHADE_CLOSE;
             }
-            if(v == WindowRoofShadeOpenState.SHADE_OPEN.value) {
+            if(value == WindowRoofShadeOpenState.SHADE_OPEN.value) {
                 return WindowRoofShadeOpenState.SHADE_OPEN;
             }
-            if(v == WindowRoofShadeOpenState.CHANGE_OPEN_TWENTY_PERCENT.value) {
+            if(value == WindowRoofShadeOpenState.CHANGE_OPEN_TWENTY_PERCENT.value) {
                 return WindowRoofShadeOpenState.CHANGE_OPEN_TWENTY_PERCENT;
             }
-            if(v == WindowRoofShadeOpenState.CHANGE_CLOSE_TWENTY_PERCENT.value) {
+            if(value == WindowRoofShadeOpenState.CHANGE_CLOSE_TWENTY_PERCENT.value) {
                 return WindowRoofShadeOpenState.CHANGE_CLOSE_TWENTY_PERCENT;
             }
-            return v == WindowRoofShadeOpenState.STOP.value ? WindowRoofShadeOpenState.STOP : WindowRoofShadeOpenState.__UNKNOWN__;
+            return value == WindowRoofShadeOpenState.STOP.value ? WindowRoofShadeOpenState.STOP : WindowRoofShadeOpenState.__UNKNOWN__;
         }
     }
 
@@ -312,21 +308,21 @@ public interface ICarWindow extends IBaseApi {
 
         public final int value;
 
-        private WindowState(int v1) {
-            this.value = v1;
+        private WindowState(int value) {
+            this.value = value;
         }
 
-        public static WindowState valueOf(int v) {
-            if(v == WindowState.UNDEFINED_POSITION.value) {
+        public static WindowState valueOf(int value) {
+            if(value == WindowState.UNDEFINED_POSITION.value) {
                 return WindowState.UNDEFINED_POSITION;
             }
-            if(v == WindowState.FULLY_CLOSED.value) {
+            if(value == WindowState.FULLY_CLOSED.value) {
                 return WindowState.FULLY_CLOSED;
             }
-            if(v == WindowState.BETWEEN.value) {
+            if(value == WindowState.BETWEEN.value) {
                 return WindowState.BETWEEN;
             }
-            return v == WindowState.FULLY_OPENED.value ? WindowState.FULLY_OPENED : WindowState.__UNKNOWN__;
+            return value == WindowState.FULLY_OPENED.value ? WindowState.FULLY_OPENED : WindowState.__UNKNOWN__;
         }
     }
 

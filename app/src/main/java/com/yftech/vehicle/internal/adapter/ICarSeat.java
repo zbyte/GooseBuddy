@@ -14,33 +14,33 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private AccountDelete(int v1) {
-            this.value = v1;
+        private AccountDelete(int value) {
+            this.value = value;
         }
 
-        public static AccountDelete valueOf(int v) {
-            if(v == AccountDelete.ACCOUNT_1.value) {
+        public static AccountDelete valueOf(int value) {
+            if(value == AccountDelete.ACCOUNT_1.value) {
                 return AccountDelete.ACCOUNT_1;
             }
-            if(v == AccountDelete.ACCOUNT_2.value) {
+            if(value == AccountDelete.ACCOUNT_2.value) {
                 return AccountDelete.ACCOUNT_2;
             }
-            if(v == AccountDelete.ACCOUNT_3.value) {
+            if(value == AccountDelete.ACCOUNT_3.value) {
                 return AccountDelete.ACCOUNT_3;
             }
-            if(v == AccountDelete.ACCOUNT_4.value) {
+            if(value == AccountDelete.ACCOUNT_4.value) {
                 return AccountDelete.ACCOUNT_4;
             }
-            if(v == AccountDelete.ACCOUNT_5.value) {
+            if(value == AccountDelete.ACCOUNT_5.value) {
                 return AccountDelete.ACCOUNT_5;
             }
-            if(v == AccountDelete.ACCOUNT_6.value) {
+            if(value == AccountDelete.ACCOUNT_6.value) {
                 return AccountDelete.ACCOUNT_6;
             }
-            if(v == AccountDelete.ACCOUNT_7.value) {
+            if(value == AccountDelete.ACCOUNT_7.value) {
                 return AccountDelete.ACCOUNT_7;
             }
-            return v == AccountDelete.ACCOUNT_8.value ? AccountDelete.ACCOUNT_8 : AccountDelete.__UNKNOWN__;
+            return value == AccountDelete.ACCOUNT_8.value ? AccountDelete.ACCOUNT_8 : AccountDelete.__UNKNOWN__;
         }
     }
 
@@ -58,36 +58,36 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private CurrAccountCfg(int v1) {
-            this.value = v1;
+        private CurrAccountCfg(int value) {
+            this.value = value;
         }
 
-        public static CurrAccountCfg valueOf(int v) {
-            if(v == CurrAccountCfg.DEFAULT.value) {
+        public static CurrAccountCfg valueOf(int value) {
+            if(value == CurrAccountCfg.DEFAULT.value) {
                 return CurrAccountCfg.DEFAULT;
             }
-            if(v == CurrAccountCfg.ACCOUNT_1.value) {
+            if(value == CurrAccountCfg.ACCOUNT_1.value) {
                 return CurrAccountCfg.ACCOUNT_1;
             }
-            if(v == CurrAccountCfg.ACCOUNT_2.value) {
+            if(value == CurrAccountCfg.ACCOUNT_2.value) {
                 return CurrAccountCfg.ACCOUNT_2;
             }
-            if(v == CurrAccountCfg.ACCOUNT_3.value) {
+            if(value == CurrAccountCfg.ACCOUNT_3.value) {
                 return CurrAccountCfg.ACCOUNT_3;
             }
-            if(v == CurrAccountCfg.ACCOUNT_4.value) {
+            if(value == CurrAccountCfg.ACCOUNT_4.value) {
                 return CurrAccountCfg.ACCOUNT_4;
             }
-            if(v == CurrAccountCfg.ACCOUNT_5.value) {
+            if(value == CurrAccountCfg.ACCOUNT_5.value) {
                 return CurrAccountCfg.ACCOUNT_5;
             }
-            if(v == CurrAccountCfg.ACCOUNT_6.value) {
+            if(value == CurrAccountCfg.ACCOUNT_6.value) {
                 return CurrAccountCfg.ACCOUNT_6;
             }
-            if(v == CurrAccountCfg.ACCOUNT_7.value) {
+            if(value == CurrAccountCfg.ACCOUNT_7.value) {
                 return CurrAccountCfg.ACCOUNT_7;
             }
-            return v == CurrAccountCfg.ACCOUNT_8.value ? CurrAccountCfg.ACCOUNT_8 : CurrAccountCfg.__UNKNOWN__;
+            return value == CurrAccountCfg.ACCOUNT_8.value ? CurrAccountCfg.ACCOUNT_8 : CurrAccountCfg.__UNKNOWN__;
         }
     }
 
@@ -105,36 +105,36 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private CurrAccountSeat(int v1) {
-            this.value = v1;
+        private CurrAccountSeat(int value) {
+            this.value = value;
         }
 
-        public static CurrAccountSeat valueOf(int v) {
-            if(v == CurrAccountSeat.DEFAULT.value) {
+        public static CurrAccountSeat valueOf(int value) {
+            if(value == CurrAccountSeat.DEFAULT.value) {
                 return CurrAccountSeat.DEFAULT;
             }
-            if(v == CurrAccountSeat.ACCOUNT_1.value) {
+            if(value == CurrAccountSeat.ACCOUNT_1.value) {
                 return CurrAccountSeat.ACCOUNT_1;
             }
-            if(v == CurrAccountSeat.ACCOUNT_2.value) {
+            if(value == CurrAccountSeat.ACCOUNT_2.value) {
                 return CurrAccountSeat.ACCOUNT_2;
             }
-            if(v == CurrAccountSeat.ACCOUNT_3.value) {
+            if(value == CurrAccountSeat.ACCOUNT_3.value) {
                 return CurrAccountSeat.ACCOUNT_3;
             }
-            if(v == CurrAccountSeat.ACCOUNT_4.value) {
+            if(value == CurrAccountSeat.ACCOUNT_4.value) {
                 return CurrAccountSeat.ACCOUNT_4;
             }
-            if(v == CurrAccountSeat.ACCOUNT_5.value) {
+            if(value == CurrAccountSeat.ACCOUNT_5.value) {
                 return CurrAccountSeat.ACCOUNT_5;
             }
-            if(v == CurrAccountSeat.ACCOUNT_6.value) {
+            if(value == CurrAccountSeat.ACCOUNT_6.value) {
                 return CurrAccountSeat.ACCOUNT_6;
             }
-            if(v == CurrAccountSeat.ACCOUNT_7.value) {
+            if(value == CurrAccountSeat.ACCOUNT_7.value) {
                 return CurrAccountSeat.ACCOUNT_7;
             }
-            return v == CurrAccountSeat.ACCOUNT_8.value ? CurrAccountSeat.ACCOUNT_8 : CurrAccountSeat.__UNKNOWN__;
+            return value == CurrAccountSeat.ACCOUNT_8.value ? CurrAccountSeat.ACCOUNT_8 : CurrAccountSeat.__UNKNOWN__;
         }
     }
 
@@ -156,48 +156,48 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private CurrPepsPuid(int v1) {
-            this.value = v1;
+        private CurrPepsPuid(int value) {
+            this.value = value;
         }
 
-        public static CurrPepsPuid valueOf(int v) {
-            if(v == CurrPepsPuid.DEFAULT.value) {
+        public static CurrPepsPuid valueOf(int value) {
+            if(value == CurrPepsPuid.DEFAULT.value) {
                 return CurrPepsPuid.DEFAULT;
             }
-            if(v == CurrPepsPuid.FOB_ID1.value) {
+            if(value == CurrPepsPuid.FOB_ID1.value) {
                 return CurrPepsPuid.FOB_ID1;
             }
-            if(v == CurrPepsPuid.FOB_ID2.value) {
+            if(value == CurrPepsPuid.FOB_ID2.value) {
                 return CurrPepsPuid.FOB_ID2;
             }
-            if(v == CurrPepsPuid.FOB_ID3.value) {
+            if(value == CurrPepsPuid.FOB_ID3.value) {
                 return CurrPepsPuid.FOB_ID3;
             }
-            if(v == CurrPepsPuid.NFC_ID1.value) {
+            if(value == CurrPepsPuid.NFC_ID1.value) {
                 return CurrPepsPuid.NFC_ID1;
             }
-            if(v == CurrPepsPuid.NFC_ID2.value) {
+            if(value == CurrPepsPuid.NFC_ID2.value) {
                 return CurrPepsPuid.NFC_ID2;
             }
-            if(v == CurrPepsPuid.NFC_ID3.value) {
+            if(value == CurrPepsPuid.NFC_ID3.value) {
                 return CurrPepsPuid.NFC_ID3;
             }
-            if(v == CurrPepsPuid.NFC_ID4.value) {
+            if(value == CurrPepsPuid.NFC_ID4.value) {
                 return CurrPepsPuid.NFC_ID4;
             }
-            if(v == CurrPepsPuid.FINGER_PRINT1.value) {
+            if(value == CurrPepsPuid.FINGER_PRINT1.value) {
                 return CurrPepsPuid.FINGER_PRINT1;
             }
-            if(v == CurrPepsPuid.FINGER_PRINT2.value) {
+            if(value == CurrPepsPuid.FINGER_PRINT2.value) {
                 return CurrPepsPuid.FINGER_PRINT2;
             }
-            if(v == CurrPepsPuid.FINGER_PRINT3.value) {
+            if(value == CurrPepsPuid.FINGER_PRINT3.value) {
                 return CurrPepsPuid.FINGER_PRINT3;
             }
-            if(v == CurrPepsPuid.FINGER_PRINT4.value) {
+            if(value == CurrPepsPuid.FINGER_PRINT4.value) {
                 return CurrPepsPuid.FINGER_PRINT4;
             }
-            return v == CurrPepsPuid.FINGER_PRINT5.value ? CurrPepsPuid.FINGER_PRINT5 : CurrPepsPuid.__UNKNOWN__;
+            return value == CurrPepsPuid.FINGER_PRINT5.value ? CurrPepsPuid.FINGER_PRINT5 : CurrPepsPuid.__UNKNOWN__;
         }
     }
 
@@ -208,15 +208,15 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private DriverSeatPostionCmd(int v1) {
-            this.value = v1;
+        private DriverSeatPostionCmd(int value) {
+            this.value = value;
         }
 
-        public static DriverSeatPostionCmd valueOf(int v) {
-            if(v == DriverSeatPostionCmd.SAVE.value) {
+        public static DriverSeatPostionCmd valueOf(int value) {
+            if(value == DriverSeatPostionCmd.SAVE.value) {
                 return DriverSeatPostionCmd.SAVE;
             }
-            return v == DriverSeatPostionCmd.RECALL.value ? DriverSeatPostionCmd.RECALL : DriverSeatPostionCmd.__UNKNOWN__;
+            return value == DriverSeatPostionCmd.RECALL.value ? DriverSeatPostionCmd.RECALL : DriverSeatPostionCmd.__UNKNOWN__;
         }
     }
 
@@ -230,24 +230,24 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private HeatLevel(int v1) {
-            this.value = v1;
+        private HeatLevel(int value) {
+            this.value = value;
         }
 
-        public static HeatLevel valueOf(int v) {
-            if(v == HeatLevel.LEVEL_1.value) {
+        public static HeatLevel valueOf(int value) {
+            if(value == HeatLevel.LEVEL_1.value) {
                 return HeatLevel.LEVEL_1;
             }
-            if(v == HeatLevel.LEVEL_2.value) {
+            if(value == HeatLevel.LEVEL_2.value) {
                 return HeatLevel.LEVEL_2;
             }
-            if(v == HeatLevel.LEVEL_3.value) {
+            if(value == HeatLevel.LEVEL_3.value) {
                 return HeatLevel.LEVEL_3;
             }
-            if(v == HeatLevel.ERROR.value) {
+            if(value == HeatLevel.ERROR.value) {
                 return HeatLevel.ERROR;
             }
-            return v == HeatLevel.OFF.value ? HeatLevel.OFF : HeatLevel.__UNKNOWN__;
+            return value == HeatLevel.OFF.value ? HeatLevel.OFF : HeatLevel.__UNKNOWN__;
         }
     }
 
@@ -259,18 +259,18 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private HeatVentMode(int v1) {
-            this.value = v1;
+        private HeatVentMode(int value) {
+            this.value = value;
         }
 
-        public static HeatVentMode valueOf(int v) {
-            if(v == HeatVentMode.VENT_MODE.value) {
+        public static HeatVentMode valueOf(int value) {
+            if(value == HeatVentMode.VENT_MODE.value) {
                 return HeatVentMode.VENT_MODE;
             }
-            if(v == HeatVentMode.HEAT_MODE.value) {
+            if(value == HeatVentMode.HEAT_MODE.value) {
                 return HeatVentMode.HEAT_MODE;
             }
-            return v == HeatVentMode.OFF.value ? HeatVentMode.OFF : HeatVentMode.__UNKNOWN__;
+            return value == HeatVentMode.OFF.value ? HeatVentMode.OFF : HeatVentMode.__UNKNOWN__;
         }
     }
 
@@ -281,15 +281,15 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private MemSysOperationReqCmd(int v1) {
-            this.value = v1;
+        private MemSysOperationReqCmd(int value) {
+            this.value = value;
         }
 
-        public static MemSysOperationReqCmd valueOf(int v) {
-            if(v == MemSysOperationReqCmd.NO_COMMAND.value) {
+        public static MemSysOperationReqCmd valueOf(int value) {
+            if(value == MemSysOperationReqCmd.NO_COMMAND.value) {
                 return MemSysOperationReqCmd.NO_COMMAND;
             }
-            return v == MemSysOperationReqCmd.ACTIVE_POP_UP_WINDOW.value ? MemSysOperationReqCmd.ACTIVE_POP_UP_WINDOW : MemSysOperationReqCmd.__UNKNOWN__;
+            return value == MemSysOperationReqCmd.ACTIVE_POP_UP_WINDOW.value ? MemSysOperationReqCmd.ACTIVE_POP_UP_WINDOW : MemSysOperationReqCmd.__UNKNOWN__;
         }
     }
 
@@ -312,51 +312,51 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SSWOperation(int v1) {
-            this.value = v1;
+        private SSWOperation(int value) {
+            this.value = value;
         }
 
-        public static SSWOperation valueOf(int v) {
-            if(v == SSWOperation.SLIDE_FORWARD.value) {
+        public static SSWOperation valueOf(int value) {
+            if(value == SSWOperation.SLIDE_FORWARD.value) {
                 return SSWOperation.SLIDE_FORWARD;
             }
-            if(v == SSWOperation.SLIDE_BACKWARD.value) {
+            if(value == SSWOperation.SLIDE_BACKWARD.value) {
                 return SSWOperation.SLIDE_BACKWARD;
             }
-            if(v == SSWOperation.CUSHION_RISE.value) {
+            if(value == SSWOperation.CUSHION_RISE.value) {
                 return SSWOperation.CUSHION_RISE;
             }
-            if(v == SSWOperation.CUSHION_DOWN.value) {
+            if(value == SSWOperation.CUSHION_DOWN.value) {
                 return SSWOperation.CUSHION_DOWN;
             }
-            if(v == SSWOperation.BACKREST_FORWARD.value) {
+            if(value == SSWOperation.BACKREST_FORWARD.value) {
                 return SSWOperation.BACKREST_FORWARD;
             }
-            if(v == SSWOperation.BACKREST_BACKWARD.value) {
+            if(value == SSWOperation.BACKREST_BACKWARD.value) {
                 return SSWOperation.BACKREST_BACKWARD;
             }
-            if(v == SSWOperation.TILT_RISE.value) {
+            if(value == SSWOperation.TILT_RISE.value) {
                 return SSWOperation.TILT_RISE;
             }
-            if(v == SSWOperation.TILT_DOWN.value) {
+            if(value == SSWOperation.TILT_DOWN.value) {
                 return SSWOperation.TILT_DOWN;
             }
-            if(v == SSWOperation.STEERING_WHEEL_UP.value) {
+            if(value == SSWOperation.STEERING_WHEEL_UP.value) {
                 return SSWOperation.STEERING_WHEEL_UP;
             }
-            if(v == SSWOperation.STEERING_WHEEL_DOWN.value) {
+            if(value == SSWOperation.STEERING_WHEEL_DOWN.value) {
                 return SSWOperation.STEERING_WHEEL_DOWN;
             }
-            if(v == SSWOperation.STEERING_WHEEL_OUT.value) {
+            if(value == SSWOperation.STEERING_WHEEL_OUT.value) {
                 return SSWOperation.STEERING_WHEEL_OUT;
             }
-            if(v == SSWOperation.STEERING_WHEEL_IN.value) {
+            if(value == SSWOperation.STEERING_WHEEL_IN.value) {
                 return SSWOperation.STEERING_WHEEL_IN;
             }
-            if(v == SSWOperation.CUSHION_FORWARD.value) {
+            if(value == SSWOperation.CUSHION_FORWARD.value) {
                 return SSWOperation.CUSHION_FORWARD;
             }
-            return v == SSWOperation.CUSHION_BACKWARD.value ? SSWOperation.CUSHION_BACKWARD : SSWOperation.__UNKNOWN__;
+            return value == SSWOperation.CUSHION_BACKWARD.value ? SSWOperation.CUSHION_BACKWARD : SSWOperation.__UNKNOWN__;
         }
     }
 
@@ -369,21 +369,21 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SeatMassageLevel(int v1) {
-            this.value = v1;
+        private SeatMassageLevel(int value) {
+            this.value = value;
         }
 
-        public static SeatMassageLevel valueOf(int v) {
-            if(v == SeatMassageLevel.OFF.value) {
+        public static SeatMassageLevel valueOf(int value) {
+            if(value == SeatMassageLevel.OFF.value) {
                 return SeatMassageLevel.OFF;
             }
-            if(v == SeatMassageLevel.LEVEL_ONE.value) {
+            if(value == SeatMassageLevel.LEVEL_ONE.value) {
                 return SeatMassageLevel.LEVEL_ONE;
             }
-            if(v == SeatMassageLevel.LEVEL_TW0.value) {
+            if(value == SeatMassageLevel.LEVEL_TW0.value) {
                 return SeatMassageLevel.LEVEL_TW0;
             }
-            return v == SeatMassageLevel.LEVEL_THIRD.value ? SeatMassageLevel.LEVEL_THIRD : SeatMassageLevel.__UNKNOWN__;
+            return value == SeatMassageLevel.LEVEL_THIRD.value ? SeatMassageLevel.LEVEL_THIRD : SeatMassageLevel.__UNKNOWN__;
         }
     }
 
@@ -399,30 +399,30 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SeatMassageMode(int v1) {
-            this.value = v1;
+        private SeatMassageMode(int value) {
+            this.value = value;
         }
 
-        public static SeatMassageMode valueOf(int v) {
-            if(v == SeatMassageMode.OFF.value) {
+        public static SeatMassageMode valueOf(int value) {
+            if(value == SeatMassageMode.OFF.value) {
                 return SeatMassageMode.OFF;
             }
-            if(v == SeatMassageMode.MODE_ONE.value) {
+            if(value == SeatMassageMode.MODE_ONE.value) {
                 return SeatMassageMode.MODE_ONE;
             }
-            if(v == SeatMassageMode.MODE_TW0.value) {
+            if(value == SeatMassageMode.MODE_TW0.value) {
                 return SeatMassageMode.MODE_TW0;
             }
-            if(v == SeatMassageMode.MODE_THIRD.value) {
+            if(value == SeatMassageMode.MODE_THIRD.value) {
                 return SeatMassageMode.MODE_THIRD;
             }
-            if(v == SeatMassageMode.MODE_FOUR.value) {
+            if(value == SeatMassageMode.MODE_FOUR.value) {
                 return SeatMassageMode.MODE_FOUR;
             }
-            if(v == SeatMassageMode.MODE_FIVE.value) {
+            if(value == SeatMassageMode.MODE_FIVE.value) {
                 return SeatMassageMode.MODE_FIVE;
             }
-            return v == SeatMassageMode.MODE_SIX.value ? SeatMassageMode.MODE_SIX : SeatMassageMode.__UNKNOWN__;
+            return value == SeatMassageMode.MODE_SIX.value ? SeatMassageMode.MODE_SIX : SeatMassageMode.__UNKNOWN__;
         }
     }
 
@@ -442,42 +442,42 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SeatOperationState(int v1) {
-            this.value = v1;
+        private SeatOperationState(int value) {
+            this.value = value;
         }
 
-        public static SeatOperationState valueOf(int v) {
-            if(v == SeatOperationState.NO_OPERATION.value) {
+        public static SeatOperationState valueOf(int value) {
+            if(value == SeatOperationState.NO_OPERATION.value) {
                 return SeatOperationState.NO_OPERATION;
             }
-            if(v == SeatOperationState.MANUAL_OPERATING.value) {
+            if(value == SeatOperationState.MANUAL_OPERATING.value) {
                 return SeatOperationState.MANUAL_OPERATING;
             }
-            if(v == SeatOperationState.SAVE_COMPLETED.value) {
+            if(value == SeatOperationState.SAVE_COMPLETED.value) {
                 return SeatOperationState.SAVE_COMPLETED;
             }
-            if(v == SeatOperationState.SAVE_FAILED.value) {
+            if(value == SeatOperationState.SAVE_FAILED.value) {
                 return SeatOperationState.SAVE_FAILED;
             }
-            if(v == SeatOperationState.RECALLING.value) {
+            if(value == SeatOperationState.RECALLING.value) {
                 return SeatOperationState.RECALLING;
             }
-            if(v == SeatOperationState.RECALL_INTERRUPTED.value) {
+            if(value == SeatOperationState.RECALL_INTERRUPTED.value) {
                 return SeatOperationState.RECALL_INTERRUPTED;
             }
-            if(v == SeatOperationState.RECALL_COMPLETED.value) {
+            if(value == SeatOperationState.RECALL_COMPLETED.value) {
                 return SeatOperationState.RECALL_COMPLETED;
             }
-            if(v == SeatOperationState.INITIALIZATION_COMPLETED.value) {
+            if(value == SeatOperationState.INITIALIZATION_COMPLETED.value) {
                 return SeatOperationState.INITIALIZATION_COMPLETED;
             }
-            if(v == SeatOperationState.RECALL_STUDYING.value) {
+            if(value == SeatOperationState.RECALL_STUDYING.value) {
                 return SeatOperationState.RECALL_STUDYING;
             }
-            if(v == SeatOperationState.STUDY_COMPLETED.value) {
+            if(value == SeatOperationState.STUDY_COMPLETED.value) {
                 return SeatOperationState.STUDY_COMPLETED;
             }
-            return v == SeatOperationState.STUDY_FAILED.value ? SeatOperationState.STUDY_FAILED : SeatOperationState.__UNKNOWN__;
+            return value == SeatOperationState.STUDY_FAILED.value ? SeatOperationState.STUDY_FAILED : SeatOperationState.__UNKNOWN__;
         }
     }
 
@@ -495,36 +495,36 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SeatSteeringWheelFR(int v1) {
-            this.value = v1;
+        private SeatSteeringWheelFR(int value) {
+            this.value = value;
         }
 
-        public static SeatSteeringWheelFR valueOf(int v) {
-            if(v == SeatSteeringWheelFR.NO_COMMAND.value) {
+        public static SeatSteeringWheelFR valueOf(int value) {
+            if(value == SeatSteeringWheelFR.NO_COMMAND.value) {
                 return SeatSteeringWheelFR.NO_COMMAND;
             }
-            if(v == SeatSteeringWheelFR.SLIDE_FORWARD.value) {
+            if(value == SeatSteeringWheelFR.SLIDE_FORWARD.value) {
                 return SeatSteeringWheelFR.SLIDE_FORWARD;
             }
-            if(v == SeatSteeringWheelFR.SLIDE_BACKWARD.value) {
+            if(value == SeatSteeringWheelFR.SLIDE_BACKWARD.value) {
                 return SeatSteeringWheelFR.SLIDE_BACKWARD;
             }
-            if(v == SeatSteeringWheelFR.CUSHION_RISE.value) {
+            if(value == SeatSteeringWheelFR.CUSHION_RISE.value) {
                 return SeatSteeringWheelFR.CUSHION_RISE;
             }
-            if(v == SeatSteeringWheelFR.CUSHION_DOWN.value) {
+            if(value == SeatSteeringWheelFR.CUSHION_DOWN.value) {
                 return SeatSteeringWheelFR.CUSHION_DOWN;
             }
-            if(v == SeatSteeringWheelFR.BACKREST_FORWARD.value) {
+            if(value == SeatSteeringWheelFR.BACKREST_FORWARD.value) {
                 return SeatSteeringWheelFR.BACKREST_FORWARD;
             }
-            if(v == SeatSteeringWheelFR.BACKREST_BACKWARD.value) {
+            if(value == SeatSteeringWheelFR.BACKREST_BACKWARD.value) {
                 return SeatSteeringWheelFR.BACKREST_BACKWARD;
             }
-            if(v == SeatSteeringWheelFR.TILT_RISE.value) {
+            if(value == SeatSteeringWheelFR.TILT_RISE.value) {
                 return SeatSteeringWheelFR.TILT_RISE;
             }
-            return v == SeatSteeringWheelFR.TILT_DOWN.value ? SeatSteeringWheelFR.TILT_DOWN : SeatSteeringWheelFR.__UNKNOWN__;
+            return value == SeatSteeringWheelFR.TILT_DOWN.value ? SeatSteeringWheelFR.TILT_DOWN : SeatSteeringWheelFR.__UNKNOWN__;
         }
     }
 
@@ -546,48 +546,48 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SeatSteeringWheelRear(int v1) {
-            this.value = v1;
+        private SeatSteeringWheelRear(int value) {
+            this.value = value;
         }
 
-        public static SeatSteeringWheelRear valueOf(int v) {
-            if(v == SeatSteeringWheelRear.NO_COMMAND.value) {
+        public static SeatSteeringWheelRear valueOf(int value) {
+            if(value == SeatSteeringWheelRear.NO_COMMAND.value) {
                 return SeatSteeringWheelRear.NO_COMMAND;
             }
-            if(v == SeatSteeringWheelRear.SLIDE_FORWARD.value) {
+            if(value == SeatSteeringWheelRear.SLIDE_FORWARD.value) {
                 return SeatSteeringWheelRear.SLIDE_FORWARD;
             }
-            if(v == SeatSteeringWheelRear.SLIDE_BACKWARD.value) {
+            if(value == SeatSteeringWheelRear.SLIDE_BACKWARD.value) {
                 return SeatSteeringWheelRear.SLIDE_BACKWARD;
             }
-            if(v == SeatSteeringWheelRear.BACKREST_FORWARD.value) {
+            if(value == SeatSteeringWheelRear.BACKREST_FORWARD.value) {
                 return SeatSteeringWheelRear.BACKREST_FORWARD;
             }
-            if(v == SeatSteeringWheelRear.BACKREST_BACKWARD.value) {
+            if(value == SeatSteeringWheelRear.BACKREST_BACKWARD.value) {
                 return SeatSteeringWheelRear.BACKREST_BACKWARD;
             }
-            if(v == SeatSteeringWheelRear.LIFT_UP.value) {
+            if(value == SeatSteeringWheelRear.LIFT_UP.value) {
                 return SeatSteeringWheelRear.LIFT_UP;
             }
-            if(v == SeatSteeringWheelRear.LIFT_DOWN.value) {
+            if(value == SeatSteeringWheelRear.LIFT_DOWN.value) {
                 return SeatSteeringWheelRear.LIFT_DOWN;
             }
-            if(v == SeatSteeringWheelRear.OTTOMAN1_FORWARD.value) {
+            if(value == SeatSteeringWheelRear.OTTOMAN1_FORWARD.value) {
                 return SeatSteeringWheelRear.OTTOMAN1_FORWARD;
             }
-            if(v == SeatSteeringWheelRear.OTTOMAN1_BACKWARD.value) {
+            if(value == SeatSteeringWheelRear.OTTOMAN1_BACKWARD.value) {
                 return SeatSteeringWheelRear.OTTOMAN1_BACKWARD;
             }
-            if(v == SeatSteeringWheelRear.OTTOMAN2_FORWARD.value) {
+            if(value == SeatSteeringWheelRear.OTTOMAN2_FORWARD.value) {
                 return SeatSteeringWheelRear.OTTOMAN2_FORWARD;
             }
-            if(v == SeatSteeringWheelRear.OTTOMAN2_BACKWARD.value) {
+            if(value == SeatSteeringWheelRear.OTTOMAN2_BACKWARD.value) {
                 return SeatSteeringWheelRear.OTTOMAN2_BACKWARD;
             }
-            if(v == SeatSteeringWheelRear.SHOULDER_FORWARD.value) {
+            if(value == SeatSteeringWheelRear.SHOULDER_FORWARD.value) {
                 return SeatSteeringWheelRear.SHOULDER_FORWARD;
             }
-            return v == SeatSteeringWheelRear.SHOULDER_BACKWARD.value ? SeatSteeringWheelRear.SHOULDER_BACKWARD : SeatSteeringWheelRear.__UNKNOWN__;
+            return value == SeatSteeringWheelRear.SHOULDER_BACKWARD.value ? SeatSteeringWheelRear.SHOULDER_BACKWARD : SeatSteeringWheelRear.__UNKNOWN__;
         }
     }
 
@@ -599,18 +599,18 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private SteeringWheelHeatState(int v1) {
-            this.value = v1;
+        private SteeringWheelHeatState(int value) {
+            this.value = value;
         }
 
-        public static SteeringWheelHeatState valueOf(int v) {
-            if(v == SteeringWheelHeatState.OFF.value) {
+        public static SteeringWheelHeatState valueOf(int value) {
+            if(value == SteeringWheelHeatState.OFF.value) {
                 return SteeringWheelHeatState.OFF;
             }
-            if(v == SteeringWheelHeatState.HEATING.value) {
+            if(value == SteeringWheelHeatState.HEATING.value) {
                 return SteeringWheelHeatState.HEATING;
             }
-            return v == SteeringWheelHeatState.PRESERVATION.value ? SteeringWheelHeatState.PRESERVATION : SteeringWheelHeatState.__UNKNOWN__;
+            return value == SteeringWheelHeatState.PRESERVATION.value ? SteeringWheelHeatState.PRESERVATION : SteeringWheelHeatState.__UNKNOWN__;
         }
     }
 
@@ -624,24 +624,24 @@ public interface ICarSeat extends IBaseApi {
 
         public final int value;
 
-        private VentLevel(int v1) {
-            this.value = v1;
+        private VentLevel(int value) {
+            this.value = value;
         }
 
-        public static VentLevel valueOf(int v) {
-            if(v == VentLevel.LEVEL_1.value) {
+        public static VentLevel valueOf(int value) {
+            if(value == VentLevel.LEVEL_1.value) {
                 return VentLevel.LEVEL_1;
             }
-            if(v == VentLevel.LEVEL_2.value) {
+            if(value == VentLevel.LEVEL_2.value) {
                 return VentLevel.LEVEL_2;
             }
-            if(v == VentLevel.LEVEL_3.value) {
+            if(value == VentLevel.LEVEL_3.value) {
                 return VentLevel.LEVEL_3;
             }
-            if(v == VentLevel.ERROR.value) {
+            if(value == VentLevel.ERROR.value) {
                 return VentLevel.ERROR;
             }
-            return v == VentLevel.OFF.value ? VentLevel.OFF : VentLevel.__UNKNOWN__;
+            return value == VentLevel.OFF.value ? VentLevel.OFF : VentLevel.__UNKNOWN__;
         }
     }
 

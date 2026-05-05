@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="bg" format="reference" />
+    <attr name="buttonString" format="string" />
+    <attr name="descString" format="string" />
+    <attr name="textSize" format="dimension" />
+    <attr name="titleString" format="string" />
+    <attr name="selectedBg" format="reference" />
+    <attr name="selectedColor" format="reference|color" />
+    <attr name="selectedTab" format="integer" />
+    <attr name="selectedTextColor" format="reference|color" />
+    <attr name="selectedTypeface" format="string" />
+    <attr name="unselectedTextColor" format="reference|color" />
+    <attr name="unselectedTypeface" format="string" />
+
+    <declare-styleable name="ItemSwitchDescribeView">
+        <attr name="buttonString"/>
+        <attr name="descString"/>
+        <attr name="titleString"/>
+    </declare-styleable>
+
+    <attr name="switchTabs" format="reference" />
+    <attr name="paddingText" format="dimension" />
+
+    <declare-styleable name="ItemOptionDescribeView">
+        <attr name="descString"/>
+        <attr name="paddingText"/>
+        <attr name="switchTabs"/>
+        <attr name="textSize"/>
+        <attr name="titleString"/>
+    </declare-styleable>
+
+    <attr name="contentVisible" format="boolean" />
+    <attr name="imgVisible" format="boolean" />
+    <attr name="seekBarWidth" format="dimension" />
+
+    <declare-styleable name="ItemSeekBarDescribeView">
+        <attr name="contentVisible"/>
+        <attr name="descString"/>
+        <attr name="imgVisible"/>
+        <attr name="seekBarWidth"/>
+        <attr name="titleString"/>
+    </declare-styleable>
+
+
+    <declare-styleable name="ItemSeekBarNumIconView">
+        <attr name="contentVisible"/>
+        <attr name="imgVisible"/>
+        <attr name="titleString"/>
+    </declare-styleable>
+
+    <attr name="disableColor" format="reference|color" />
+    <attr name="maxTabWidth" format="dimension" />
+    <attr name="strokeRadius" format="dimension" />
+    <attr name="backgroundColor" format="color" />
+
+    <declare-styleable name="SwitchMultiButton">
+        <attr name="background"/>
+        <attr name="backgroundColor"/>
+        <attr name="disableColor"/>
+        <attr name="maxTabWidth"/>
+        <attr name="paddingText"/>
+        <attr name="selectedBg"/>
+        <attr name="selectedColor"/>
+        <attr name="selectedTextColor"/>
+        <attr name="strokeRadius"/>
+        <attr name="selectedTypeface"/>
+        <attr name="switchTabs"/>
+        <attr name="textSize"/>
+        <attr name="unselectedTextColor"/>
+        <attr name="unselectedTypeface"/>
+    </declare-styleable>
+
+    <declare-styleable name="SwitchMultiButtonOld">
+        <attr name="strokeRadius"/>
+        <attr name="textSize"/>
+        <attr name="selectedColor"/>
+        <attr name="backgroundColor"/>
+        <attr name="selectedTextColor"/>
+        <attr name="unselectedTextColor"/>
+        <attr name="disableColor"/>
+        <attr name="background"/>
+        <attr name="paddingText"/>
+        <attr name="selectedTypeface"/>
+        <attr name="unselectedTypeface"/>
+        <attr name="selectedTab"/>
+        <attr name="maxTabWidth"/>
+        <attr name="switchTabs"/>
+    </declare-styleable>
+
+    <declare-styleable name="ItemSwitchDescribeOptionView">
+        <attr name="descString"/>
+        <attr name="titleString"/>
+        <attr name="textSize"/>
+        <attr name="paddingText"/>
+        <attr name="switchTabs"/>
+    </declare-styleable>
+
+    <attr name="ive_scale_type_matrix_ext" format="enum">
+        <enum name="center_crop" value="3" />
+        <enum name="left_crop" value="1" />
+        <enum name="right_crop" value="2" />
+    </attr>
+
+    <declare-styleable name="ImageViewExt">
+        <attr name="ive_scale_type_matrix_ext"/>
+    </declare-styleable>
+
+    <attr name="imgIcon" format="reference" />
+
+    <declare-styleable name="ItemTextDescribeButtonView">
+        <attr name="buttonString"/>
+        <attr name="contentVisible"/>
+        <attr name="content"/>
+        <attr name="imgIcon"/>
+        <attr name="paddingText"/>
+        <attr name="textSize"/>
+        <attr name="titleString"/>
+    </declare-styleable>
+</resources>

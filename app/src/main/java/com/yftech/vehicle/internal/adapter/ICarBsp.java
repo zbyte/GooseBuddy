@@ -27,17 +27,17 @@ public interface ICarBsp extends IBaseCmd {
         public boolean voltageHigh;
         public boolean voltageLow;
 
-        private DisplayDtc(boolean z, boolean z1, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6, boolean z7, boolean z8, boolean z9) {
-            this.voltageHigh = z;
-            this.voltageLow = z1;
-            this.notReceievdBacklight = z2;
-            this.notSetBacklightOnOffModule = z3;
-            this.tftFailure = z4;
-            this.videoSignalConnectFailure = z5;
-            this.touchPanelFailure = z6;
-            this.IICCommunicationFailure = z7;
-            this.temperatureExcption = z8;
-            this.backLightFault = z9;
+        private DisplayDtc(boolean voltageHigh, boolean voltageLow, boolean notReceievdBacklight, boolean notSetBacklightOnOffModule, boolean tftFailure, boolean videoSignalConnectFailure, boolean touchPanelFailure, boolean IICCommunicationFailure, boolean temperatureExcption, boolean backLightFault) {
+            this.voltageHigh = voltageHigh;
+            this.voltageLow = voltageLow;
+            this.notReceievdBacklight = notReceievdBacklight;
+            this.notSetBacklightOnOffModule = notSetBacklightOnOffModule;
+            this.tftFailure = tftFailure;
+            this.videoSignalConnectFailure = videoSignalConnectFailure;
+            this.touchPanelFailure = touchPanelFailure;
+            this.IICCommunicationFailure = IICCommunicationFailure;
+            this.temperatureExcption = temperatureExcption;
+            this.backLightFault = backLightFault;
         }
 
         @Override
@@ -45,17 +45,19 @@ public interface ICarBsp extends IBaseCmd {
             return "DisplayDtc{voltageHigh=" + this.voltageHigh + ", voltageLow=" + this.voltageLow + ", notReceievdBacklight=" + this.notReceievdBacklight + ", notSetBacklightOnOffModule=" + this.notSetBacklightOnOffModule + ", tftFailure=" + this.tftFailure + ", videoSignalConnectFailure=" + this.videoSignalConnectFailure + ", touchPanelFailure=" + this.touchPanelFailure + ", IICCommunicationFailure=" + this.IICCommunicationFailure + ", temperatureExcption=" + this.temperatureExcption + ", backLightFault=" + this.backLightFault + '}';
         }
 
-        public static DisplayDtc valueOf(int v) {
-            boolean z = (v & 1) == 1;
-            boolean z1 = (v >> 1 & 1) == 1;
-            boolean z2 = (v >> 2 & 1) == 1;
-            boolean z3 = (v >> 3 & 1) == 1;
-            boolean z4 = (v >> 4 & 1) == 1;
-            boolean z5 = (v >> 5 & 1) == 1;
-            boolean z6 = (v >> 6 & 1) == 1;
-            boolean z7 = (v >> 7 & 1) == 1;
-            boolean z8 = (v >> 8 & 1) == 1;
-            return (v >> 9 & 1) == 1 ? new DisplayDtc(z, z1, z2, z3, z4, z5, z6, z7, z8, true) : new DisplayDtc(z, z1, z2, z3, z4, z5, z6, z7, z8, false);
+        public static DisplayDtc valueOf(int value) {
+            boolean voltageHigh = (value & 1) == 1;
+            boolean voltageLow = (value >> 1 & 1) == 1;
+            boolean notReceievdBacklight = (value >> 2 & 1) == 1;
+            boolean notSetBacklightOnOffModule = (value >> 3 & 1) == 1;
+            boolean tftFailure = (value >> 4 & 1) == 1;
+            boolean videoSignalConnectFailure = (value >> 5 & 1) == 1;
+            boolean touchPanelFailure = (value >> 6 & 1) == 1;
+            boolean IICCommunicationFailure = (value >> 7 & 1) == 1;
+            if((value >> 8 & 1) == 1) {
+                return (value >> 9 & 1) == 1 ? new DisplayDtc(voltageHigh, voltageLow, notReceievdBacklight, notSetBacklightOnOffModule, tftFailure, videoSignalConnectFailure, touchPanelFailure, IICCommunicationFailure, true, true) : new DisplayDtc(voltageHigh, voltageLow, notReceievdBacklight, notSetBacklightOnOffModule, tftFailure, videoSignalConnectFailure, touchPanelFailure, IICCommunicationFailure, true, false);
+            }
+            return (value >> 9 & 1) == 1 ? new DisplayDtc(voltageHigh, voltageLow, notReceievdBacklight, notSetBacklightOnOffModule, tftFailure, videoSignalConnectFailure, touchPanelFailure, IICCommunicationFailure, false, true) : new DisplayDtc(voltageHigh, voltageLow, notReceievdBacklight, notSetBacklightOnOffModule, tftFailure, videoSignalConnectFailure, touchPanelFailure, IICCommunicationFailure, false, false);
         }
     }
 

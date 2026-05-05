@@ -2,20 +2,17 @@ package com.yftech.car.pki;
 
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
-import android.os.ServiceManager;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 
 public class PkiManager {
     static final class PkiManagerGlobal implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final PkiManagerGlobal intance;
+        private static final PkiManagerGlobal intance  = new PkiManagerGlobal();
         private final Object mLock;
         private static IPkiService mService;
-
-        static {
-            PkiManagerGlobal.intance = new PkiManagerGlobal();
-        }
 
         private PkiManagerGlobal() {
             this.mLock = new Object();
@@ -34,24 +31,25 @@ public class PkiManager {
 
         private boolean connectPkiServiceLocked() {
             if(PkiManagerGlobal.mService == null || PkiManagerGlobal.mService.asBinder() == null || !PkiManagerGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_pki");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_pki");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
-                        PkiManagerGlobal.mService = Stub.asInterface(iBinder0);
+                        PkiManagerGlobal.mService = IPkiService.Stub.asInterface(iBinder0);
                         return true;
                     }
                     Log.e("PkiManager", "the car pki service not started!connected service fail!");
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("PkiManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("PkiManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -113,12 +111,8 @@ public class PkiManager {
     public static final int SYMM_TYPE_E_DES = 2;
     public static final int SYMM_TYPE_E_RC4 = 4;
     public static final int SYMM_TYPE_E_SM4 = 5;
-    private static final String TAG;
+    private static final String TAG = "PkiManager";
     private static volatile PkiManager mInstance;
-
-    static {
-        PkiManager.TAG = "PkiManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

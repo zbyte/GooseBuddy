@@ -6,23 +6,19 @@ import android.os.Parcelable;
 import java.util.Arrays;
 
 public class CarUpgradeInfo implements Parcelable {
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public CarUpgradeInfo createFromParcel(Parcel in) {
+            return new CarUpgradeInfo(in);
+        }
+
+        public CarUpgradeInfo[] newArray(int size) {
+            return new CarUpgradeInfo[size];
+        }
+    };
     private final int mModule;
     private final String[] mPath;
     private int mProgress;
     private int mState;
-
-    static {
-        CarUpgradeInfo.CREATOR = new Parcelable.Creator() {
-            public CarUpgradeInfo createFromParcel(Parcel in) {
-                return new CarUpgradeInfo(in);
-            }
-
-            public CarUpgradeInfo[] newArray(int size) {
-                return new CarUpgradeInfo[size];
-            }
-        };
-    }
 
     public CarUpgradeInfo(int module, String[] path) {
         this.mModule = module;

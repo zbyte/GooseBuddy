@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" android:background="@color/bg_color" android:layout_width="match_parent" android:layout_height="match_parent" style="@style/ScrollStyle">
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+        <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <androidx.appcompat.widget.AppCompatTextView android:text="@string/under_construction" style="@style/TitleTextStyleNew"/>
+            <TextView android:id="@+id/intake_air_temp" android:layout_height="wrap_content" android:layout_width="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

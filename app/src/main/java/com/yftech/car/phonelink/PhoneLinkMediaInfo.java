@@ -5,7 +5,23 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class PhoneLinkMediaInfo implements Parcelable {
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public PhoneLinkMediaInfo createFromParcel(Parcel in) {
+            PhoneLinkMediaInfo link = new PhoneLinkMediaInfo();
+            link.phoneType = in.readString();
+            link.song = in.readString();
+            link.artist = in.readString();
+            link.album = in.readString();
+            link.progress = in.readLong();
+            link.duration = in.readLong();
+            link.isPlaying = in.readInt();
+            return link;
+        }
+
+        public PhoneLinkMediaInfo[] newArray(int size) {
+            return new PhoneLinkMediaInfo[size];
+        }
+    };
     public static final int MEDIA_STATUS_INVALID = 2;
     public static final int MEDIA_STATUS_PAUSE = 0;
     public static final int MEDIA_STATUS_PLAY = 1;
@@ -16,26 +32,6 @@ public class PhoneLinkMediaInfo implements Parcelable {
     private String phoneType;
     private long progress;
     private String song;
-
-    static {
-        PhoneLinkMediaInfo.CREATOR = new Parcelable.Creator() {
-            public PhoneLinkMediaInfo createFromParcel(Parcel in) {
-                PhoneLinkMediaInfo link = new PhoneLinkMediaInfo();
-                link.phoneType = in.readString();
-                link.song = in.readString();
-                link.artist = in.readString();
-                link.album = in.readString();
-                link.progress = in.readLong();
-                link.duration = in.readLong();
-                link.isPlaying = in.readInt();
-                return link;
-            }
-
-            public PhoneLinkMediaInfo[] newArray(int size) {
-                return new PhoneLinkMediaInfo[size];
-            }
-        };
-    }
 
     @Override  // android.os.Parcelable
     public int describeContents() {

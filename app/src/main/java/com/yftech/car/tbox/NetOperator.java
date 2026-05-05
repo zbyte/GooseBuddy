@@ -5,22 +5,18 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class NetOperator implements Parcelable {
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public NetOperator createFromParcel(Parcel in) {
+            return new NetOperator(in);
+        }
+
+        public NetOperator[] newArray(int size) {
+            return new NetOperator[size];
+        }
+    };
     private int mMcc;
     private int mMnc;
     private String mOperatorName;
-
-    static {
-        NetOperator.CREATOR = new Parcelable.Creator() {
-            public NetOperator createFromParcel(Parcel in) {
-                return new NetOperator(in);
-            }
-
-            public NetOperator[] newArray(int size) {
-                return new NetOperator[size];
-            }
-        };
-    }
 
     public NetOperator() {
         this(0, 0, "");

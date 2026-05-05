@@ -28,26 +28,26 @@ public class Ihu23Project {
             this.bookChrgMode = ChargeMode.__UNKNOWN__;
         }
 
-        public ChargeInfo(int v, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, ChargeMode ihu23Project$ChargeMode0, boolean z, boolean z1, boolean z2, boolean z3, boolean z4, boolean z5, boolean z6) {
+        public ChargeInfo(int bookStartYear, int bookStopYear, int bookStartMon, int bookStartDay, int bookStartHour, int bookStartMin, int bookStopMon, int bookStopDay, int bookStopHour, int bookStopMin, ChargeMode bookChrgMode, boolean repeatBookChrgDay1, boolean repeatBookChrgDay2, boolean repeatBookChrgDay3, boolean repeatBookChrgDay4, boolean repeatBookChrgDay5, boolean repeatBookChrgDay6, boolean repeatBookChrgDay7) {
             this.bookChrgMode = ChargeMode.__UNKNOWN__;
-            this.bookStartYear = v;
-            this.bookStopYear = v1;
-            this.bookStartMon = v2;
-            this.bookStartDay = v3;
-            this.bookStartHour = v4;
-            this.bookStartMin = v5;
-            this.bookStopMon = v6;
-            this.bookStopDay = v7;
-            this.bookStopHour = v8;
-            this.bookStopMin = v9;
-            this.bookChrgMode = ihu23Project$ChargeMode0;
-            this.repeatBookChrgDay1 = z;
-            this.repeatBookChrgDay2 = z1;
-            this.repeatBookChrgDay3 = z2;
-            this.repeatBookChrgDay4 = z3;
-            this.repeatBookChrgDay5 = z4;
-            this.repeatBookChrgDay6 = z5;
-            this.repeatBookChrgDay7 = z6;
+            this.bookStartYear = bookStartYear;
+            this.bookStopYear = bookStopYear;
+            this.bookStartMon = bookStartMon;
+            this.bookStartDay = bookStartDay;
+            this.bookStartHour = bookStartHour;
+            this.bookStartMin = bookStartMin;
+            this.bookStopMon = bookStopMon;
+            this.bookStopDay = bookStopDay;
+            this.bookStopHour = bookStopHour;
+            this.bookStopMin = bookStopMin;
+            this.bookChrgMode = bookChrgMode;
+            this.repeatBookChrgDay1 = repeatBookChrgDay1;
+            this.repeatBookChrgDay2 = repeatBookChrgDay2;
+            this.repeatBookChrgDay3 = repeatBookChrgDay3;
+            this.repeatBookChrgDay4 = repeatBookChrgDay4;
+            this.repeatBookChrgDay5 = repeatBookChrgDay5;
+            this.repeatBookChrgDay6 = repeatBookChrgDay6;
+            this.repeatBookChrgDay7 = repeatBookChrgDay7;
         }
 
         @Override
@@ -63,50 +63,54 @@ public class Ihu23Project {
 
         public final int value;
 
-        private ChargeMode(int v1) {
-            this.value = v1;
+        private ChargeMode(int value) {
+            this.value = value;
         }
 
-        public static ChargeMode valueOf(int v) {
-            if(v == ChargeMode.BOOKING.value) {
+        public static ChargeMode valueOf(int value) {
+            if(value == ChargeMode.BOOKING.value) {
                 return ChargeMode.BOOKING;
             }
-            return v == ChargeMode.IMMEDIATELY.value ? ChargeMode.IMMEDIATELY : ChargeMode.__UNKNOWN__;
+            return value == ChargeMode.IMMEDIATELY.value ? ChargeMode.IMMEDIATELY : ChargeMode.__UNKNOWN__;
         }
     }
 
-    public static byte[] formartChargeInfoByteArray(ChargeInfo ihu23Project$ChargeInfo0) {
-        byte[] arr_b = new byte[20];
-        if(ihu23Project$ChargeInfo0 == null) {
-            return arr_b;
+    public static byte[] formartChargeInfoByteArray(ChargeInfo info) {
+        int v = 1;
+        byte[] byteArr = new byte[20];
+        if(info == null) {
+            return byteArr;
         }
-        arr_b[0] = -104;
-        arr_b[1] = 1;
-        arr_b[2] = (byte)ihu23Project$ChargeInfo0.bookStartMon;
-        arr_b[3] = (byte)ihu23Project$ChargeInfo0.bookStartDay;
-        arr_b[4] = (byte)ihu23Project$ChargeInfo0.bookStartHour;
-        arr_b[5] = (byte)ihu23Project$ChargeInfo0.bookStartMin;
-        arr_b[6] = (byte)ihu23Project$ChargeInfo0.bookStopMon;
-        arr_b[7] = (byte)ihu23Project$ChargeInfo0.bookStopDay;
-        arr_b[8] = (byte)ihu23Project$ChargeInfo0.bookStopHour;
-        arr_b[9] = (byte)ihu23Project$ChargeInfo0.bookStopMin;
-        arr_b[10] = (byte)ihu23Project$ChargeInfo0.bookChrgMode.value;
-        arr_b[11] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay1;
-        arr_b[12] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay2;
-        arr_b[13] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay3;
-        arr_b[14] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay4;
-        arr_b[15] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay5;
-        arr_b[16] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay6;
-        arr_b[17] = (byte)ihu23Project$ChargeInfo0.repeatBookChrgDay7;
-        if(ihu23Project$ChargeInfo0.bookStartYear >= 2000) {
-            ihu23Project$ChargeInfo0.bookStartYear -= 2000;
+        byteArr[0] = -104;
+        byteArr[1] = 1;
+        byteArr[2] = (byte)info.bookStartMon;
+        byteArr[3] = (byte)info.bookStartDay;
+        byteArr[4] = (byte)info.bookStartHour;
+        byteArr[5] = (byte)info.bookStartMin;
+        byteArr[6] = (byte)info.bookStopMon;
+        byteArr[7] = (byte)info.bookStopDay;
+        byteArr[8] = (byte)info.bookStopHour;
+        byteArr[9] = (byte)info.bookStopMin;
+        byteArr[10] = (byte)info.bookChrgMode.value;
+        byteArr[11] = (byte)(info.repeatBookChrgDay1 ? 1 : 0);
+        byteArr[12] = (byte)(info.repeatBookChrgDay2 ? 1 : 0);
+        byteArr[13] = (byte)(info.repeatBookChrgDay3 ? 1 : 0);
+        byteArr[14] = (byte)(info.repeatBookChrgDay4 ? 1 : 0);
+        byteArr[15] = (byte)(info.repeatBookChrgDay5 ? 1 : 0);
+        byteArr[16] = (byte)(info.repeatBookChrgDay6 ? 1 : 0);
+        if(!info.repeatBookChrgDay7) {
+            v = 0;
         }
-        if(ihu23Project$ChargeInfo0.bookStopYear >= 2000) {
-            ihu23Project$ChargeInfo0.bookStopYear -= 2000;
+        byteArr[17] = (byte)v;
+        if(info.bookStartYear >= 2000) {
+            info.bookStartYear += -2000;
         }
-        arr_b[18] = (byte)ihu23Project$ChargeInfo0.bookStartYear;
-        arr_b[19] = (byte)ihu23Project$ChargeInfo0.bookStopYear;
-        return arr_b;
+        if(info.bookStopYear >= 2000) {
+            info.bookStopYear += -2000;
+        }
+        byteArr[18] = (byte)info.bookStartYear;
+        byteArr[19] = (byte)info.bookStopYear;
+        return byteArr;
     }
 }
 

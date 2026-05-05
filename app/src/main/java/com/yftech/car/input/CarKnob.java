@@ -5,7 +5,15 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class CarKnob implements Parcelable {
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public CarKnob createFromParcel(Parcel in) {
+            return new CarKnob(in);
+        }
+
+        public CarKnob[] newArray(int size) {
+            return new CarKnob[size];
+        }
+    };
     public static final int POSITION_BACKWARD = 1;
     public static final int POSITION_FORWARD = 0;
     public static final int TYPE_HMI = 2;
@@ -13,18 +21,6 @@ public class CarKnob implements Parcelable {
     public int position;
     public int type;
     public int value;
-
-    static {
-        CarKnob.CREATOR = new Parcelable.Creator() {
-            public CarKnob createFromParcel(Parcel in) {
-                return new CarKnob(in);
-            }
-
-            public CarKnob[] newArray(int size) {
-                return new CarKnob[size];
-            }
-        };
-    }
 
     public CarKnob() {
     }

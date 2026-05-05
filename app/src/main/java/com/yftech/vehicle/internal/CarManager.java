@@ -4,6 +4,8 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.vehicle.internal.adapter.ICarBsp.DisplayDtc;
 import com.yftech.vehicle.internal.adapter.ICarDashBoard.SetItemUnitInfo;
 import com.yftech.vehicle.internal.adapter.ICarKey.CarKeyEvent;
@@ -22,28 +24,28 @@ import java.util.List;
 import java.util.Map;
 
 class CarManager {
-    class SignalCallback extends Stub {
+    class SignalCallback extends ISignalCallback.Stub {
         private SignalCallback() {
         }
 
-        SignalCallback(com.yftech.vehicle.internal.CarManager ptr) {
+        SignalCallback(com.yftech.vehicle.internal.CarManager x1) {
         }
 
         @Override  // com.yftech.vehicle.internal.ISignalCallback
-        public void onValueChanged(int v, byte[] arr_b) throws RemoteException {
-            StringBuffer stringBuffer0 = new StringBuffer();
-            for(int v1 = 0; v1 < arr_b.length; ++v1) {
-                stringBuffer0.append(Integer.toHexString(arr_b[v1]));
-                stringBuffer0.append(", ");
+        public void onValueChanged(int signalId, byte[] value) throws RemoteException {
+            Log.d(TAG, "onValueChanged signalId=" + signalId + ", value: " + Arrays.toString(value));
+            StringBuffer buf = new StringBuffer();
+            for(int i = 0; i < value.length; ++i) {
+                buf.append(Integer.toHexString(value[i])).append(", ");
             }
-            CarData carData0 = new CarData(arr_b);
-            if(carData0.isDataValue()) {
-                byte[] arr_b1 = carData0.dataValue();
-                CarManager.this.sendSignalCallback(v, arr_b1);
+            CarData d = new CarData(value);
+            if(d.isDataValue()) {
+                byte[] arr_b1 = d.dataValue();
+                sendSignalCallback(signalId, arr_b1);
                 return;
             }
-            Number number0 = carData0.numberValue();
-            CarManager.this.sendSignalCallback(v, number0);
+            Number number0 = d.numberValue();
+            sendSignalCallback(signalId, number0);
         }
     }
 
@@ -55,67 +57,66 @@ class CarManager {
         Method valueOfMethod;
         boolean valueToEnabledState;
 
-        SignalReceiverHolder(Object object0, Method method0, Class class0, boolean z, boolean z1) {
-            this.receiver = new WeakReference(object0);
-            this.method = method0;
-            this.paramType = class0;
-            this.needSignalId = z;
-            this.valueToEnabledState = z1;
+        SignalReceiverHolder(Object receiver, Method method, Class class0, boolean needSignalId, boolean valueToEnabledState) {
+            receiver = new WeakReference(receiver);
+            method = method;
+            paramType = class0;
+            needSignalId = needSignalId;
+            valueToEnabledState = valueToEnabledState;
             if(class0.isEnum() || class0 == CarKeyEvent.class || class0 == KeyTestEvent.class || class0 == ErrorCodeInfo.class || class0 == DeviceNode.class || class0 == SetItemUnitInfo.class || class0 == DisplayDtc.class || class0 == PersonalMemoryInfo.class) {
                 try {
-                    this.valueOfMethod = class0.getMethod("valueOf", Integer.TYPE);
+                    valueOfMethod = class0.getMethod("valueOf", Integer.TYPE);
                 }
                 catch(Throwable unused_ex) {
                     try {
-                        this.valueOfMethod = class0.getMethod("valueOf", byte[].class);
+                        valueOfMethod = class0.getMethod("valueOf", byte[].class);
                     }
-                    catch(Throwable throwable0) {
-                        Log.e("CarManager", "SignalReceiverHolder<init> valueOf byte[] error", throwable0);
+                    catch(Throwable t2) {
+                        Log.e(TAG, "SignalReceiverHolder<init> valueOf byte[] error", t2);
                     }
                 }
             }
         }
 
         @Override
-        public boolean equals(Object object0) {
-            if(this == object0) {
+        public boolean equals(Object obj) {
+            if(this == obj) {
                 return true;
             }
-            if(object0 == null) {
+            if(obj == null) {
                 return false;
             }
-            if(this.getClass() != object0.getClass()) {
+            if(getClass() != obj.getClass()) {
                 return false;
             }
-            if(this.receiver.get() == null) {
-                if(((SignalReceiverHolder)object0).receiver.get() != null) {
+            if(receiver.get() == null) {
+                if(((SignalReceiverHolder)obj).receiver.get() != null) {
                     return false;
                 }
             }
-            else if(!this.receiver.get().equals(((SignalReceiverHolder)object0).receiver.get())) {
+            else if(!receiver.get().equals(((SignalReceiverHolder)obj).receiver.get())) {
                 return false;
             }
-            return this.method == null ? ((SignalReceiverHolder)object0).method == null : this.method.equals(((SignalReceiverHolder)object0).method);
+            return method == null ? ((SignalReceiverHolder)obj).method == null : method.equals(((SignalReceiverHolder)obj).method);
         }
 
         @Override
         public int hashCode() {
-            int v = 0;
-            int v1 = this.receiver == null ? 0 : this.receiver.hashCode();
-            if(this.method != null) {
-                v = this.method.hashCode();
+            if(receiver == null) {
+                return method == null ? 961 : 961 + method.hashCode();
             }
-            return (v1 + 0x1F) * 0x1F + v;
+            int v = receiver.hashCode();
+            return method == null ? (v + 0x1F) * 0x1F : (v + 0x1F) * 0x1F + method.hashCode();
         }
 
         @Override
         public String toString() {
-            return "SignalReceiverHolder{receiver=" + this.receiver.getClass().getSimpleName() + ", method=" + this.method.getName() + '}';
+            return "SignalReceiverHolder{receiver=" + receiver.getClass().getSimpleName() + ", method=" + method.getName() + '}';
         }
     }
 
     private static final String SERVICE_NAME = "yfcarservice";
-    private static final String TAG = "CarManager";
+    private static final String TAG = "GooseCarManager";
     private SignalCallback mCallback;
     private IBinder.DeathRecipient mDeathRecipient;
     private byte[] mL;
@@ -124,40 +125,36 @@ class CarManager {
     private static CarManager sMe;
 
     private CarManager() {
-        this.mL = new byte[0];
-        this.mDeathRecipient = new IBinder.DeathRecipient() {
+        mL = new byte[0];
+        mDeathRecipient = new IBinder.DeathRecipient() {
             @Override  // android.os.IBinder$DeathRecipient
             public void binderDied() {
-                int v = 0;
                 if(CarManager.mService != null) {
                     CarManager.mService.asBinder().unlinkToDeath(this, 0);
                     CarManager.mService = null;
                 }
-                while(v <= 2 && CarManager.mService == null) {
+                int count = 0;
+                while(count <= 2 && CarManager.mService == null) {
                     try {
-                        ++v;
+                        ++count;
                         Thread.sleep(1000L);
-                        CarManager.this.getService();
-                        StringBuilder stringBuilder0 = new StringBuilder();
-                        stringBuilder0.append("service dead ,mDeathRecipient-> try conn 1000ms-> count =");
-                        stringBuilder0.append(v);
-                        stringBuilder0.append(" mService=");
-                        Integer integer0 = CarManager.mService == null ? "null" : CarManager.mService.hashCode();
-                        stringBuilder0.append(integer0);
-                        Log.w("CarManager", stringBuilder0.toString());
+                        getService();
+                        StringBuilder stringBuilder0 = new StringBuilder().append("service dead ,mDeathRecipient-> try conn 1000ms-> count =").append(count).append(" mService=");
+                        Integer integer0 = CarManager.mService == null ? 0: CarManager.mService.hashCode();
+                        Log.w(TAG, stringBuilder0.append(integer0).toString());
                         if(CarManager.mService == null) {
                             continue;
                         }
-                        CarManager.this.newOrRetryRegisterSignalCallback(null);
+                        newOrRetryRegisterSignalCallback(null);
                     }
                     catch(InterruptedException unused_ex) {
-                        Log.w("CarManager", "service dead , try conn sleep 1000ms error !");
+                        Log.w(TAG, "service dead , try conn sleep 1000ms error !");
                         break;
                     }
                 }
             }
         };
-        this.mSignalReceivers = new HashMap();
+        mSignalReceivers = new HashMap();
     }
 
     public static CarManager get() {
@@ -175,21 +172,21 @@ class CarManager {
     }
 
     private ICarService getService() {
-        return this.getService(false);
+        return getService(false);
     }
 
-    private ICarService getService(boolean z) {
-        synchronized(this.mL) {
-            if(CarManager.mService == null || z) {
+    private ICarService getService(boolean rebind) {
+        synchronized(mL) {
+            if(CarManager.mService == null || rebind) {
                 CarManager.mService = null;
-                IBinder iBinder0 = ServiceManager.getService("yfcarservice");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder(SERVICE_NAME);
                 if(iBinder0 != null) {
                     try {
-                        iBinder0.linkToDeath(this.mDeathRecipient, 0);
+                        iBinder0.linkToDeath(mDeathRecipient, 0);
                         CarManager.mService = com.yftech.vehicle.internal.ICarService.Stub.asInterface(iBinder0);
                     }
-                    catch(RemoteException remoteException0) {
-                        Log.e("CarManager", "getService->linkToDeath error, e->" + remoteException0.getMessage());
+                    catch(RemoteException e) {
+                        Log.e(TAG, "getService->linkToDeath error, e->" + e.getMessage());
                     }
                 }
             }
@@ -197,62 +194,62 @@ class CarManager {
         }
     }
 
-    public byte[] getSignalDataValue(int v) {
-        return new CarData(this.getSignalValueInner(v)).dataValue();
+    public byte[] getSignalDataValue(int signalId) {
+        return new CarData(getSignalValueInner(signalId)).dataValue();
     }
 
-    public Number getSignalValue(int v) {
-        return new CarData(this.getSignalValueInner(v)).numberValue();
+    public Number getSignalValue(int signalId) {
+        return new CarData(getSignalValueInner(signalId)).numberValue();
     }
 
-    private byte[] getSignalValueInner(int v) {
+    private byte[] getSignalValueInner(int signalId) {
         try {
-            return this.getService().getSignalValue(v);
+            return getService().getSignalValue(signalId);
         }
-        catch(Throwable throwable0) {
-            Log.w("CarManager", "getSignalValue()", throwable0);
+        catch(Throwable t) {
+            Log.w(TAG, "getSignalValue()", t);
             try {
-                return this.getService(true).getSignalValue(v);
+                return getService(true).getSignalValue(signalId);
             }
             catch(Throwable unused_ex) {
-                Log.e("CarManager", "getSignalValue() retry", throwable0);
+                Log.e(TAG, "getSignalValue() retry", t);
                 return null;
             }
         }
     }
 
-    public Number[] getSignalsValue(int[] arr_v) {
-        byte[] arr_b = this.getSignalsValueInner(arr_v);
-        if(arr_b != null && arr_b.length == arr_v.length) {
-            Number[] arr_number = new Number[arr_b.length];
-            CarData carData0 = new CarData(arr_b);
-            for(int v = 0; v < arr_number.length; ++v) {
-                arr_number[v] = carData0.numberValue();
-                carData0.next();
+    public Number[] getSignalsValue(int[] signalsId) {
+        byte[] arr_b = getSignalsValueInner(signalsId);
+        if(arr_b != null && arr_b.length == signalsId.length) {
+            Number[] values = new Number[arr_b.length];
+            CarData data = new CarData(arr_b);
+            for(int i = 0; i < values.length; ++i) {
+                values[i] = data.numberValue();
+                data.next();
             }
-            return arr_number;
+            return values;
         }
         return null;
     }
 
-    private byte[] getSignalsValueInner(int[] arr_v) {
+    private byte[] getSignalsValueInner(int[] signalsId) {
         try {
-            return this.getService().getSignalsValue(arr_v);
+            return getService().getSignalsValue(signalsId);
         }
-        catch(Throwable throwable0) {
-            Log.w("CarManager", "getSignalsValue()", throwable0);
+        catch(Throwable t) {
+            Log.w(TAG, "getSignalsValue()", t);
             try {
-                return this.getService(true).getSignalsValue(arr_v);
+                return getService(true).getSignalsValue(signalsId);
             }
             catch(Throwable unused_ex) {
-                Log.e("CarManager", "getSignalsValue() retry", throwable0);
+                Log.e(TAG, "getSignalsValue() retry", t);
                 return null;
             }
         }
     }
 
-    private boolean isObjectsEqual(Object object0, Object object1) {
-        return object0 != null && object0.equals(object1);
+    private boolean isObjectsEqual(Object cachedObj, Object receiver) {
+        return cachedObj != null && cachedObj.equals(receiver);
     }
 
     public static boolean isServiceConnected() {
@@ -261,264 +258,258 @@ class CarManager {
         return CarManager.mService != null;
     }
 
-    private boolean isSystemCalss(String s) {
-        return s.startsWith("java.") || s.startsWith("javax.") || s.startsWith("android.");
+    private boolean isSystemCalss(String name) {
+        return name.startsWith("java.") || name.startsWith("javax.") || name.startsWith("android.");
     }
 
     private void newOrRetryRegisterSignalCallback(Map map0) {
-        int v = map0 == null ? this.mSignalReceivers.size() : map0.size();
-        if(v > 0) {
-            int v1 = 0;
-            int[] arr_v = new int[v];
-            if(map0 == null) {
-                map0 = this.mSignalReceivers;
+        int n = map0 == null ? mSignalReceivers.size() : map0.size();
+        if(n > 0) {
+            int i = 0;
+            int[] signalsId = new int[n];
+            for(Object object0: (map0 == null ? mSignalReceivers.keySet() : map0.keySet())) {
+                signalsId[i] = (int)(((Integer)object0));
+                ++i;
             }
-            for(Object object0: map0.keySet()) {
-                arr_v[v1] = (int)(((Integer)object0));
-                ++v1;
+            if(mCallback == null) {
+                mCallback = new SignalCallback(this);
             }
-            if(this.mCallback == null) {
-                this.mCallback = new SignalCallback(this, null);
-            }
-            this.registerSignalCallback(this.mCallback, arr_v);
+            registerSignalCallback(mCallback, signalsId);
             return;
         }
-        this.unregisterSignalCallback(this.mCallback);
+        unregisterSignalCallback(mCallback);
     }
 
-    public void registerReceiver(Object object0) {
-        int[] arr_v2;
-        int v6;
-        Class class0 = object0.getClass();
-        HashMap hashMap0 = new HashMap();
-        for(Class class1 = class0; class1 != null && !this.isSystemCalss(class1.getName()); class1 = class1.getSuperclass()) {
-            Method[] arr_method = class1.getDeclaredMethods();
-            for(int v = 0; v < arr_method.length; ++v) {
-                Method method0 = arr_method[v];
-                SignalReceiver signalReceiver0 = (SignalReceiver)method0.getAnnotation(SignalReceiver.class);
-                if(signalReceiver0 != null) {
-                    Class[] arr_class = method0.getParameterTypes();
-                    int v1 = signalReceiver0.signalId();
-                    int[] arr_v = signalReceiver0.signalsIdArray();
-                    int v2 = 1;
-                    int v3 = arr_v == null || arr_v.length <= 0 || arr_v[0] < 0 ? 0 : 1;
-                    if(v3 == 0 && v1 >= 0) {
+    public void registerReceiver(Object receiver) {
+        Class clazz = receiver.getClass();
+        HashMap rsTemp = new HashMap();
+        while(clazz != null && !isSystemCalss(clazz.getName())) {
+            Method[] arr_method = clazz.getDeclaredMethods();
+            for(int i = 0; i < arr_method.length; ++i) {
+                Method method = arr_method[i];
+                SignalReceiver annotation = (SignalReceiver)method.getAnnotation(SignalReceiver.class);
+                if(annotation != null) {
+                    Class[] arr_class = method.getParameterTypes();
+                    int v1 = annotation.signalId();
+                    int[] arr_v = annotation.signalsIdArray();
+                    boolean needSignalId = arr_v != null && arr_v.length > 0 && arr_v[0] >= 0;
+                    if(!needSignalId && v1 >= 0) {
                         arr_v = new int[]{v1};
                     }
-                    int[] arr_v1 = arr_v;
-                    if(arr_class != null && arr_v1 != null && arr_v1.length > 0) {
-                        if(v3 != 0) {
-                            v2 = 2;
-                        }
-                        if(arr_class.length == v2) {
-                            Class class2 = arr_class[v3];
-                            int v4 = 0;
-                            while(v4 < arr_v1.length) {
-                                int v5 = arr_v1[v4];
-                                if(v5 == -1) {
-                                    v6 = v4;
-                                    arr_v2 = arr_v1;
+                    if(arr_class != null && arr_v != null && arr_v.length > 0 && arr_class.length == (needSignalId ? 2 : 1)) {
+                        Class paramType = arr_class[(needSignalId ? 1 : 0)];
+                        for(int j = 0; j < arr_v.length; ++j) {
+                            int regSignalId = arr_v[j];
+                            if(regSignalId != -1) {
+                                SignalReceiverHolder holder = new SignalReceiverHolder(receiver, method, paramType, needSignalId, annotation.valueToEnabledState());
+                                List holders = (List)mSignalReceivers.get(Integer.valueOf(regSignalId));
+                                if(holders == null) {
+                                    holders = new ArrayList();
                                 }
-                                else {
-                                    v6 = v4;
-                                    arr_v2 = arr_v1;
-                                    SignalReceiverHolder carManager$SignalReceiverHolder0 = new SignalReceiverHolder(this, object0, method0, class2, ((boolean)v3), signalReceiver0.valueToEnabledState());
-                                    List list0 = (List)this.mSignalReceivers.get(Integer.valueOf(v5));
-                                    if(list0 == null) {
-                                        list0 = new ArrayList();
-                                    }
-                                    if(!list0.contains(carManager$SignalReceiverHolder0)) {
-                                        list0.add(carManager$SignalReceiverHolder0);
-                                    }
-                                    this.mSignalReceivers.put(Integer.valueOf(v5), list0);
-                                    List list1 = (List)hashMap0.get(Integer.valueOf(v5));
-                                    if(list1 == null) {
-                                        list1 = new ArrayList();
-                                    }
-                                    if(!list1.contains(carManager$SignalReceiverHolder0)) {
-                                        list1.add(carManager$SignalReceiverHolder0);
-                                    }
-                                    hashMap0.put(Integer.valueOf(v5), list1);
+                                if(!holders.contains(holder)) {
+                                    holders.add(holder);
                                 }
-                                v4 = v6 + 1;
-                                arr_v1 = arr_v2;
+                                mSignalReceivers.put(Integer.valueOf(regSignalId), holders);
+                                List holdersTemp = (List)rsTemp.get(Integer.valueOf(regSignalId));
+                                if(holdersTemp == null) {
+                                    holdersTemp = new ArrayList();
+                                }
+                                if(!holdersTemp.contains(holder)) {
+                                    holdersTemp.add(holder);
+                                }
+                                rsTemp.put(Integer.valueOf(regSignalId), holdersTemp);
                             }
                         }
                     }
                 }
             }
+            clazz = clazz.getSuperclass();
         }
-        this.newOrRetryRegisterSignalCallback(hashMap0);
+        newOrRetryRegisterSignalCallback(rsTemp);
     }
 
-    private void registerSignalCallback(ISignalCallback iSignalCallback0, int[] arr_v) {
+    private void registerSignalCallback(ISignalCallback callback, int[] signalsId) {
         try {
-            this.getService().registerSignalCallback(iSignalCallback0, arr_v);
-            Log.w("CarManager", "registerSignalCallback() newOrRetry " + Arrays.toString(arr_v) + ", " + iSignalCallback0);
+            getService().registerSignalCallback(callback, signalsId);
+            Log.w(TAG, "registerSignalCallback() newOrRetry " + Arrays.toString(signalsId) + ", " + callback);
         }
-        catch(Throwable throwable0) {
-            Log.w("CarManager", "registerSignalCallback() newOrRetry ", throwable0);
+        catch(Throwable t) {
+            Log.w(TAG, "registerSignalCallback() newOrRetry ", t);
             try {
-                this.getService(true).registerSignalCallback(iSignalCallback0, arr_v);
+                getService(true).registerSignalCallback(callback, signalsId);
             }
             catch(Throwable unused_ex) {
-                Log.e("CarManager", "registerSignalCallback() retry", throwable0);
+                Log.e(TAG, "registerSignalCallback() retry", t);
             }
         }
     }
 
-    private void sendSignalCallback(int v, Number number0) {
-        Object object0;
-        List list0 = (List)this.mSignalReceivers.get(Integer.valueOf(v));
-        int v1 = list0 == null ? 0 : list0.size();
-        for(int v2 = 0; v2 < v1; ++v2) {
-            SignalReceiverHolder carManager$SignalReceiverHolder0 = (SignalReceiverHolder)list0.get(v2);
+    private void sendSignalCallback(int signalId, Number value) {
+        Object retValue;
+        int v2 = 0;
+        List holders = (List)mSignalReceivers.get(Integer.valueOf(signalId));
+        if(holders == null) {
             try {
-                if(carManager$SignalReceiverHolder0.valueToEnabledState) {
-                    object0 = Boolean.valueOf(number0.byteValue() == 1);
-                }
-                else if(carManager$SignalReceiverHolder0.valueOfMethod != null) {
-                    object0 = carManager$SignalReceiverHolder0.valueOfMethod.invoke(null, number0.intValue());
-                }
-                else if(carManager$SignalReceiverHolder0.paramType.equals(Integer.TYPE) || carManager$SignalReceiverHolder0.paramType.equals(Integer.class)) {
-                    object0 = number0.intValue();
-                }
-                else if(carManager$SignalReceiverHolder0.paramType.equals(Byte.TYPE) || carManager$SignalReceiverHolder0.paramType.equals(Byte.class)) {
-                    object0 = number0.byteValue();
-                }
-                else if(carManager$SignalReceiverHolder0.paramType.equals(Short.TYPE) || carManager$SignalReceiverHolder0.paramType.equals(Short.class)) {
-                    object0 = number0.shortValue();
-                }
-                else if(carManager$SignalReceiverHolder0.paramType.equals(Long.TYPE) || carManager$SignalReceiverHolder0.paramType.equals(Long.class)) {
-                    object0 = number0.longValue();
-                }
-                else if(carManager$SignalReceiverHolder0.paramType.equals(Float.TYPE) || carManager$SignalReceiverHolder0.paramType.equals(Float.class)) {
-                    object0 = number0.floatValue();
-                }
-                else if(carManager$SignalReceiverHolder0.paramType.equals(Double.TYPE) || carManager$SignalReceiverHolder0.paramType.equals(Double.class)) {
-                    object0 = number0.doubleValue();
-                }
-                else if(!carManager$SignalReceiverHolder0.paramType.equals(Boolean.TYPE) && !carManager$SignalReceiverHolder0.paramType.equals(Boolean.class)) {
-                    object0 = number0;
-                }
-                else {
-                    object0 = Boolean.valueOf(number0.byteValue() == 1);
-                }
-                if(carManager$SignalReceiverHolder0.needSignalId) {
-                    carManager$SignalReceiverHolder0.method.invoke(carManager$SignalReceiverHolder0.receiver.get(), v, object0);
-                }
-                else {
-                    carManager$SignalReceiverHolder0.method.invoke(carManager$SignalReceiverHolder0.receiver.get(), object0);
-                }
+                v2 = 0;
             }
-            catch(Throwable throwable0) {
-                Log.e("CarManager", "sendSignalCallback() for Number error", throwable0);
+            catch(Throwable t) {
+                Log.e(TAG, "sendSignalCallback() for Number error", t);
             }
         }
-    }
-
-    private void sendSignalCallback(int v, byte[] arr_b) {
-        List list0 = (List)this.mSignalReceivers.get(Integer.valueOf(v));
-        int v1 = list0 == null ? 0 : list0.size();
-        for(int v2 = 0; v2 < v1; ++v2) {
-            SignalReceiverHolder carManager$SignalReceiverHolder0 = (SignalReceiverHolder)list0.get(v2);
+        else {
+            v2 = holders.size();
+        }
+        for(int i = 0; i < v2; ++i) {
+            SignalReceiverHolder holder = (SignalReceiverHolder)holders.get(i);
             try {
-                Object object0 = carManager$SignalReceiverHolder0.valueOfMethod == null ? arr_b : carManager$SignalReceiverHolder0.valueOfMethod.invoke(null, arr_b);
-                if(carManager$SignalReceiverHolder0.needSignalId) {
-                    carManager$SignalReceiverHolder0.method.invoke(carManager$SignalReceiverHolder0.receiver.get(), v, object0);
+                if(holder.valueToEnabledState) {
+                    retValue = Boolean.valueOf(value.byteValue() == 1);
+                }
+                else if(holder.valueOfMethod != null) {
+                    retValue = holder.valueOfMethod.invoke(null, value.intValue());
+                }
+                else if(holder.paramType.equals(Integer.TYPE) || holder.paramType.equals(Integer.class)) {
+                    retValue = value.intValue();
+                }
+                else if(holder.paramType.equals(Byte.TYPE) || holder.paramType.equals(Byte.class)) {
+                    retValue = value.byteValue();
+                }
+                else if(holder.paramType.equals(Short.TYPE) || holder.paramType.equals(Short.class)) {
+                    retValue = value.shortValue();
+                }
+                else if(holder.paramType.equals(Long.TYPE) || holder.paramType.equals(Long.class)) {
+                    retValue = value.longValue();
+                }
+                else if(holder.paramType.equals(Float.TYPE) || holder.paramType.equals(Float.class)) {
+                    retValue = value.floatValue();
+                }
+                else if(holder.paramType.equals(Double.TYPE) || holder.paramType.equals(Double.class)) {
+                    retValue = value.doubleValue();
+                }
+                else if(holder.paramType.equals(Boolean.TYPE) || holder.paramType.equals(Boolean.class)) {
+                    retValue = Boolean.valueOf(value.byteValue() == 1);
                 }
                 else {
-                    carManager$SignalReceiverHolder0.method.invoke(carManager$SignalReceiverHolder0.receiver.get(), object0);
+                    retValue = value;
+                }
+                if(holder.needSignalId) {
+                    holder.method.invoke(holder.receiver.get(), signalId, retValue);
+                }
+                else {
+                    holder.method.invoke(holder.receiver.get(), retValue);
                 }
             }
-            catch(Throwable throwable0) {
-                Log.e("CarManager", "sendSignalCallback() for byte[] error", throwable0);
+            catch(Throwable t) {
+                Log.e(TAG, "sendSignalCallback() for Number error", t);
             }
         }
     }
 
-    public boolean setSignalValue(int v, byte b) {
-        return this.setSignalValueInner(v, new CarData(b).getBytes());
+    private void sendSignalCallback(int signalId, byte[] values) {
+        int v1 = 0;
+        List holders = (List)mSignalReceivers.get(Integer.valueOf(signalId));
+        if(holders != null) {
+            v1 = holders.size();
+        }
+        for(int i = 0; i < v1; ++i) {
+            SignalReceiverHolder holder = (SignalReceiverHolder)holders.get(i);
+            try {
+                Object retValue = holder.valueOfMethod == null ? values : holder.valueOfMethod.invoke(null, values);
+                if(holder.needSignalId) {
+                    holder.method.invoke(holder.receiver.get(), signalId, retValue);
+                }
+                else {
+                    holder.method.invoke(holder.receiver.get(), retValue);
+                }
+            }
+            catch(Throwable t) {
+                Log.e(TAG, "sendSignalCallback() for byte[] error", t);
+            }
+        }
     }
 
-    public boolean setSignalValue(int v, double f) {
-        return this.setSignalValueInner(v, new CarData(f).getBytes());
+    public boolean setSignalValue(int signalId, byte value) {
+        return setSignalValueInner(signalId, new CarData(value).getBytes());
     }
 
-    public boolean setSignalValue(int v, float f) {
-        return this.setSignalValueInner(v, new CarData(f).getBytes());
+    public boolean setSignalValue(int signalId, double value) {
+        return setSignalValueInner(signalId, new CarData(value).getBytes());
     }
 
-    public boolean setSignalValue(int v, int v1) {
-        return this.setSignalValueInner(v, new CarData(v1).getBytes());
+    public boolean setSignalValue(int signalId, float value) {
+        return setSignalValueInner(signalId, new CarData(value).getBytes());
     }
 
-    public boolean setSignalValue(int v, long v1) {
-        return this.setSignalValueInner(v, new CarData(v1).getBytes());
+    public boolean setSignalValue(int signalId, int value) {
+        return setSignalValueInner(signalId, new CarData(value).getBytes());
     }
 
-    public boolean setSignalValue(int v, short v1) {
-        return this.setSignalValueInner(v, new CarData(v1).getBytes());
+    public boolean setSignalValue(int signalId, long value) {
+        return setSignalValueInner(signalId, new CarData(value).getBytes());
     }
 
-    public boolean setSignalValue(int v, boolean z) {
-        return this.setSignalValue(v, ((byte)z));
+    public boolean setSignalValue(int signalId, short value) {
+        return setSignalValueInner(signalId, new CarData(value).getBytes());
     }
 
-    public boolean setSignalValue(int v, byte[] arr_b) {
-        return this.setSignalValueInner(v, new CarData(arr_b, false).getBytes());
+    public boolean setSignalValue(int signalId, boolean value) {
+        return value ? setSignalValue(signalId, 1) : setSignalValue(signalId, 0);
     }
 
-    private boolean setSignalValueInner(int v, byte[] arr_b) {
+    public boolean setSignalValue(int signalId, byte[] value) {
+        return setSignalValueInner(signalId, new CarData(value, false).getBytes());
+    }
+
+    private boolean setSignalValueInner(int signalId, byte[] value) {
         try {
-            return this.getService().setSignalValue(v, arr_b);
+            return getService().setSignalValue(signalId, value);
         }
-        catch(Throwable throwable0) {
-            Log.w("CarManager", "setSignalValue()", throwable0);
+        catch(Throwable t) {
+            Log.w(TAG, "setSignalValue()", t);
             try {
-                return this.getService(true).setSignalValue(v, arr_b);
+                return getService(true).setSignalValue(signalId, value);
             }
             catch(Throwable unused_ex) {
-                Log.e("CarManager", "setSignalValue() retry", throwable0);
+                Log.e(TAG, "setSignalValue() retry", t);
                 return false;
             }
         }
     }
 
-    public void unregisterReceiver(Object object0) {
-        Iterator iterator0 = this.mSignalReceivers.values().iterator();
+    public void unregisterReceiver(Object receiver) {
+        Iterator iterator0 = mSignalReceivers.values().iterator();
         while(iterator0.hasNext()) {
             Object object1 = iterator0.next();
-            List list0 = (List)object1;
-            if(list0 != null) {
-                ArrayList arrayList0 = new ArrayList();
-                for(Object object2: list0) {
-                    SignalReceiverHolder carManager$SignalReceiverHolder0 = (SignalReceiverHolder)object2;
-                    Object object3 = carManager$SignalReceiverHolder0.receiver.get();
-                    if(this.isObjectsEqual(object3, object0) || object3 == null) {
-                        arrayList0.add(carManager$SignalReceiverHolder0);
+            List holders = (List)object1;
+            if(holders != null) {
+                ArrayList foundHolders = new ArrayList();
+                for(Object object2: holders) {
+                    SignalReceiverHolder holder = (SignalReceiverHolder)object2;
+                    Object object3 = holder.receiver.get();
+                    if(isObjectsEqual(object3, receiver) || object3 == null) {
+                        foundHolders.add(holder);
                     }
                 }
-                list0.removeAll(arrayList0);
+                holders.removeAll(foundHolders);
             }
-            if(list0 == null || list0.size() == 0) {
+            if(holders == null || holders.size() == 0) {
                 iterator0.remove();
             }
         }
-        this.newOrRetryRegisterSignalCallback(null);
+        newOrRetryRegisterSignalCallback(null);
     }
 
-    private void unregisterSignalCallback(ISignalCallback iSignalCallback0) {
+    private void unregisterSignalCallback(ISignalCallback callback) {
         try {
-            this.getService().unregisterSignalCallback(iSignalCallback0);
+            getService().unregisterSignalCallback(callback);
         }
-        catch(Throwable throwable0) {
-            Log.w("CarManager", "unregisterSignalCallback()", throwable0);
+        catch(Throwable t) {
+            Log.w(TAG, "unregisterSignalCallback()", t);
             try {
-                this.getService(true).unregisterSignalCallback(iSignalCallback0);
+                getService(true).unregisterSignalCallback(callback);
             }
             catch(Throwable unused_ex) {
-                Log.e("CarManager", "unregisterSignalCallback() retry", throwable0);
+                Log.e(TAG, "unregisterSignalCallback() retry", t);
             }
         }
     }

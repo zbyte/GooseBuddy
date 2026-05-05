@@ -64,6 +64,7 @@ public interface IBaseCmd {
     public static final int KEY_EVENT_KNOB = 0x270E;
     public static final int KEY_EVENT_PANEL = 0x2704;
     public static final int KEY_EVENT_STEERING_WHEEL = 0x270F;
+    public static final int MPU_PROJECT_DID_RECIVER_INFO = 9921;
     public static final int MPU_PROJECT_PERSONAL_MEMORY_INFO = 9925;
     public static final int MPU_PROJECT_VIN_UPDATE = 9922;
     public static final int MPU_SEND_CANLOG_INFO = 9924;

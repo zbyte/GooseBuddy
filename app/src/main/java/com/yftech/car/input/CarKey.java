@@ -49,28 +49,24 @@ public class CarKey implements Parcelable {
     public static final int CODE_VOL_INC = 3;
     public static final int CODE_VR = 6;
     public static final int CODE_WECHAT = 10;
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR  = new Parcelable.Creator() {
+        public CarKey createFromParcel(Parcel in) {
+            return new CarKey(in);
+        }
+
+        public CarKey[] newArray(int size) {
+            return new CarKey[size];
+        }
+    };
     public static final int FROM_SOURCE_KNOB = 2;
     public static final int FROM_SOURCE_PANEL = 3;
     public static final int FROM_SOURCE_REAR_LEFT_PANEL = 4;
     public static final int FROM_SOURCE_REAR_RIGHT_PANEL = 5;
     public static final int FROM_SOURCE_STEERING_WHEEL = 1;
-    public static final int FROM_SOURCE_UNKNOWN;
+    public static final int FROM_SOURCE_UNKNOWN = 0;
     public int mAction;
     public int mCode;
     public int mFromSource;
-
-    static {
-        CarKey.CREATOR = new Parcelable.Creator() {
-            public CarKey createFromParcel(Parcel in) {
-                return new CarKey(in);
-            }
-
-            public CarKey[] newArray(int size) {
-                return new CarKey[size];
-            }
-        };
-    }
 
     public CarKey() {
         this.mFromSource = 0;

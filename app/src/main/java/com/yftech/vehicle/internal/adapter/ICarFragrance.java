@@ -10,21 +10,21 @@ public interface ICarFragrance extends IBaseApi {
 
         public final int value;
 
-        private FragranceConcentration(int v1) {
-            this.value = v1;
+        private FragranceConcentration(int value) {
+            this.value = value;
         }
 
-        public static FragranceConcentration valueOf(int v) {
-            if(v == FragranceConcentration.OFF.value) {
+        public static FragranceConcentration valueOf(int value) {
+            if(value == FragranceConcentration.OFF.value) {
                 return FragranceConcentration.OFF;
             }
-            if(v == FragranceConcentration.LOW.value) {
+            if(value == FragranceConcentration.LOW.value) {
                 return FragranceConcentration.LOW;
             }
-            if(v == FragranceConcentration.MID.value) {
+            if(value == FragranceConcentration.MID.value) {
                 return FragranceConcentration.MID;
             }
-            return v == FragranceConcentration.HIGH.value ? FragranceConcentration.HIGH : FragranceConcentration.__UNKNOWN__;
+            return value == FragranceConcentration.HIGH.value ? FragranceConcentration.HIGH : FragranceConcentration.__UNKNOWN__;
         }
     }
 
@@ -37,21 +37,21 @@ public interface ICarFragrance extends IBaseApi {
 
         public final int value;
 
-        private FragranceTaste(int v1) {
-            this.value = v1;
+        private FragranceTaste(int value) {
+            this.value = value;
         }
 
-        public static FragranceTaste valueOf(int v) {
-            if(v == FragranceTaste.NO_COMMAND.value) {
+        public static FragranceTaste valueOf(int value) {
+            if(value == FragranceTaste.NO_COMMAND.value) {
                 return FragranceTaste.NO_COMMAND;
             }
-            if(v == FragranceTaste.TASTE_A.value) {
+            if(value == FragranceTaste.TASTE_A.value) {
                 return FragranceTaste.TASTE_A;
             }
-            if(v == FragranceTaste.TASTE_B.value) {
+            if(value == FragranceTaste.TASTE_B.value) {
                 return FragranceTaste.TASTE_B;
             }
-            return v == FragranceTaste.TASTE_C.value ? FragranceTaste.TASTE_C : FragranceTaste.__UNKNOWN__;
+            return value == FragranceTaste.TASTE_C.value ? FragranceTaste.TASTE_C : FragranceTaste.__UNKNOWN__;
         }
     }
 
@@ -62,15 +62,15 @@ public interface ICarFragrance extends IBaseApi {
 
         public final int value;
 
-        private FragranceWorkState(int v1) {
-            this.value = v1;
+        private FragranceWorkState(int value) {
+            this.value = value;
         }
 
-        public static FragranceWorkState valueOf(int v) {
-            if(v == FragranceWorkState.RUN.value) {
+        public static FragranceWorkState valueOf(int value) {
+            if(value == FragranceWorkState.RUN.value) {
                 return FragranceWorkState.RUN;
             }
-            return v == FragranceWorkState.NOT_RUN.value ? FragranceWorkState.NOT_RUN : FragranceWorkState.__UNKNOWN__;
+            return value == FragranceWorkState.NOT_RUN.value ? FragranceWorkState.NOT_RUN : FragranceWorkState.__UNKNOWN__;
         }
     }
 
@@ -82,18 +82,18 @@ public interface ICarFragrance extends IBaseApi {
 
         public final int value;
 
-        private FragranceWorkWarn(int v1) {
-            this.value = v1;
+        private FragranceWorkWarn(int value) {
+            this.value = value;
         }
 
-        public static FragranceWorkWarn valueOf(int v) {
-            if(v == FragranceWorkWarn.NO_COMMAND.value) {
+        public static FragranceWorkWarn valueOf(int value) {
+            if(value == FragranceWorkWarn.NO_COMMAND.value) {
                 return FragranceWorkWarn.NO_COMMAND;
             }
-            if(v == FragranceWorkWarn.RATIO_NEARLY_USE_UP_WARNING.value) {
+            if(value == FragranceWorkWarn.RATIO_NEARLY_USE_UP_WARNING.value) {
                 return FragranceWorkWarn.RATIO_NEARLY_USE_UP_WARNING;
             }
-            return v == FragranceWorkWarn.RATIO_USE_UP_WARNING.value ? FragranceWorkWarn.RATIO_USE_UP_WARNING : FragranceWorkWarn.__UNKNOWN__;
+            return value == FragranceWorkWarn.RATIO_USE_UP_WARNING.value ? FragranceWorkWarn.RATIO_USE_UP_WARNING : FragranceWorkWarn.__UNKNOWN__;
         }
     }
 

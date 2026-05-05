@@ -1,19 +1,19 @@
 package com.yftech.vehicle.internal.utils;
 
 public class StringFormart {
-    public static String byte2hex(byte[] arr_b) {
-        if(arr_b == null) {
+    public static String byte2hex(byte[] buffer) {
+        if(buffer == null) {
             return "byte[] null";
         }
-        String s = "";
-        for(int v = 0; v < arr_b.length; ++v) {
-            String s1 = Integer.toHexString(arr_b[v] & 0xFF);
-            if(s1.length() == 1) {
-                s1 = "0" + s1;
+        String h = "";
+        for(int i = 0; i < buffer.length; ++i) {
+            String temp = Integer.toHexString(buffer[i] & 0xFF);
+            if(temp.length() == 1) {
+                temp = "0" + temp;
             }
-            s = s + " " + s1;
+            h = h + " " + temp;
         }
-        return s;
+        return h;
     }
 }
 

@@ -1,7 +1,8 @@
 package com.yftech.vehicle.sdk;
 
-import android.os.SystemProperties;
 import android.util.Log;
+
+import com.yftech.car.utils.SystemPropertiesHelper;
 import com.yftech.vehicle.internal.BaseApiManager;
 import com.yftech.vehicle.internal.SignalReceiver;
 import com.yftech.vehicle.internal.adapter.ICarDashBoard.AbsDashBoardInfo;
@@ -57,7 +58,7 @@ public class CarDashBoardManager extends BaseApiManager implements ICarDashBoard
     public static CarDashBoardManager get() {
         synchronized(CarDashBoardManager.class) {
             try {
-                String s = SystemProperties.get("ro.product.name");
+                String s = SystemPropertiesHelper.get("ro.product.name");
                 if(CarDashBoardManager.sMe == null) {
                     CarDashBoardManager.sMe = s != null && (s.startsWith("CBIHU") || s.startsWith("CB_IHU")) ? new CarDashBoardManager(ICarDashBoard.DashBoardType.MCU_IHU12) : new CarDashBoardManager(ICarDashBoard.DashBoardType.MCU_CA1105);
                 }
@@ -225,18 +226,18 @@ public class CarDashBoardManager extends BaseApiManager implements ICarDashBoard
                         Log.d("CarDashBoardManager", "MCU_IHU12 setSendDashBoardInfo->INFO_TYPE_PHONE_INFO= " + info.getDashBoardSource() + ",[" + StringFormart.byte2hex(byteArr) + " ]");
                         this.setSignalValue(9939, byteArr);
                         if(Ihu12DashBoard.isBtInfoChange(info)) {
-                            byte[] byteArr = Ihu12DashBoard.getMediaInfo(((byte)5), info);
+                            byteArr = Ihu12DashBoard.getMediaInfo(((byte)5), info);
                             Log.d("CarDashBoardManager", "MCU_IHU12 setSendDashBoardInfo->INFO_TYPE_PHONE_NAME= " + info.getDashBoardSource() + ",[" + StringFormart.byte2hex(byteArr) + " ]");
                             this.setSignalValue(9939, byteArr);
                             if(((ICarDashBoard.BtInfo)info) != null && ((ICarDashBoard.BtInfo)info).mBtName != null && !((ICarDashBoard.BtInfo)info).mBtName.equals("")) {
                                 ((ICarDashBoard.BtInfo)info).mBtCallNumber = "";
                             }
-                            byte[] byteArr = Ihu12DashBoard.getMediaInfo(((byte)4), ((ICarDashBoard.AbsDashBoardInfo)(((ICarDashBoard.BtInfo)info))));
+                            byteArr = Ihu12DashBoard.getMediaInfo(((byte)4), ((ICarDashBoard.AbsDashBoardInfo)(((ICarDashBoard.BtInfo)info))));
                             Log.d("CarDashBoardManager", "MCU_IHU12 setSendDashBoardInfo->INFO_TYPE_PHONE_NUMBER= " + (((ICarDashBoard.BtInfo)info) == null ? -1 : ((ICarDashBoard.BtInfo)info).getDashBoardSource()) + ",[" + StringFormart.byte2hex(byteArr) + " ]");
                             this.setSignalValue(9939, byteArr);
                         }
                         if(((ICarDashBoard.BtInfo)info) != null && ((ICarDashBoard.BtInfo)info).mBtStatus == 7) {
-                            byte[] byteArr = Ihu12DashBoard.getMediaInfo(((byte)6), info);
+                            byteArr = Ihu12DashBoard.getMediaInfo(((byte)6), info);
                             Log.d("CarDashBoardManager", "MCU_IHU12 setSendDashBoardInfo->INFO_TYPE_PHONE_TIMES= " + info.getDashBoardSource() + ",[" + StringFormart.byte2hex(byteArr) + " ]");
                             this.setSignalValue(9939, byteArr);
                         }
@@ -291,7 +292,7 @@ public class CarDashBoardManager extends BaseApiManager implements ICarDashBoard
                             byte[] byteArr = Ihu12DashBoard.getMediaInfo(((byte)1), info);
                             Log.d("CarDashBoardManager", "MCU_IHU12 setSendDashBoardInfo->INFO_TYPE_SONG_TITLE= " + info.getDashBoardSource() + ",[" + StringFormart.byte2hex(byteArr) + " ]");
                             this.setSignalValue(9939, byteArr);
-                            byte[] byteArr = Ihu12DashBoard.getMediaInfo(((byte)2), info);
+                            byteArr = Ihu12DashBoard.getMediaInfo(((byte)2), info);
                             Log.d("CarDashBoardManager", "MCU_IHU12 setSendDashBoardInfo->INFO_TYPE_SONG_ARTIST= " + info.getDashBoardSource() + ",[" + StringFormart.byte2hex(byteArr) + " ]");
                             this.setSignalValue(9939, byteArr);
                             return true;

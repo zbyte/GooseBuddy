@@ -6,13 +6,15 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 
 public class CarPhoneLinkManager {
@@ -69,15 +71,11 @@ public class CarPhoneLinkManager {
         }
     }
 
-    static final class CarPhoneLinkManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarPhoneLinkManagerGlobal gCarPhoneLinkManager;
+    static final class CarPhoneLinkManagerGlobal extends ICarPhoneLinkCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarPhoneLinkManagerGlobal gCarPhoneLinkManager  = new CarPhoneLinkManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarPhoneLinkService mCarPhoneLinkService;
         private final Object mLock;
-
-        static {
-            CarPhoneLinkManagerGlobal.gCarPhoneLinkManager = new CarPhoneLinkManagerGlobal();
-        }
 
         private CarPhoneLinkManagerGlobal() {
             this.mLock = new Object();
@@ -150,7 +148,7 @@ public class CarPhoneLinkManager {
 
         private boolean connectCarPhoneLinkServiceLocked() {
             if(CarPhoneLinkManagerGlobal.mCarPhoneLinkService == null || CarPhoneLinkManagerGlobal.mCarPhoneLinkService.asBinder() == null || !CarPhoneLinkManagerGlobal.mCarPhoneLinkService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_phonelink");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_phonelink");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -163,13 +161,13 @@ public class CarPhoneLinkManager {
                     return false;
                 }
                 catch(Exception e) {
+                    Log.e("CarPhoneLinkManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarPhoneLinkManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
             return false;
         }
 
@@ -948,7 +946,7 @@ public class CarPhoneLinkManager {
     }
 
     public static final String SERVICE_NAME = "car_phonelink";
-    private static final String TAG = null;
+    private static final String TAG  = "CarPhoneLinkManager";
     private static final int TYPE_CONNECT_BY_USB = 0;
     private static final int TYPE_CONNECT_BY_WIRELESS = 1;
     private static final int TYPE_CONNECT_CARLINK_DEVICE = 5;
@@ -960,10 +958,6 @@ public class CarPhoneLinkManager {
     private Handler mHandler;
     private HandlerThread mHandlerThread;
     private static volatile CarPhoneLinkManager mInstance;
-
-    static {
-        CarPhoneLinkManager.TAG = "CarPhoneLinkManager";
-    }
 
     private CarPhoneLinkManager() {
         this.mHandlerThread = new HandlerThread("phoneLinkThread");

@@ -5,9 +5,10 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.ArrayList;
@@ -43,16 +44,12 @@ public class CarNavigationManager {
         }
     }
 
-    static final class CarNavigationManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarNavigationManagerGlobal CAR_NAVIGATION_MANAGER_GLOBAL;
+    static final class CarNavigationManagerGlobal extends ICarNavigationCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarNavigationManagerGlobal CAR_NAVIGATION_MANAGER_GLOBAL = new CarNavigationManagerGlobal();
         private final ArrayMap mCallbackMap;
         private ICarNavigationService mCarNavigationService;
         private final Object mLock;
         private final List mServiceStartRunnable;
-
-        static {
-            CarNavigationManagerGlobal.CAR_NAVIGATION_MANAGER_GLOBAL = new CarNavigationManagerGlobal();
-        }
 
         private CarNavigationManagerGlobal() {
             this.mLock = new Object();
@@ -81,7 +78,7 @@ public class CarNavigationManager {
 
         private boolean connectCarAudioServiceLocked() {
             if(this.mCarNavigationService == null || this.mCarNavigationService.asBinder() == null || !this.mCarNavigationService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_navigation");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_navigation");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -93,13 +90,14 @@ public class CarNavigationManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarNavigationManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarNavigationManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -342,12 +340,8 @@ public class CarNavigationManager {
     }
 
     public static final String SERVICE_NAME = "car_navigation";
-    private static final String TAG;
+    private static final String TAG = "CarNavigationManager";
     private static volatile CarNavigationManager mInstance;
-
-    static {
-        CarNavigationManager.TAG = "CarNavigationManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

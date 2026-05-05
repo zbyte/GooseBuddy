@@ -4,6 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
 import java.util.List;
 
@@ -1141,7 +1142,7 @@ public interface ICarPhoneLinkService extends IInterface {
                     reply.writeNoException();
                     if(phoneLink0 != null) {
                         reply.writeInt(1);
-                        phoneLink0.writeToParcel(reply, 1);
+                        phoneLink0.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     reply.writeInt(0);
@@ -1346,7 +1347,7 @@ public interface ICarPhoneLinkService extends IInterface {
                     reply.writeNoException();
                     if(carLinkDevice0 != null) {
                         reply.writeInt(1);
-                        carLinkDevice0.writeToParcel(reply, 1);
+                        carLinkDevice0.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     reply.writeInt(0);
@@ -1488,7 +1489,7 @@ public interface ICarPhoneLinkService extends IInterface {
                     reply.writeNoException();
                     if(carLinkDevice1 != null) {
                         reply.writeInt(1);
-                        carLinkDevice1.writeToParcel(reply, 1);
+                        carLinkDevice1.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     reply.writeInt(0);

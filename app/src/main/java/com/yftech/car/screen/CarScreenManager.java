@@ -5,9 +5,10 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 
@@ -38,15 +39,11 @@ public class CarScreenManager {
         }
     }
 
-    static final class CarScreenManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final CarScreenManagerGlobal CAR_SCREEN_MANAGER_GLOBAL;
+    static final class CarScreenManagerGlobal extends ICarScreenCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final CarScreenManagerGlobal CAR_SCREEN_MANAGER_GLOBAL = new CarScreenManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarScreenService mCarScreenService;
         private final Object mLock;
-
-        static {
-            CarScreenManagerGlobal.CAR_SCREEN_MANAGER_GLOBAL = new CarScreenManagerGlobal();
-        }
 
         private CarScreenManagerGlobal() {
             this.mLock = new Object();
@@ -84,7 +81,7 @@ public class CarScreenManager {
 
         private boolean connectCarScreenServiceLocked() {
             if(CarScreenManagerGlobal.mCarScreenService == null || CarScreenManagerGlobal.mCarScreenService.asBinder() == null || !CarScreenManagerGlobal.mCarScreenService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_screen");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_screen");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -96,13 +93,14 @@ public class CarScreenManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarScreenManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarScreenManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -335,15 +333,11 @@ public class CarScreenManager {
     public static final int MODE_NIGHT = 1;
     private static final int REMOTE_DISPLAY_ID_MARK = 0x1000000;
     public static final String SERVICE_NAME = "car_screen";
-    private static final String TAG = null;
+    private static final String TAG  = "CarScreenManager";
     public static final int TYPE_FORCE = -1;
     public static final int TYPE_FOREVER = 1;
-    public static final int TYPE_TRANSIENT;
+    public static final int TYPE_TRANSIENT = 0;
     private static volatile CarScreenManager mInstance;
-
-    static {
-        CarScreenManager.TAG = "CarScreenManager";
-    }
 
     // String Decryptor: 4 succeeded, 0 failed
     static String access$000() {

@@ -9,18 +9,18 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private CarReadyIndicator(int v1) {
-            this.value = v1;
+        private CarReadyIndicator(int value) {
+            this.value = value;
         }
 
-        public static CarReadyIndicator valueOf(int v) {
-            if(v == CarReadyIndicator.LIGHTS_OUT.value) {
+        public static CarReadyIndicator valueOf(int value) {
+            if(value == CarReadyIndicator.LIGHTS_OUT.value) {
                 return CarReadyIndicator.LIGHTS_OUT;
             }
-            if(v == CarReadyIndicator.BLINKING.value) {
+            if(value == CarReadyIndicator.BLINKING.value) {
                 return CarReadyIndicator.BLINKING;
             }
-            return v == CarReadyIndicator.LIGHTING.value ? CarReadyIndicator.LIGHTING : CarReadyIndicator.__UNKNOWN__;
+            return value == CarReadyIndicator.LIGHTING.value ? CarReadyIndicator.LIGHTING : CarReadyIndicator.__UNKNOWN__;
         }
     }
 
@@ -32,18 +32,18 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private DayNightMode(int v1) {
-            this.value = v1;
+        private DayNightMode(int value) {
+            this.value = value;
         }
 
-        public static DayNightMode valueOf(int v) {
-            if(v == DayNightMode.DAY.value) {
+        public static DayNightMode valueOf(int value) {
+            if(value == DayNightMode.DAY.value) {
                 return DayNightMode.DAY;
             }
-            if(v == DayNightMode.TWILIGHT.value) {
+            if(value == DayNightMode.TWILIGHT.value) {
                 return DayNightMode.TWILIGHT;
             }
-            return v == DayNightMode.NIGHT.value ? DayNightMode.NIGHT : DayNightMode.__UNKNOWN__;
+            return value == DayNightMode.NIGHT.value ? DayNightMode.NIGHT : DayNightMode.__UNKNOWN__;
         }
     }
 
@@ -54,15 +54,15 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private EngineCrankState(int v1) {
-            this.value = v1;
+        private EngineCrankState(int value) {
+            this.value = value;
         }
 
-        public static EngineCrankState valueOf(int v) {
-            if(v == EngineCrankState.NOT_ON_CRANK.value) {
+        public static EngineCrankState valueOf(int value) {
+            if(value == EngineCrankState.NOT_ON_CRANK.value) {
                 return EngineCrankState.NOT_ON_CRANK;
             }
-            return v == EngineCrankState.CRANK.value ? EngineCrankState.CRANK : EngineCrankState.__UNKNOWN__;
+            return value == EngineCrankState.CRANK.value ? EngineCrankState.CRANK : EngineCrankState.__UNKNOWN__;
         }
     }
 
@@ -77,83 +77,59 @@ public interface ICarInfo extends IBaseApi {
         GEAR_EIGHT(8),
         GEAR_NINE(9),
         SPORT(11),
-        PARKING(12),
-        REVERSE(13),
-        NEUTRAL(14),
-        DRIVE(15),
-        MANUAL_MODE(16),
-        L(17),
-        DS(18),
-        CONFIRMED(19),
-        BRAKE(20),
-        NOT_AVAILABLE(21),
+        DRIVE(12),
+        PARKING(13),
+        REVERSE(14),
+        NEUTRAL(15),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private GearPosition(int v1) {
-            this.value = v1;
+        private GearPosition(int value) {
+            this.value = value;
         }
 
-        public static GearPosition valueOf(int v) {
-            if(v == GearPosition.GEAR_FIRST.value) {
+        public static GearPosition valueOf(int value) {
+            if(value == GearPosition.GEAR_FIRST.value) {
                 return GearPosition.GEAR_FIRST;
             }
-            if(v == GearPosition.GEAR_TOW.value) {
+            if(value == GearPosition.GEAR_TOW.value) {
                 return GearPosition.GEAR_TOW;
             }
-            if(v == GearPosition.GEAR_THIRD.value) {
+            if(value == GearPosition.GEAR_THIRD.value) {
                 return GearPosition.GEAR_THIRD;
             }
-            if(v == GearPosition.GEAR_FOUR.value) {
+            if(value == GearPosition.GEAR_FOUR.value) {
                 return GearPosition.GEAR_FOUR;
             }
-            if(v == GearPosition.GEAR_FIVE.value) {
+            if(value == GearPosition.GEAR_FIVE.value) {
                 return GearPosition.GEAR_FIVE;
             }
-            if(v == GearPosition.GEAR_SIX.value) {
+            if(value == GearPosition.GEAR_SIX.value) {
                 return GearPosition.GEAR_SIX;
             }
-            if(v == GearPosition.GEAR_SEVEN.value) {
+            if(value == GearPosition.GEAR_SEVEN.value) {
                 return GearPosition.GEAR_SEVEN;
             }
-            if(v == GearPosition.GEAR_EIGHT.value) {
+            if(value == GearPosition.GEAR_EIGHT.value) {
                 return GearPosition.GEAR_EIGHT;
             }
-            if(v == GearPosition.GEAR_NINE.value) {
+            if(value == GearPosition.GEAR_NINE.value) {
                 return GearPosition.GEAR_NINE;
             }
-            if(v == GearPosition.SPORT.value) {
+            if(value == GearPosition.SPORT.value) {
                 return GearPosition.SPORT;
             }
-            if(v == GearPosition.PARKING.value) {
-                return GearPosition.PARKING;
-            }
-            if(v == GearPosition.REVERSE.value) {
-                return GearPosition.REVERSE;
-            }
-            if(v == GearPosition.NEUTRAL.value) {
-                return GearPosition.NEUTRAL;
-            }
-            if(v == GearPosition.DRIVE.value) {
+            if(value == GearPosition.DRIVE.value) {
                 return GearPosition.DRIVE;
             }
-            if(v == GearPosition.MANUAL_MODE.value) {
-                return GearPosition.MANUAL_MODE;
+            if(value == GearPosition.PARKING.value) {
+                return GearPosition.PARKING;
             }
-            if(v == GearPosition.L.value) {
-                return GearPosition.L;
+            if(value == GearPosition.REVERSE.value) {
+                return GearPosition.REVERSE;
             }
-            if(v == GearPosition.DS.value) {
-                return GearPosition.DS;
-            }
-            if(v == GearPosition.CONFIRMED.value) {
-                return GearPosition.CONFIRMED;
-            }
-            if(v == GearPosition.BRAKE.value) {
-                return GearPosition.BRAKE;
-            }
-            return v == GearPosition.NOT_AVAILABLE.value ? GearPosition.NOT_AVAILABLE : GearPosition.__UNKNOWN__;
+            return value == GearPosition.NEUTRAL.value ? GearPosition.NEUTRAL : GearPosition.__UNKNOWN__;
         }
     }
 
@@ -167,24 +143,24 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private GearPositionA9E(int v1) {
-            this.value = v1;
+        private GearPositionA9E(int value) {
+            this.value = value;
         }
 
-        public static GearPositionA9E valueOf(int v) {
-            if(v == GearPositionA9E.INVALID.value) {
+        public static GearPositionA9E valueOf(int value) {
+            if(value == GearPositionA9E.INVALID.value) {
                 return GearPositionA9E.INVALID;
             }
-            if(v == GearPositionA9E.DRIVE.value) {
+            if(value == GearPositionA9E.DRIVE.value) {
                 return GearPositionA9E.DRIVE;
             }
-            if(v == GearPositionA9E.NEUTRAL.value) {
+            if(value == GearPositionA9E.NEUTRAL.value) {
                 return GearPositionA9E.NEUTRAL;
             }
-            if(v == GearPositionA9E.REVERSE.value) {
+            if(value == GearPositionA9E.REVERSE.value) {
                 return GearPositionA9E.REVERSE;
             }
-            return v == GearPositionA9E.PARKING.value ? GearPositionA9E.PARKING : GearPositionA9E.__UNKNOWN__;
+            return value == GearPositionA9E.PARKING.value ? GearPositionA9E.PARKING : GearPositionA9E.__UNKNOWN__;
         }
     }
 
@@ -204,42 +180,42 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private GearPositionHEV(int v1) {
-            this.value = v1;
+        private GearPositionHEV(int value) {
+            this.value = value;
         }
 
-        public static GearPositionHEV valueOf(int v) {
-            if(v == GearPositionHEV.INVALID.value) {
+        public static GearPositionHEV valueOf(int value) {
+            if(value == GearPositionHEV.INVALID.value) {
                 return GearPositionHEV.INVALID;
             }
-            if(v == GearPositionHEV.PARKING.value) {
+            if(value == GearPositionHEV.PARKING.value) {
                 return GearPositionHEV.PARKING;
             }
-            if(v == GearPositionHEV.REVERSE.value) {
+            if(value == GearPositionHEV.REVERSE.value) {
                 return GearPositionHEV.REVERSE;
             }
-            if(v == GearPositionHEV.NEUTRAL.value) {
+            if(value == GearPositionHEV.NEUTRAL.value) {
                 return GearPositionHEV.NEUTRAL;
             }
-            if(v == GearPositionHEV.DRIVE.value) {
+            if(value == GearPositionHEV.DRIVE.value) {
                 return GearPositionHEV.DRIVE;
             }
-            if(v == GearPositionHEV.DRIVE_INCREASE.value) {
+            if(value == GearPositionHEV.DRIVE_INCREASE.value) {
                 return GearPositionHEV.DRIVE_INCREASE;
             }
-            if(v == GearPositionHEV.DRIVE_REDUCE.value) {
+            if(value == GearPositionHEV.DRIVE_REDUCE.value) {
                 return GearPositionHEV.DRIVE_REDUCE;
             }
-            if(v == GearPositionHEV.SPORT.value) {
+            if(value == GearPositionHEV.SPORT.value) {
                 return GearPositionHEV.SPORT;
             }
-            if(v == GearPositionHEV.MANUAL.value) {
+            if(value == GearPositionHEV.MANUAL.value) {
                 return GearPositionHEV.MANUAL;
             }
-            if(v == GearPositionHEV.MANUAL_INCREASE.value) {
+            if(value == GearPositionHEV.MANUAL_INCREASE.value) {
                 return GearPositionHEV.MANUAL_INCREASE;
             }
-            return v == GearPositionHEV.MANUAL_REDUCE.value ? GearPositionHEV.MANUAL_REDUCE : GearPositionHEV.__UNKNOWN__;
+            return value == GearPositionHEV.MANUAL_REDUCE.value ? GearPositionHEV.MANUAL_REDUCE : GearPositionHEV.__UNKNOWN__;
         }
     }
 
@@ -254,27 +230,27 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private LowBatteryWarningLevel(int v1) {
-            this.value = v1;
+        private LowBatteryWarningLevel(int value) {
+            this.value = value;
         }
 
-        public static LowBatteryWarningLevel valueOf(int v) {
-            if(v == LowBatteryWarningLevel.LEVEL_1.value) {
+        public static LowBatteryWarningLevel valueOf(int value) {
+            if(value == LowBatteryWarningLevel.LEVEL_1.value) {
                 return LowBatteryWarningLevel.LEVEL_1;
             }
-            if(v == LowBatteryWarningLevel.LEVEL_2.value) {
+            if(value == LowBatteryWarningLevel.LEVEL_2.value) {
                 return LowBatteryWarningLevel.LEVEL_2;
             }
-            if(v == LowBatteryWarningLevel.LEVEL_3.value) {
+            if(value == LowBatteryWarningLevel.LEVEL_3.value) {
                 return LowBatteryWarningLevel.LEVEL_3;
             }
-            if(v == LowBatteryWarningLevel.LEVEL_4.value) {
+            if(value == LowBatteryWarningLevel.LEVEL_4.value) {
                 return LowBatteryWarningLevel.LEVEL_4;
             }
-            if(v == LowBatteryWarningLevel.LEVEL_5.value) {
+            if(value == LowBatteryWarningLevel.LEVEL_5.value) {
                 return LowBatteryWarningLevel.LEVEL_5;
             }
-            return v == LowBatteryWarningLevel.OFF.value ? LowBatteryWarningLevel.OFF : LowBatteryWarningLevel.__UNKNOWN__;
+            return value == LowBatteryWarningLevel.OFF.value ? LowBatteryWarningLevel.OFF : LowBatteryWarningLevel.__UNKNOWN__;
         }
     }
 
@@ -286,18 +262,18 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private ParkingBrakeState(int v1) {
-            this.value = v1;
+        private ParkingBrakeState(int value) {
+            this.value = value;
         }
 
-        public static ParkingBrakeState valueOf(int v) {
-            if(v == ParkingBrakeState.PARKING_BRAKE_NOT_APPLIED.value) {
+        public static ParkingBrakeState valueOf(int value) {
+            if(value == ParkingBrakeState.PARKING_BRAKE_NOT_APPLIED.value) {
                 return ParkingBrakeState.PARKING_BRAKE_NOT_APPLIED;
             }
-            if(v == ParkingBrakeState.PARKING_BRAKE_APPLIED.value) {
+            if(value == ParkingBrakeState.PARKING_BRAKE_APPLIED.value) {
                 return ParkingBrakeState.PARKING_BRAKE_APPLIED;
             }
-            return v == ParkingBrakeState.UNAVAILABLE.value ? ParkingBrakeState.UNAVAILABLE : ParkingBrakeState.__UNKNOWN__;
+            return value == ParkingBrakeState.UNAVAILABLE.value ? ParkingBrakeState.UNAVAILABLE : ParkingBrakeState.__UNKNOWN__;
         }
     }
 
@@ -310,21 +286,21 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private PowerMode(int v1) {
-            this.value = v1;
+        private PowerMode(int value) {
+            this.value = value;
         }
 
-        public static PowerMode valueOf(int v) {
-            if(v == PowerMode.ACC.value) {
+        public static PowerMode valueOf(int value) {
+            if(value == PowerMode.ACC.value) {
                 return PowerMode.ACC;
             }
-            if(v == PowerMode.ON.value) {
+            if(value == PowerMode.ON.value) {
                 return PowerMode.ON;
             }
-            if(v == PowerMode.CRANK.value) {
+            if(value == PowerMode.CRANK.value) {
                 return PowerMode.CRANK;
             }
-            return v == PowerMode.OFF.value ? PowerMode.OFF : PowerMode.__UNKNOWN__;
+            return value == PowerMode.OFF.value ? PowerMode.OFF : PowerMode.__UNKNOWN__;
         }
     }
 
@@ -335,15 +311,15 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private RearGearState(int v1) {
-            this.value = v1;
+        private RearGearState(int value) {
+            this.value = value;
         }
 
-        public static RearGearState valueOf(int v) {
-            if(v == RearGearState.NOT_ENGAGED.value) {
+        public static RearGearState valueOf(int value) {
+            if(value == RearGearState.NOT_ENGAGED.value) {
                 return RearGearState.NOT_ENGAGED;
             }
-            return v == RearGearState.ENGAGED.value ? RearGearState.ENGAGED : RearGearState.__UNKNOWN__;
+            return value == RearGearState.ENGAGED.value ? RearGearState.ENGAGED : RearGearState.__UNKNOWN__;
         }
     }
 
@@ -354,15 +330,15 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private SleepWakeUpCommand(int v1) {
-            this.value = v1;
+        private SleepWakeUpCommand(int value) {
+            this.value = value;
         }
 
-        public static SleepWakeUpCommand valueOf(int v) {
-            if(v == SleepWakeUpCommand.GO_TO_SLEEP.value) {
+        public static SleepWakeUpCommand valueOf(int value) {
+            if(value == SleepWakeUpCommand.GO_TO_SLEEP.value) {
                 return SleepWakeUpCommand.GO_TO_SLEEP;
             }
-            return v == SleepWakeUpCommand.WAKEUP.value ? SleepWakeUpCommand.WAKEUP : SleepWakeUpCommand.__UNKNOWN__;
+            return value == SleepWakeUpCommand.WAKEUP.value ? SleepWakeUpCommand.WAKEUP : SleepWakeUpCommand.__UNKNOWN__;
         }
     }
 
@@ -373,15 +349,15 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private VehicleModeBroadcast(int v1) {
-            this.value = v1;
+        private VehicleModeBroadcast(int value) {
+            this.value = value;
         }
 
-        public static VehicleModeBroadcast valueOf(int v) {
-            if(v == VehicleModeBroadcast.NORMAL.value) {
+        public static VehicleModeBroadcast valueOf(int value) {
+            if(value == VehicleModeBroadcast.NORMAL.value) {
                 return VehicleModeBroadcast.NORMAL;
             }
-            return v == VehicleModeBroadcast.OTA.value ? VehicleModeBroadcast.OTA : VehicleModeBroadcast.__UNKNOWN__;
+            return value == VehicleModeBroadcast.OTA.value ? VehicleModeBroadcast.OTA : VehicleModeBroadcast.__UNKNOWN__;
         }
     }
 
@@ -399,36 +375,36 @@ public interface ICarInfo extends IBaseApi {
 
         public final int value;
 
-        private VehicleState(int v1) {
-            this.value = v1;
+        private VehicleState(int value) {
+            this.value = value;
         }
 
-        public static VehicleState valueOf(int v) {
-            if(v == VehicleState.SLEEPING.value) {
+        public static VehicleState valueOf(int value) {
+            if(value == VehicleState.SLEEPING.value) {
                 return VehicleState.SLEEPING;
             }
-            if(v == VehicleState.CUTOFF_PENDING.value) {
+            if(value == VehicleState.CUTOFF_PENDING.value) {
                 return VehicleState.CUTOFF_PENDING;
             }
-            if(v == VehicleState.AUTO_ACC.value) {
+            if(value == VehicleState.AUTO_ACC.value) {
                 return VehicleState.AUTO_ACC;
             }
-            if(v == VehicleState.IGNITION_LEVEL.value) {
+            if(value == VehicleState.IGNITION_LEVEL.value) {
                 return VehicleState.IGNITION_LEVEL;
             }
-            if(v == VehicleState.STARTING_IN_PROGRESS.value) {
+            if(value == VehicleState.STARTING_IN_PROGRESS.value) {
                 return VehicleState.STARTING_IN_PROGRESS;
             }
-            if(v == VehicleState.POWER_TRAIN_RUNNING.value) {
+            if(value == VehicleState.POWER_TRAIN_RUNNING.value) {
                 return VehicleState.POWER_TRAIN_RUNNING;
             }
-            if(v == VehicleState.AUTO_START.value) {
+            if(value == VehicleState.AUTO_START.value) {
                 return VehicleState.AUTO_START;
             }
-            if(v == VehicleState.ENGINE_SYSTEM_STOP.value) {
+            if(value == VehicleState.ENGINE_SYSTEM_STOP.value) {
                 return VehicleState.ENGINE_SYSTEM_STOP;
             }
-            return v == VehicleState.UNAVAILABLE.value ? VehicleState.UNAVAILABLE : VehicleState.__UNKNOWN__;
+            return value == VehicleState.UNAVAILABLE.value ? VehicleState.UNAVAILABLE : VehicleState.__UNKNOWN__;
         }
     }
 

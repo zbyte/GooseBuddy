@@ -8,9 +8,10 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.lang.reflect.InvocationTargetException;
@@ -50,7 +51,7 @@ public class CarAudioManager {
         }
     }
 
-    static final class CarAudioManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
+    static final class CarAudioManagerGlobal extends com.yftech.car.audio.ICarAudioCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
         private static final CarAudioManagerGlobal CAR_AUDIO_MANAGER_GLOBAL = new CarAudioManagerGlobal();
         private final ArrayMap mCallbackMap;
         private static ICarAudioService mCarAudioService;
@@ -84,7 +85,7 @@ public class CarAudioManager {
 
         private boolean connectCarAudioServiceLocked() {
             if(CarAudioManagerGlobal.mCarAudioService == null || CarAudioManagerGlobal.mCarAudioService.asBinder() == null || !CarAudioManagerGlobal.mCarAudioService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_audio");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_audio");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -96,13 +97,14 @@ public class CarAudioManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarAudioManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarAudioManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
+
             return false;
         }
 
@@ -465,13 +467,9 @@ public class CarAudioManager {
     public static final int SPEED_AUDIO_GAIN_LEVEL_1 = 1;
     public static final int SPEED_AUDIO_GAIN_LEVEL_2 = 2;
     public static final int SPEED_AUDIO_GAIN_LEVEL_3 = 3;
-    public static final int SPEED_AUDIO_GAIN_LEVEL_OFF;
-    private static final String TAG;
+    public static final int SPEED_AUDIO_GAIN_LEVEL_OFF = 0;
+    private static final String TAG = "CarAudioManager";
     private static volatile CarAudioManager mInstance;
-
-    static {
-        CarAudioManager.TAG = "CarAudioManager";
-    }
 
     static String access$000() {
         return "CarAudioManager";

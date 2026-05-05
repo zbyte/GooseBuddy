@@ -16,35 +16,35 @@ public interface ICarIcm extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private BackLightLevel(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private BackLightLevel(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static BackLightLevel valueOf(int v) {
-            if(v == BackLightLevel.LEVEL_1.rx) {
+        public static BackLightLevel valueOf(int value) {
+            if(value == BackLightLevel.LEVEL_1.rx) {
                 return BackLightLevel.LEVEL_1;
             }
-            if(v == BackLightLevel.LEVEL_2.rx) {
+            if(value == BackLightLevel.LEVEL_2.rx) {
                 return BackLightLevel.LEVEL_2;
             }
-            if(v == BackLightLevel.LEVEL_3.rx) {
+            if(value == BackLightLevel.LEVEL_3.rx) {
                 return BackLightLevel.LEVEL_3;
             }
-            if(v == BackLightLevel.LEVEL_4.rx) {
+            if(value == BackLightLevel.LEVEL_4.rx) {
                 return BackLightLevel.LEVEL_4;
             }
-            if(v == BackLightLevel.LEVEL_5.rx) {
+            if(value == BackLightLevel.LEVEL_5.rx) {
                 return BackLightLevel.LEVEL_5;
             }
-            if(v == BackLightLevel.LEVEL_6.rx) {
+            if(value == BackLightLevel.LEVEL_6.rx) {
                 return BackLightLevel.LEVEL_6;
             }
-            if(v == BackLightLevel.LEVEL_7.rx) {
+            if(value == BackLightLevel.LEVEL_7.rx) {
                 return BackLightLevel.LEVEL_7;
             }
-            return v == BackLightLevel.LEVEL_8.rx ? BackLightLevel.LEVEL_8 : BackLightLevel.__UNKNOWN__;
+            return value == BackLightLevel.LEVEL_8.rx ? BackLightLevel.LEVEL_8 : BackLightLevel.__UNKNOWN__;
         }
     }
 
@@ -57,21 +57,21 @@ public interface ICarIcm extends IBaseApi {
 
         public final int value;
 
-        private CurrentSource(int v1) {
-            this.value = v1;
+        private CurrentSource(int value) {
+            this.value = value;
         }
 
-        public static CurrentSource valueOf(int v) {
-            if(v == CurrentSource.OFF.value) {
+        public static CurrentSource valueOf(int value) {
+            if(value == CurrentSource.OFF.value) {
                 return CurrentSource.OFF;
             }
-            if(v == CurrentSource.USB_MUSIC.value) {
+            if(value == CurrentSource.USB_MUSIC.value) {
                 return CurrentSource.USB_MUSIC;
             }
-            if(v == CurrentSource.BT_MUSIC.value) {
+            if(value == CurrentSource.BT_MUSIC.value) {
                 return CurrentSource.BT_MUSIC;
             }
-            return v == CurrentSource.CARPLAY_MUSIC.value ? CurrentSource.CARPLAY_MUSIC : CurrentSource.__UNKNOWN__;
+            return value == CurrentSource.CARPLAY_MUSIC.value ? CurrentSource.CARPLAY_MUSIC : CurrentSource.__UNKNOWN__;
         }
     }
 
@@ -86,23 +86,23 @@ public interface ICarIcm extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private FuelEconomyAndDistanceUnit(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private FuelEconomyAndDistanceUnit(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static FuelEconomyAndDistanceUnit valueOf(int v) {
-            if(v == FuelEconomyAndDistanceUnit.L_PER_100KM_AND_KM.rx) {
+        public static FuelEconomyAndDistanceUnit valueOf(int value) {
+            if(value == FuelEconomyAndDistanceUnit.L_PER_100KM_AND_KM.rx) {
                 return FuelEconomyAndDistanceUnit.L_PER_100KM_AND_KM;
             }
-            if(v == FuelEconomyAndDistanceUnit.MPG_GB_AND_M.rx) {
+            if(value == FuelEconomyAndDistanceUnit.MPG_GB_AND_M.rx) {
                 return FuelEconomyAndDistanceUnit.MPG_GB_AND_M;
             }
-            if(v == FuelEconomyAndDistanceUnit.MPG_US_AND_M.rx) {
+            if(value == FuelEconomyAndDistanceUnit.MPG_US_AND_M.rx) {
                 return FuelEconomyAndDistanceUnit.MPG_US_AND_M;
             }
-            return v == FuelEconomyAndDistanceUnit.KM_L_AND_KM.rx ? FuelEconomyAndDistanceUnit.KM_L_AND_KM : FuelEconomyAndDistanceUnit.__UNKNOWN__;
+            return value == FuelEconomyAndDistanceUnit.KM_L_AND_KM.rx ? FuelEconomyAndDistanceUnit.KM_L_AND_KM : FuelEconomyAndDistanceUnit.__UNKNOWN__;
         }
     }
 
@@ -120,36 +120,36 @@ public interface ICarIcm extends IBaseApi {
 
         public final int value;
 
-        private ICMCurrentShowPage(int v1) {
-            this.value = v1;
+        private ICMCurrentShowPage(int value) {
+            this.value = value;
         }
 
-        public static ICMCurrentShowPage valueOf(int v) {
-            if(v == ICMCurrentShowPage.NO_LVDS.value) {
+        public static ICMCurrentShowPage valueOf(int value) {
+            if(value == ICMCurrentShowPage.NO_LVDS.value) {
                 return ICMCurrentShowPage.NO_LVDS;
             }
-            if(v == ICMCurrentShowPage.MAINDISPLAYZONE_ON.value) {
+            if(value == ICMCurrentShowPage.MAINDISPLAYZONE_ON.value) {
                 return ICMCurrentShowPage.MAINDISPLAYZONE_ON;
             }
-            if(v == ICMCurrentShowPage.SLAVEDISPLAYZONE_ON.value) {
+            if(value == ICMCurrentShowPage.SLAVEDISPLAYZONE_ON.value) {
                 return ICMCurrentShowPage.SLAVEDISPLAYZONE_ON;
             }
-            if(v == ICMCurrentShowPage.ALLDISPLAYZONE_ON.value) {
+            if(value == ICMCurrentShowPage.ALLDISPLAYZONE_ON.value) {
                 return ICMCurrentShowPage.ALLDISPLAYZONE_ON;
             }
-            if(v == ICMCurrentShowPage.STOPWATCH_DISPLAY.value) {
+            if(value == ICMCurrentShowPage.STOPWATCH_DISPLAY.value) {
                 return ICMCurrentShowPage.STOPWATCH_DISPLAY;
             }
-            if(v == ICMCurrentShowPage.POWER_DISPLAY.value) {
+            if(value == ICMCurrentShowPage.POWER_DISPLAY.value) {
                 return ICMCurrentShowPage.POWER_DISPLAY;
             }
-            if(v == ICMCurrentShowPage.NAVI_DISPLAY.value) {
+            if(value == ICMCurrentShowPage.NAVI_DISPLAY.value) {
                 return ICMCurrentShowPage.NAVI_DISPLAY;
             }
-            if(v == ICMCurrentShowPage.MEDIA_DISPLAY.value) {
+            if(value == ICMCurrentShowPage.MEDIA_DISPLAY.value) {
                 return ICMCurrentShowPage.MEDIA_DISPLAY;
             }
-            return v == ICMCurrentShowPage.FACE_ID_DISPLAY.value ? ICMCurrentShowPage.FACE_ID_DISPLAY : ICMCurrentShowPage.__UNKNOWN__;
+            return value == ICMCurrentShowPage.FACE_ID_DISPLAY.value ? ICMCurrentShowPage.FACE_ID_DISPLAY : ICMCurrentShowPage.__UNKNOWN__;
         }
     }
 
@@ -167,36 +167,36 @@ public interface ICarIcm extends IBaseApi {
 
         public final int value;
 
-        private ICMShowPageSetting(int v1) {
-            this.value = v1;
+        private ICMShowPageSetting(int value) {
+            this.value = value;
         }
 
-        public static ICMShowPageSetting valueOf(int v) {
-            if(v == ICMShowPageSetting.NO_COMMAND.value) {
+        public static ICMShowPageSetting valueOf(int value) {
+            if(value == ICMShowPageSetting.NO_COMMAND.value) {
                 return ICMShowPageSetting.NO_COMMAND;
             }
-            if(v == ICMShowPageSetting.STOPWATCH_START.value) {
+            if(value == ICMShowPageSetting.STOPWATCH_START.value) {
                 return ICMShowPageSetting.STOPWATCH_START;
             }
-            if(v == ICMShowPageSetting.STOPWATCH_STOP.value) {
+            if(value == ICMShowPageSetting.STOPWATCH_STOP.value) {
                 return ICMShowPageSetting.STOPWATCH_STOP;
             }
-            if(v == ICMShowPageSetting.POWER_START.value) {
+            if(value == ICMShowPageSetting.POWER_START.value) {
                 return ICMShowPageSetting.POWER_START;
             }
-            if(v == ICMShowPageSetting.POWER_STOP.value) {
+            if(value == ICMShowPageSetting.POWER_STOP.value) {
                 return ICMShowPageSetting.POWER_STOP;
             }
-            if(v == ICMShowPageSetting.NAV_START.value) {
+            if(value == ICMShowPageSetting.NAV_START.value) {
                 return ICMShowPageSetting.NAV_START;
             }
-            if(v == ICMShowPageSetting.NAV_STOP.value) {
+            if(value == ICMShowPageSetting.NAV_STOP.value) {
                 return ICMShowPageSetting.NAV_STOP;
             }
-            if(v == ICMShowPageSetting.MEDIA_START.value) {
+            if(value == ICMShowPageSetting.MEDIA_START.value) {
                 return ICMShowPageSetting.MEDIA_START;
             }
-            return v == ICMShowPageSetting.MEDIA_STOP.value ? ICMShowPageSetting.MEDIA_STOP : ICMShowPageSetting.__UNKNOWN__;
+            return value == ICMShowPageSetting.MEDIA_STOP.value ? ICMShowPageSetting.MEDIA_STOP : ICMShowPageSetting.__UNKNOWN__;
         }
     }
 
@@ -212,58 +212,58 @@ public interface ICarIcm extends IBaseApi {
         VIETNAMENSE(9, 9),
         THAI(10, 10),
         MALAY(11, 11),
-        FRENCH(12, 12),
-        ITALY(13, 13),
+        FRENCH(13, 13),
+        ITALY(12, 12),
         __UNKNOWN__(-1, -1);
 
         private final int rx;
         private final int tx;
         public final int value;
 
-        private Language(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private Language(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static Language valueOf(int v) {
-            if(v == Language.CHINESE.rx) {
+        public static Language valueOf(int value) {
+            if(value == Language.CHINESE.rx) {
                 return Language.CHINESE;
             }
-            if(v == Language.ENGLISH.rx) {
+            if(value == Language.ENGLISH.rx) {
                 return Language.ENGLISH;
             }
-            if(v == Language.RUSSIAN.rx) {
+            if(value == Language.RUSSIAN.rx) {
                 return Language.RUSSIAN;
             }
-            if(v == Language.ARABIC.rx) {
+            if(value == Language.ARABIC.rx) {
                 return Language.ARABIC;
             }
-            if(v == Language.SPANISH.rx) {
+            if(value == Language.SPANISH.rx) {
                 return Language.SPANISH;
             }
-            if(v == Language.PORTUGUESE.rx) {
+            if(value == Language.PORTUGUESE.rx) {
                 return Language.PORTUGUESE;
             }
-            if(v == Language.INDONESIAN.rx) {
+            if(value == Language.INDONESIAN.rx) {
                 return Language.INDONESIAN;
             }
-            if(v == Language.CHINESE_TRADITIONAL.rx) {
+            if(value == Language.CHINESE_TRADITIONAL.rx) {
                 return Language.CHINESE_TRADITIONAL;
             }
-            if(v == Language.VIETNAMENSE.rx) {
+            if(value == Language.VIETNAMENSE.rx) {
                 return Language.VIETNAMENSE;
             }
-            if(v == Language.THAI.rx) {
+            if(value == Language.THAI.rx) {
                 return Language.THAI;
             }
-            if(v == Language.MALAY.rx) {
+            if(value == Language.MALAY.rx) {
                 return Language.MALAY;
             }
-            if(v == Language.FRENCH.rx) {
+            if(value == Language.FRENCH.rx) {
                 return Language.FRENCH;
             }
-            return v == Language.ITALY.rx ? Language.ITALY : Language.__UNKNOWN__;
+            return value == Language.ITALY.rx ? Language.ITALY : Language.__UNKNOWN__;
         }
     }
 
@@ -277,20 +277,20 @@ public interface ICarIcm extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private MeterVolumeMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private MeterVolumeMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static MeterVolumeMode valueOf(int v) {
-            if(v == MeterVolumeMode.LOW.rx) {
+        public static MeterVolumeMode valueOf(int value) {
+            if(value == MeterVolumeMode.LOW.rx) {
                 return MeterVolumeMode.LOW;
             }
-            if(v == MeterVolumeMode.MIDDLE.rx) {
+            if(value == MeterVolumeMode.MIDDLE.rx) {
                 return MeterVolumeMode.MIDDLE;
             }
-            return v == MeterVolumeMode.HIGH.rx ? MeterVolumeMode.HIGH : MeterVolumeMode.__UNKNOWN__;
+            return value == MeterVolumeMode.HIGH.rx ? MeterVolumeMode.HIGH : MeterVolumeMode.__UNKNOWN__;
         }
     }
 
@@ -304,20 +304,20 @@ public interface ICarIcm extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private PressureUnit(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private PressureUnit(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static PressureUnit valueOf(int v) {
-            if(v == PressureUnit.K_PA.rx) {
+        public static PressureUnit valueOf(int value) {
+            if(value == PressureUnit.K_PA.rx) {
                 return PressureUnit.K_PA;
             }
-            if(v == PressureUnit.BAR.rx) {
+            if(value == PressureUnit.BAR.rx) {
                 return PressureUnit.BAR;
             }
-            return v == PressureUnit.PSI.rx ? PressureUnit.PSI : PressureUnit.__UNKNOWN__;
+            return value == PressureUnit.PSI.rx ? PressureUnit.PSI : PressureUnit.__UNKNOWN__;
         }
     }
 
@@ -330,17 +330,17 @@ public interface ICarIcm extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private TemperatureUnit(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private TemperatureUnit(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static TemperatureUnit valueOf(int v) {
-            if(v == TemperatureUnit.CELSIUS.rx) {
+        public static TemperatureUnit valueOf(int value) {
+            if(value == TemperatureUnit.CELSIUS.rx) {
                 return TemperatureUnit.CELSIUS;
             }
-            return v == TemperatureUnit.FAHRENHEIT.rx ? TemperatureUnit.FAHRENHEIT : TemperatureUnit.__UNKNOWN__;
+            return value == TemperatureUnit.FAHRENHEIT.rx ? TemperatureUnit.FAHRENHEIT : TemperatureUnit.__UNKNOWN__;
         }
     }
 

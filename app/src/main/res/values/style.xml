@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="ItemSwitchMultiButtonStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">40.0dp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="bg">@mipmap/btn_nor</item>
+        <item name="selectedBg">@mipmap/btn_sel</item>
+        <item name="selectedTextColor">#ffffffff</item>
+        <item name="selectedTypeface">sourcehan-sans-medium</item>
+        <item name="textSize">@dimen/multi_button_text_size</item>
+        <item name="unselectedTextColor">#b3ffffff</item>
+        <item name="unselectedTypeface">sourcehan-sans</item>
+    </style>
+    <style name="style_switch">
+        <item name="android:layout_gravity">start|center_vertical</item>
+        <item name="android:layout_width">84.0dp</item>
+        <item name="android:layout_height">36.0dp</item>
+        <item name="android:thumb">@drawable/selector_switch_thumb</item>
+        <item name="splitTrack">false</item>
+        <item name="switchMinWidth">84.0dp</item>
+        <item name="track">@drawable/selector_switch_bg</item>
+    </style>
+    <style name="ItemButtonStyle">
+        <item name="android:textSize">@dimen/item_button_text_size</item>
+        <item name="android:textColor">@color/button_text_color</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/selector_btn_bg</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minWidth">112.0dp</item>
+        <item name="android:minHeight">40.0dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">14.0dp</item>
+        <item name="android:paddingEnd">14.0dp</item>
+        <item name="android:layout_marginStart">20.0dp</item>
+    </style>
+    <style name="ItemSeekBarNumberStyle">
+        <item name="android:layout_width">472.0dp</item>
+        <item name="android:layout_height">68.0dp</item>
+        <item name="android:maxHeight">12.0dp</item>
+        <item name="android:progressDrawable">@drawable/seek_bar_progress</item>
+        <item name="android:thumb">@mipmap/slider_nor2</item>
+        <item name="android:thumbOffset">0.0dp</item>
+        <item name="android:paddingStart">34.0dp</item>
+        <item name="android:paddingEnd">34.0dp</item>
+        <item name="android:splitTrack">false</item>
+    </style>
+    <style name="ItemContentStyle">
+        <item name="android:textSize">@dimen/item_content_text_size</item>
+        <item name="android:textColor">@color/content_text_color</item>
+        <item name="android:gravity">start</item>
+        <item name="android:layout_width">544.0dp</item>
+        <item name="android:layout_height">36.0dp</item>
+        <item name="android:textDirection">5</item>
+    </style>
+    <style name="ItemDescribeStyle">
+        <item name="android:textSize">@dimen/item_describe_text_size</item>
+        <item name="android:textColor">@color/describe_text_color</item>
+        <item name="android:gravity">start</item>
+        <item name="android:layout_width">544.0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textDirection">5</item>
+    </style>
+    <style name="ItemTitleStyle">
+        <item name="android:textSize">@dimen/item_title_text_size</item>
+        <item name="android:textColor">@color/title_text_color</item>
+        <item name="android:gravity">start</item>
+        <item name="android:layout_width">@dimen/item_title_text_width</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:minHeight">@dimen/item_title_text_min_height</item>
+        <item name="android:textDirection">5</item>
+    </style>
+
+    <style name="Settings">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Settings2">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="ScrollStyle">
+        <item name="android:scrollbarSize">6.0dp</item>
+        <item name="android:scrollbarThumbVertical">@drawable/shape_scrollbar_thumb</item>
+        <item name="android:scrollbarTrackVertical">@android:color/transparent</item>
+        <item name="android:scrollbarStyle">outsideInset</item>
+        <item name="android:scrollbarFadeDuration">4000</item>
+        <item name="android:fadeScrollbars">true</item>
+        <item name="android:paddingStart">4.0dp</item>
+        <item name="android:paddingEnd">4.0dp</item>
+    </style>
+    <style name="TabLayoutStyle">
+        <item name="android:background">@drawable/selector_tab_bar_btn_bg</item>
+    </style>
+    <style name="TabLayoutBottomStyle">
+        <item name="android:background">@drawable/selector_tab_bar_bottom_btn_bg</item>
+    </style>
+    <style name="TabLayoutTopStyle">
+        <item name="android:background">@drawable/selector_tab_bar_top_btn_bg</item>
+    </style>
+    <style name="TabLineStyle">
+        <item name="android:layout_alignParentBottom">true</item>
+        <item name="android:layout_marginStart">2.0dp</item>
+        <item name="android:layout_marginEnd">2.0dp</item>
+    </style>
+    <style name="TabIconStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginStart">@dimen/tab_icon_layout_margin_start</item>
+    </style>
+    <style name="TabTextStyle">
+        <item name="android:textSize">@dimen/tab_text_size</item>
+        <item name="android:textColor">@drawable/selector_tab_bar_btn_txt</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginStart">@dimen/tab_text_layout_margin_start</item>
+    </style>
+    <style name="TitleTextStyleNew">
+        <item name="android:textSize">@dimen/title_text_size</item>
+        <item name="android:textColor">@color/title_text_color</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@drawable/title_text_line_bottom</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/title_height</item>
+        <item name="android:drawablePadding">18.0dp</item>
+        <item name="android:fontFamily">sourcehan-sans-medium</item>
+        <item name="android:textDirection">5</item>
+    </style>
+
+</resources>

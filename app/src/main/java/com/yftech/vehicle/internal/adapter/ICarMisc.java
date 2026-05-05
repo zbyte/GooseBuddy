@@ -17,42 +17,42 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private AteCarType(int v1) {
-            this.value = v1;
+        private AteCarType(int value) {
+            this.value = value;
         }
 
-        public static AteCarType valueOf(int v) {
-            if(v == AteCarType.IHU12_A88_A1.value) {
+        public static AteCarType valueOf(int value) {
+            if(value == AteCarType.IHU12_A88_A1.value) {
                 return AteCarType.IHU12_A88_A1;
             }
-            if(v == AteCarType.IHU12_A58_B1.value) {
+            if(value == AteCarType.IHU12_A58_B1.value) {
                 return AteCarType.IHU12_A58_B1;
             }
-            if(v == AteCarType.IHU12_A79_C1.value) {
+            if(value == AteCarType.IHU12_A79_C1.value) {
                 return AteCarType.IHU12_A79_C1;
             }
-            if(v == AteCarType.IHU12_A79_C2.value) {
+            if(value == AteCarType.IHU12_A79_C2.value) {
                 return AteCarType.IHU12_A79_C2;
             }
-            if(v == AteCarType.IHU12_A58G_B2.value) {
+            if(value == AteCarType.IHU12_A58G_B2.value) {
                 return AteCarType.IHU12_A58G_B2;
             }
-            if(v == AteCarType.IHU12_A8E_A2.value) {
+            if(value == AteCarType.IHU12_A8E_A2.value) {
                 return AteCarType.IHU12_A8E_A2;
             }
-            if(v == AteCarType.IHU12_A79G_C3C4.value) {
+            if(value == AteCarType.IHU12_A79G_C3C4.value) {
                 return AteCarType.IHU12_A79G_C3C4;
             }
-            if(v == AteCarType.IHU12_A60_D1.value) {
+            if(value == AteCarType.IHU12_A60_D1.value) {
                 return AteCarType.IHU12_A60_D1;
             }
-            if(v == AteCarType.IHU12_A60_D2.value) {
+            if(value == AteCarType.IHU12_A60_D2.value) {
                 return AteCarType.IHU12_A60_D2;
             }
-            if(v == AteCarType.IHU12_A60_E1.value) {
+            if(value == AteCarType.IHU12_A60_E1.value) {
                 return AteCarType.IHU12_A60_E1;
             }
-            return v == AteCarType.IHU12_A60_E2.value ? AteCarType.IHU12_A60_E2 : AteCarType.__UNKNOWN__;
+            return value == AteCarType.IHU12_A60_E2.value ? AteCarType.IHU12_A60_E2 : AteCarType.__UNKNOWN__;
         }
     }
 
@@ -73,31 +73,36 @@ public interface ICarMisc extends IBaseCmd {
     }
 
     public static class DeviceNode {
+        public boolean ESPConn;
         public boolean GWT_ECTConn;
         public boolean WCMConn;
         public boolean apaConn;
         public boolean avmConn;
         public boolean hvAcConn;
 
-        private DeviceNode(boolean z, boolean z1, boolean z2, boolean z3, boolean z4) {
-            this.hvAcConn = z;
-            this.avmConn = z1;
-            this.apaConn = z2;
-            this.WCMConn = z3;
-            this.GWT_ECTConn = z4;
+        private DeviceNode(boolean isHvAc, boolean avmConn, boolean apaConn, boolean WCMConn, boolean GWT_ECTConn, boolean ESPConn) {
+            this.hvAcConn = isHvAc;
+            this.avmConn = avmConn;
+            this.apaConn = apaConn;
+            this.WCMConn = WCMConn;
+            this.GWT_ECTConn = GWT_ECTConn;
+            this.ESPConn = ESPConn;
         }
 
         @Override
         public String toString() {
-            return "DeviceNode{hvAcConn=" + this.hvAcConn + "avmConn=" + this.avmConn + "apaConn=" + this.apaConn + "WCMConn=" + this.WCMConn + "GWT_ECTConn=" + this.GWT_ECTConn + '}';
+            return "DeviceNode{hvAcConn=" + this.hvAcConn + "avmConn=" + this.avmConn + "apaConn=" + this.apaConn + "WCMConn=" + this.WCMConn + "GWT_ECTConn=" + this.GWT_ECTConn + "ESPConn=" + this.ESPConn + '}';
         }
 
-        public static DeviceNode valueOf(int v) {
-            boolean z = (v & 1) == 0;
-            boolean z1 = (v & 2) == 0;
-            boolean z2 = (v & 4) == 0;
-            boolean z3 = (v & 8) == 0;
-            return (v & 16) == 0 ? new DeviceNode(z, z1, z2, z3, true) : new DeviceNode(z, z1, z2, z3, false);
+        public static DeviceNode valueOf(int value) {
+            boolean isHvAc = (value & 1) == 0;
+            boolean isAvm = (value & 2) == 0;
+            boolean isAPA = (value & 4) == 0;
+            boolean WCMConn = (value & 8) == 0;
+            if((value & 16) == 0) {
+                return (value & 0x20) == 0 ? new DeviceNode(isHvAc, isAvm, isAPA, WCMConn, true, true) : new DeviceNode(isHvAc, isAvm, isAPA, WCMConn, true, false);
+            }
+            return (value & 0x20) == 0 ? new DeviceNode(isHvAc, isAvm, isAPA, WCMConn, false, true) : new DeviceNode(isHvAc, isAvm, isAPA, WCMConn, false, false);
         }
     }
 
@@ -112,27 +117,27 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private ECallState(int v1) {
-            this.value = v1;
+        private ECallState(int value) {
+            this.value = value;
         }
 
-        public static ECallState valueOf(int v) {
-            if(v == ECallState.NO_MESSAGE.value) {
+        public static ECallState valueOf(int value) {
+            if(value == ECallState.NO_MESSAGE.value) {
                 return ECallState.NO_MESSAGE;
             }
-            if(v == ECallState.CALL_LAUNCH.value) {
+            if(value == ECallState.CALL_LAUNCH.value) {
                 return ECallState.CALL_LAUNCH;
             }
-            if(v == ECallState.CALL_GOING.value) {
+            if(value == ECallState.CALL_GOING.value) {
                 return ECallState.CALL_GOING;
             }
-            if(v == ECallState.CALL_END.value) {
+            if(value == ECallState.CALL_END.value) {
                 return ECallState.CALL_END;
             }
-            if(v == ECallState.FAILURE.value) {
+            if(value == ECallState.FAILURE.value) {
                 return ECallState.FAILURE;
             }
-            return v == ECallState.MALFUNCTION.value ? ECallState.MALFUNCTION : ECallState.__UNKNOWN__;
+            return value == ECallState.MALFUNCTION.value ? ECallState.MALFUNCTION : ECallState.__UNKNOWN__;
         }
     }
 
@@ -144,18 +149,18 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private EngineerMode(int v1) {
-            this.value = v1;
+        private EngineerMode(int value) {
+            this.value = value;
         }
 
-        public static EngineerMode valueOf(int v) {
-            if(v == EngineerMode.START.value) {
+        public static EngineerMode valueOf(int value) {
+            if(value == EngineerMode.START.value) {
                 return EngineerMode.START;
             }
-            if(v == EngineerMode.STOP.value) {
+            if(value == EngineerMode.STOP.value) {
                 return EngineerMode.STOP;
             }
-            return v == EngineerMode.RESULT.value ? EngineerMode.RESULT : EngineerMode.__UNKNOWN__;
+            return value == EngineerMode.RESULT.value ? EngineerMode.RESULT : EngineerMode.__UNKNOWN__;
         }
     }
 
@@ -173,19 +178,19 @@ public interface ICarMisc extends IBaseCmd {
         public int voltage;
         public int year;
 
-        private ErrorCodeInfo(int v, int v1, int v2, int v3, int v4, int v5, int v6, int v7, int v8, int v9, int v10, int v11) {
-            this.dtc_index = v;
-            this.dtc_state = v1;
-            this.vehicleSpeed = v2;
-            this.motorSpeed = v3;
-            this.voltage = v4;
-            this.odoMeter = v5;
-            this.year = v6;
-            this.month = v7;
-            this.day = v8;
-            this.hour = v9;
-            this.minute = v10;
-            this.sec = v11;
+        private ErrorCodeInfo(int dtc_index, int dtc_state, int vehicleSpeed, int motorSpeed, int voltage, int odoMeter, int year, int month, int day, int hour, int minute, int sec) {
+            this.dtc_index = dtc_index;
+            this.dtc_state = dtc_state;
+            this.vehicleSpeed = vehicleSpeed;
+            this.motorSpeed = motorSpeed;
+            this.voltage = voltage;
+            this.odoMeter = odoMeter;
+            this.year = year;
+            this.month = month;
+            this.day = day;
+            this.hour = hour;
+            this.minute = minute;
+            this.sec = sec;
         }
 
         @Override
@@ -193,8 +198,8 @@ public interface ICarMisc extends IBaseCmd {
             return "ErrorCodeInfo{dtc_index=" + this.dtc_index + ", dtc_state=" + this.dtc_state + ", vehicleSpeed=" + this.vehicleSpeed + ", motorSpeed=" + this.motorSpeed + ", voltage=" + this.voltage + ", odoMeter=" + this.odoMeter + ", year=" + this.year + ", month=" + this.month + ", day=" + this.day + ", hour=" + this.hour + ", minute=" + this.minute + ", sec=" + this.sec + '}';
         }
 
-        public static ErrorCodeInfo valueOf(byte[] arr_b) {
-            return new ErrorCodeInfo(((int)arr_b[0]), ((int)arr_b[1]), arr_b[3] & 0xFF | arr_b[2] << 8, arr_b[5] & 0xFF | arr_b[4] << 8, arr_b[6] & 0xFF, arr_b[7] << 16 | arr_b[8] << 8 | arr_b[9], arr_b[10] & 0xFF, arr_b[11] & 0xFF, arr_b[12] & 0xFF, arr_b[13] & 0xFF, arr_b[14] & 0xFF, arr_b[15] & 0xFF);
+        public static ErrorCodeInfo valueOf(byte[] value) {
+            return new ErrorCodeInfo(((int)value[0]), ((int)value[1]), value[2] << 8 | value[3] & 0xFF, value[4] << 8 | value[5] & 0xFF, value[6] & 0xFF, value[7] << 16 | value[8] << 8 | value[9], value[10] & 0xFF, value[11] & 0xFF, value[12] & 0xFF, value[13] & 0xFF, value[14] & 0xFF, value[15] & 0xFF);
         }
     }
 
@@ -212,36 +217,36 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private HmiMode(int v1) {
-            this.value = v1;
+        private HmiMode(int value) {
+            this.value = value;
         }
 
-        public static HmiMode valueOf(int v) {
-            if(v == HmiMode.ALL_OFF.value) {
+        public static HmiMode valueOf(int value) {
+            if(value == HmiMode.ALL_OFF.value) {
                 return HmiMode.ALL_OFF;
             }
-            if(v == HmiMode.VR.value) {
+            if(value == HmiMode.VR.value) {
                 return HmiMode.VR;
             }
-            if(v == HmiMode.PHONE.value) {
+            if(value == HmiMode.PHONE.value) {
                 return HmiMode.PHONE;
             }
-            if(v == HmiMode.NAVI.value) {
+            if(value == HmiMode.NAVI.value) {
                 return HmiMode.NAVI;
             }
-            if(v == HmiMode.VEHICLE_SETTING.value) {
+            if(value == HmiMode.VEHICLE_SETTING.value) {
                 return HmiMode.VEHICLE_SETTING;
             }
-            if(v == HmiMode.SYSTEM_SETTING.value) {
+            if(value == HmiMode.SYSTEM_SETTING.value) {
                 return HmiMode.SYSTEM_SETTING;
             }
-            if(v == HmiMode.DRIVING_RECORDER.value) {
+            if(value == HmiMode.DRIVING_RECORDER.value) {
                 return HmiMode.DRIVING_RECORDER;
             }
-            if(v == HmiMode.CARPLAY.value) {
+            if(value == HmiMode.CARPLAY.value) {
                 return HmiMode.CARPLAY;
             }
-            return v == HmiMode.CARLIFE.value ? HmiMode.CARLIFE : HmiMode.__UNKNOWN__;
+            return value == HmiMode.CARLIFE.value ? HmiMode.CARLIFE : HmiMode.__UNKNOWN__;
         }
     }
 
@@ -274,13 +279,40 @@ public interface ICarMisc extends IBaseCmd {
         public final int action;
         public final int keyCode;
 
-        private KeyTestEvent(int v, int v1) {
-            this.action = v1;
-            this.keyCode = v;
+        private KeyTestEvent(int keyCode, int action) {
+            this.action = action;
+            this.keyCode = keyCode;
         }
 
-        public static KeyTestEvent valueOf(int v) {
-            return new KeyTestEvent(v >> 8 & 0xFF, v & 0xFF);
+        public static KeyTestEvent valueOf(int value) {
+            return new KeyTestEvent(value >> 8 & 0xFF, value & 0xFF);
+        }
+    }
+
+    public static enum McuWorkMode {
+        NORMAL(0),
+        FATORY_RESET(1),
+        OTA_STATE(2),
+        DELAY_OFF_STATE(3),
+        __UNKNOWN__(-1);
+
+        public final int value;
+
+        private McuWorkMode(int value) {
+            this.value = value;
+        }
+
+        public static McuWorkMode valueOf(int value) {
+            if(value == McuWorkMode.NORMAL.value) {
+                return McuWorkMode.NORMAL;
+            }
+            if(value == McuWorkMode.FATORY_RESET.value) {
+                return McuWorkMode.FATORY_RESET;
+            }
+            if(value == McuWorkMode.OTA_STATE.value) {
+                return McuWorkMode.OTA_STATE;
+            }
+            return value == McuWorkMode.DELAY_OFF_STATE.value ? McuWorkMode.DELAY_OFF_STATE : McuWorkMode.__UNKNOWN__;
         }
     }
 
@@ -301,49 +333,49 @@ public interface ICarMisc extends IBaseCmd {
         public int radioHz;
         public final int value;
 
-        private ProgramSource(int v1) {
-            this.value = v1;
+        private ProgramSource(int value) {
+            this.value = value;
         }
 
-        public ProgramSource setRadioHz(int v) {
-            this.radioHz = v;
+        public ProgramSource setRadioHz(int radioHz) {
+            this.radioHz = radioHz;
             return this;
         }
 
-        public static ProgramSource valueOf(byte[] arr_b) {
-            int v = arr_b[0];
-            int v1 = arr_b[2] & 0xFF | (arr_b[1] & 0xFF) << 8;
-            if(v == ProgramSource.ALL_OFF.value) {
-                return ProgramSource.ALL_OFF.setRadioHz(v1);
+        public static ProgramSource valueOf(byte[] value) {
+            int source = value[0];
+            int radioHz = (value[1] & 0xFF) << 8 | value[2] & 0xFF;
+            if(source == ProgramSource.ALL_OFF.value) {
+                return ProgramSource.ALL_OFF.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.AM.value) {
-                return ProgramSource.AM.setRadioHz(v1);
+            if(source == ProgramSource.AM.value) {
+                return ProgramSource.AM.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.FM.value) {
-                return ProgramSource.FM.setRadioHz(v1);
+            if(source == ProgramSource.FM.value) {
+                return ProgramSource.FM.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.USB1.value) {
-                return ProgramSource.USB1.setRadioHz(v1);
+            if(source == ProgramSource.USB1.value) {
+                return ProgramSource.USB1.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.USB2.value) {
-                return ProgramSource.USB2.setRadioHz(v1);
+            if(source == ProgramSource.USB2.value) {
+                return ProgramSource.USB2.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.CD.value) {
-                return ProgramSource.CD.setRadioHz(v1);
+            if(source == ProgramSource.CD.value) {
+                return ProgramSource.CD.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.SD.value) {
-                return ProgramSource.SD.setRadioHz(v1);
+            if(source == ProgramSource.SD.value) {
+                return ProgramSource.SD.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.BT.value) {
-                return ProgramSource.BT.setRadioHz(v1);
+            if(source == ProgramSource.BT.value) {
+                return ProgramSource.BT.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.AUX.value) {
-                return ProgramSource.AUX.setRadioHz(v1);
+            if(source == ProgramSource.AUX.value) {
+                return ProgramSource.AUX.setRadioHz(radioHz);
             }
-            if(v == ProgramSource.USB3.value) {
-                return ProgramSource.USB3.setRadioHz(v1);
+            if(source == ProgramSource.USB3.value) {
+                return ProgramSource.USB3.setRadioHz(radioHz);
             }
-            return v == ProgramSource.IPOD.value ? ProgramSource.IPOD.setRadioHz(v1) : ProgramSource.__UNKNOWN__;
+            return source == ProgramSource.IPOD.value ? ProgramSource.IPOD.setRadioHz(radioHz) : ProgramSource.__UNKNOWN__;
         }
     }
 
@@ -358,27 +390,27 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private SpeakerCmd(int v1) {
-            this.value = v1;
+        private SpeakerCmd(int value) {
+            this.value = value;
         }
 
-        public static SpeakerCmd valueOf(int v) {
-            if(v == SpeakerCmd.ALL_SPEAKER.value) {
+        public static SpeakerCmd valueOf(int value) {
+            if(value == SpeakerCmd.ALL_SPEAKER.value) {
                 return SpeakerCmd.ALL_SPEAKER;
             }
-            if(v == SpeakerCmd.ONLY_FR_SPEAKER.value) {
+            if(value == SpeakerCmd.ONLY_FR_SPEAKER.value) {
                 return SpeakerCmd.ONLY_FR_SPEAKER;
             }
-            if(v == SpeakerCmd.ONLY_FL_SPEAKER.value) {
+            if(value == SpeakerCmd.ONLY_FL_SPEAKER.value) {
                 return SpeakerCmd.ONLY_FL_SPEAKER;
             }
-            if(v == SpeakerCmd.ONLY_RR_SPEAKER.value) {
+            if(value == SpeakerCmd.ONLY_RR_SPEAKER.value) {
                 return SpeakerCmd.ONLY_RR_SPEAKER;
             }
-            if(v == SpeakerCmd.ONLY_RL_SPEAKER.value) {
+            if(value == SpeakerCmd.ONLY_RL_SPEAKER.value) {
                 return SpeakerCmd.ONLY_RL_SPEAKER;
             }
-            return v == SpeakerCmd.STOP_SPEAKER.value ? SpeakerCmd.STOP_SPEAKER : SpeakerCmd.__UNKNOWN__;
+            return value == SpeakerCmd.STOP_SPEAKER.value ? SpeakerCmd.STOP_SPEAKER : SpeakerCmd.__UNKNOWN__;
         }
     }
 
@@ -390,18 +422,18 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private TftCmd(int v1) {
-            this.value = v1;
+        private TftCmd(int value) {
+            this.value = value;
         }
 
-        public static TftCmd valueOf(int v) {
-            if(v == TftCmd.OPEN.value) {
+        public static TftCmd valueOf(int value) {
+            if(value == TftCmd.OPEN.value) {
                 return TftCmd.OPEN;
             }
-            if(v == TftCmd.CLOSE.value) {
+            if(value == TftCmd.CLOSE.value) {
                 return TftCmd.CLOSE;
             }
-            return v == TftCmd.STOP.value ? TftCmd.STOP : TftCmd.__UNKNOWN__;
+            return value == TftCmd.STOP.value ? TftCmd.STOP : TftCmd.__UNKNOWN__;
         }
     }
 
@@ -417,34 +449,37 @@ public interface ICarMisc extends IBaseCmd {
         public boolean isOpened;
         public final int value;
 
-        private TftColorState(int v1) {
-            this.value = v1;
+        private TftColorState(int value) {
+            this.value = value;
         }
 
-        public TftColorState setIsOpened(boolean z) {
-            this.isOpened = z;
+        public TftColorState setIsOpened(boolean isOpened) {
+            this.isOpened = isOpened;
             return this;
         }
 
-        public static TftColorState valueOf(int v) {
-            int v1 = v >> 8 & 0xFF;
-            boolean z = (v & 0xFF) == 1;
-            if(v1 == TftColorState.STOP_CTL.value) {
+        public static TftColorState valueOf(int value) {
+            boolean z = true;
+            int color = value >> 8 & 0xFF;
+            if((value & 0xFF) != 1) {
+                z = false;
+            }
+            if(color == TftColorState.STOP_CTL.value) {
                 return TftColorState.STOP_CTL.setIsOpened(z);
             }
-            if(v1 == TftColorState.RED.value) {
+            if(color == TftColorState.RED.value) {
                 return TftColorState.RED.setIsOpened(z);
             }
-            if(v1 == TftColorState.GREEN.value) {
+            if(color == TftColorState.GREEN.value) {
                 return TftColorState.GREEN.setIsOpened(z);
             }
-            if(v1 == TftColorState.BLUE.value) {
+            if(color == TftColorState.BLUE.value) {
                 return TftColorState.BLUE.setIsOpened(z);
             }
-            if(v1 == TftColorState.BLACK.value) {
+            if(color == TftColorState.BLACK.value) {
                 return TftColorState.BLACK.setIsOpened(z);
             }
-            return v1 == TftColorState.WHITE.value ? TftColorState.WHITE.setIsOpened(z) : TftColorState.__UNKNOWN__;
+            return color == TftColorState.WHITE.value ? TftColorState.WHITE.setIsOpened(z) : TftColorState.__UNKNOWN__;
         }
     }
 
@@ -456,18 +491,18 @@ public interface ICarMisc extends IBaseCmd {
 
         public final int value;
 
-        private TransportMode(int v1) {
-            this.value = v1;
+        private TransportMode(int value) {
+            this.value = value;
         }
 
-        public static TransportMode valueOf(int v) {
-            if(v == TransportMode.TRANSPORT.value) {
+        public static TransportMode valueOf(int value) {
+            if(value == TransportMode.TRANSPORT.value) {
                 return TransportMode.TRANSPORT;
             }
-            if(v == TransportMode.NOT_TRANSPORT.value) {
+            if(value == TransportMode.NOT_TRANSPORT.value) {
                 return TransportMode.NOT_TRANSPORT;
             }
-            return v == TransportMode.FAULT.value ? TransportMode.FAULT : TransportMode.__UNKNOWN__;
+            return value == TransportMode.FAULT.value ? TransportMode.FAULT : TransportMode.__UNKNOWN__;
         }
     }
 

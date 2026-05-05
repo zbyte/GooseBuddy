@@ -39,23 +39,19 @@ public class DmsCode implements Parcelable {
     public static final int CODE_IMAGE_FORMAT_NV21 = 2;
     public static final int CODE_PROCESS_TYPE_DMS = 0;
     public static final int CODE_PROCESS_TYPE_FR = 30;
-    public static final Parcelable.Creator CREATOR = null;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public DmsCode createFromParcel(Parcel in) {
+            return new DmsCode();
+        }
+
+        public DmsCode[] newArray(int size) {
+            return new DmsCode[size];
+        }
+    };
     public static final int LEVEL_HIGH = 3;
     public static final int LEVEL_LOW = 1;
     public static final int LEVEL_MEDIUM = 2;
-    public static final int LEVEL_NONE;
-
-    static {
-        DmsCode.CREATOR = new Parcelable.Creator() {
-            public DmsCode createFromParcel(Parcel in) {
-                return new DmsCode();
-            }
-
-            public DmsCode[] newArray(int size) {
-                return new DmsCode[size];
-            }
-        };
-    }
+    public static final int LEVEL_NONE = 0;
 
     @Override  // android.os.Parcelable
     public int describeContents() {

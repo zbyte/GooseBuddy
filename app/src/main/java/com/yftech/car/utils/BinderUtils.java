@@ -6,7 +6,7 @@ import android.util.Log;
 import java.lang.reflect.Method;
 
 public class BinderUtils {
-    static IBinder getServiceBinder(String serviceName) {
+    public static IBinder getServiceBinder(String serviceName) {
         try {
             Class<?> serviceManagerClass = Class.forName("android.os.ServiceManager");
             Method getServiceMethod = serviceManagerClass.getMethod("getService", String.class);
@@ -17,7 +17,7 @@ public class BinderUtils {
         }
     }
 
-    static IBinder getAliveServiceBinder(String serviceName) {
+    public static IBinder getAliveServiceBinder(String serviceName) {
         IBinder binder = getServiceBinder(serviceName);
         if (binder != null && !binder.isBinderAlive()) {
             Log.w("ServiceHelper", "Service " + serviceName + " binder is dead");

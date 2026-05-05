@@ -113,7 +113,15 @@ public class CarNavigationManeuver implements Parcelable {
 
     }
 
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public CarNavigationManeuver createFromParcel(Parcel in) {
+            return new CarNavigationManeuver(in);
+        }
+
+        public CarNavigationManeuver[] newArray(int size) {
+            return new CarNavigationManeuver[size];
+        }
+    };
     private String mCurRoadName;
     private String mDestinationName;
     private int mDistance;
@@ -128,18 +136,6 @@ public class CarNavigationManeuver implements Parcelable {
     private TurnInfo mTurnInfo;
     private int mViaRemainDistance;
     private int mViaRemainTime;
-
-    static {
-        CarNavigationManeuver.CREATOR = new Parcelable.Creator() {
-            public CarNavigationManeuver createFromParcel(Parcel in) {
-                return new CarNavigationManeuver(in);
-            }
-
-            public CarNavigationManeuver[] newArray(int size) {
-                return new CarNavigationManeuver[size];
-            }
-        };
-    }
 
     public CarNavigationManeuver() {
         this.mTurnInfo = TurnInfo.UNKNOWN;

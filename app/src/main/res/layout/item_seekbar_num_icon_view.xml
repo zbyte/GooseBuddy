@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="center_vertical" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content" android:minHeight="96.0dp">
+    <TextView android:gravity="center_vertical" android:id="@+id/tvTitle" android:layout_marginTop="30.0dp" android:layout_marginBottom="30.0dp" style="@style/ItemTitleStyle"/>
+    <LinearLayout android:gravity="center_vertical" android:orientation="horizontal" android:id="@+id/layout_seekbar" android:layout_width="match_parent" android:layout_height="96.0dp" android:layout_marginStart="20.0dp">
+        <TextView android:gravity="center" android:id="@+id/tvContent" android:visibility="gone" android:layout_width="54.0dp" android:textDirection="ltr" style="@style/ItemContentStyle"/>
+        <androidx.appcompat.widget.AppCompatImageView android:id="@+id/ivIcon" android:visibility="gone" android:layout_width="44.0dp" android:layout_height="44.0dp" android:scaleType="centerInside"/>
+        <com.yftech.settings.widget.SeekBarNumber android:id="@+id/seekBarNumber" android:max="100" android:layout_marginStart="8.0dp" style="@style/ItemSeekBarNumberStyle"/>
+    </LinearLayout>
+</LinearLayout>

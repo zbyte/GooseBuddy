@@ -9,18 +9,18 @@ public interface ICarSwc extends IBaseApi {
 
         public final int value;
 
-        private SwcHeatState(int v1) {
-            this.value = v1;
+        private SwcHeatState(int value) {
+            this.value = value;
         }
 
-        public static SwcHeatState valueOf(int v) {
-            if(v == SwcHeatState.OFF.value) {
+        public static SwcHeatState valueOf(int value) {
+            if(value == SwcHeatState.OFF.value) {
                 return SwcHeatState.OFF;
             }
-            if(v == SwcHeatState.HEATING.value) {
+            if(value == SwcHeatState.HEATING.value) {
                 return SwcHeatState.HEATING;
             }
-            return v == SwcHeatState.PRESERVATION.value ? SwcHeatState.PRESERVATION : SwcHeatState.__UNKNOWN__;
+            return value == SwcHeatState.PRESERVATION.value ? SwcHeatState.PRESERVATION : SwcHeatState.__UNKNOWN__;
         }
     }
 
@@ -28,7 +28,7 @@ public interface ICarSwc extends IBaseApi {
     public static final int SWC_ANGLE_VD_STATE = 338;
     public static final int SWC_HEAT_STATE = 304;
     public static final int SWC_HEAT_STATE_SETTING = 305;
-    public static final int SWC_HEAT_STATE_SWITCH_SWITCH = 698;
+    public static final int SWC_HEAT_STATE_SWITCH_SWITCH = 305;
     public static final int SWC_STAR_KEY_SETTING = 284;
     public static final int SWC_STAR_KEY_VD_SETTING = 285;
 

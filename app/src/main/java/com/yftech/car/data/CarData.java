@@ -10,21 +10,17 @@ import java.util.Map;
 
 public class CarData implements Parcelable {
     public static class CarDataEntry implements Parcelable {
-        public static final Parcelable.Creator CREATOR;
+        public static final Parcelable.Creator CREATOR  = new Parcelable.Creator() {
+            public CarDataEntry createFromParcel(Parcel in) {
+                return new CarDataEntry(in);
+            }
+
+            public CarDataEntry[] newArray(int size) {
+                return new CarDataEntry[size];
+            }
+        };
         private final String mKey;
         private final String mValue;
-
-        static {
-            CarDataEntry.CREATOR = new Parcelable.Creator() {
-                public CarDataEntry createFromParcel(Parcel in) {
-                    return new CarDataEntry(in);
-                }
-
-                public CarDataEntry[] newArray(int size) {
-                    return new CarDataEntry[size];
-                }
-            };
-        }
 
         public CarDataEntry(Parcel in) {
             this.mKey = in.readString();
@@ -115,20 +111,16 @@ public class CarData implements Parcelable {
         }
     }
 
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR  = new Parcelable.Creator() {
+        public CarData createFromParcel(Parcel in) {
+            return new CarData(in);
+        }
+
+        public CarData[] newArray(int size) {
+            return new CarData[size];
+        }
+    };
     private Map mDataMap;
-
-    static {
-        CarData.CREATOR = new Parcelable.Creator() {
-            public CarData createFromParcel(Parcel in) {
-                return new CarData(in);
-            }
-
-            public CarData[] newArray(int size) {
-                return new CarData[size];
-            }
-        };
-    }
 
     public CarData() {
         this.mDataMap = new HashMap();

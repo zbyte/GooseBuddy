@@ -11,24 +11,24 @@ public interface CarDMS extends IBaseApi {
 
         public final int value;
 
-        private DMSDistrWarn(int v1) {
-            this.value = v1;
+        private DMSDistrWarn(int value) {
+            this.value = value;
         }
 
-        public static DMSDistrWarn valueOf(int v) {
-            if(v == DMSDistrWarn.UNAVAILABLE.value) {
+        public static DMSDistrWarn valueOf(int value) {
+            if(value == DMSDistrWarn.UNAVAILABLE.value) {
                 return DMSDistrWarn.UNAVAILABLE;
             }
-            if(v == DMSDistrWarn.UNKNOWN.value) {
+            if(value == DMSDistrWarn.UNKNOWN.value) {
                 return DMSDistrWarn.UNKNOWN;
             }
-            if(v == DMSDistrWarn.DISTRACTIVE.value) {
+            if(value == DMSDistrWarn.DISTRACTIVE.value) {
                 return DMSDistrWarn.DISTRACTIVE;
             }
-            if(v == DMSDistrWarn.NO_DISTRACTIVE.value) {
+            if(value == DMSDistrWarn.NO_DISTRACTIVE.value) {
                 return DMSDistrWarn.NO_DISTRACTIVE;
             }
-            return v == DMSDistrWarn.SUSPECTED_DISTRACTIVE.value ? DMSDistrWarn.SUSPECTED_DISTRACTIVE : DMSDistrWarn.__UNKNOWN__;
+            return value == DMSDistrWarn.SUSPECTED_DISTRACTIVE.value ? DMSDistrWarn.SUSPECTED_DISTRACTIVE : DMSDistrWarn.__UNKNOWN__;
         }
     }
 
@@ -43,27 +43,27 @@ public interface CarDMS extends IBaseApi {
 
         public final int value;
 
-        private DMSFatigWarn(int v1) {
-            this.value = v1;
+        private DMSFatigWarn(int value) {
+            this.value = value;
         }
 
-        public static DMSFatigWarn valueOf(int v) {
-            if(v == DMSFatigWarn.UNAVAILABLE.value) {
+        public static DMSFatigWarn valueOf(int value) {
+            if(value == DMSFatigWarn.UNAVAILABLE.value) {
                 return DMSFatigWarn.UNAVAILABLE;
             }
-            if(v == DMSFatigWarn.UNKNOWN.value) {
+            if(value == DMSFatigWarn.UNKNOWN.value) {
                 return DMSFatigWarn.UNKNOWN;
             }
-            if(v == DMSFatigWarn.ATTENTIVE.value) {
+            if(value == DMSFatigWarn.ATTENTIVE.value) {
                 return DMSFatigWarn.ATTENTIVE;
             }
-            if(v == DMSFatigWarn.CAUTIONARY.value) {
+            if(value == DMSFatigWarn.CAUTIONARY.value) {
                 return DMSFatigWarn.CAUTIONARY;
             }
-            if(v == DMSFatigWarn.SEVERE.value) {
+            if(value == DMSFatigWarn.SEVERE.value) {
                 return DMSFatigWarn.SEVERE;
             }
-            return v == DMSFatigWarn.MICROSLEEP.value ? DMSFatigWarn.MICROSLEEP : DMSFatigWarn.__UNKNOWN__;
+            return value == DMSFatigWarn.MICROSLEEP.value ? DMSFatigWarn.MICROSLEEP : DMSFatigWarn.__UNKNOWN__;
         }
     }
 
@@ -78,23 +78,23 @@ public interface CarDMS extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private DMSMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private DMSMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static DMSMode valueOf(int v) {
-            if(v == DMSMode.NO_COMMAND.rx) {
+        public static DMSMode valueOf(int value) {
+            if(value == DMSMode.NO_COMMAND.rx) {
                 return DMSMode.NO_COMMAND;
             }
-            if(v == DMSMode.FATIGUE.rx) {
+            if(value == DMSMode.FATIGUE.rx) {
                 return DMSMode.FATIGUE;
             }
-            if(v == DMSMode.DISTRACTION.rx) {
+            if(value == DMSMode.DISTRACTION.rx) {
                 return DMSMode.DISTRACTION;
             }
-            return v == DMSMode.FATIGUE_AND_DISTRACTION.rx ? DMSMode.FATIGUE_AND_DISTRACTION : DMSMode.__UNKNOWN__;
+            return value == DMSMode.FATIGUE_AND_DISTRACTION.rx ? DMSMode.FATIGUE_AND_DISTRACTION : DMSMode.__UNKNOWN__;
         }
     }
 
@@ -107,21 +107,21 @@ public interface CarDMS extends IBaseApi {
 
         public final int value;
 
-        private DMSSwitch(int v1) {
-            this.value = v1;
+        private DMSSwitch(int value) {
+            this.value = value;
         }
 
-        public static DMSSwitch valueOf(int v) {
-            if(v == DMSSwitch.OFF.value) {
+        public static DMSSwitch valueOf(int value) {
+            if(value == DMSSwitch.OFF.value) {
                 return DMSSwitch.OFF;
             }
-            if(v == DMSSwitch.PASSIVE.value) {
+            if(value == DMSSwitch.PASSIVE.value) {
                 return DMSSwitch.PASSIVE;
             }
-            if(v == DMSSwitch.ACTIVE.value) {
+            if(value == DMSSwitch.ACTIVE.value) {
                 return DMSSwitch.ACTIVE;
             }
-            return v == DMSSwitch.FAILURE.value ? DMSSwitch.FAILURE : DMSSwitch.__UNKNOWN__;
+            return value == DMSSwitch.FAILURE.value ? DMSSwitch.FAILURE : DMSSwitch.__UNKNOWN__;
         }
     }
 
@@ -136,27 +136,27 @@ public interface CarDMS extends IBaseApi {
 
         public final int value;
 
-        private DMSSysErrStatus(int v1) {
-            this.value = v1;
+        private DMSSysErrStatus(int value) {
+            this.value = value;
         }
 
-        public static DMSSysErrStatus valueOf(int v) {
-            if(v == DMSSysErrStatus.UNAVAILABLE.value) {
+        public static DMSSysErrStatus valueOf(int value) {
+            if(value == DMSSysErrStatus.UNAVAILABLE.value) {
                 return DMSSysErrStatus.UNAVAILABLE;
             }
-            if(v == DMSSysErrStatus.DRIVER_MONITOR_CAMERA_BLOCKED_BY_STEERINGWHEEL.value) {
+            if(value == DMSSysErrStatus.DRIVER_MONITOR_CAMERA_BLOCKED_BY_STEERINGWHEEL.value) {
                 return DMSSysErrStatus.DRIVER_MONITOR_CAMERA_BLOCKED_BY_STEERINGWHEEL;
             }
-            if(v == DMSSysErrStatus.DRIVER_MONITOR_CAMERA_BLOCKED.value) {
+            if(value == DMSSysErrStatus.DRIVER_MONITOR_CAMERA_BLOCKED.value) {
                 return DMSSysErrStatus.DRIVER_MONITOR_CAMERA_BLOCKED;
             }
-            if(v == DMSSysErrStatus.DMS_SYS_ERRO.value) {
+            if(value == DMSSysErrStatus.DMS_SYS_ERRO.value) {
                 return DMSSysErrStatus.DMS_SYS_ERRO;
             }
-            if(v == DMSSysErrStatus.FF_LOSE_TEMPLATES.value) {
+            if(value == DMSSysErrStatus.FF_LOSE_TEMPLATES.value) {
                 return DMSSysErrStatus.FF_LOSE_TEMPLATES;
             }
-            return v == DMSSysErrStatus.IR_PROOF_SUNGLASS_DETECTED.value ? DMSSysErrStatus.IR_PROOF_SUNGLASS_DETECTED : DMSSysErrStatus.__UNKNOWN__;
+            return value == DMSSysErrStatus.IR_PROOF_SUNGLASS_DETECTED.value ? DMSSysErrStatus.IR_PROOF_SUNGLASS_DETECTED : DMSSysErrStatus.__UNKNOWN__;
         }
     }
 

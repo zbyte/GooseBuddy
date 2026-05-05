@@ -10,21 +10,21 @@ public interface ICarPower extends IBaseCmd {
 
         public final int value;
 
-        private PowerMode(int v1) {
-            this.value = v1;
+        private PowerMode(int value) {
+            this.value = value;
         }
 
-        public static PowerMode valueOf(int v) {
-            if(v == PowerMode.OFF.value) {
+        public static PowerMode valueOf(int value) {
+            if(value == PowerMode.OFF.value) {
                 return PowerMode.OFF;
             }
-            if(v == PowerMode.ACC.value) {
+            if(value == PowerMode.ACC.value) {
                 return PowerMode.ACC;
             }
-            if(v == PowerMode.ON.value) {
+            if(value == PowerMode.ON.value) {
                 return PowerMode.ON;
             }
-            return v == PowerMode.CRANK.value ? PowerMode.CRANK : PowerMode.__UNKNOWN__;
+            return value == PowerMode.CRANK.value ? PowerMode.CRANK : PowerMode.__UNKNOWN__;
         }
     }
 
@@ -40,30 +40,30 @@ public interface ICarPower extends IBaseCmd {
 
         public final int value;
 
-        private PowerState(int v1) {
-            this.value = v1;
+        private PowerState(int value) {
+            this.value = value;
         }
 
-        public static PowerState valueOf(int v) {
-            if(v == PowerState.STANDBY.value) {
+        public static PowerState valueOf(int value) {
+            if(value == PowerState.STANDBY.value) {
                 return PowerState.STANDBY;
             }
-            if(v == PowerState.SYSTEMON.value) {
+            if(value == PowerState.SYSTEMON.value) {
                 return PowerState.SYSTEMON;
             }
-            if(v == PowerState.SLEEP.value) {
+            if(value == PowerState.SLEEP.value) {
                 return PowerState.SLEEP;
             }
-            if(v == PowerState.VOLFAULTSTBY.value) {
+            if(value == PowerState.VOLFAULTSTBY.value) {
                 return PowerState.VOLFAULTSTBY;
             }
-            if(v == PowerState.TEST.value) {
+            if(value == PowerState.TEST.value) {
                 return PowerState.TEST;
             }
-            if(v == PowerState.TEN_MIN.value) {
+            if(value == PowerState.TEN_MIN.value) {
                 return PowerState.TEN_MIN;
             }
-            return v == PowerState.PRE_SLEEP.value ? PowerState.PRE_SLEEP : PowerState.__UNKNOWN__;
+            return value == PowerState.PRE_SLEEP.value ? PowerState.PRE_SLEEP : PowerState.__UNKNOWN__;
         }
     }
 

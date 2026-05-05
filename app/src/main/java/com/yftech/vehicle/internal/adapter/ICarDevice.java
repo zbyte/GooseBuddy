@@ -21,54 +21,54 @@ public interface ICarDevice extends IBaseApi {
 
         public final int value;
 
-        private BsvFunctionCmd(int v1) {
-            this.value = v1;
+        private BsvFunctionCmd(int value) {
+            this.value = value;
         }
 
-        public static BsvFunctionCmd valueOf(int v) {
-            if(v == BsvFunctionCmd.REQ_CANCEL.value) {
+        public static BsvFunctionCmd valueOf(int value) {
+            if(value == BsvFunctionCmd.REQ_CANCEL.value) {
                 return BsvFunctionCmd.REQ_CANCEL;
             }
-            if(v == BsvFunctionCmd.REQ_ENTER.value) {
+            if(value == BsvFunctionCmd.REQ_ENTER.value) {
                 return BsvFunctionCmd.REQ_ENTER;
             }
-            if(v == BsvFunctionCmd.RVM_VERTICAL_PARKING_VIEW.value) {
+            if(value == BsvFunctionCmd.RVM_VERTICAL_PARKING_VIEW.value) {
                 return BsvFunctionCmd.RVM_VERTICAL_PARKING_VIEW;
             }
-            if(v == BsvFunctionCmd.RVM_PARALLEL_PARKING_VIEW.value) {
+            if(value == BsvFunctionCmd.RVM_PARALLEL_PARKING_VIEW.value) {
                 return BsvFunctionCmd.RVM_PARALLEL_PARKING_VIEW;
             }
-            if(v == BsvFunctionCmd.RVM_REAR_VIEW.value) {
+            if(value == BsvFunctionCmd.RVM_REAR_VIEW.value) {
                 return BsvFunctionCmd.RVM_REAR_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_VERTICAL_PARKING_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_VERTICAL_PARKING_VIEW.value) {
                 return BsvFunctionCmd.BSV_VERTICAL_PARKING_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_PARALLEL_PARKING_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_PARALLEL_PARKING_VIEW.value) {
                 return BsvFunctionCmd.BSV_PARALLEL_PARKING_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_PARKING_GUIDANCE_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_PARKING_GUIDANCE_VIEW.value) {
                 return BsvFunctionCmd.BSV_PARKING_GUIDANCE_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_RIGHT_BLIND_SPOT_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_RIGHT_BLIND_SPOT_VIEW.value) {
                 return BsvFunctionCmd.BSV_RIGHT_BLIND_SPOT_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_LEFT_BLIND_SPOT_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_LEFT_BLIND_SPOT_VIEW.value) {
                 return BsvFunctionCmd.BSV_LEFT_BLIND_SPOT_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_ENLARGE_REAR_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_ENLARGE_REAR_VIEW.value) {
                 return BsvFunctionCmd.BSV_ENLARGE_REAR_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_SURROUND_VIEW_AND_REAR_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_SURROUND_VIEW_AND_REAR_VIEW.value) {
                 return BsvFunctionCmd.BSV_SURROUND_VIEW_AND_REAR_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_ENLARGE_FRONT_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_ENLARGE_FRONT_VIEW.value) {
                 return BsvFunctionCmd.BSV_ENLARGE_FRONT_VIEW;
             }
-            if(v == BsvFunctionCmd.BSV_SURROUND_VIEW_AND_FRONT_VIEW.value) {
+            if(value == BsvFunctionCmd.BSV_SURROUND_VIEW_AND_FRONT_VIEW.value) {
                 return BsvFunctionCmd.BSV_SURROUND_VIEW_AND_FRONT_VIEW;
             }
-            return v == BsvFunctionCmd.BSV_HMI_IN_TRANSITION.value ? BsvFunctionCmd.BSV_HMI_IN_TRANSITION : BsvFunctionCmd.__UNKNOWN__;
+            return value == BsvFunctionCmd.BSV_HMI_IN_TRANSITION.value ? BsvFunctionCmd.BSV_HMI_IN_TRANSITION : BsvFunctionCmd.__UNKNOWN__;
         }
     }
 
@@ -87,39 +87,39 @@ public interface ICarDevice extends IBaseApi {
 
         public final int value;
 
-        private PAAMode(int v1) {
-            this.value = v1;
+        private PAAMode(int value) {
+            this.value = value;
         }
 
-        public static PAAMode valueOf(int v) {
-            if(v == PAAMode.APA.value) {
+        public static PAAMode valueOf(int value) {
+            if(value == PAAMode.APA.value) {
                 return PAAMode.APA;
             }
-            if(v == PAAMode.RPA.value) {
+            if(value == PAAMode.RPA.value) {
                 return PAAMode.RPA;
             }
-            if(v == PAAMode.HAVP.value) {
+            if(value == PAAMode.HAVP.value) {
                 return PAAMode.HAVP;
             }
-            if(v == PAAMode.PAVP.value) {
+            if(value == PAAMode.PAVP.value) {
                 return PAAMode.PAVP;
             }
-            if(v == PAAMode.RA.value) {
+            if(value == PAAMode.RA.value) {
                 return PAAMode.RA;
             }
-            if(v == PAAMode.CUSTOM_SLOT.value) {
+            if(value == PAAMode.CUSTOM_SLOT.value) {
                 return PAAMode.CUSTOM_SLOT;
             }
-            if(v == PAAMode.PAA.value) {
+            if(value == PAAMode.PAA.value) {
                 return PAAMode.PAA;
             }
-            if(v == PAAMode.APA_OFF.value) {
+            if(value == PAAMode.APA_OFF.value) {
                 return PAAMode.APA_OFF;
             }
-            if(v == PAAMode.PAA_OFF.value) {
+            if(value == PAAMode.PAA_OFF.value) {
                 return PAAMode.PAA_OFF;
             }
-            return v == PAAMode.RA_OFF.value ? PAAMode.RA_OFF : PAAMode.__UNKNOWN__;
+            return value == PAAMode.RA_OFF.value ? PAAMode.RA_OFF : PAAMode.__UNKNOWN__;
         }
     }
 
@@ -131,18 +131,18 @@ public interface ICarDevice extends IBaseApi {
 
         public final int value;
 
-        private PASBackParkDisplayState(int v1) {
-            this.value = v1;
+        private PASBackParkDisplayState(int value) {
+            this.value = value;
         }
 
-        public static PASBackParkDisplayState valueOf(int v) {
-            if(v == PASBackParkDisplayState.NONE.value) {
+        public static PASBackParkDisplayState valueOf(int value) {
+            if(value == PASBackParkDisplayState.NONE.value) {
                 return PASBackParkDisplayState.NONE;
             }
-            if(v == PASBackParkDisplayState.IMAGE_PARKING.value) {
+            if(value == PASBackParkDisplayState.IMAGE_PARKING.value) {
                 return PASBackParkDisplayState.IMAGE_PARKING;
             }
-            return v == PASBackParkDisplayState.SPACE_PARKING.value ? PASBackParkDisplayState.SPACE_PARKING : PASBackParkDisplayState.__UNKNOWN__;
+            return value == PASBackParkDisplayState.SPACE_PARKING.value ? PASBackParkDisplayState.SPACE_PARKING : PASBackParkDisplayState.__UNKNOWN__;
         }
     }
 
@@ -153,15 +153,15 @@ public interface ICarDevice extends IBaseApi {
 
         public final int value;
 
-        private RecorderEnterCmd(int v1) {
-            this.value = v1;
+        private RecorderEnterCmd(int value) {
+            this.value = value;
         }
 
-        public static RecorderEnterCmd valueOf(int v) {
-            if(v == RecorderEnterCmd.COMMAND.value) {
+        public static RecorderEnterCmd valueOf(int value) {
+            if(value == RecorderEnterCmd.COMMAND.value) {
                 return RecorderEnterCmd.COMMAND;
             }
-            return v == RecorderEnterCmd.NO_COMMAND.value ? RecorderEnterCmd.NO_COMMAND : RecorderEnterCmd.__UNKNOWN__;
+            return value == RecorderEnterCmd.NO_COMMAND.value ? RecorderEnterCmd.NO_COMMAND : RecorderEnterCmd.__UNKNOWN__;
         }
     }
 
@@ -185,54 +185,54 @@ public interface ICarDevice extends IBaseApi {
 
         public final int value;
 
-        private SvmFunctionCmd(int v1) {
-            this.value = v1;
+        private SvmFunctionCmd(int value) {
+            this.value = value;
         }
 
-        public static SvmFunctionCmd valueOf(int v) {
-            if(v == SvmFunctionCmd.REQ_CANCEL.value) {
+        public static SvmFunctionCmd valueOf(int value) {
+            if(value == SvmFunctionCmd.REQ_CANCEL.value) {
                 return SvmFunctionCmd.REQ_CANCEL;
             }
-            if(v == SvmFunctionCmd.REQ_ENTER.value) {
+            if(value == SvmFunctionCmd.REQ_ENTER.value) {
                 return SvmFunctionCmd.REQ_ENTER;
             }
-            if(v == SvmFunctionCmd.RVM_VERTICAL_PARKING_VIEW.value) {
+            if(value == SvmFunctionCmd.RVM_VERTICAL_PARKING_VIEW.value) {
                 return SvmFunctionCmd.RVM_VERTICAL_PARKING_VIEW;
             }
-            if(v == SvmFunctionCmd.RVM_PARALLEL_PARKING_VIEW.value) {
+            if(value == SvmFunctionCmd.RVM_PARALLEL_PARKING_VIEW.value) {
                 return SvmFunctionCmd.RVM_PARALLEL_PARKING_VIEW;
             }
-            if(v == SvmFunctionCmd.RVM_REAR_VIEW.value) {
+            if(value == SvmFunctionCmd.RVM_REAR_VIEW.value) {
                 return SvmFunctionCmd.RVM_REAR_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_VERTICAL_PARKING_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_VERTICAL_PARKING_VIEW.value) {
                 return SvmFunctionCmd.SVM_VERTICAL_PARKING_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_PARALLEL_PARKING_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_PARALLEL_PARKING_VIEW.value) {
                 return SvmFunctionCmd.SVM_PARALLEL_PARKING_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_PARKING_GUIDANCE_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_PARKING_GUIDANCE_VIEW.value) {
                 return SvmFunctionCmd.SVM_PARKING_GUIDANCE_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_RIGHT_BLIND_SPOT_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_RIGHT_BLIND_SPOT_VIEW.value) {
                 return SvmFunctionCmd.SVM_RIGHT_BLIND_SPOT_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_LEFT_BLIND_SPOT_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_LEFT_BLIND_SPOT_VIEW.value) {
                 return SvmFunctionCmd.SVM_LEFT_BLIND_SPOT_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_ENLARGE_REAR_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_ENLARGE_REAR_VIEW.value) {
                 return SvmFunctionCmd.SVM_ENLARGE_REAR_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_SURROUND_VIEW_AND_REAR_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_SURROUND_VIEW_AND_REAR_VIEW.value) {
                 return SvmFunctionCmd.SVM_SURROUND_VIEW_AND_REAR_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_ENLARGE_FRONT_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_ENLARGE_FRONT_VIEW.value) {
                 return SvmFunctionCmd.SVM_ENLARGE_FRONT_VIEW;
             }
-            if(v == SvmFunctionCmd.SVM_SURROUND_VIEW_AND_FRONT_VIEW.value) {
+            if(value == SvmFunctionCmd.SVM_SURROUND_VIEW_AND_FRONT_VIEW.value) {
                 return SvmFunctionCmd.SVM_SURROUND_VIEW_AND_FRONT_VIEW;
             }
-            return v == SvmFunctionCmd.SVM_HMI_IN_TRANSITION.value ? SvmFunctionCmd.SVM_HMI_IN_TRANSITION : SvmFunctionCmd.__UNKNOWN__;
+            return value == SvmFunctionCmd.SVM_HMI_IN_TRANSITION.value ? SvmFunctionCmd.SVM_HMI_IN_TRANSITION : SvmFunctionCmd.__UNKNOWN__;
         }
     }
 

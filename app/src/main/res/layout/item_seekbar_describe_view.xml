@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent" android:layout_height="wrap_content">
+    <TextView android:gravity="center_vertical" android:id="@+id/tvTitle" android:layout_marginTop="30.0dp" android:layout_marginBottom="30.0dp" style="@style/ItemTitleStyle"/>
+    <LinearLayout android:orientation="vertical" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginStart="20.0dp">
+        <LinearLayout android:gravity="center_vertical" android:orientation="horizontal"
+            android:layout_width="match_parent" android:layout_height="96.0dp">
+            <TextView android:id="@+id/tvContent" android:visibility="gone" android:layout_width="@dimen/item_seekbar_describe_tv_content_layout_width" android:layout_height="wrap_content" android:text="@string/active_safety_aid_speed_reminder_close" style="@style/ItemContentStyle"/>
+            <androidx.appcompat.widget.AppCompatImageView android:id="@+id/ivIcon" android:visibility="gone" android:layout_width="44.0dp" android:layout_height="44.0dp" android:scaleType="centerInside" android:layout_marginEnd="8.0dp"/>
+            <com.yftech.settings.widget.SeekBarNumber android:id="@+id/seekBarNumber" android:max="100" style="@style/ItemSeekBarNumberStyle"/>
+        </LinearLayout>
+        <TextView android:id="@+id/tvDescribe" android:visibility="gone" android:layout_marginTop="-14.0dp" android:layout_marginBottom="23.0dp" style="@style/ItemDescribeStyle"/>
+    </LinearLayout>
+</LinearLayout>

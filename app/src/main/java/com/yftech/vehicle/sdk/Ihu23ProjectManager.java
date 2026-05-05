@@ -3,6 +3,7 @@ package com.yftech.vehicle.sdk;
 import android.util.Log;
 import com.yftech.vehicle.internal.BaseApiManager;
 import com.yftech.vehicle.internal.adapter.IBaseCmd;
+import com.yftech.vehicle.internal.adapter.ICarEvDevice;
 import com.yftech.vehicle.internal.adapter.ICarEvDevice.RepeatBookMode;
 import com.yftech.vehicle.internal.project.Ihu23Project.ChargeInfo;
 import com.yftech.vehicle.internal.project.Ihu23Project.ChargeMode;

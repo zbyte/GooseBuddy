@@ -8,15 +8,15 @@ public interface ICarConfig {
 
         public final int value;
 
-        private AirConditionType(int v1) {
-            this.value = v1;
+        private AirConditionType(int value) {
+            this.value = value;
         }
 
-        public static AirConditionType valueOf(int v) {
-            if(v == AirConditionType.MANUAL.value) {
+        public static AirConditionType valueOf(int value) {
+            if(value == AirConditionType.MANUAL.value) {
                 return AirConditionType.MANUAL;
             }
-            return v == AirConditionType.AUTO.value ? AirConditionType.AUTO : AirConditionType.__UNKNOWN__;
+            return value == AirConditionType.AUTO.value ? AirConditionType.AUTO : AirConditionType.__UNKNOWN__;
         }
     }
 
@@ -28,18 +28,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private AirConditioningZones(int v1) {
-            this.value = v1;
+        private AirConditioningZones(int value) {
+            this.value = value;
         }
 
-        public static AirConditioningZones valueOf(int v) {
-            if(v == AirConditioningZones.SINGLE_ZONE.value) {
+        public static AirConditioningZones valueOf(int value) {
+            if(value == AirConditioningZones.SINGLE_ZONE.value) {
                 return AirConditioningZones.SINGLE_ZONE;
             }
-            if(v == AirConditioningZones.DUAL_ZONES.value) {
+            if(value == AirConditioningZones.DUAL_ZONES.value) {
                 return AirConditioningZones.DUAL_ZONES;
             }
-            return v == AirConditioningZones.THREE_ZONES.value ? AirConditioningZones.THREE_ZONES : AirConditioningZones.__UNKNOWN__;
+            return value == AirConditioningZones.THREE_ZONES.value ? AirConditioningZones.THREE_ZONES : AirConditioningZones.__UNKNOWN__;
         }
     }
 
@@ -50,15 +50,15 @@ public interface ICarConfig {
 
         public final int value;
 
-        private Avdc(int v1) {
-            this.value = v1;
+        private Avdc(int value) {
+            this.value = value;
         }
 
-        public static Avdc valueOf(int v) {
-            if(v == Avdc.NOT_PRESENT.value) {
+        public static Avdc valueOf(int value) {
+            if(value == Avdc.NOT_PRESENT.value) {
                 return Avdc.NOT_PRESENT;
             }
-            return v == Avdc.ECO_PLUSCOMFORT_PLUSSPORT.value ? Avdc.ECO_PLUSCOMFORT_PLUSSPORT : Avdc.__UNKNOWN__;
+            return value == Avdc.ECO_PLUSCOMFORT_PLUSSPORT.value ? Avdc.ECO_PLUSCOMFORT_PLUSSPORT : Avdc.__UNKNOWN__;
         }
     }
 
@@ -74,30 +74,30 @@ public interface ICarConfig {
 
         public final int value;
 
-        private CameraNumber(int v1) {
-            this.value = v1;
+        private CameraNumber(int value) {
+            this.value = value;
         }
 
-        public static CameraNumber valueOf(int v) {
-            if(v == CameraNumber.NONE.value) {
+        public static CameraNumber valueOf(int value) {
+            if(value == CameraNumber.NONE.value) {
                 return CameraNumber.NONE;
             }
-            if(v == CameraNumber.RVC.value) {
+            if(value == CameraNumber.RVC.value) {
                 return CameraNumber.RVC;
             }
-            if(v == CameraNumber.SVM.value) {
+            if(value == CameraNumber.SVM.value) {
                 return CameraNumber.SVM;
             }
-            if(v == CameraNumber.SVM_PLUSAPA.value) {
+            if(value == CameraNumber.SVM_PLUSAPA.value) {
                 return CameraNumber.SVM_PLUSAPA;
             }
-            if(v == CameraNumber.SVM_PLUSFAPA.value) {
+            if(value == CameraNumber.SVM_PLUSFAPA.value) {
                 return CameraNumber.SVM_PLUSFAPA;
             }
-            if(v == CameraNumber.SVM_PLUSAVP.value) {
+            if(value == CameraNumber.SVM_PLUSAVP.value) {
                 return CameraNumber.SVM_PLUSAVP;
             }
-            return v == CameraNumber.EXTERNAL_AVM.value ? CameraNumber.EXTERNAL_AVM : CameraNumber.__UNKNOWN__;
+            return value == CameraNumber.EXTERNAL_AVM.value ? CameraNumber.EXTERNAL_AVM : CameraNumber.__UNKNOWN__;
         }
     }
 
@@ -379,16 +379,16 @@ public interface ICarConfig {
         public final byte byteIndex;
         public final byte startBit;
 
-        private Config(int v1, int v2) {
-            this.byteIndex = (byte)v1;
-            this.startBit = (byte)v2;
+        private Config(int byteIndex, int startBit) {
+            this.byteIndex = (byte)byteIndex;
+            this.startBit = (byte)startBit;
             this.bitSize = 1;
         }
 
-        private Config(int v1, int v2, int v3) {
-            this.byteIndex = (byte)v1;
-            this.startBit = (byte)v2;
-            this.bitSize = (byte)(v3 - v2 + 1);
+        private Config(int byteIndex, int startBit, int endBit) {
+            this.byteIndex = (byte)byteIndex;
+            this.startBit = (byte)startBit;
+            this.bitSize = (byte)(endBit - startBit + 1);
         }
     }
 
@@ -400,18 +400,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private ConfigPm25(int v1) {
-            this.value = v1;
+        private ConfigPm25(int value) {
+            this.value = value;
         }
 
-        public static ConfigPm25 valueOf(int v) {
-            if(v == ConfigPm25.NOT_PRESENT.value) {
+        public static ConfigPm25 valueOf(int value) {
+            if(value == ConfigPm25.NOT_PRESENT.value) {
                 return ConfigPm25.NOT_PRESENT;
             }
-            if(v == ConfigPm25.PRESENT_PM2_5_FILTER.value) {
+            if(value == ConfigPm25.PRESENT_PM2_5_FILTER.value) {
                 return ConfigPm25.PRESENT_PM2_5_FILTER;
             }
-            return v == ConfigPm25.PRESENT_PM2_5_FILTER_AND_SENSOR.value ? ConfigPm25.PRESENT_PM2_5_FILTER_AND_SENSOR : ConfigPm25.__UNKNOWN__;
+            return value == ConfigPm25.PRESENT_PM2_5_FILTER_AND_SENSOR.value ? ConfigPm25.PRESENT_PM2_5_FILTER_AND_SENSOR : ConfigPm25.__UNKNOWN__;
         }
     }
 
@@ -424,21 +424,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private DmsConnectionMode(int v1) {
-            this.value = v1;
+        private DmsConnectionMode(int value) {
+            this.value = value;
         }
 
-        public static DmsConnectionMode valueOf(int v) {
-            if(v == DmsConnectionMode.NO_CONNECTION.value) {
+        public static DmsConnectionMode valueOf(int value) {
+            if(value == DmsConnectionMode.NO_CONNECTION.value) {
                 return DmsConnectionMode.NO_CONNECTION;
             }
-            if(v == DmsConnectionMode.GWM_TO_DMS.value) {
+            if(value == DmsConnectionMode.GWM_TO_DMS.value) {
                 return DmsConnectionMode.GWM_TO_DMS;
             }
-            if(v == DmsConnectionMode.ETH_TO_DMS.value) {
+            if(value == DmsConnectionMode.ETH_TO_DMS.value) {
                 return DmsConnectionMode.ETH_TO_DMS;
             }
-            return v == DmsConnectionMode.INTEGRATED_DMS.value ? DmsConnectionMode.INTEGRATED_DMS : DmsConnectionMode.__UNKNOWN__;
+            return value == DmsConnectionMode.INTEGRATED_DMS.value ? DmsConnectionMode.INTEGRATED_DMS : DmsConnectionMode.__UNKNOWN__;
         }
     }
 
@@ -449,15 +449,15 @@ public interface ICarConfig {
 
         public final int value;
 
-        private DriveType(int v1) {
-            this.value = v1;
+        private DriveType(int value) {
+            this.value = value;
         }
 
-        public static DriveType valueOf(int v) {
-            if(v == DriveType.TWO_WHEEL_DRIVE.value) {
+        public static DriveType valueOf(int value) {
+            if(value == DriveType.TWO_WHEEL_DRIVE.value) {
                 return DriveType.TWO_WHEEL_DRIVE;
             }
-            return v == DriveType.FOUR_WHEEL_DRIVE.value ? DriveType.FOUR_WHEEL_DRIVE : DriveType.__UNKNOWN__;
+            return value == DriveType.FOUR_WHEEL_DRIVE.value ? DriveType.FOUR_WHEEL_DRIVE : DriveType.__UNKNOWN__;
         }
     }
 
@@ -469,18 +469,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private DriverSeatControl(int v1) {
-            this.value = v1;
+        private DriverSeatControl(int value) {
+            this.value = value;
         }
 
-        public static DriverSeatControl valueOf(int v) {
-            if(v == DriverSeatControl.NONE.value) {
+        public static DriverSeatControl valueOf(int value) {
+            if(value == DriverSeatControl.NONE.value) {
                 return DriverSeatControl.NONE;
             }
-            if(v == DriverSeatControl.EIGHT_CONTROL.value) {
+            if(value == DriverSeatControl.EIGHT_CONTROL.value) {
                 return DriverSeatControl.EIGHT_CONTROL;
             }
-            return v == DriverSeatControl.SIX_CONTROL.value ? DriverSeatControl.SIX_CONTROL : DriverSeatControl.__UNKNOWN__;
+            return value == DriverSeatControl.SIX_CONTROL.value ? DriverSeatControl.SIX_CONTROL : DriverSeatControl.__UNKNOWN__;
         }
     }
 
@@ -497,33 +497,33 @@ public interface ICarConfig {
 
         public final int value;
 
-        private FeezeMode(int v1) {
-            this.value = v1;
+        private FeezeMode(int value) {
+            this.value = value;
         }
 
-        public static FeezeMode valueOf(int v) {
-            if(v == FeezeMode.ONE_MIN.value) {
+        public static FeezeMode valueOf(int value) {
+            if(value == FeezeMode.ONE_MIN.value) {
                 return FeezeMode.ONE_MIN;
             }
-            if(v == FeezeMode.FIVE_MIN.value) {
+            if(value == FeezeMode.FIVE_MIN.value) {
                 return FeezeMode.FIVE_MIN;
             }
-            if(v == FeezeMode.TEN_MIN.value) {
+            if(value == FeezeMode.TEN_MIN.value) {
                 return FeezeMode.TEN_MIN;
             }
-            if(v == FeezeMode.FIFTEEN_MIN.value) {
+            if(value == FeezeMode.FIFTEEN_MIN.value) {
                 return FeezeMode.FIFTEEN_MIN;
             }
-            if(v == FeezeMode.TWENTY_MIN.value) {
+            if(value == FeezeMode.TWENTY_MIN.value) {
                 return FeezeMode.TWENTY_MIN;
             }
-            if(v == FeezeMode.TWENTY_FIVE_MIN.value) {
+            if(value == FeezeMode.TWENTY_FIVE_MIN.value) {
                 return FeezeMode.TWENTY_FIVE_MIN;
             }
-            if(v == FeezeMode.THIRTY_MIN.value) {
+            if(value == FeezeMode.THIRTY_MIN.value) {
                 return FeezeMode.THIRTY_MIN;
             }
-            return v == FeezeMode.RESERVE.value ? FeezeMode.RESERVE : FeezeMode.__UNKNOWN__;
+            return value == FeezeMode.RESERVE.value ? FeezeMode.RESERVE : FeezeMode.__UNKNOWN__;
         }
     }
 
@@ -538,27 +538,27 @@ public interface ICarConfig {
 
         public final int value;
 
-        private GearboxType(int v1) {
-            this.value = v1;
+        private GearboxType(int value) {
+            this.value = value;
         }
 
-        public static GearboxType valueOf(int v) {
-            if(v == GearboxType.MT.value) {
+        public static GearboxType valueOf(int value) {
+            if(value == GearboxType.MT.value) {
                 return GearboxType.MT;
             }
-            if(v == GearboxType.AT.value) {
+            if(value == GearboxType.AT.value) {
                 return GearboxType.AT;
             }
-            if(v == GearboxType.WDCT.value) {
+            if(value == GearboxType.WDCT.value) {
                 return GearboxType.WDCT;
             }
-            if(v == GearboxType.DDCT.value) {
+            if(value == GearboxType.DDCT.value) {
                 return GearboxType.DDCT;
             }
-            if(v == GearboxType.THS.value) {
+            if(value == GearboxType.THS.value) {
                 return GearboxType.THS;
             }
-            return v == GearboxType.GMC.value ? GearboxType.GMC : GearboxType.__UNKNOWN__;
+            return value == GearboxType.GMC.value ? GearboxType.GMC : GearboxType.__UNKNOWN__;
         }
     }
 
@@ -571,21 +571,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private HeatingAndVentilationFl(int v1) {
-            this.value = v1;
+        private HeatingAndVentilationFl(int value) {
+            this.value = value;
         }
 
-        public static HeatingAndVentilationFl valueOf(int v) {
-            if(v == HeatingAndVentilationFl.NOT_PRESENT.value) {
+        public static HeatingAndVentilationFl valueOf(int value) {
+            if(value == HeatingAndVentilationFl.NOT_PRESENT.value) {
                 return HeatingAndVentilationFl.NOT_PRESENT;
             }
-            if(v == HeatingAndVentilationFl.VENTILATION_HEATING.value) {
+            if(value == HeatingAndVentilationFl.VENTILATION_HEATING.value) {
                 return HeatingAndVentilationFl.VENTILATION_HEATING;
             }
-            if(v == HeatingAndVentilationFl.VENTILATION.value) {
+            if(value == HeatingAndVentilationFl.VENTILATION.value) {
                 return HeatingAndVentilationFl.VENTILATION;
             }
-            return v == HeatingAndVentilationFl.HEATING.value ? HeatingAndVentilationFl.HEATING : HeatingAndVentilationFl.__UNKNOWN__;
+            return value == HeatingAndVentilationFl.HEATING.value ? HeatingAndVentilationFl.HEATING : HeatingAndVentilationFl.__UNKNOWN__;
         }
     }
 
@@ -598,21 +598,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private HeatingAndVentilationFr(int v1) {
-            this.value = v1;
+        private HeatingAndVentilationFr(int value) {
+            this.value = value;
         }
 
-        public static HeatingAndVentilationFr valueOf(int v) {
-            if(v == HeatingAndVentilationFr.NOT_PRESENT.value) {
+        public static HeatingAndVentilationFr valueOf(int value) {
+            if(value == HeatingAndVentilationFr.NOT_PRESENT.value) {
                 return HeatingAndVentilationFr.NOT_PRESENT;
             }
-            if(v == HeatingAndVentilationFr.VENTILATION_HEATING.value) {
+            if(value == HeatingAndVentilationFr.VENTILATION_HEATING.value) {
                 return HeatingAndVentilationFr.VENTILATION_HEATING;
             }
-            if(v == HeatingAndVentilationFr.VENTILATION.value) {
+            if(value == HeatingAndVentilationFr.VENTILATION.value) {
                 return HeatingAndVentilationFr.VENTILATION;
             }
-            return v == HeatingAndVentilationFr.HEATING.value ? HeatingAndVentilationFr.HEATING : HeatingAndVentilationFr.__UNKNOWN__;
+            return value == HeatingAndVentilationFr.HEATING.value ? HeatingAndVentilationFr.HEATING : HeatingAndVentilationFr.__UNKNOWN__;
         }
     }
 
@@ -625,21 +625,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private HeatingAndVentilationRl(int v1) {
-            this.value = v1;
+        private HeatingAndVentilationRl(int value) {
+            this.value = value;
         }
 
-        public static HeatingAndVentilationRl valueOf(int v) {
-            if(v == HeatingAndVentilationRl.NOT_PRESENT.value) {
+        public static HeatingAndVentilationRl valueOf(int value) {
+            if(value == HeatingAndVentilationRl.NOT_PRESENT.value) {
                 return HeatingAndVentilationRl.NOT_PRESENT;
             }
-            if(v == HeatingAndVentilationRl.VENTILATION_HEATING.value) {
+            if(value == HeatingAndVentilationRl.VENTILATION_HEATING.value) {
                 return HeatingAndVentilationRl.VENTILATION_HEATING;
             }
-            if(v == HeatingAndVentilationRl.VENTILATION.value) {
+            if(value == HeatingAndVentilationRl.VENTILATION.value) {
                 return HeatingAndVentilationRl.VENTILATION;
             }
-            return v == HeatingAndVentilationRl.HEATING.value ? HeatingAndVentilationRl.HEATING : HeatingAndVentilationRl.__UNKNOWN__;
+            return value == HeatingAndVentilationRl.HEATING.value ? HeatingAndVentilationRl.HEATING : HeatingAndVentilationRl.__UNKNOWN__;
         }
     }
 
@@ -652,21 +652,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private HeatingAndVentilationRr(int v1) {
-            this.value = v1;
+        private HeatingAndVentilationRr(int value) {
+            this.value = value;
         }
 
-        public static HeatingAndVentilationRr valueOf(int v) {
-            if(v == HeatingAndVentilationRr.NOT_PRESENT.value) {
+        public static HeatingAndVentilationRr valueOf(int value) {
+            if(value == HeatingAndVentilationRr.NOT_PRESENT.value) {
                 return HeatingAndVentilationRr.NOT_PRESENT;
             }
-            if(v == HeatingAndVentilationRr.VENTILATION_HEATING.value) {
+            if(value == HeatingAndVentilationRr.VENTILATION_HEATING.value) {
                 return HeatingAndVentilationRr.VENTILATION_HEATING;
             }
-            if(v == HeatingAndVentilationRr.VENTILATION.value) {
+            if(value == HeatingAndVentilationRr.VENTILATION.value) {
                 return HeatingAndVentilationRr.VENTILATION;
             }
-            return v == HeatingAndVentilationRr.HEATING.value ? HeatingAndVentilationRr.HEATING : HeatingAndVentilationRr.__UNKNOWN__;
+            return value == HeatingAndVentilationRr.HEATING.value ? HeatingAndVentilationRr.HEATING : HeatingAndVentilationRr.__UNKNOWN__;
         }
     }
 
@@ -679,21 +679,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private LaneChangeAssist(int v1) {
-            this.value = v1;
+        private LaneChangeAssist(int value) {
+            this.value = value;
         }
 
-        public static LaneChangeAssist valueOf(int v) {
-            if(v == LaneChangeAssist.NOT_PRESENT.value) {
+        public static LaneChangeAssist valueOf(int value) {
+            if(value == LaneChangeAssist.NOT_PRESENT.value) {
                 return LaneChangeAssist.NOT_PRESENT;
             }
-            if(v == LaneChangeAssist.LEFT.value) {
+            if(value == LaneChangeAssist.LEFT.value) {
                 return LaneChangeAssist.LEFT;
             }
-            if(v == LaneChangeAssist.RIGHT.value) {
+            if(value == LaneChangeAssist.RIGHT.value) {
                 return LaneChangeAssist.RIGHT;
             }
-            return v == LaneChangeAssist.LEFT_AND_RIGHT.value ? LaneChangeAssist.LEFT_AND_RIGHT : LaneChangeAssist.__UNKNOWN__;
+            return value == LaneChangeAssist.LEFT_AND_RIGHT.value ? LaneChangeAssist.LEFT_AND_RIGHT : LaneChangeAssist.__UNKNOWN__;
         }
     }
 
@@ -704,15 +704,15 @@ public interface ICarConfig {
 
         public final int value;
 
-        private LeftRightHandDriveVehicles(int v1) {
-            this.value = v1;
+        private LeftRightHandDriveVehicles(int value) {
+            this.value = value;
         }
 
-        public static LeftRightHandDriveVehicles valueOf(int v) {
-            if(v == LeftRightHandDriveVehicles.LEFT.value) {
+        public static LeftRightHandDriveVehicles valueOf(int value) {
+            if(value == LeftRightHandDriveVehicles.LEFT.value) {
                 return LeftRightHandDriveVehicles.LEFT;
             }
-            return v == LeftRightHandDriveVehicles.RIGHT.value ? LeftRightHandDriveVehicles.RIGHT : LeftRightHandDriveVehicles.__UNKNOWN__;
+            return value == LeftRightHandDriveVehicles.RIGHT.value ? LeftRightHandDriveVehicles.RIGHT : LeftRightHandDriveVehicles.__UNKNOWN__;
         }
     }
 
@@ -725,21 +725,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private LimitSecondRowSeatsWelcomeFunction(int v1) {
-            this.value = v1;
+        private LimitSecondRowSeatsWelcomeFunction(int value) {
+            this.value = value;
         }
 
-        public static LimitSecondRowSeatsWelcomeFunction valueOf(int v) {
-            if(v == LimitSecondRowSeatsWelcomeFunction.NONE.value) {
+        public static LimitSecondRowSeatsWelcomeFunction valueOf(int value) {
+            if(value == LimitSecondRowSeatsWelcomeFunction.NONE.value) {
                 return LimitSecondRowSeatsWelcomeFunction.NONE;
             }
-            if(v == LimitSecondRowSeatsWelcomeFunction.RL.value) {
+            if(value == LimitSecondRowSeatsWelcomeFunction.RL.value) {
                 return LimitSecondRowSeatsWelcomeFunction.RL;
             }
-            if(v == LimitSecondRowSeatsWelcomeFunction.RR.value) {
+            if(value == LimitSecondRowSeatsWelcomeFunction.RR.value) {
                 return LimitSecondRowSeatsWelcomeFunction.RR;
             }
-            return v == LimitSecondRowSeatsWelcomeFunction.RL_PLUSRR.value ? LimitSecondRowSeatsWelcomeFunction.RL_PLUSRR : LimitSecondRowSeatsWelcomeFunction.__UNKNOWN__;
+            return value == LimitSecondRowSeatsWelcomeFunction.RL_PLUSRR.value ? LimitSecondRowSeatsWelcomeFunction.RL_PLUSRR : LimitSecondRowSeatsWelcomeFunction.__UNKNOWN__;
         }
     }
 
@@ -754,27 +754,27 @@ public interface ICarConfig {
 
         public final int value;
 
-        private LoudspeakerNumber(int v1) {
-            this.value = v1;
+        private LoudspeakerNumber(int value) {
+            this.value = value;
         }
 
-        public static LoudspeakerNumber valueOf(int v) {
-            if(v == LoudspeakerNumber.FOUR.value) {
+        public static LoudspeakerNumber valueOf(int value) {
+            if(value == LoudspeakerNumber.FOUR.value) {
                 return LoudspeakerNumber.FOUR;
             }
-            if(v == LoudspeakerNumber.SIX.value) {
+            if(value == LoudspeakerNumber.SIX.value) {
                 return LoudspeakerNumber.SIX;
             }
-            if(v == LoudspeakerNumber.EIGHT.value) {
+            if(value == LoudspeakerNumber.EIGHT.value) {
                 return LoudspeakerNumber.EIGHT;
             }
-            if(v == LoudspeakerNumber.TEN.value) {
+            if(value == LoudspeakerNumber.TEN.value) {
                 return LoudspeakerNumber.TEN;
             }
-            if(v == LoudspeakerNumber.THIRTEEN.value) {
+            if(value == LoudspeakerNumber.THIRTEEN.value) {
                 return LoudspeakerNumber.THIRTEEN;
             }
-            return v == LoudspeakerNumber.TWO.value ? LoudspeakerNumber.TWO : LoudspeakerNumber.__UNKNOWN__;
+            return value == LoudspeakerNumber.TWO.value ? LoudspeakerNumber.TWO : LoudspeakerNumber.__UNKNOWN__;
         }
     }
 
@@ -788,24 +788,24 @@ public interface ICarConfig {
 
         public final int value;
 
-        private LoudspeakerSupplier(int v1) {
-            this.value = v1;
+        private LoudspeakerSupplier(int value) {
+            this.value = value;
         }
 
-        public static LoudspeakerSupplier valueOf(int v) {
-            if(v == LoudspeakerSupplier.LONGDA.value) {
+        public static LoudspeakerSupplier valueOf(int value) {
+            if(value == LoudspeakerSupplier.LONGDA.value) {
                 return LoudspeakerSupplier.LONGDA;
             }
-            if(v == LoudspeakerSupplier.FOSTER.value) {
+            if(value == LoudspeakerSupplier.FOSTER.value) {
                 return LoudspeakerSupplier.FOSTER;
             }
-            if(v == LoudspeakerSupplier.ALPINE.value) {
+            if(value == LoudspeakerSupplier.ALPINE.value) {
                 return LoudspeakerSupplier.ALPINE;
             }
-            if(v == LoudspeakerSupplier.HARMAN.value) {
+            if(value == LoudspeakerSupplier.HARMAN.value) {
                 return LoudspeakerSupplier.HARMAN;
             }
-            return v == LoudspeakerSupplier.YAMAHA.value ? LoudspeakerSupplier.YAMAHA : LoudspeakerSupplier.__UNKNOWN__;
+            return value == LoudspeakerSupplier.YAMAHA.value ? LoudspeakerSupplier.YAMAHA : LoudspeakerSupplier.__UNKNOWN__;
         }
     }
 
@@ -818,21 +818,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private NapMode(int v1) {
-            this.value = v1;
+        private NapMode(int value) {
+            this.value = value;
         }
 
-        public static NapMode valueOf(int v) {
-            if(v == NapMode.NOT_PRESENT.value) {
+        public static NapMode valueOf(int value) {
+            if(value == NapMode.NOT_PRESENT.value) {
                 return NapMode.NOT_PRESENT;
             }
-            if(v == NapMode.DRIVER_AND_PASSENGER.value) {
+            if(value == NapMode.DRIVER_AND_PASSENGER.value) {
                 return NapMode.DRIVER_AND_PASSENGER;
             }
-            if(v == NapMode.DRIVER.value) {
+            if(value == NapMode.DRIVER.value) {
                 return NapMode.DRIVER;
             }
-            return v == NapMode.PASSENGER.value ? NapMode.PASSENGER : NapMode.__UNKNOWN__;
+            return value == NapMode.PASSENGER.value ? NapMode.PASSENGER : NapMode.__UNKNOWN__;
         }
     }
 
@@ -845,21 +845,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private PromptType(int v1) {
-            this.value = v1;
+        private PromptType(int value) {
+            this.value = value;
         }
 
-        public static PromptType valueOf(int v) {
-            if(v == PromptType.NOT_PRESENT.value) {
+        public static PromptType valueOf(int value) {
+            if(value == PromptType.NOT_PRESENT.value) {
                 return PromptType.NOT_PRESENT;
             }
-            if(v == PromptType.SOUND_AND_VOICE.value) {
+            if(value == PromptType.SOUND_AND_VOICE.value) {
                 return PromptType.SOUND_AND_VOICE;
             }
-            if(v == PromptType.SOUND_AND_VOICE_AND_SEAT_VIBRATION.value) {
+            if(value == PromptType.SOUND_AND_VOICE_AND_SEAT_VIBRATION.value) {
                 return PromptType.SOUND_AND_VOICE_AND_SEAT_VIBRATION;
             }
-            return v == PromptType.ALARM_AND_SEAT_VIBRATION_AND_ALARM_AND_SEAT_VIBRATION.value ? PromptType.ALARM_AND_SEAT_VIBRATION_AND_ALARM_AND_SEAT_VIBRATION : PromptType.__UNKNOWN__;
+            return value == PromptType.ALARM_AND_SEAT_VIBRATION_AND_ALARM_AND_SEAT_VIBRATION.value ? PromptType.ALARM_AND_SEAT_VIBRATION_AND_ALARM_AND_SEAT_VIBRATION : PromptType.__UNKNOWN__;
         }
     }
 
@@ -876,33 +876,33 @@ public interface ICarConfig {
 
         public final int value;
 
-        private RadarNumber(int v1) {
-            this.value = v1;
+        private RadarNumber(int value) {
+            this.value = value;
         }
 
-        public static RadarNumber valueOf(int v) {
-            if(v == RadarNumber.NONE.value) {
+        public static RadarNumber valueOf(int value) {
+            if(value == RadarNumber.NONE.value) {
                 return RadarNumber.NONE;
             }
-            if(v == RadarNumber.FRONT_0_REAR_3.value) {
+            if(value == RadarNumber.FRONT_0_REAR_3.value) {
                 return RadarNumber.FRONT_0_REAR_3;
             }
-            if(v == RadarNumber.FRONT_0_REAR_4.value) {
+            if(value == RadarNumber.FRONT_0_REAR_4.value) {
                 return RadarNumber.FRONT_0_REAR_4;
             }
-            if(v == RadarNumber.FRONT_2_REAR_3.value) {
+            if(value == RadarNumber.FRONT_2_REAR_3.value) {
                 return RadarNumber.FRONT_2_REAR_3;
             }
-            if(v == RadarNumber.FRONT_2_REAR_4.value) {
+            if(value == RadarNumber.FRONT_2_REAR_4.value) {
                 return RadarNumber.FRONT_2_REAR_4;
             }
-            if(v == RadarNumber.FRONT_4_REAR_4.value) {
+            if(value == RadarNumber.FRONT_4_REAR_4.value) {
                 return RadarNumber.FRONT_4_REAR_4;
             }
-            if(v == RadarNumber.FRONT_4_MID_4_REAR_4.value) {
+            if(value == RadarNumber.FRONT_4_MID_4_REAR_4.value) {
                 return RadarNumber.FRONT_4_MID_4_REAR_4;
             }
-            return v == RadarNumber.FRONT_6_REAR_6.value ? RadarNumber.FRONT_6_REAR_6 : RadarNumber.__UNKNOWN__;
+            return value == RadarNumber.FRONT_6_REAR_6.value ? RadarNumber.FRONT_6_REAR_6 : RadarNumber.__UNKNOWN__;
         }
     }
 
@@ -915,21 +915,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private RearDefrostAndRearviewMirrorHeating(int v1) {
-            this.value = v1;
+        private RearDefrostAndRearviewMirrorHeating(int value) {
+            this.value = value;
         }
 
-        public static RearDefrostAndRearviewMirrorHeating valueOf(int v) {
-            if(v == RearDefrostAndRearviewMirrorHeating.NOT_PRESENT.value) {
+        public static RearDefrostAndRearviewMirrorHeating valueOf(int value) {
+            if(value == RearDefrostAndRearviewMirrorHeating.NOT_PRESENT.value) {
                 return RearDefrostAndRearviewMirrorHeating.NOT_PRESENT;
             }
-            if(v == RearDefrostAndRearviewMirrorHeating.REAR_DEFROST_AND_REARVIEW_MIRROR_HEATING.value) {
+            if(value == RearDefrostAndRearviewMirrorHeating.REAR_DEFROST_AND_REARVIEW_MIRROR_HEATING.value) {
                 return RearDefrostAndRearviewMirrorHeating.REAR_DEFROST_AND_REARVIEW_MIRROR_HEATING;
             }
-            if(v == RearDefrostAndRearviewMirrorHeating.REAR_DEFROS.value) {
+            if(value == RearDefrostAndRearviewMirrorHeating.REAR_DEFROS.value) {
                 return RearDefrostAndRearviewMirrorHeating.REAR_DEFROS;
             }
-            return v == RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING.value ? RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING : RearDefrostAndRearviewMirrorHeating.__UNKNOWN__;
+            return value == RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING.value ? RearDefrostAndRearviewMirrorHeating.REARVIEW_MIRROR_HEATING : RearDefrostAndRearviewMirrorHeating.__UNKNOWN__;
         }
     }
 
@@ -942,21 +942,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private SeatLayout(int v1) {
-            this.value = v1;
+        private SeatLayout(int value) {
+            this.value = value;
         }
 
-        public static SeatLayout valueOf(int v) {
-            if(v == SeatLayout.FIVE_LAYOUT.value) {
+        public static SeatLayout valueOf(int value) {
+            if(value == SeatLayout.FIVE_LAYOUT.value) {
                 return SeatLayout.FIVE_LAYOUT;
             }
-            if(v == SeatLayout.SIX_LAYOUT.value) {
+            if(value == SeatLayout.SIX_LAYOUT.value) {
                 return SeatLayout.SIX_LAYOUT;
             }
-            if(v == SeatLayout.SEVEN_LAYOUT.value) {
+            if(value == SeatLayout.SEVEN_LAYOUT.value) {
                 return SeatLayout.SEVEN_LAYOUT;
             }
-            return v == SeatLayout.NONE_LAYOUT.value ? SeatLayout.SEVEN_LAYOUT : SeatLayout.__UNKNOWN__;
+            return value == SeatLayout.NONE_LAYOUT.value ? SeatLayout.SEVEN_LAYOUT : SeatLayout.__UNKNOWN__;
         }
     }
 
@@ -968,18 +968,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private SecondRowSeatsControl(int v1) {
-            this.value = v1;
+        private SecondRowSeatsControl(int value) {
+            this.value = value;
         }
 
-        public static SecondRowSeatsControl valueOf(int v) {
-            if(v == SecondRowSeatsControl.NONE.value) {
+        public static SecondRowSeatsControl valueOf(int value) {
+            if(value == SecondRowSeatsControl.NONE.value) {
                 return SecondRowSeatsControl.NONE;
             }
-            if(v == SecondRowSeatsControl.EIGHT_CONTROL.value) {
+            if(value == SecondRowSeatsControl.EIGHT_CONTROL.value) {
                 return SecondRowSeatsControl.EIGHT_CONTROL;
             }
-            return v == SecondRowSeatsControl.SIX_CONTROL.value ? SecondRowSeatsControl.SIX_CONTROL : SecondRowSeatsControl.__UNKNOWN__;
+            return value == SecondRowSeatsControl.SIX_CONTROL.value ? SecondRowSeatsControl.SIX_CONTROL : SecondRowSeatsControl.__UNKNOWN__;
         }
     }
 
@@ -992,21 +992,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private SecondRowSeatsWelcome(int v1) {
-            this.value = v1;
+        private SecondRowSeatsWelcome(int value) {
+            this.value = value;
         }
 
-        public static SecondRowSeatsWelcome valueOf(int v) {
-            if(v == SecondRowSeatsWelcome.NONE.value) {
+        public static SecondRowSeatsWelcome valueOf(int value) {
+            if(value == SecondRowSeatsWelcome.NONE.value) {
                 return SecondRowSeatsWelcome.NONE;
             }
-            if(v == SecondRowSeatsWelcome.RL.value) {
+            if(value == SecondRowSeatsWelcome.RL.value) {
                 return SecondRowSeatsWelcome.RL;
             }
-            if(v == SecondRowSeatsWelcome.RR.value) {
+            if(value == SecondRowSeatsWelcome.RR.value) {
                 return SecondRowSeatsWelcome.RR;
             }
-            return v == SecondRowSeatsWelcome.RL_PLUSRR.value ? SecondRowSeatsWelcome.RL_PLUSRR : SecondRowSeatsWelcome.__UNKNOWN__;
+            return value == SecondRowSeatsWelcome.RL_PLUSRR.value ? SecondRowSeatsWelcome.RL_PLUSRR : SecondRowSeatsWelcome.__UNKNOWN__;
         }
     }
 
@@ -1017,15 +1017,15 @@ public interface ICarConfig {
 
         public final int value;
 
-        private StandardAndHdCameraConfiguration(int v1) {
-            this.value = v1;
+        private StandardAndHdCameraConfiguration(int value) {
+            this.value = value;
         }
 
-        public static StandardAndHdCameraConfiguration valueOf(int v) {
-            if(v == StandardAndHdCameraConfiguration.STANDARD_DEFINITION.value) {
+        public static StandardAndHdCameraConfiguration valueOf(int value) {
+            if(value == StandardAndHdCameraConfiguration.STANDARD_DEFINITION.value) {
                 return StandardAndHdCameraConfiguration.STANDARD_DEFINITION;
             }
-            return v == StandardAndHdCameraConfiguration.HIGH_DEFINITION.value ? StandardAndHdCameraConfiguration.HIGH_DEFINITION : StandardAndHdCameraConfiguration.__UNKNOWN__;
+            return value == StandardAndHdCameraConfiguration.HIGH_DEFINITION.value ? StandardAndHdCameraConfiguration.HIGH_DEFINITION : StandardAndHdCameraConfiguration.__UNKNOWN__;
         }
     }
 
@@ -1037,18 +1037,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private TboxConnectionMode(int v1) {
-            this.value = v1;
+        private TboxConnectionMode(int value) {
+            this.value = value;
         }
 
-        public static TboxConnectionMode valueOf(int v) {
-            if(v == TboxConnectionMode.NO_CONNECTION.value) {
+        public static TboxConnectionMode valueOf(int value) {
+            if(value == TboxConnectionMode.NO_CONNECTION.value) {
                 return TboxConnectionMode.NO_CONNECTION;
             }
-            if(v == TboxConnectionMode.USB.value) {
+            if(value == TboxConnectionMode.USB.value) {
                 return TboxConnectionMode.USB;
             }
-            return v == TboxConnectionMode.ETH.value ? TboxConnectionMode.ETH : TboxConnectionMode.__UNKNOWN__;
+            return value == TboxConnectionMode.ETH.value ? TboxConnectionMode.ETH : TboxConnectionMode.__UNKNOWN__;
         }
     }
 
@@ -1061,21 +1061,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private Tiktok(int v1) {
-            this.value = v1;
+        private Tiktok(int value) {
+            this.value = value;
         }
 
-        public static Tiktok valueOf(int v) {
-            if(v == Tiktok.NOT_PRESENT.value) {
+        public static Tiktok valueOf(int value) {
+            if(value == Tiktok.NOT_PRESENT.value) {
                 return Tiktok.NOT_PRESENT;
             }
-            if(v == Tiktok.NO_SHOOTING_FUNCTION.value) {
+            if(value == Tiktok.NO_SHOOTING_FUNCTION.value) {
                 return Tiktok.NO_SHOOTING_FUNCTION;
             }
-            if(v == Tiktok.SHOOTING_FUNCTION_PLUSINDOOR_SHOOTING.value) {
+            if(value == Tiktok.SHOOTING_FUNCTION_PLUSINDOOR_SHOOTING.value) {
                 return Tiktok.SHOOTING_FUNCTION_PLUSINDOOR_SHOOTING;
             }
-            return v == Tiktok.SHOOTING_FUNCTION_PLUSOUTING_AND_INDOOR_SHOOTING.value ? Tiktok.SHOOTING_FUNCTION_PLUSOUTING_AND_INDOOR_SHOOTING : Tiktok.__UNKNOWN__;
+            return value == Tiktok.SHOOTING_FUNCTION_PLUSOUTING_AND_INDOOR_SHOOTING.value ? Tiktok.SHOOTING_FUNCTION_PLUSOUTING_AND_INDOOR_SHOOTING : Tiktok.__UNKNOWN__;
         }
     }
 
@@ -1100,77 +1100,89 @@ public interface ICarConfig {
         T60_G1_HEV(0x72),
         T58_G2(0x80),
         T58_G3(0x6F),
+        CS108(0xA1),
+        CS110(0xA0),
         CS111(0x88),
+        CS112(0x94),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private VehiclePlatform(int v1) {
-            this.value = v1;
+        private VehiclePlatform(int value) {
+            this.value = value;
         }
 
-        public static VehiclePlatform valueOf(int v) {
-            if(v == VehiclePlatform.A75_2_A77.value) {
+        public static VehiclePlatform valueOf(int value) {
+            if(value == VehiclePlatform.A75_2_A77.value) {
                 return VehiclePlatform.A75_2_A77;
             }
-            if(v == VehiclePlatform.A12.value) {
+            if(value == VehiclePlatform.A12.value) {
                 return VehiclePlatform.A12;
             }
-            if(v == VehiclePlatform.A12_HIGH.value) {
+            if(value == VehiclePlatform.A12_HIGH.value) {
                 return VehiclePlatform.A12_HIGH;
             }
-            if(v == VehiclePlatform.A18.value) {
+            if(value == VehiclePlatform.A18.value) {
                 return VehiclePlatform.A18;
             }
-            if(v == VehiclePlatform.A18_HIGH.value) {
+            if(value == VehiclePlatform.A18_HIGH.value) {
                 return VehiclePlatform.A18_HIGH;
             }
-            if(v == VehiclePlatform.A55.value) {
+            if(value == VehiclePlatform.A55.value) {
                 return VehiclePlatform.A55;
             }
-            if(v == VehiclePlatform.A60.value) {
+            if(value == VehiclePlatform.A60.value) {
                 return VehiclePlatform.A60;
             }
-            if(v == VehiclePlatform.A13.value) {
+            if(value == VehiclePlatform.A13.value) {
                 return VehiclePlatform.A13;
             }
-            if(v == VehiclePlatform.A18_Y.value) {
+            if(value == VehiclePlatform.A18_Y.value) {
                 return VehiclePlatform.A18_Y;
             }
-            if(v == VehiclePlatform.A60_1.value) {
+            if(value == VehiclePlatform.A60_1.value) {
                 return VehiclePlatform.A60_1;
             }
-            if(v == VehiclePlatform.A58.value) {
+            if(value == VehiclePlatform.A58.value) {
                 return VehiclePlatform.A58;
             }
-            if(v == VehiclePlatform.A88.value) {
+            if(value == VehiclePlatform.A88.value) {
                 return VehiclePlatform.A88;
             }
-            if(v == VehiclePlatform.A9E.value) {
+            if(value == VehiclePlatform.A9E.value) {
                 return VehiclePlatform.A9E;
             }
-            if(v == VehiclePlatform.A79.value) {
+            if(value == VehiclePlatform.A79.value) {
                 return VehiclePlatform.A79;
             }
-            if(v == VehiclePlatform.A8E.value) {
+            if(value == VehiclePlatform.A8E.value) {
                 return VehiclePlatform.A8E;
             }
-            if(v == VehiclePlatform.A13_Y.value) {
+            if(value == VehiclePlatform.A13_Y.value) {
                 return VehiclePlatform.A13_Y;
             }
-            if(v == VehiclePlatform.T60_G1.value) {
+            if(value == VehiclePlatform.T60_G1.value) {
                 return VehiclePlatform.T60_G1;
             }
-            if(v == VehiclePlatform.T60_G1_HEV.value) {
+            if(value == VehiclePlatform.T60_G1_HEV.value) {
                 return VehiclePlatform.T60_G1_HEV;
             }
-            if(v == VehiclePlatform.T58_G2.value) {
+            if(value == VehiclePlatform.T58_G2.value) {
                 return VehiclePlatform.T58_G2;
             }
-            if(v == VehiclePlatform.T58_G3.value) {
+            if(value == VehiclePlatform.T58_G3.value) {
                 return VehiclePlatform.T58_G3;
             }
-            return v == VehiclePlatform.CS111.value ? VehiclePlatform.CS111 : VehiclePlatform.__UNKNOWN__;
+            if(value == VehiclePlatform.CS108.value) {
+                return VehiclePlatform.CS108;
+            }
+            if(value == VehiclePlatform.CS110.value) {
+                return VehiclePlatform.CS110;
+            }
+            if(value == VehiclePlatform.CS111.value) {
+                return VehiclePlatform.CS111;
+            }
+            return value == VehiclePlatform.CS112.value ? VehiclePlatform.CS112 : VehiclePlatform.__UNKNOWN__;
         }
     }
 
@@ -1183,21 +1195,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VehicleType(int v1) {
-            this.value = v1;
+        private VehicleType(int value) {
+            this.value = value;
         }
 
-        public static VehicleType valueOf(int v) {
-            if(v == VehicleType.TRADITIONAL_CAR.value) {
+        public static VehicleType valueOf(int value) {
+            if(value == VehicleType.TRADITIONAL_CAR.value) {
                 return VehicleType.TRADITIONAL_CAR;
             }
-            if(v == VehicleType.EV.value) {
+            if(value == VehicleType.EV.value) {
                 return VehicleType.EV;
             }
-            if(v == VehicleType.HEV.value) {
+            if(value == VehicleType.HEV.value) {
                 return VehicleType.HEV;
             }
-            return v == VehicleType.PHEV.value ? VehicleType.PHEV : VehicleType.__UNKNOWN__;
+            return value == VehicleType.PHEV.value ? VehicleType.PHEV : VehicleType.__UNKNOWN__;
         }
     }
 
@@ -1209,18 +1221,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControl(int v1) {
-            this.value = v1;
+        private VrControl(int value) {
+            this.value = value;
         }
 
-        public static VrControl valueOf(int v) {
-            if(v == VrControl.ONE_ZONE.value) {
+        public static VrControl valueOf(int value) {
+            if(value == VrControl.ONE_ZONE.value) {
                 return VrControl.ONE_ZONE;
             }
-            if(v == VrControl.TWO_ZONE.value) {
+            if(value == VrControl.TWO_ZONE.value) {
                 return VrControl.TWO_ZONE;
             }
-            return v == VrControl.THREE_ZONE.value ? VrControl.THREE_ZONE : VrControl.__UNKNOWN__;
+            return value == VrControl.THREE_ZONE.value ? VrControl.THREE_ZONE : VrControl.__UNKNOWN__;
         }
     }
 
@@ -1232,18 +1244,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlCarwindow(int v1) {
-            this.value = v1;
+        private VrControlCarwindow(int value) {
+            this.value = value;
         }
 
-        public static VrControlCarwindow valueOf(int v) {
-            if(v == VrControlCarwindow.NOT_PRESENT.value) {
+        public static VrControlCarwindow valueOf(int value) {
+            if(value == VrControlCarwindow.NOT_PRESENT.value) {
                 return VrControlCarwindow.NOT_PRESENT;
             }
-            if(v == VrControlCarwindow.LEFT_FRONT_WINDOW.value) {
+            if(value == VrControlCarwindow.LEFT_FRONT_WINDOW.value) {
                 return VrControlCarwindow.LEFT_FRONT_WINDOW;
             }
-            return v == VrControlCarwindow.FOUR_DOOR_WINDOWS.value ? VrControlCarwindow.FOUR_DOOR_WINDOWS : VrControlCarwindow.__UNKNOWN__;
+            return value == VrControlCarwindow.FOUR_DOOR_WINDOWS.value ? VrControlCarwindow.FOUR_DOOR_WINDOWS : VrControlCarwindow.__UNKNOWN__;
         }
     }
 
@@ -1255,18 +1267,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlHvac(int v1) {
-            this.value = v1;
+        private VrControlHvac(int value) {
+            this.value = value;
         }
 
-        public static VrControlHvac valueOf(int v) {
-            if(v == VrControlHvac.NONE.value) {
+        public static VrControlHvac valueOf(int value) {
+            if(value == VrControlHvac.NONE.value) {
                 return VrControlHvac.NONE;
             }
-            if(v == VrControlHvac.NON_ANION_MODE.value) {
+            if(value == VrControlHvac.NON_ANION_MODE.value) {
                 return VrControlHvac.NON_ANION_MODE;
             }
-            return v == VrControlHvac.ANION_MODE.value ? VrControlHvac.ANION_MODE : VrControlHvac.__UNKNOWN__;
+            return value == VrControlHvac.ANION_MODE.value ? VrControlHvac.ANION_MODE : VrControlHvac.__UNKNOWN__;
         }
     }
 
@@ -1278,18 +1290,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlIal(int v1) {
-            this.value = v1;
+        private VrControlIal(int value) {
+            this.value = value;
         }
 
-        public static VrControlIal valueOf(int v) {
-            if(v == VrControlIal.NOT_PRESENT.value) {
+        public static VrControlIal valueOf(int value) {
+            if(value == VrControlIal.NOT_PRESENT.value) {
                 return VrControlIal.NOT_PRESENT;
             }
-            if(v == VrControlIal.MONOCHROMATIC.value) {
+            if(value == VrControlIal.MONOCHROMATIC.value) {
                 return VrControlIal.MONOCHROMATIC;
             }
-            return v == VrControlIal.INTELLIGENT.value ? VrControlIal.INTELLIGENT : VrControlIal.__UNKNOWN__;
+            return value == VrControlIal.INTELLIGENT.value ? VrControlIal.INTELLIGENT : VrControlIal.__UNKNOWN__;
         }
     }
 
@@ -1303,24 +1315,24 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlParking(int v1) {
-            this.value = v1;
+        private VrControlParking(int value) {
+            this.value = value;
         }
 
-        public static VrControlParking valueOf(int v) {
-            if(v == VrControlParking.NONE.value) {
+        public static VrControlParking valueOf(int value) {
+            if(value == VrControlParking.NONE.value) {
                 return VrControlParking.NONE;
             }
-            if(v == VrControlParking.SVM.value) {
+            if(value == VrControlParking.SVM.value) {
                 return VrControlParking.SVM;
             }
-            if(v == VrControlParking.APA.value) {
+            if(value == VrControlParking.APA.value) {
                 return VrControlParking.APA;
             }
-            if(v == VrControlParking.FAPA.value) {
+            if(value == VrControlParking.FAPA.value) {
                 return VrControlParking.FAPA;
             }
-            return v == VrControlParking.AVP.value ? VrControlParking.AVP : VrControlParking.__UNKNOWN__;
+            return value == VrControlParking.AVP.value ? VrControlParking.AVP : VrControlParking.__UNKNOWN__;
         }
     }
 
@@ -1332,18 +1344,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlRoof(int v1) {
-            this.value = v1;
+        private VrControlRoof(int value) {
+            this.value = value;
         }
 
-        public static VrControlRoof valueOf(int v) {
-            if(v == VrControlRoof.NOT_PRESENT.value) {
+        public static VrControlRoof valueOf(int value) {
+            if(value == VrControlRoof.NOT_PRESENT.value) {
                 return VrControlRoof.NOT_PRESENT;
             }
-            if(v == VrControlRoof.PANORAMIC_SUNROOF.value) {
+            if(value == VrControlRoof.PANORAMIC_SUNROOF.value) {
                 return VrControlRoof.PANORAMIC_SUNROOF;
             }
-            return v == VrControlRoof.NORMAL_SUNROOF.value ? VrControlRoof.NORMAL_SUNROOF : VrControlRoof.__UNKNOWN__;
+            return value == VrControlRoof.NORMAL_SUNROOF.value ? VrControlRoof.NORMAL_SUNROOF : VrControlRoof.__UNKNOWN__;
         }
     }
 
@@ -1355,18 +1367,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlRoofposition(int v1) {
-            this.value = v1;
+        private VrControlRoofposition(int value) {
+            this.value = value;
         }
 
-        public static VrControlRoofposition valueOf(int v) {
-            if(v == VrControlRoofposition.NOT_PRESENT.value) {
+        public static VrControlRoofposition valueOf(int value) {
+            if(value == VrControlRoofposition.NOT_PRESENT.value) {
                 return VrControlRoofposition.NOT_PRESENT;
             }
-            if(v == VrControlRoofposition.PANORAMIC_SUNROOF.value) {
+            if(value == VrControlRoofposition.PANORAMIC_SUNROOF.value) {
                 return VrControlRoofposition.PANORAMIC_SUNROOF;
             }
-            return v == VrControlRoofposition.NORMAL_SUNROOF.value ? VrControlRoofposition.NORMAL_SUNROOF : VrControlRoofposition.__UNKNOWN__;
+            return value == VrControlRoofposition.NORMAL_SUNROOF.value ? VrControlRoofposition.NORMAL_SUNROOF : VrControlRoofposition.__UNKNOWN__;
         }
     }
 
@@ -1378,18 +1390,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlWindowposition(int v1) {
-            this.value = v1;
+        private VrControlWindowposition(int value) {
+            this.value = value;
         }
 
-        public static VrControlWindowposition valueOf(int v) {
-            if(v == VrControlWindowposition.NOT_PRESENT.value) {
+        public static VrControlWindowposition valueOf(int value) {
+            if(value == VrControlWindowposition.NOT_PRESENT.value) {
                 return VrControlWindowposition.NOT_PRESENT;
             }
-            if(v == VrControlWindowposition.LEFT_FRONT_WINDOW.value) {
+            if(value == VrControlWindowposition.LEFT_FRONT_WINDOW.value) {
                 return VrControlWindowposition.LEFT_FRONT_WINDOW;
             }
-            return v == VrControlWindowposition.FOUR_DOOR_WINDOWS.value ? VrControlWindowposition.FOUR_DOOR_WINDOWS : VrControlWindowposition.__UNKNOWN__;
+            return value == VrControlWindowposition.FOUR_DOOR_WINDOWS.value ? VrControlWindowposition.FOUR_DOOR_WINDOWS : VrControlWindowposition.__UNKNOWN__;
         }
     }
 
@@ -1401,18 +1413,18 @@ public interface ICarConfig {
 
         public final int value;
 
-        private VrControlWiperAndCleaning(int v1) {
-            this.value = v1;
+        private VrControlWiperAndCleaning(int value) {
+            this.value = value;
         }
 
-        public static VrControlWiperAndCleaning valueOf(int v) {
-            if(v == VrControlWiperAndCleaning.NOT_PRESENT.value) {
+        public static VrControlWiperAndCleaning valueOf(int value) {
+            if(value == VrControlWiperAndCleaning.NOT_PRESENT.value) {
                 return VrControlWiperAndCleaning.NOT_PRESENT;
             }
-            if(v == VrControlWiperAndCleaning.FRONT_WIPER_CLEANING.value) {
+            if(value == VrControlWiperAndCleaning.FRONT_WIPER_CLEANING.value) {
                 return VrControlWiperAndCleaning.FRONT_WIPER_CLEANING;
             }
-            return v == VrControlWiperAndCleaning.FRONT_AND_REAR_WIPER_CLEANING.value ? VrControlWiperAndCleaning.FRONT_AND_REAR_WIPER_CLEANING : VrControlWiperAndCleaning.__UNKNOWN__;
+            return value == VrControlWiperAndCleaning.FRONT_AND_REAR_WIPER_CLEANING.value ? VrControlWiperAndCleaning.FRONT_AND_REAR_WIPER_CLEANING : VrControlWiperAndCleaning.__UNKNOWN__;
         }
     }
 
@@ -1425,21 +1437,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private WalAndApu(int v1) {
-            this.value = v1;
+        private WalAndApu(int value) {
+            this.value = value;
         }
 
-        public static WalAndApu valueOf(int v) {
-            if(v == WalAndApu.NOT_PRESENT.value) {
+        public static WalAndApu valueOf(int value) {
+            if(value == WalAndApu.NOT_PRESENT.value) {
                 return WalAndApu.NOT_PRESENT;
             }
-            if(v == WalAndApu.WAL.value) {
+            if(value == WalAndApu.WAL.value) {
                 return WalAndApu.WAL;
             }
-            if(v == WalAndApu.APU.value) {
+            if(value == WalAndApu.APU.value) {
                 return WalAndApu.APU;
             }
-            return v == WalAndApu.WAL_AND_APU.value ? WalAndApu.WAL_AND_APU : WalAndApu.__UNKNOWN__;
+            return value == WalAndApu.WAL_AND_APU.value ? WalAndApu.WAL_AND_APU : WalAndApu.__UNKNOWN__;
         }
     }
 
@@ -1452,21 +1464,21 @@ public interface ICarConfig {
 
         public final int value;
 
-        private WindowControl(int v1) {
-            this.value = v1;
+        private WindowControl(int value) {
+            this.value = value;
         }
 
-        public static WindowControl valueOf(int v) {
-            if(v == WindowControl.NOT_PRESENT.value) {
+        public static WindowControl valueOf(int value) {
+            if(value == WindowControl.NOT_PRESENT.value) {
                 return WindowControl.NOT_PRESENT;
             }
-            if(v == WindowControl.LEFT_FRONT_WINDOW.value) {
+            if(value == WindowControl.LEFT_FRONT_WINDOW.value) {
                 return WindowControl.LEFT_FRONT_WINDOW;
             }
-            if(v == WindowControl.FOUR_DOOR_WINDOWS.value) {
+            if(value == WindowControl.FOUR_DOOR_WINDOWS.value) {
                 return WindowControl.FOUR_DOOR_WINDOWS;
             }
-            return v == WindowControl.LEFT_AND_RIGHT_FRONT_WINDOW.value ? WindowControl.LEFT_AND_RIGHT_FRONT_WINDOW : WindowControl.__UNKNOWN__;
+            return value == WindowControl.LEFT_AND_RIGHT_FRONT_WINDOW.value ? WindowControl.LEFT_AND_RIGHT_FRONT_WINDOW : WindowControl.__UNKNOWN__;
         }
     }
 

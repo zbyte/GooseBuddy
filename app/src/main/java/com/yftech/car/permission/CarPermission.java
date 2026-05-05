@@ -1,12 +1,16 @@
 package com.yftech.car.permission;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
+
 import android.content.Context;
 import android.os.Binder;
 import android.os.Process;
 import android.os.SystemClock;
-import android.os.SystemProperties;
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.yftech.car.utils.SystemPropertiesHelper;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -56,15 +60,9 @@ public class CarPermission {
 
     private static final String PERMISSIONS_WHITE_LIST_FILE = "/system/etc/yftech_permissions_white_list.xml";
     private static String TAG;
-    private static boolean mHasLoadedWhiteList;
-    private static final Map mPermissionWhiteMap;
-    private static final int mSelfPid;
-
-    static {
-        CarPermission.mHasLoadedWhiteList = false;
-        CarPermission.mPermissionWhiteMap = new HashMap();
-        CarPermission.mSelfPid = Process.myPid();
-    }
+    private static boolean mHasLoadedWhiteList = false;
+    private static final Map mPermissionWhiteMap = new HashMap();
+    private static final int mSelfPid = Process.myPid();
 
     public static boolean checkPermission(Context context, int pid, int uid, String permission) {
         ArrayList permissionList = new ArrayList();
@@ -73,7 +71,7 @@ public class CarPermission {
     }
 
     public static boolean checkPermission(Context context, int pid, int uid, List list0) {
-        if(SystemProperties.getBoolean("yf.permission.enable", false) && pid != CarPermission.mSelfPid) {
+        if(SystemPropertiesHelper.getBoolean("yf.permission.enable", false) && pid != CarPermission.mSelfPid) {
             if(context == null) {
                 Log.e(CarPermission.TAG, "checkPermission, denied for context null");
                 return false;
@@ -102,7 +100,7 @@ public class CarPermission {
         }
         for(Object object0: list0) {
             String permission = (String)object0;
-            if(!TextUtils.isEmpty(permission) && context.checkPermission(permission, pid, uid) != 0) {
+            if(!TextUtils.isEmpty(permission) && context.checkPermission(permission, pid, uid) != PERMISSION_GRANTED) {
                 return false;
             }
         }
@@ -211,14 +209,13 @@ public class CarPermission {
     }
 
     private static void loadPermissionWhiteList() {
-        FileInputStream inputStream;
+        FileInputStream inputStream = null;
         File whiteListFile = new File("/system/etc/yftech_permissions_white_list.xml");
         if(!whiteListFile.exists()) {
             Log.i(CarPermission.TAG, "loadPermissionWhiteList, white list file not exist");
             return;
         }
         try {
-            inputStream = null;
             inputStream = new FileInputStream(whiteListFile);
             XmlPullParser xmlPullParser0 = XmlPullParserFactory.newInstance().newPullParser();
             xmlPullParser0.setInput(inputStream, "UTF-8");
@@ -262,7 +259,6 @@ public class CarPermission {
                     Log.i(CarPermission.TAG, "loadPermissionWhiteList, white list is disable");
                     break;
                 }
-                return;
             }
         }
         catch(XmlPullParserException xmlPullParserException0) {

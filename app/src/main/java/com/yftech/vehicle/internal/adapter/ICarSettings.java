@@ -10,21 +10,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private ADASELKStatus(int v1) {
-            this.value = v1;
+        private ADASELKStatus(int value) {
+            this.value = value;
         }
 
-        public static ADASELKStatus valueOf(int v) {
-            if(v == ADASELKStatus.OFF.value) {
+        public static ADASELKStatus valueOf(int value) {
+            if(value == ADASELKStatus.OFF.value) {
                 return ADASELKStatus.OFF;
             }
-            if(v == ADASELKStatus.PASSIVE.value) {
+            if(value == ADASELKStatus.PASSIVE.value) {
                 return ADASELKStatus.PASSIVE;
             }
-            if(v == ADASELKStatus.ACTIVE.value) {
+            if(value == ADASELKStatus.ACTIVE.value) {
                 return ADASELKStatus.ACTIVE;
             }
-            return v == ADASELKStatus.FAILURE.value ? ADASELKStatus.FAILURE : ADASELKStatus.__UNKNOWN__;
+            return value == ADASELKStatus.FAILURE.value ? ADASELKStatus.FAILURE : ADASELKStatus.__UNKNOWN__;
         }
     }
 
@@ -37,21 +37,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private ADASRAEBStatus(int v1) {
-            this.value = v1;
+        private ADASRAEBStatus(int value) {
+            this.value = value;
         }
 
-        public static ADASRAEBStatus valueOf(int v) {
-            if(v == ADASRAEBStatus.OFF.value) {
+        public static ADASRAEBStatus valueOf(int value) {
+            if(value == ADASRAEBStatus.OFF.value) {
                 return ADASRAEBStatus.OFF;
             }
-            if(v == ADASRAEBStatus.ENABLE.value) {
+            if(value == ADASRAEBStatus.ENABLE.value) {
                 return ADASRAEBStatus.ENABLE;
             }
-            if(v == ADASRAEBStatus.ACTIVE.value) {
+            if(value == ADASRAEBStatus.ACTIVE.value) {
                 return ADASRAEBStatus.ACTIVE;
             }
-            return v == ADASRAEBStatus.FAILURE.value ? ADASRAEBStatus.FAILURE : ADASRAEBStatus.__UNKNOWN__;
+            return value == ADASRAEBStatus.FAILURE.value ? ADASRAEBStatus.FAILURE : ADASRAEBStatus.__UNKNOWN__;
         }
     }
 
@@ -65,20 +65,20 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private ADASWarnType(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private ADASWarnType(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static ADASWarnType valueOf(int v) {
-            if(v == ADASWarnType.SOUND.rx) {
+        public static ADASWarnType valueOf(int value) {
+            if(value == ADASWarnType.SOUND.rx) {
                 return ADASWarnType.SOUND;
             }
-            if(v == ADASWarnType.SEAT_VIBRATION.rx) {
+            if(value == ADASWarnType.SEAT_VIBRATION.rx) {
                 return ADASWarnType.SEAT_VIBRATION;
             }
-            return v == ADASWarnType.BOTH.rx ? ADASWarnType.BOTH : ADASWarnType.__UNKNOWN__;
+            return value == ADASWarnType.BOTH.rx ? ADASWarnType.BOTH : ADASWarnType.__UNKNOWN__;
         }
     }
 
@@ -91,36 +91,36 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private AutoWiperMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private AutoWiperMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static AutoWiperMode valueOf(int v) {
-            if(v == AutoWiperMode.INTERMITTENT.rx) {
+        public static AutoWiperMode valueOf(int value) {
+            if(value == AutoWiperMode.INTERMITTENT.rx) {
                 return AutoWiperMode.INTERMITTENT;
             }
-            return v == AutoWiperMode.AUTO.rx ? AutoWiperMode.AUTO : AutoWiperMode.__UNKNOWN__;
+            return value == AutoWiperMode.AUTO.rx ? AutoWiperMode.AUTO : AutoWiperMode.__UNKNOWN__;
         }
     }
 
     public static enum BSDMDowCtl {
-        ON(1),
-        OFF(2),
+        ON(2),
+        OFF(1),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private BSDMDowCtl(int v1) {
-            this.value = v1;
+        private BSDMDowCtl(int value) {
+            this.value = value;
         }
 
-        public static BSDMDowCtl valueOf(int v) {
-            if(v == BSDMDowCtl.ON.value) {
+        public static BSDMDowCtl valueOf(int value) {
+            if(value == BSDMDowCtl.ON.value) {
                 return BSDMDowCtl.ON;
             }
-            return v == BSDMDowCtl.OFF.value ? BSDMDowCtl.OFF : BSDMDowCtl.__UNKNOWN__;
+            return value == BSDMDowCtl.OFF.value ? BSDMDowCtl.OFF : BSDMDowCtl.__UNKNOWN__;
         }
     }
 
@@ -133,40 +133,40 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private BSDMDowState(int v1) {
-            this.value = v1;
+        private BSDMDowState(int value) {
+            this.value = value;
         }
 
-        public static BSDMDowState valueOf(int v) {
-            if(v == BSDMDowState.OFF.value) {
+        public static BSDMDowState valueOf(int value) {
+            if(value == BSDMDowState.OFF.value) {
                 return BSDMDowState.OFF;
             }
-            if(v == BSDMDowState.PASSIVE.value) {
+            if(value == BSDMDowState.PASSIVE.value) {
                 return BSDMDowState.PASSIVE;
             }
-            if(v == BSDMDowState.ACTIVE.value) {
+            if(value == BSDMDowState.ACTIVE.value) {
                 return BSDMDowState.ACTIVE;
             }
-            return v == BSDMDowState.FAILURE.value ? BSDMDowState.FAILURE : BSDMDowState.__UNKNOWN__;
+            return value == BSDMDowState.FAILURE.value ? BSDMDowState.FAILURE : BSDMDowState.__UNKNOWN__;
         }
     }
 
     public static enum BSDMLcaCtl {
-        ON(1),
-        OFF(2),
+        ON(2),
+        OFF(1),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private BSDMLcaCtl(int v1) {
-            this.value = v1;
+        private BSDMLcaCtl(int value) {
+            this.value = value;
         }
 
-        public static BSDMLcaCtl valueOf(int v) {
-            if(v == BSDMLcaCtl.ON.value) {
+        public static BSDMLcaCtl valueOf(int value) {
+            if(value == BSDMLcaCtl.ON.value) {
                 return BSDMLcaCtl.ON;
             }
-            return v == BSDMLcaCtl.OFF.value ? BSDMLcaCtl.OFF : BSDMLcaCtl.__UNKNOWN__;
+            return value == BSDMLcaCtl.OFF.value ? BSDMLcaCtl.OFF : BSDMLcaCtl.__UNKNOWN__;
         }
     }
 
@@ -179,21 +179,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private BSDMLcaState(int v1) {
-            this.value = v1;
+        private BSDMLcaState(int value) {
+            this.value = value;
         }
 
-        public static BSDMLcaState valueOf(int v) {
-            if(v == BSDMLcaState.OFF.value) {
+        public static BSDMLcaState valueOf(int value) {
+            if(value == BSDMLcaState.OFF.value) {
                 return BSDMLcaState.OFF;
             }
-            if(v == BSDMLcaState.PASSIVE.value) {
+            if(value == BSDMLcaState.PASSIVE.value) {
                 return BSDMLcaState.PASSIVE;
             }
-            if(v == BSDMLcaState.ACTIVE.value) {
+            if(value == BSDMLcaState.ACTIVE.value) {
                 return BSDMLcaState.ACTIVE;
             }
-            return v == BSDMLcaState.FAILURE.value ? BSDMLcaState.FAILURE : BSDMLcaState.__UNKNOWN__;
+            return value == BSDMLcaState.FAILURE.value ? BSDMLcaState.FAILURE : BSDMLcaState.__UNKNOWN__;
         }
     }
 
@@ -206,40 +206,40 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private BSDMRctaAssistType(int v1) {
-            this.value = v1;
+        private BSDMRctaAssistType(int value) {
+            this.value = value;
         }
 
-        public static BSDMRctaAssistType valueOf(int v) {
-            if(v == BSDMRctaAssistType.NO_SELECTED.value) {
+        public static BSDMRctaAssistType valueOf(int value) {
+            if(value == BSDMRctaAssistType.NO_SELECTED.value) {
                 return BSDMRctaAssistType.NO_SELECTED;
             }
-            if(v == BSDMRctaAssistType.BRAKE.value) {
+            if(value == BSDMRctaAssistType.BRAKE.value) {
                 return BSDMRctaAssistType.BRAKE;
             }
-            if(v == BSDMRctaAssistType.WARNING.value) {
+            if(value == BSDMRctaAssistType.WARNING.value) {
                 return BSDMRctaAssistType.WARNING;
             }
-            return v == BSDMRctaAssistType.BRAKE_AND_WARNING.value ? BSDMRctaAssistType.BRAKE_AND_WARNING : BSDMRctaAssistType.__UNKNOWN__;
+            return value == BSDMRctaAssistType.BRAKE_AND_WARNING.value ? BSDMRctaAssistType.BRAKE_AND_WARNING : BSDMRctaAssistType.__UNKNOWN__;
         }
     }
 
     public static enum BSDMRctaCtl {
-        ON(1),
-        OFF(2),
+        ON(2),
+        OFF(1),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private BSDMRctaCtl(int v1) {
-            this.value = v1;
+        private BSDMRctaCtl(int value) {
+            this.value = value;
         }
 
-        public static BSDMRctaCtl valueOf(int v) {
-            if(v == BSDMRctaCtl.ON.value) {
+        public static BSDMRctaCtl valueOf(int value) {
+            if(value == BSDMRctaCtl.ON.value) {
                 return BSDMRctaCtl.ON;
             }
-            return v == BSDMRctaCtl.OFF.value ? BSDMRctaCtl.OFF : BSDMRctaCtl.__UNKNOWN__;
+            return value == BSDMRctaCtl.OFF.value ? BSDMRctaCtl.OFF : BSDMRctaCtl.__UNKNOWN__;
         }
     }
 
@@ -252,21 +252,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private BSDMRctaState(int v1) {
-            this.value = v1;
+        private BSDMRctaState(int value) {
+            this.value = value;
         }
 
-        public static BSDMRctaState valueOf(int v) {
-            if(v == BSDMRctaState.OFF.value) {
+        public static BSDMRctaState valueOf(int value) {
+            if(value == BSDMRctaState.OFF.value) {
                 return BSDMRctaState.OFF;
             }
-            if(v == BSDMRctaState.PASSIVE.value) {
+            if(value == BSDMRctaState.PASSIVE.value) {
                 return BSDMRctaState.PASSIVE;
             }
-            if(v == BSDMRctaState.ACTIVE.value) {
+            if(value == BSDMRctaState.ACTIVE.value) {
                 return BSDMRctaState.ACTIVE;
             }
-            return v == BSDMRctaState.FAILURE.value ? BSDMRctaState.FAILURE : BSDMRctaState.__UNKNOWN__;
+            return value == BSDMRctaState.FAILURE.value ? BSDMRctaState.FAILURE : BSDMRctaState.__UNKNOWN__;
         }
     }
 
@@ -277,15 +277,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private BSDMRcwCtl(int v1) {
-            this.value = v1;
+        private BSDMRcwCtl(int value) {
+            this.value = value;
         }
 
-        public static BSDMRcwCtl valueOf(int v) {
-            if(v == BSDMRcwCtl.NOT_ACTIVE.value) {
+        public static BSDMRcwCtl valueOf(int value) {
+            if(value == BSDMRcwCtl.NOT_ACTIVE.value) {
                 return BSDMRcwCtl.NOT_ACTIVE;
             }
-            return v == BSDMRcwCtl.ACTIVE.value ? BSDMRcwCtl.ACTIVE : BSDMRcwCtl.__UNKNOWN__;
+            return value == BSDMRcwCtl.ACTIVE.value ? BSDMRcwCtl.ACTIVE : BSDMRcwCtl.__UNKNOWN__;
         }
     }
 
@@ -298,21 +298,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private BSDMRcwState(int v1) {
-            this.value = v1;
+        private BSDMRcwState(int value) {
+            this.value = value;
         }
 
-        public static BSDMRcwState valueOf(int v) {
-            if(v == BSDMRcwState.OFF.value) {
+        public static BSDMRcwState valueOf(int value) {
+            if(value == BSDMRcwState.OFF.value) {
                 return BSDMRcwState.OFF;
             }
-            if(v == BSDMRcwState.PASSIVE.value) {
+            if(value == BSDMRcwState.PASSIVE.value) {
                 return BSDMRcwState.PASSIVE;
             }
-            if(v == BSDMRcwState.ACTIVE.value) {
+            if(value == BSDMRcwState.ACTIVE.value) {
                 return BSDMRcwState.ACTIVE;
             }
-            return v == BSDMRcwState.FAILURE.value ? BSDMRcwState.FAILURE : BSDMRcwState.__UNKNOWN__;
+            return value == BSDMRcwState.FAILURE.value ? BSDMRcwState.FAILURE : BSDMRcwState.__UNKNOWN__;
         }
     }
 
@@ -326,24 +326,24 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private ComfortParkState(int v1) {
-            this.value = v1;
+        private ComfortParkState(int value) {
+            this.value = value;
         }
 
-        public static ComfortParkState valueOf(int v) {
-            if(v == ComfortParkState.CST_DISABLED.value) {
+        public static ComfortParkState valueOf(int value) {
+            if(value == ComfortParkState.CST_DISABLED.value) {
                 return ComfortParkState.CST_DISABLED;
             }
-            if(v == ComfortParkState.CST_STANDBY.value) {
+            if(value == ComfortParkState.CST_STANDBY.value) {
                 return ComfortParkState.CST_STANDBY;
             }
-            if(v == ComfortParkState.CST_ACTIVE.value) {
+            if(value == ComfortParkState.CST_ACTIVE.value) {
                 return ComfortParkState.CST_ACTIVE;
             }
-            if(v == ComfortParkState.CST_FAILURE.value) {
+            if(value == ComfortParkState.CST_FAILURE.value) {
                 return ComfortParkState.CST_FAILURE;
             }
-            return v == ComfortParkState.CST_LEVEL_4.value ? ComfortParkState.CST_LEVEL_4 : ComfortParkState.__UNKNOWN__;
+            return value == ComfortParkState.CST_LEVEL_4.value ? ComfortParkState.CST_LEVEL_4 : ComfortParkState.__UNKNOWN__;
         }
     }
 
@@ -354,15 +354,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private CruiseAssistMode(int v1) {
-            this.value = v1;
+        private CruiseAssistMode(int value) {
+            this.value = value;
         }
 
-        public static CruiseAssistMode valueOf(int v) {
-            if(v == CruiseAssistMode.ACC_MODE.value) {
+        public static CruiseAssistMode valueOf(int value) {
+            if(value == CruiseAssistMode.ACC_MODE.value) {
                 return CruiseAssistMode.ACC_MODE;
             }
-            return v == CruiseAssistMode.TJA_ICA_MODE.value ? CruiseAssistMode.TJA_ICA_MODE : CruiseAssistMode.__UNKNOWN__;
+            return value == CruiseAssistMode.TJA_ICA_MODE.value ? CruiseAssistMode.TJA_ICA_MODE : CruiseAssistMode.__UNKNOWN__;
         }
     }
 
@@ -375,21 +375,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private DragMode(int v1) {
-            this.value = v1;
+        private DragMode(int value) {
+            this.value = value;
         }
 
-        public static DragMode valueOf(int v) {
-            if(v == DragMode.OFF.value) {
+        public static DragMode valueOf(int value) {
+            if(value == DragMode.OFF.value) {
                 return DragMode.OFF;
             }
-            if(v == DragMode.OPEN.value) {
+            if(value == DragMode.OPEN.value) {
                 return DragMode.OPEN;
             }
-            if(v == DragMode.DEEPPUSHBRKPEDAL_TO_N.value) {
+            if(value == DragMode.DEEPPUSHBRKPEDAL_TO_N.value) {
                 return DragMode.DEEPPUSHBRKPEDAL_TO_N;
             }
-            return v == DragMode.FAILURE.value ? DragMode.FAILURE : DragMode.__UNKNOWN__;
+            return value == DragMode.FAILURE.value ? DragMode.FAILURE : DragMode.__UNKNOWN__;
         }
     }
 
@@ -402,21 +402,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private EMSEngWaveStatus(int v1) {
-            this.value = v1;
+        private EMSEngWaveStatus(int value) {
+            this.value = value;
         }
 
-        public static EMSEngWaveStatus valueOf(int v) {
-            if(v == EMSEngWaveStatus.INVALID.value) {
+        public static EMSEngWaveStatus valueOf(int value) {
+            if(value == EMSEngWaveStatus.INVALID.value) {
                 return EMSEngWaveStatus.INVALID;
             }
-            if(v == EMSEngWaveStatus.OFF.value) {
+            if(value == EMSEngWaveStatus.OFF.value) {
                 return EMSEngWaveStatus.OFF;
             }
-            if(v == EMSEngWaveStatus.ON.value) {
+            if(value == EMSEngWaveStatus.ON.value) {
                 return EMSEngWaveStatus.ON;
             }
-            return v == EMSEngWaveStatus.EAV_BLOCK_ERROR.value ? EMSEngWaveStatus.EAV_BLOCK_ERROR : EMSEngWaveStatus.__UNKNOWN__;
+            return value == EMSEngWaveStatus.EAV_BLOCK_ERROR.value ? EMSEngWaveStatus.EAV_BLOCK_ERROR : EMSEngWaveStatus.__UNKNOWN__;
         }
     }
 
@@ -434,36 +434,36 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private EPBSystemMsg(int v1) {
-            this.value = v1;
+        private EPBSystemMsg(int value) {
+            this.value = value;
         }
 
-        public static EPBSystemMsg valueOf(int v) {
-            if(v == EPBSystemMsg.OFF.value) {
+        public static EPBSystemMsg valueOf(int value) {
+            if(value == EPBSystemMsg.OFF.value) {
                 return EPBSystemMsg.OFF;
             }
-            if(v == EPBSystemMsg.FASTEN_SEATBELT.value) {
+            if(value == EPBSystemMsg.FASTEN_SEATBELT.value) {
                 return EPBSystemMsg.FASTEN_SEATBELT;
             }
-            if(v == EPBSystemMsg.RELEASE_PARK_BRAKE.value) {
+            if(value == EPBSystemMsg.RELEASE_PARK_BRAKE.value) {
                 return EPBSystemMsg.RELEASE_PARK_BRAKE;
             }
-            if(v == EPBSystemMsg.CHECK_PARK_BRAKE_LOW_GRADIENT.value) {
+            if(value == EPBSystemMsg.CHECK_PARK_BRAKE_LOW_GRADIENT.value) {
                 return EPBSystemMsg.CHECK_PARK_BRAKE_LOW_GRADIENT;
             }
-            if(v == EPBSystemMsg.PARK_BRAKE_SET.value) {
+            if(value == EPBSystemMsg.PARK_BRAKE_SET.value) {
                 return EPBSystemMsg.PARK_BRAKE_SET;
             }
-            if(v == EPBSystemMsg.PARK_BRAKE_RELEASED.value) {
+            if(value == EPBSystemMsg.PARK_BRAKE_RELEASED.value) {
                 return EPBSystemMsg.PARK_BRAKE_RELEASED;
             }
-            if(v == EPBSystemMsg.PARK_BRAKE_TESTING.value) {
+            if(value == EPBSystemMsg.PARK_BRAKE_TESTING.value) {
                 return EPBSystemMsg.PARK_BRAKE_TESTING;
             }
-            if(v == EPBSystemMsg.CLAMPFORCE_NOT_ENOUGH.value) {
+            if(value == EPBSystemMsg.CLAMPFORCE_NOT_ENOUGH.value) {
                 return EPBSystemMsg.CLAMPFORCE_NOT_ENOUGH;
             }
-            return v == EPBSystemMsg.NON_P_TO_RELEASE_PARK_BRAKE.value ? EPBSystemMsg.NON_P_TO_RELEASE_PARK_BRAKE : EPBSystemMsg.__UNKNOWN__;
+            return value == EPBSystemMsg.NON_P_TO_RELEASE_PARK_BRAKE.value ? EPBSystemMsg.NON_P_TO_RELEASE_PARK_BRAKE : EPBSystemMsg.__UNKNOWN__;
         }
     }
 
@@ -475,18 +475,18 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private EPBSystemSetState(int v1) {
-            this.value = v1;
+        private EPBSystemSetState(int value) {
+            this.value = value;
         }
 
-        public static EPBSystemSetState valueOf(int v) {
-            if(v == EPBSystemSetState.RELEASE.value) {
+        public static EPBSystemSetState valueOf(int value) {
+            if(value == EPBSystemSetState.RELEASE.value) {
                 return EPBSystemSetState.RELEASE;
             }
-            if(v == EPBSystemSetState.APPLY.value) {
+            if(value == EPBSystemSetState.APPLY.value) {
                 return EPBSystemSetState.APPLY;
             }
-            return v == EPBSystemSetState.UNUSABLE.value ? EPBSystemSetState.UNUSABLE : EPBSystemSetState.__UNKNOWN__;
+            return value == EPBSystemSetState.UNUSABLE.value ? EPBSystemSetState.UNUSABLE : EPBSystemSetState.__UNKNOWN__;
         }
     }
 
@@ -501,27 +501,27 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private EPBSystemState(int v1) {
-            this.value = v1;
+        private EPBSystemState(int value) {
+            this.value = value;
         }
 
-        public static EPBSystemState valueOf(int v) {
-            if(v == EPBSystemState.RELEASE.value) {
+        public static EPBSystemState valueOf(int value) {
+            if(value == EPBSystemState.RELEASE.value) {
                 return EPBSystemState.RELEASE;
             }
-            if(v == EPBSystemState.APPLY.value) {
+            if(value == EPBSystemState.APPLY.value) {
                 return EPBSystemState.APPLY;
             }
-            if(v == EPBSystemState.RELEASING.value) {
+            if(value == EPBSystemState.RELEASING.value) {
                 return EPBSystemState.RELEASING;
             }
-            if(v == EPBSystemState.APPLYING.value) {
+            if(value == EPBSystemState.APPLYING.value) {
                 return EPBSystemState.APPLYING;
             }
-            if(v == EPBSystemState.DISENGAGED.value) {
+            if(value == EPBSystemState.DISENGAGED.value) {
                 return EPBSystemState.DISENGAGED;
             }
-            return v == EPBSystemState.FAULT.value ? EPBSystemState.FAULT : EPBSystemState.__UNKNOWN__;
+            return value == EPBSystemState.FAULT.value ? EPBSystemState.FAULT : EPBSystemState.__UNKNOWN__;
         }
     }
 
@@ -534,21 +534,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private ExhibitionHallMode(int v1) {
-            this.value = v1;
+        private ExhibitionHallMode(int value) {
+            this.value = value;
         }
 
-        public static ExhibitionHallMode valueOf(int v) {
-            if(v == ExhibitionHallMode.DEFAULT.value) {
+        public static ExhibitionHallMode valueOf(int value) {
+            if(value == ExhibitionHallMode.DEFAULT.value) {
                 return ExhibitionHallMode.DEFAULT;
             }
-            if(v == ExhibitionHallMode.NORMAL_MODE.value) {
+            if(value == ExhibitionHallMode.NORMAL_MODE.value) {
                 return ExhibitionHallMode.NORMAL_MODE;
             }
-            if(v == ExhibitionHallMode.TRANSPORT_MODE.value) {
+            if(value == ExhibitionHallMode.TRANSPORT_MODE.value) {
                 return ExhibitionHallMode.TRANSPORT_MODE;
             }
-            return v == ExhibitionHallMode.SHOWROOM_MODE.value ? ExhibitionHallMode.SHOWROOM_MODE : ExhibitionHallMode.__UNKNOWN__;
+            return value == ExhibitionHallMode.SHOWROOM_MODE.value ? ExhibitionHallMode.SHOWROOM_MODE : ExhibitionHallMode.__UNKNOWN__;
         }
     }
 
@@ -561,21 +561,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private FCTAConfig(int v1) {
-            this.value = v1;
+        private FCTAConfig(int value) {
+            this.value = value;
         }
 
-        public static FCTAConfig valueOf(int v) {
-            if(v == FCTAConfig.NO_SELECTED.value) {
+        public static FCTAConfig valueOf(int value) {
+            if(value == FCTAConfig.NO_SELECTED.value) {
                 return FCTAConfig.NO_SELECTED;
             }
-            if(v == FCTAConfig.BRAKE.value) {
+            if(value == FCTAConfig.BRAKE.value) {
                 return FCTAConfig.BRAKE;
             }
-            if(v == FCTAConfig.WARNING.value) {
+            if(value == FCTAConfig.WARNING.value) {
                 return FCTAConfig.WARNING;
             }
-            return v == FCTAConfig.BRAKE_AND_WARNING.value ? FCTAConfig.BRAKE_AND_WARNING : FCTAConfig.__UNKNOWN__;
+            return value == FCTAConfig.BRAKE_AND_WARNING.value ? FCTAConfig.BRAKE_AND_WARNING : FCTAConfig.__UNKNOWN__;
         }
     }
 
@@ -588,21 +588,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private FCTASwitchStatus(int v1) {
-            this.value = v1;
+        private FCTASwitchStatus(int value) {
+            this.value = value;
         }
 
-        public static FCTASwitchStatus valueOf(int v) {
-            if(v == FCTASwitchStatus.OFF.value) {
+        public static FCTASwitchStatus valueOf(int value) {
+            if(value == FCTASwitchStatus.OFF.value) {
                 return FCTASwitchStatus.OFF;
             }
-            if(v == FCTASwitchStatus.PASSIVE_ON_INACTIVE.value) {
+            if(value == FCTASwitchStatus.PASSIVE_ON_INACTIVE.value) {
                 return FCTASwitchStatus.PASSIVE_ON_INACTIVE;
             }
-            if(v == FCTASwitchStatus.ACTIVE.value) {
+            if(value == FCTASwitchStatus.ACTIVE.value) {
                 return FCTASwitchStatus.ACTIVE;
             }
-            return v == FCTASwitchStatus.FAILURE.value ? FCTASwitchStatus.FAILURE : FCTASwitchStatus.__UNKNOWN__;
+            return value == FCTASwitchStatus.FAILURE.value ? FCTASwitchStatus.FAILURE : FCTASwitchStatus.__UNKNOWN__;
         }
     }
 
@@ -613,15 +613,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private FCWSwitchEnableState(int v1) {
-            this.value = v1;
+        private FCWSwitchEnableState(int value) {
+            this.value = value;
         }
 
-        public static FCWSwitchEnableState valueOf(int v) {
-            if(v == FCWSwitchEnableState.NO_LOCK.value) {
+        public static FCWSwitchEnableState valueOf(int value) {
+            if(value == FCWSwitchEnableState.NO_LOCK.value) {
                 return FCWSwitchEnableState.NO_LOCK;
             }
-            return v == FCWSwitchEnableState.LOCK.value ? FCWSwitchEnableState.LOCK : FCWSwitchEnableState.__UNKNOWN__;
+            return value == FCWSwitchEnableState.LOCK.value ? FCWSwitchEnableState.LOCK : FCWSwitchEnableState.__UNKNOWN__;
         }
     }
 
@@ -635,20 +635,20 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private FCWWarningDistance(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private FCWWarningDistance(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static FCWWarningDistance valueOf(int v) {
-            if(v == FCWWarningDistance.NORMAL.rx) {
+        public static FCWWarningDistance valueOf(int value) {
+            if(value == FCWWarningDistance.NORMAL.rx) {
                 return FCWWarningDistance.NORMAL;
             }
-            if(v == FCWWarningDistance.CLOSE.rx) {
+            if(value == FCWWarningDistance.CLOSE.rx) {
                 return FCWWarningDistance.CLOSE;
             }
-            return v == FCWWarningDistance.FAR.rx ? FCWWarningDistance.FAR : FCWWarningDistance.__UNKNOWN__;
+            return value == FCWWarningDistance.FAR.rx ? FCWWarningDistance.FAR : FCWWarningDistance.__UNKNOWN__;
         }
     }
 
@@ -659,15 +659,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private FaultStatus(int v1) {
-            this.value = v1;
+        private FaultStatus(int value) {
+            this.value = value;
         }
 
-        public static FaultStatus valueOf(int v) {
-            if(v == FaultStatus.NOT_FAULT.value) {
+        public static FaultStatus valueOf(int value) {
+            if(value == FaultStatus.NOT_FAULT.value) {
                 return FaultStatus.NOT_FAULT;
             }
-            return v == FaultStatus.FAULT.value ? FaultStatus.FAULT : FaultStatus.__UNKNOWN__;
+            return value == FaultStatus.FAULT.value ? FaultStatus.FAULT : FaultStatus.__UNKNOWN__;
         }
     }
 
@@ -684,33 +684,33 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private FrontWiperLevel(int v1) {
-            this.value = v1;
+        private FrontWiperLevel(int value) {
+            this.value = value;
         }
 
-        public static FrontWiperLevel valueOf(int v) {
-            if(v == FrontWiperLevel.NOT_ACTIVE.value) {
+        public static FrontWiperLevel valueOf(int value) {
+            if(value == FrontWiperLevel.NOT_ACTIVE.value) {
                 return FrontWiperLevel.NOT_ACTIVE;
             }
-            if(v == FrontWiperLevel.LEVEL_1.value) {
+            if(value == FrontWiperLevel.LEVEL_1.value) {
                 return FrontWiperLevel.LEVEL_1;
             }
-            if(v == FrontWiperLevel.LEVEL_2.value) {
+            if(value == FrontWiperLevel.LEVEL_2.value) {
                 return FrontWiperLevel.LEVEL_2;
             }
-            if(v == FrontWiperLevel.LEVEL_3.value) {
+            if(value == FrontWiperLevel.LEVEL_3.value) {
                 return FrontWiperLevel.LEVEL_3;
             }
-            if(v == FrontWiperLevel.LEVEL_4.value) {
+            if(value == FrontWiperLevel.LEVEL_4.value) {
                 return FrontWiperLevel.LEVEL_4;
             }
-            if(v == FrontWiperLevel.LEVEL_5.value) {
+            if(value == FrontWiperLevel.LEVEL_5.value) {
                 return FrontWiperLevel.LEVEL_5;
             }
-            if(v == FrontWiperLevel.LEVEL_6.value) {
+            if(value == FrontWiperLevel.LEVEL_6.value) {
                 return FrontWiperLevel.LEVEL_6;
             }
-            return v == FrontWiperLevel.LEVEL_7.value ? FrontWiperLevel.LEVEL_7 : FrontWiperLevel.__UNKNOWN__;
+            return value == FrontWiperLevel.LEVEL_7.value ? FrontWiperLevel.LEVEL_7 : FrontWiperLevel.__UNKNOWN__;
         }
     }
 
@@ -725,42 +725,42 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private FrontWiperMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private FrontWiperMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static FrontWiperMode valueOf(int v) {
-            if(v == FrontWiperMode.NO_COMMAND.rx) {
+        public static FrontWiperMode valueOf(int value) {
+            if(value == FrontWiperMode.NO_COMMAND.rx) {
                 return FrontWiperMode.NO_COMMAND;
             }
-            if(v == FrontWiperMode.OFF.rx) {
+            if(value == FrontWiperMode.OFF.rx) {
                 return FrontWiperMode.OFF;
             }
-            if(v == FrontWiperMode.CONTINUOUS_SLOW.rx) {
+            if(value == FrontWiperMode.CONTINUOUS_SLOW.rx) {
                 return FrontWiperMode.CONTINUOUS_SLOW;
             }
-            return v == FrontWiperMode.CONTINUOUS_FAST.rx ? FrontWiperMode.CONTINUOUS_FAST : FrontWiperMode.__UNKNOWN__;
+            return value == FrontWiperMode.CONTINUOUS_FAST.rx ? FrontWiperMode.CONTINUOUS_FAST : FrontWiperMode.__UNKNOWN__;
         }
     }
 
     public static enum HudMode {
-        STANDARD(1),
-        SNOW(2),
+        STANDARD(0),
+        SNOW(1),
         __UNKNOWN__(-1);
 
         public final int value;
 
-        private HudMode(int v1) {
-            this.value = v1;
+        private HudMode(int value) {
+            this.value = value;
         }
 
-        public static HudMode valueOf(int v) {
-            if(v == HudMode.STANDARD.value) {
+        public static HudMode valueOf(int value) {
+            if(value == HudMode.STANDARD.value) {
                 return HudMode.STANDARD;
             }
-            return v == HudMode.SNOW.value ? HudMode.SNOW : HudMode.__UNKNOWN__;
+            return value == HudMode.SNOW.value ? HudMode.SNOW : HudMode.__UNKNOWN__;
         }
     }
 
@@ -771,15 +771,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private HudOffState(int v1) {
-            this.value = v1;
+        private HudOffState(int value) {
+            this.value = value;
         }
 
-        public static HudOffState valueOf(int v) {
-            if(v == HudOffState.NOT_ACTIVE.value) {
+        public static HudOffState valueOf(int value) {
+            if(value == HudOffState.NOT_ACTIVE.value) {
                 return HudOffState.NOT_ACTIVE;
             }
-            return v == HudOffState.ACTIVE.value ? HudOffState.ACTIVE : HudOffState.__UNKNOWN__;
+            return value == HudOffState.ACTIVE.value ? HudOffState.ACTIVE : HudOffState.__UNKNOWN__;
         }
     }
 
@@ -790,15 +790,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private IMRCtrlErrorStatus(int v1) {
-            this.value = v1;
+        private IMRCtrlErrorStatus(int value) {
+            this.value = value;
         }
 
-        public static IMRCtrlErrorStatus valueOf(int v) {
-            if(v == IMRCtrlErrorStatus.SYSTEM_NO_ERROR.value) {
+        public static IMRCtrlErrorStatus valueOf(int value) {
+            if(value == IMRCtrlErrorStatus.SYSTEM_NO_ERROR.value) {
                 return IMRCtrlErrorStatus.SYSTEM_NO_ERROR;
             }
-            return v == IMRCtrlErrorStatus.SYSTEM_ERROR.value ? IMRCtrlErrorStatus.SYSTEM_ERROR : IMRCtrlErrorStatus.__UNKNOWN__;
+            return value == IMRCtrlErrorStatus.SYSTEM_ERROR.value ? IMRCtrlErrorStatus.SYSTEM_ERROR : IMRCtrlErrorStatus.__UNKNOWN__;
         }
     }
 
@@ -813,23 +813,23 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private IMRCtrlStatus(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private IMRCtrlStatus(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static IMRCtrlStatus valueOf(int v) {
-            if(v == IMRCtrlStatus.NO_COMMAND.rx) {
+        public static IMRCtrlStatus valueOf(int value) {
+            if(value == IMRCtrlStatus.NO_COMMAND.rx) {
                 return IMRCtrlStatus.NO_COMMAND;
             }
-            if(v == IMRCtrlStatus.OFF.rx) {
+            if(value == IMRCtrlStatus.OFF.rx) {
                 return IMRCtrlStatus.OFF;
             }
-            if(v == IMRCtrlStatus.STANDBY.rx) {
+            if(value == IMRCtrlStatus.STANDBY.rx) {
                 return IMRCtrlStatus.STANDBY;
             }
-            return v == IMRCtrlStatus.ON.rx ? IMRCtrlStatus.ON : IMRCtrlStatus.__UNKNOWN__;
+            return value == IMRCtrlStatus.ON.rx ? IMRCtrlStatus.ON : IMRCtrlStatus.__UNKNOWN__;
         }
     }
 
@@ -842,21 +842,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private LksMode(int v1) {
-            this.value = v1;
+        private LksMode(int value) {
+            this.value = value;
         }
 
-        public static LksMode valueOf(int v) {
-            if(v == LksMode.NOT_SELECTED.value) {
+        public static LksMode valueOf(int value) {
+            if(value == LksMode.NOT_SELECTED.value) {
                 return LksMode.NOT_SELECTED;
             }
-            if(v == LksMode.STEERING.value) {
+            if(value == LksMode.STEERING.value) {
                 return LksMode.STEERING;
             }
-            if(v == LksMode.WARNING.value) {
+            if(value == LksMode.WARNING.value) {
                 return LksMode.WARNING;
             }
-            return v == LksMode.STEERING_AND_WARNING.value ? LksMode.STEERING_AND_WARNING : LksMode.__UNKNOWN__;
+            return value == LksMode.STEERING_AND_WARNING.value ? LksMode.STEERING_AND_WARNING : LksMode.__UNKNOWN__;
         }
     }
 
@@ -870,24 +870,24 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private LksState(int v1) {
-            this.value = v1;
+        private LksState(int value) {
+            this.value = value;
         }
 
-        public static LksState valueOf(int v) {
-            if(v == LksState.LKS_OFF.value) {
+        public static LksState valueOf(int value) {
+            if(value == LksState.LKS_OFF.value) {
                 return LksState.LKS_OFF;
             }
-            if(v == LksState.LKS_STANDBY.value) {
+            if(value == LksState.LKS_STANDBY.value) {
                 return LksState.LKS_STANDBY;
             }
-            if(v == LksState.LKS_ACTIVE.value) {
+            if(value == LksState.LKS_ACTIVE.value) {
                 return LksState.LKS_ACTIVE;
             }
-            if(v == LksState.LKS_FAILURE.value) {
+            if(value == LksState.LKS_FAILURE.value) {
                 return LksState.LKS_FAILURE;
             }
-            return v == LksState.CAMERA_BLOCKED.value ? LksState.CAMERA_BLOCKED : LksState.__UNKNOWN__;
+            return value == LksState.CAMERA_BLOCKED.value ? LksState.CAMERA_BLOCKED : LksState.__UNKNOWN__;
         }
     }
 
@@ -900,21 +900,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private NapSettingSave(int v1) {
-            this.value = v1;
+        private NapSettingSave(int value) {
+            this.value = value;
         }
 
-        public static NapSettingSave valueOf(int v) {
-            if(v == NapSettingSave.NO_COMMAND.value) {
+        public static NapSettingSave valueOf(int value) {
+            if(value == NapSettingSave.NO_COMMAND.value) {
                 return NapSettingSave.NO_COMMAND;
             }
-            if(v == NapSettingSave.CANCEL.value) {
+            if(value == NapSettingSave.CANCEL.value) {
                 return NapSettingSave.CANCEL;
             }
-            if(v == NapSettingSave.SAVE.value) {
+            if(value == NapSettingSave.SAVE.value) {
                 return NapSettingSave.SAVE;
             }
-            return v == NapSettingSave.START.value ? NapSettingSave.START : NapSettingSave.__UNKNOWN__;
+            return value == NapSettingSave.START.value ? NapSettingSave.START : NapSettingSave.__UNKNOWN__;
         }
     }
 
@@ -929,23 +929,23 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private OSRMRAngleCmd(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private OSRMRAngleCmd(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static OSRMRAngleCmd valueOf(int v) {
-            if(v == OSRMRAngleCmd.OFF.rx) {
+        public static OSRMRAngleCmd valueOf(int value) {
+            if(value == OSRMRAngleCmd.OFF.rx) {
                 return OSRMRAngleCmd.OFF;
             }
-            if(v == OSRMRAngleCmd.LEFT_MIRROR_DIP.rx) {
+            if(value == OSRMRAngleCmd.LEFT_MIRROR_DIP.rx) {
                 return OSRMRAngleCmd.LEFT_MIRROR_DIP;
             }
-            if(v == OSRMRAngleCmd.RIGHT_MIRROR_DIP.rx) {
+            if(value == OSRMRAngleCmd.RIGHT_MIRROR_DIP.rx) {
                 return OSRMRAngleCmd.RIGHT_MIRROR_DIP;
             }
-            return v == OSRMRAngleCmd.BOTH_MIRROR_DIP.rx ? OSRMRAngleCmd.BOTH_MIRROR_DIP : OSRMRAngleCmd.__UNKNOWN__;
+            return value == OSRMRAngleCmd.BOTH_MIRROR_DIP.rx ? OSRMRAngleCmd.BOTH_MIRROR_DIP : OSRMRAngleCmd.__UNKNOWN__;
         }
     }
 
@@ -958,21 +958,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private OSRMRAngleSaveCmd(int v1) {
-            this.value = v1;
+        private OSRMRAngleSaveCmd(int value) {
+            this.value = value;
         }
 
-        public static OSRMRAngleSaveCmd valueOf(int v) {
-            if(v == OSRMRAngleSaveCmd.NONE.value) {
+        public static OSRMRAngleSaveCmd valueOf(int value) {
+            if(value == OSRMRAngleSaveCmd.NONE.value) {
                 return OSRMRAngleSaveCmd.NONE;
             }
-            if(v == OSRMRAngleSaveCmd.START.value) {
+            if(value == OSRMRAngleSaveCmd.START.value) {
                 return OSRMRAngleSaveCmd.START;
             }
-            if(v == OSRMRAngleSaveCmd.SAVE.value) {
+            if(value == OSRMRAngleSaveCmd.SAVE.value) {
                 return OSRMRAngleSaveCmd.SAVE;
             }
-            return v == OSRMRAngleSaveCmd.CANCEL.value ? OSRMRAngleSaveCmd.CANCEL : OSRMRAngleSaveCmd.__UNKNOWN__;
+            return value == OSRMRAngleSaveCmd.CANCEL.value ? OSRMRAngleSaveCmd.CANCEL : OSRMRAngleSaveCmd.__UNKNOWN__;
         }
     }
 
@@ -985,17 +985,17 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private ParkAutoUnlockState(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private ParkAutoUnlockState(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static ParkAutoUnlockState valueOf(int v) {
-            if(v == ParkAutoUnlockState.NOT_ACTIVE.rx) {
+        public static ParkAutoUnlockState valueOf(int value) {
+            if(value == ParkAutoUnlockState.NOT_ACTIVE.rx) {
                 return ParkAutoUnlockState.NOT_ACTIVE;
             }
-            return v == ParkAutoUnlockState.ACTIVE.rx ? ParkAutoUnlockState.ACTIVE : ParkAutoUnlockState.__UNKNOWN__;
+            return value == ParkAutoUnlockState.ACTIVE.rx ? ParkAutoUnlockState.ACTIVE : ParkAutoUnlockState.__UNKNOWN__;
         }
     }
 
@@ -1006,15 +1006,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private RainstormMode(int v1) {
-            this.value = v1;
+        private RainstormMode(int value) {
+            this.value = value;
         }
 
-        public static RainstormMode valueOf(int v) {
-            if(v == RainstormMode.ENTER_REMIND.value) {
+        public static RainstormMode valueOf(int value) {
+            if(value == RainstormMode.ENTER_REMIND.value) {
                 return RainstormMode.ENTER_REMIND;
             }
-            return v == RainstormMode.AUTO_QUIT.value ? RainstormMode.AUTO_QUIT : RainstormMode.__UNKNOWN__;
+            return value == RainstormMode.AUTO_QUIT.value ? RainstormMode.AUTO_QUIT : RainstormMode.__UNKNOWN__;
         }
     }
 
@@ -1029,27 +1029,27 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private RearSeatShortcutmode(int v1) {
-            this.value = v1;
+        private RearSeatShortcutmode(int value) {
+            this.value = value;
         }
 
-        public static RearSeatShortcutmode valueOf(int v) {
-            if(v == RearSeatShortcutmode.NO_COMMAND.value) {
+        public static RearSeatShortcutmode valueOf(int value) {
+            if(value == RearSeatShortcutmode.NO_COMMAND.value) {
                 return RearSeatShortcutmode.NO_COMMAND;
             }
-            if(v == RearSeatShortcutmode.QUIT.value) {
+            if(value == RearSeatShortcutmode.QUIT.value) {
                 return RearSeatShortcutmode.QUIT;
             }
-            if(v == RearSeatShortcutmode.LH_MEMORY_MODE.value) {
+            if(value == RearSeatShortcutmode.LH_MEMORY_MODE.value) {
                 return RearSeatShortcutmode.LH_MEMORY_MODE;
             }
-            if(v == RearSeatShortcutmode.RH_MEMORY_MODE.value) {
+            if(value == RearSeatShortcutmode.RH_MEMORY_MODE.value) {
                 return RearSeatShortcutmode.RH_MEMORY_MODE;
             }
-            if(v == RearSeatShortcutmode.LH_POSITION_RECOVERY_MODE.value) {
+            if(value == RearSeatShortcutmode.LH_POSITION_RECOVERY_MODE.value) {
                 return RearSeatShortcutmode.LH_POSITION_RECOVERY_MODE;
             }
-            return v == RearSeatShortcutmode.RH_POSITION_RECOVERY_MODE.value ? RearSeatShortcutmode.RH_POSITION_RECOVERY_MODE : RearSeatShortcutmode.__UNKNOWN__;
+            return value == RearSeatShortcutmode.RH_POSITION_RECOVERY_MODE.value ? RearSeatShortcutmode.RH_POSITION_RECOVERY_MODE : RearSeatShortcutmode.__UNKNOWN__;
         }
     }
 
@@ -1069,42 +1069,42 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private RearviewMirrorCmd(int v1) {
-            this.value = v1;
+        private RearviewMirrorCmd(int value) {
+            this.value = value;
         }
 
-        public static RearviewMirrorCmd valueOf(int v) {
-            if(v == RearviewMirrorCmd.STOP.value) {
+        public static RearviewMirrorCmd valueOf(int value) {
+            if(value == RearviewMirrorCmd.STOP.value) {
                 return RearviewMirrorCmd.STOP;
             }
-            if(v == RearviewMirrorCmd.FL_MIRROR_UP.value) {
+            if(value == RearviewMirrorCmd.FL_MIRROR_UP.value) {
                 return RearviewMirrorCmd.FL_MIRROR_UP;
             }
-            if(v == RearviewMirrorCmd.FL_MIRROR_DOWN.value) {
+            if(value == RearviewMirrorCmd.FL_MIRROR_DOWN.value) {
                 return RearviewMirrorCmd.FL_MIRROR_DOWN;
             }
-            if(v == RearviewMirrorCmd.FL_MIRROR_LEFT.value) {
+            if(value == RearviewMirrorCmd.FL_MIRROR_LEFT.value) {
                 return RearviewMirrorCmd.FL_MIRROR_LEFT;
             }
-            if(v == RearviewMirrorCmd.FL_MIRROR_RIGHT.value) {
+            if(value == RearviewMirrorCmd.FL_MIRROR_RIGHT.value) {
                 return RearviewMirrorCmd.FL_MIRROR_RIGHT;
             }
-            if(v == RearviewMirrorCmd.FR_MIRROR_UP.value) {
+            if(value == RearviewMirrorCmd.FR_MIRROR_UP.value) {
                 return RearviewMirrorCmd.FR_MIRROR_UP;
             }
-            if(v == RearviewMirrorCmd.FR_MIRROR_DOWN.value) {
+            if(value == RearviewMirrorCmd.FR_MIRROR_DOWN.value) {
                 return RearviewMirrorCmd.FR_MIRROR_DOWN;
             }
-            if(v == RearviewMirrorCmd.FR_MIRROR_LEFT.value) {
+            if(value == RearviewMirrorCmd.FR_MIRROR_LEFT.value) {
                 return RearviewMirrorCmd.FR_MIRROR_LEFT;
             }
-            if(v == RearviewMirrorCmd.FR_MIRROR_RIGHT.value) {
+            if(value == RearviewMirrorCmd.FR_MIRROR_RIGHT.value) {
                 return RearviewMirrorCmd.FR_MIRROR_RIGHT;
             }
-            if(v == RearviewMirrorCmd.FOLD.value) {
+            if(value == RearviewMirrorCmd.FOLD.value) {
                 return RearviewMirrorCmd.FOLD;
             }
-            return v == RearviewMirrorCmd.UNFOLD.value ? RearviewMirrorCmd.UNFOLD : RearviewMirrorCmd.__UNKNOWN__;
+            return value == RearviewMirrorCmd.UNFOLD.value ? RearviewMirrorCmd.UNFOLD : RearviewMirrorCmd.__UNKNOWN__;
         }
     }
 
@@ -1119,23 +1119,23 @@ public interface ICarSettings extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private RearviewMirrorCmdForReverse(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private RearviewMirrorCmdForReverse(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static RearviewMirrorCmdForReverse valueOf(int v) {
-            if(v == RearviewMirrorCmdForReverse.OFF.rx) {
+        public static RearviewMirrorCmdForReverse valueOf(int value) {
+            if(value == RearviewMirrorCmdForReverse.OFF.rx) {
                 return RearviewMirrorCmdForReverse.OFF;
             }
-            if(v == RearviewMirrorCmdForReverse.LEFT_DOWN.rx) {
+            if(value == RearviewMirrorCmdForReverse.LEFT_DOWN.rx) {
                 return RearviewMirrorCmdForReverse.LEFT_DOWN;
             }
-            if(v == RearviewMirrorCmdForReverse.RIGHT_DOWN.rx) {
+            if(value == RearviewMirrorCmdForReverse.RIGHT_DOWN.rx) {
                 return RearviewMirrorCmdForReverse.RIGHT_DOWN;
             }
-            return v == RearviewMirrorCmdForReverse.BOTH_DOWN.rx ? RearviewMirrorCmdForReverse.BOTH_DOWN : RearviewMirrorCmdForReverse.__UNKNOWN__;
+            return value == RearviewMirrorCmdForReverse.BOTH_DOWN.rx ? RearviewMirrorCmdForReverse.BOTH_DOWN : RearviewMirrorCmdForReverse.__UNKNOWN__;
         }
     }
 
@@ -1147,18 +1147,18 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private RearviewMirrorSettingCmd(int v1) {
-            this.value = v1;
+        private RearviewMirrorSettingCmd(int value) {
+            this.value = value;
         }
 
-        public static RearviewMirrorSettingCmd valueOf(int v) {
-            if(v == RearviewMirrorSettingCmd.START.value) {
+        public static RearviewMirrorSettingCmd valueOf(int value) {
+            if(value == RearviewMirrorSettingCmd.START.value) {
                 return RearviewMirrorSettingCmd.START;
             }
-            if(v == RearviewMirrorSettingCmd.SAVE.value) {
+            if(value == RearviewMirrorSettingCmd.SAVE.value) {
                 return RearviewMirrorSettingCmd.SAVE;
             }
-            return v == RearviewMirrorSettingCmd.CANCEL.value ? RearviewMirrorSettingCmd.CANCEL : RearviewMirrorSettingCmd.__UNKNOWN__;
+            return value == RearviewMirrorSettingCmd.CANCEL.value ? RearviewMirrorSettingCmd.CANCEL : RearviewMirrorSettingCmd.__UNKNOWN__;
         }
     }
 
@@ -1169,15 +1169,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private RearviewMirrorState(int v1) {
-            this.value = v1;
+        private RearviewMirrorState(int value) {
+            this.value = value;
         }
 
-        public static RearviewMirrorState valueOf(int v) {
-            if(v == RearviewMirrorState.FOLD.value) {
+        public static RearviewMirrorState valueOf(int value) {
+            if(value == RearviewMirrorState.FOLD.value) {
                 return RearviewMirrorState.FOLD;
             }
-            return v == RearviewMirrorState.UNFOLD.value ? RearviewMirrorState.UNFOLD : RearviewMirrorState.__UNKNOWN__;
+            return value == RearviewMirrorState.UNFOLD.value ? RearviewMirrorState.UNFOLD : RearviewMirrorState.__UNKNOWN__;
         }
     }
 
@@ -1189,18 +1189,18 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private SeatNapModeState(int v1) {
-            this.value = v1;
+        private SeatNapModeState(int value) {
+            this.value = value;
         }
 
-        public static SeatNapModeState valueOf(int v) {
-            if(v == SeatNapModeState.NO_IN_SNAPMODE.value) {
+        public static SeatNapModeState valueOf(int value) {
+            if(value == SeatNapModeState.NO_IN_SNAPMODE.value) {
                 return SeatNapModeState.NO_IN_SNAPMODE;
             }
-            if(v == SeatNapModeState.SNAP_SETTING_MODE.value) {
+            if(value == SeatNapModeState.SNAP_SETTING_MODE.value) {
                 return SeatNapModeState.SNAP_SETTING_MODE;
             }
-            return v == SeatNapModeState.SNAP_MODE.value ? SeatNapModeState.SNAP_MODE : SeatNapModeState.__UNKNOWN__;
+            return value == SeatNapModeState.SNAP_MODE.value ? SeatNapModeState.SNAP_MODE : SeatNapModeState.__UNKNOWN__;
         }
     }
 
@@ -1211,15 +1211,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private SeatNapPosSaveReq(int v1) {
-            this.value = v1;
+        private SeatNapPosSaveReq(int value) {
+            this.value = value;
         }
 
-        public static SeatNapPosSaveReq valueOf(int v) {
-            if(v == SeatNapPosSaveReq.NO_COMMAND.value) {
+        public static SeatNapPosSaveReq valueOf(int value) {
+            if(value == SeatNapPosSaveReq.NO_COMMAND.value) {
                 return SeatNapPosSaveReq.NO_COMMAND;
             }
-            return v == SeatNapPosSaveReq.ACTIVE_POP_UP_WINDOW.value ? SeatNapPosSaveReq.ACTIVE_POP_UP_WINDOW : SeatNapPosSaveReq.__UNKNOWN__;
+            return value == SeatNapPosSaveReq.ACTIVE_POP_UP_WINDOW.value ? SeatNapPosSaveReq.ACTIVE_POP_UP_WINDOW : SeatNapPosSaveReq.__UNKNOWN__;
         }
     }
 
@@ -1231,18 +1231,18 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private SeatSpaModeState(int v1) {
-            this.value = v1;
+        private SeatSpaModeState(int value) {
+            this.value = value;
         }
 
-        public static SeatSpaModeState valueOf(int v) {
-            if(v == SeatSpaModeState.NO_IN_SPAMODE.value) {
+        public static SeatSpaModeState valueOf(int value) {
+            if(value == SeatSpaModeState.NO_IN_SPAMODE.value) {
                 return SeatSpaModeState.NO_IN_SPAMODE;
             }
-            if(v == SeatSpaModeState.SPA_SETTING_MODE.value) {
+            if(value == SeatSpaModeState.SPA_SETTING_MODE.value) {
                 return SeatSpaModeState.SPA_SETTING_MODE;
             }
-            return v == SeatSpaModeState.SPA_MODE.value ? SeatSpaModeState.SPA_MODE : SeatSpaModeState.__UNKNOWN__;
+            return value == SeatSpaModeState.SPA_MODE.value ? SeatSpaModeState.SPA_MODE : SeatSpaModeState.__UNKNOWN__;
         }
     }
 
@@ -1259,33 +1259,33 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private ShortcutMode(int v1) {
-            this.value = v1;
+        private ShortcutMode(int value) {
+            this.value = value;
         }
 
-        public static ShortcutMode valueOf(int v) {
-            if(v == ShortcutMode.QUIT.value) {
+        public static ShortcutMode valueOf(int value) {
+            if(value == ShortcutMode.QUIT.value) {
                 return ShortcutMode.QUIT;
             }
-            if(v == ShortcutMode.RAINSTORM_MODE.value) {
+            if(value == ShortcutMode.RAINSTORM_MODE.value) {
                 return ShortcutMode.RAINSTORM_MODE;
             }
-            if(v == ShortcutMode.NAP_MODE.value) {
+            if(value == ShortcutMode.NAP_MODE.value) {
                 return ShortcutMode.NAP_MODE;
             }
-            if(v == ShortcutMode.WAKE_UP_MODE.value) {
+            if(value == ShortcutMode.WAKE_UP_MODE.value) {
                 return ShortcutMode.WAKE_UP_MODE;
             }
-            if(v == ShortcutMode.PARTY_MODE.value) {
+            if(value == ShortcutMode.PARTY_MODE.value) {
                 return ShortcutMode.PARTY_MODE;
             }
-            if(v == ShortcutMode.LH_SPA_MODE.value) {
+            if(value == ShortcutMode.LH_SPA_MODE.value) {
                 return ShortcutMode.LH_SPA_MODE;
             }
-            if(v == ShortcutMode.RH_SPA_MODE.value) {
+            if(value == ShortcutMode.RH_SPA_MODE.value) {
                 return ShortcutMode.RH_SPA_MODE;
             }
-            return v == ShortcutMode.BOTH_SPA_MODE.value ? ShortcutMode.BOTH_SPA_MODE : ShortcutMode.__UNKNOWN__;
+            return value == ShortcutMode.BOTH_SPA_MODE.value ? ShortcutMode.BOTH_SPA_MODE : ShortcutMode.__UNKNOWN__;
         }
     }
 
@@ -1297,18 +1297,18 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private StpOnBrkToRelParkBrkIndOnState(int v1) {
-            this.value = v1;
+        private StpOnBrkToRelParkBrkIndOnState(int value) {
+            this.value = value;
         }
 
-        public static StpOnBrkToRelParkBrkIndOnState valueOf(int v) {
-            if(v == StpOnBrkToRelParkBrkIndOnState.OFF.value) {
+        public static StpOnBrkToRelParkBrkIndOnState valueOf(int value) {
+            if(value == StpOnBrkToRelParkBrkIndOnState.OFF.value) {
                 return StpOnBrkToRelParkBrkIndOnState.OFF;
             }
-            if(v == StpOnBrkToRelParkBrkIndOnState.ON.value) {
+            if(value == StpOnBrkToRelParkBrkIndOnState.ON.value) {
                 return StpOnBrkToRelParkBrkIndOnState.ON;
             }
-            return v == StpOnBrkToRelParkBrkIndOnState.DEEP_PUSH_BRK_PEDAL.value ? StpOnBrkToRelParkBrkIndOnState.DEEP_PUSH_BRK_PEDAL : StpOnBrkToRelParkBrkIndOnState.__UNKNOWN__;
+            return value == StpOnBrkToRelParkBrkIndOnState.DEEP_PUSH_BRK_PEDAL.value ? StpOnBrkToRelParkBrkIndOnState.DEEP_PUSH_BRK_PEDAL : StpOnBrkToRelParkBrkIndOnState.__UNKNOWN__;
         }
     }
 
@@ -1319,15 +1319,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private WCLCMWorkMode(int v1) {
-            this.value = v1;
+        private WCLCMWorkMode(int value) {
+            this.value = value;
         }
 
-        public static WCLCMWorkMode valueOf(int v) {
-            if(v == WCLCMWorkMode.AUTO.value) {
+        public static WCLCMWorkMode valueOf(int value) {
+            if(value == WCLCMWorkMode.AUTO.value) {
                 return WCLCMWorkMode.AUTO;
             }
-            return v == WCLCMWorkMode.MANUAL.value ? WCLCMWorkMode.MANUAL : WCLCMWorkMode.__UNKNOWN__;
+            return value == WCLCMWorkMode.MANUAL.value ? WCLCMWorkMode.MANUAL : WCLCMWorkMode.__UNKNOWN__;
         }
     }
 
@@ -1338,15 +1338,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private WCLCMWorkModeCtl(int v1) {
-            this.value = v1;
+        private WCLCMWorkModeCtl(int value) {
+            this.value = value;
         }
 
-        public static WCLCMWorkModeCtl valueOf(int v) {
-            if(v == WCLCMWorkModeCtl.NOT_ACTIVE.value) {
+        public static WCLCMWorkModeCtl valueOf(int value) {
+            if(value == WCLCMWorkModeCtl.NOT_ACTIVE.value) {
                 return WCLCMWorkModeCtl.NOT_ACTIVE;
             }
-            return v == WCLCMWorkModeCtl.ACTIVE.value ? WCLCMWorkModeCtl.ACTIVE : WCLCMWorkModeCtl.__UNKNOWN__;
+            return value == WCLCMWorkModeCtl.ACTIVE.value ? WCLCMWorkModeCtl.ACTIVE : WCLCMWorkModeCtl.__UNKNOWN__;
         }
     }
 
@@ -1357,15 +1357,15 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private WCMCtl(int v1) {
-            this.value = v1;
+        private WCMCtl(int value) {
+            this.value = value;
         }
 
-        public static WCMCtl valueOf(int v) {
-            if(v == WCMCtl.NOT_ACTIVE.value) {
+        public static WCMCtl valueOf(int value) {
+            if(value == WCMCtl.NOT_ACTIVE.value) {
                 return WCMCtl.NOT_ACTIVE;
             }
-            return v == WCMCtl.ACTIVE.value ? WCMCtl.ACTIVE : WCMCtl.__UNKNOWN__;
+            return value == WCMCtl.ACTIVE.value ? WCMCtl.ACTIVE : WCMCtl.__UNKNOWN__;
         }
     }
 
@@ -1378,21 +1378,21 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private WCMCtlChargingState(int v1) {
-            this.value = v1;
+        private WCMCtlChargingState(int value) {
+            this.value = value;
         }
 
-        public static WCMCtlChargingState valueOf(int v) {
-            if(v == WCMCtlChargingState.STANDBY.value) {
+        public static WCMCtlChargingState valueOf(int value) {
+            if(value == WCMCtlChargingState.STANDBY.value) {
                 return WCMCtlChargingState.STANDBY;
             }
-            if(v == WCMCtlChargingState.CHARGING.value) {
+            if(value == WCMCtlChargingState.CHARGING.value) {
                 return WCMCtlChargingState.CHARGING;
             }
-            if(v == WCMCtlChargingState.COMPLETED.value) {
+            if(value == WCMCtlChargingState.COMPLETED.value) {
                 return WCMCtlChargingState.COMPLETED;
             }
-            return v == WCMCtlChargingState.NOT_STANDBY.value ? WCMCtlChargingState.NOT_STANDBY : WCMCtlChargingState.__UNKNOWN__;
+            return value == WCMCtlChargingState.NOT_STANDBY.value ? WCMCtlChargingState.NOT_STANDBY : WCMCtlChargingState.__UNKNOWN__;
         }
     }
 
@@ -1410,36 +1410,36 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private WCMCtlFailureState(int v1) {
-            this.value = v1;
+        private WCMCtlFailureState(int value) {
+            this.value = value;
         }
 
-        public static WCMCtlFailureState valueOf(int v) {
-            if(v == WCMCtlFailureState.NO_FAILURE.value) {
+        public static WCMCtlFailureState valueOf(int value) {
+            if(value == WCMCtlFailureState.NO_FAILURE.value) {
                 return WCMCtlFailureState.NO_FAILURE;
             }
-            if(v == WCMCtlFailureState.OVER_TEMPERATURE.value) {
+            if(value == WCMCtlFailureState.OVER_TEMPERATURE.value) {
                 return WCMCtlFailureState.OVER_TEMPERATURE;
             }
-            if(v == WCMCtlFailureState.RFOD.value) {
+            if(value == WCMCtlFailureState.RFOD.value) {
                 return WCMCtlFailureState.RFOD;
             }
-            if(v == WCMCtlFailureState.VOLTAGE_PROTECTED.value) {
+            if(value == WCMCtlFailureState.VOLTAGE_PROTECTED.value) {
                 return WCMCtlFailureState.VOLTAGE_PROTECTED;
             }
-            if(v == WCMCtlFailureState.OVER_POWER_PROTECTED.value) {
+            if(value == WCMCtlFailureState.OVER_POWER_PROTECTED.value) {
                 return WCMCtlFailureState.OVER_POWER_PROTECTED;
             }
-            if(v == WCMCtlFailureState.INTERNAL_FAILURE.value) {
+            if(value == WCMCtlFailureState.INTERNAL_FAILURE.value) {
                 return WCMCtlFailureState.INTERNAL_FAILURE;
             }
-            if(v == WCMCtlFailureState.SMARTPHONE_NO_RESPONSE.value) {
+            if(value == WCMCtlFailureState.SMARTPHONE_NO_RESPONSE.value) {
                 return WCMCtlFailureState.SMARTPHONE_NO_RESPONSE;
             }
-            if(v == WCMCtlFailureState.OFOD.value) {
+            if(value == WCMCtlFailureState.OFOD.value) {
                 return WCMCtlFailureState.OFOD;
             }
-            return v == WCMCtlFailureState.NFC_CARD_DETECTED.value ? WCMCtlFailureState.NFC_CARD_DETECTED : WCMCtlFailureState.__UNKNOWN__;
+            return value == WCMCtlFailureState.NFC_CARD_DETECTED.value ? WCMCtlFailureState.NFC_CARD_DETECTED : WCMCtlFailureState.__UNKNOWN__;
         }
     }
 
@@ -1451,18 +1451,18 @@ public interface ICarSettings extends IBaseApi {
 
         public final int value;
 
-        private WCMCtlResult(int v1) {
-            this.value = v1;
+        private WCMCtlResult(int value) {
+            this.value = value;
         }
 
-        public static WCMCtlResult valueOf(int v) {
-            if(v == WCMCtlResult.ENABLED.value) {
+        public static WCMCtlResult valueOf(int value) {
+            if(value == WCMCtlResult.ENABLED.value) {
                 return WCMCtlResult.ENABLED;
             }
-            if(v == WCMCtlResult.DISABLED_BY_PEPS.value) {
+            if(value == WCMCtlResult.DISABLED_BY_PEPS.value) {
                 return WCMCtlResult.DISABLED_BY_PEPS;
             }
-            return v == WCMCtlResult.SHUTDOWN_BY_SWITCH_CAN.value ? WCMCtlResult.SHUTDOWN_BY_SWITCH_CAN : WCMCtlResult.__UNKNOWN__;
+            return value == WCMCtlResult.SHUTDOWN_BY_SWITCH_CAN.value ? WCMCtlResult.SHUTDOWN_BY_SWITCH_CAN : WCMCtlResult.__UNKNOWN__;
         }
     }
 

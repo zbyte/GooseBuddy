@@ -4,9 +4,10 @@ import android.os.Handler;
 import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 
@@ -31,15 +32,11 @@ public class TtsManager {
         }
     }
 
-    static final class TtsManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
-        private static final TtsManagerGlobal intance;
+    static final class TtsManagerGlobal extends ITtsCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
+        private static final TtsManagerGlobal intance  = new TtsManagerGlobal();
         private final ArrayMap mCallbackMap;
         private final Object mLock;
         private static ITtsService mService;
-
-        static {
-            TtsManagerGlobal.intance = new TtsManagerGlobal();
-        }
 
         private TtsManagerGlobal() {
             this.mLock = new Object();
@@ -62,7 +59,7 @@ public class TtsManager {
 
         private boolean connectServiceLocked() {
             if(TtsManagerGlobal.mService == null || TtsManagerGlobal.mService.asBinder() == null || !TtsManagerGlobal.mService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_tts");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_tts");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);

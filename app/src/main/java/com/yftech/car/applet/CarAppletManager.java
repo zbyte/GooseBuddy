@@ -5,16 +5,17 @@ import android.os.IBinder.DeathRecipient;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.RemoteException;
-import android.os.ServiceManager;
 import android.util.ArrayMap;
 import android.util.Log;
+
+import com.yftech.car.utils.BinderUtils;
 import com.yftech.car.utils.MonitorServiceRestartManager.IMonitorCallback;
 import com.yftech.car.utils.MonitorServiceRestartManager;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarAppletManager {
-    static final class CarAppletManagerGlobal extends Stub implements IBinder.DeathRecipient, IMonitorCallback {
+    static final class CarAppletManagerGlobal extends ICarAppletRequestCallback.Stub implements IBinder.DeathRecipient, IMonitorCallback {
         private static final CarAppletManagerGlobal CAR_APPLET_MANAGER_GLOBAL = new CarAppletManagerGlobal();
         private final ArrayMap mCallbackMap;
         private ICarAppletService mCarAppletService;
@@ -53,7 +54,7 @@ public class CarAppletManager {
 
         private boolean connectCarAppletServiceLocked() {
             if(this.mCarAppletService == null || this.mCarAppletService.asBinder() == null || !this.mCarAppletService.asBinder().isBinderAlive()) {
-                IBinder iBinder0 = ServiceManager.getService("car_applet");
+                IBinder iBinder0 = BinderUtils.getAliveServiceBinder("car_applet");
                 try {
                     if(iBinder0 != null) {
                         iBinder0.linkToDeath(this, 0);
@@ -65,13 +66,13 @@ public class CarAppletManager {
                     return false;
                 }
                 catch(RemoteException e) {
+                    Log.e("CarAppletManager", "link to death error!" + e.getMessage());
+                    e.printStackTrace();
                 }
             }
             else {
                 return true;
             }
-            Log.e("CarAppletManager", "link to death error!" + e.getMessage());
-            e.printStackTrace();
             return false;
         }
 
@@ -237,13 +238,9 @@ public class CarAppletManager {
 
     public static final String BAIDU_APPLET = "baidu.applet";
     public static final String SERVICE_NAME = "car_applet";
-    private static final String TAG = null;
+    private static final String TAG  = "CarAppletManager";
     public static final String TENCENT_APPLET = "tencent.applet";
     public static volatile CarAppletManager mInstance;
-
-    static {
-        CarAppletManager.TAG = "CarAppletManager";
-    }
 
     static String access$000() {
         return "CarAppletManager";

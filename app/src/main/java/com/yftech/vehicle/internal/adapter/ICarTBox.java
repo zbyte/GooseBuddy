@@ -8,15 +8,15 @@ public interface ICarTBox extends IBaseApi {
 
         public final int value;
 
-        private MuteRadioOrder(int v1) {
-            this.value = v1;
+        private MuteRadioOrder(int value) {
+            this.value = value;
         }
 
-        public static MuteRadioOrder valueOf(int v) {
-            if(v == MuteRadioOrder.NO_MUTE_RADIO_ORDER.value) {
+        public static MuteRadioOrder valueOf(int value) {
+            if(value == MuteRadioOrder.NO_MUTE_RADIO_ORDER.value) {
                 return MuteRadioOrder.NO_MUTE_RADIO_ORDER;
             }
-            return v == MuteRadioOrder.MUTE_RADIO_ORDER.value ? MuteRadioOrder.MUTE_RADIO_ORDER : MuteRadioOrder.__UNKNOWN__;
+            return value == MuteRadioOrder.MUTE_RADIO_ORDER.value ? MuteRadioOrder.MUTE_RADIO_ORDER : MuteRadioOrder.__UNKNOWN__;
         }
     }
 
@@ -32,30 +32,30 @@ public interface ICarTBox extends IBaseApi {
 
         public final int value;
 
-        private PhoneCallState(int v1) {
-            this.value = v1;
+        private PhoneCallState(int value) {
+            this.value = value;
         }
 
-        public static PhoneCallState valueOf(int v) {
-            if(v == PhoneCallState.NOT_ACTIVE.value) {
+        public static PhoneCallState valueOf(int value) {
+            if(value == PhoneCallState.NOT_ACTIVE.value) {
                 return PhoneCallState.NOT_ACTIVE;
             }
-            if(v == PhoneCallState.INCOMING_CALL.value) {
+            if(value == PhoneCallState.INCOMING_CALL.value) {
                 return PhoneCallState.INCOMING_CALL;
             }
-            if(v == PhoneCallState.CONNECTING.value) {
+            if(value == PhoneCallState.CONNECTING.value) {
                 return PhoneCallState.CONNECTING;
             }
-            if(v == PhoneCallState.ANSWER.value) {
+            if(value == PhoneCallState.ANSWER.value) {
                 return PhoneCallState.ANSWER;
             }
-            if(v == PhoneCallState.ON_THE_PHONE.value) {
+            if(value == PhoneCallState.ON_THE_PHONE.value) {
                 return PhoneCallState.ON_THE_PHONE;
             }
-            if(v == PhoneCallState.HANG_UP.value) {
+            if(value == PhoneCallState.HANG_UP.value) {
                 return PhoneCallState.HANG_UP;
             }
-            return v == PhoneCallState.CALL_OVER.value ? PhoneCallState.CALL_OVER : PhoneCallState.__UNKNOWN__;
+            return value == PhoneCallState.CALL_OVER.value ? PhoneCallState.CALL_OVER : PhoneCallState.__UNKNOWN__;
         }
     }
 
@@ -68,21 +68,21 @@ public interface ICarTBox extends IBaseApi {
 
         public final int value;
 
-        private PhoneKeyAction(int v1) {
-            this.value = v1;
+        private PhoneKeyAction(int value) {
+            this.value = value;
         }
 
-        public static PhoneKeyAction valueOf(int v) {
-            if(v == PhoneKeyAction.NOT_ACTIVE.value) {
+        public static PhoneKeyAction valueOf(int value) {
+            if(value == PhoneKeyAction.NOT_ACTIVE.value) {
                 return PhoneKeyAction.NOT_ACTIVE;
             }
-            if(v == PhoneKeyAction.SHORT_RELEASE.value) {
+            if(value == PhoneKeyAction.SHORT_RELEASE.value) {
                 return PhoneKeyAction.SHORT_RELEASE;
             }
-            if(v == PhoneKeyAction.LONG_RELEASE.value) {
+            if(value == PhoneKeyAction.LONG_RELEASE.value) {
                 return PhoneKeyAction.LONG_RELEASE;
             }
-            return v == PhoneKeyAction.FAILURE.value ? PhoneKeyAction.FAILURE : PhoneKeyAction.__UNKNOWN__;
+            return value == PhoneKeyAction.FAILURE.value ? PhoneKeyAction.FAILURE : PhoneKeyAction.__UNKNOWN__;
         }
     }
 
@@ -98,30 +98,30 @@ public interface ICarTBox extends IBaseApi {
 
         public final int value;
 
-        private PhoneMode(int v1) {
-            this.value = v1;
+        private PhoneMode(int value) {
+            this.value = value;
         }
 
-        public static PhoneMode valueOf(int v) {
-            if(v == PhoneMode.NOT_ACTIVE.value) {
+        public static PhoneMode valueOf(int value) {
+            if(value == PhoneMode.NOT_ACTIVE.value) {
                 return PhoneMode.NOT_ACTIVE;
             }
-            if(v == PhoneMode.TBOX_MODE.value) {
+            if(value == PhoneMode.TBOX_MODE.value) {
                 return PhoneMode.TBOX_MODE;
             }
-            if(v == PhoneMode.BLUETOOTH_MODE.value) {
+            if(value == PhoneMode.BLUETOOTH_MODE.value) {
                 return PhoneMode.BLUETOOTH_MODE;
             }
-            if(v == PhoneMode.BCALL_MODE.value) {
+            if(value == PhoneMode.BCALL_MODE.value) {
                 return PhoneMode.BCALL_MODE;
             }
-            if(v == PhoneMode.ECALL_MODE.value) {
+            if(value == PhoneMode.ECALL_MODE.value) {
                 return PhoneMode.ECALL_MODE;
             }
-            if(v == PhoneMode.CALLBACK_MODE1.value) {
+            if(value == PhoneMode.CALLBACK_MODE1.value) {
                 return PhoneMode.CALLBACK_MODE1;
             }
-            return v == PhoneMode.CALLBACK_MODE2.value ? PhoneMode.CALLBACK_MODE2 : PhoneMode.__UNKNOWN__;
+            return value == PhoneMode.CALLBACK_MODE2.value ? PhoneMode.CALLBACK_MODE2 : PhoneMode.__UNKNOWN__;
         }
     }
 
@@ -134,21 +134,21 @@ public interface ICarTBox extends IBaseApi {
 
         public final int value;
 
-        private PhoneType(int v1) {
-            this.value = v1;
+        private PhoneType(int value) {
+            this.value = value;
         }
 
-        public static PhoneType valueOf(int v) {
-            if(v == PhoneType.NOT_ACTIVE.value) {
+        public static PhoneType valueOf(int value) {
+            if(value == PhoneType.NOT_ACTIVE.value) {
                 return PhoneType.NOT_ACTIVE;
             }
-            if(v == PhoneType.BT_PHONE.value) {
+            if(value == PhoneType.BT_PHONE.value) {
                 return PhoneType.BT_PHONE;
             }
-            if(v == PhoneType.E_CALL.value) {
+            if(value == PhoneType.E_CALL.value) {
                 return PhoneType.E_CALL;
             }
-            return v == PhoneType.B_CALL.value ? PhoneType.B_CALL : PhoneType.__UNKNOWN__;
+            return value == PhoneType.B_CALL.value ? PhoneType.B_CALL : PhoneType.__UNKNOWN__;
         }
     }
 

@@ -16,33 +16,33 @@ public interface IProject extends IBaseCmd {
 
         public final int value;
 
-        private AccountCfg(int v1) {
-            this.value = v1;
+        private AccountCfg(int value) {
+            this.value = value;
         }
 
-        public static AccountCfg valueOf(int v) {
-            if(v == AccountCfg.ACCOUNT_1.value) {
+        public static AccountCfg valueOf(int value) {
+            if(value == AccountCfg.ACCOUNT_1.value) {
                 return AccountCfg.ACCOUNT_1;
             }
-            if(v == AccountCfg.ACCOUNT_2.value) {
+            if(value == AccountCfg.ACCOUNT_2.value) {
                 return AccountCfg.ACCOUNT_2;
             }
-            if(v == AccountCfg.ACCOUNT_3.value) {
+            if(value == AccountCfg.ACCOUNT_3.value) {
                 return AccountCfg.ACCOUNT_3;
             }
-            if(v == AccountCfg.ACCOUNT_4.value) {
+            if(value == AccountCfg.ACCOUNT_4.value) {
                 return AccountCfg.ACCOUNT_4;
             }
-            if(v == AccountCfg.ACCOUNT_5.value) {
+            if(value == AccountCfg.ACCOUNT_5.value) {
                 return AccountCfg.ACCOUNT_5;
             }
-            if(v == AccountCfg.ACCOUNT_6.value) {
+            if(value == AccountCfg.ACCOUNT_6.value) {
                 return AccountCfg.ACCOUNT_6;
             }
-            if(v == AccountCfg.ACCOUNT_7.value) {
+            if(value == AccountCfg.ACCOUNT_7.value) {
                 return AccountCfg.ACCOUNT_7;
             }
-            return v == AccountCfg.ACCOUNT_8.value ? AccountCfg.ACCOUNT_8 : AccountCfg.__UNKNOWN__;
+            return value == AccountCfg.ACCOUNT_8.value ? AccountCfg.ACCOUNT_8 : AccountCfg.__UNKNOWN__;
         }
     }
 
@@ -51,28 +51,28 @@ public interface IProject extends IBaseCmd {
         public DriverSeatPostionCmd cmd;
         public byte puid;
 
-        public CarSeartMemoryInfo(DriverSeatPostionCmd iProject$DriverSeatPostionCmd0, AccountCfg iProject$AccountCfg0) {
+        public CarSeartMemoryInfo(DriverSeatPostionCmd cmd, AccountCfg accountCfg) {
             this.cmd = DriverSeatPostionCmd.__UNKNOWN__;
             this.accountCfg = AccountCfg.__UNKNOWN__;
-            this.cmd = iProject$DriverSeatPostionCmd0;
-            this.accountCfg = iProject$AccountCfg0;
+            this.cmd = cmd;
+            this.accountCfg = accountCfg;
             this.puid = this.puid;
         }
 
-        public CarSeartMemoryInfo(DriverSeatPostionCmd iProject$DriverSeatPostionCmd0, AccountCfg iProject$AccountCfg0, byte b) {
+        public CarSeartMemoryInfo(DriverSeatPostionCmd cmd, AccountCfg accountCfg, byte puid) {
             this.cmd = DriverSeatPostionCmd.__UNKNOWN__;
             this.accountCfg = AccountCfg.__UNKNOWN__;
-            this.cmd = iProject$DriverSeatPostionCmd0;
-            this.accountCfg = iProject$AccountCfg0;
-            this.puid = b;
+            this.cmd = cmd;
+            this.accountCfg = accountCfg;
+            this.puid = puid;
         }
 
-        public byte[] parseByte(CarSeartMemoryInfo iProject$CarSeartMemoryInfo0) {
-            byte[] arr_b = {(byte)0x86, 25, 1, 0, 0, 0};
-            arr_b[3] = iProject$CarSeartMemoryInfo0.cmd == DriverSeatPostionCmd.__UNKNOWN__ ? 0 : ((byte)iProject$CarSeartMemoryInfo0.cmd.value);
-            arr_b[4] = (byte)iProject$CarSeartMemoryInfo0.accountCfg.value;
-            arr_b[5] = 0;
-            return arr_b;
+        public byte[] parseByte(CarSeartMemoryInfo info) {
+            byte[] arr = {(byte)0x86, 25, 1, 0, 0, 0};
+            arr[3] = info.cmd == DriverSeatPostionCmd.__UNKNOWN__ ? 0 : ((byte)info.cmd.value);
+            arr[4] = (byte)info.accountCfg.value;
+            arr[5] = 0;
+            return arr;
         }
     }
 
@@ -83,15 +83,15 @@ public interface IProject extends IBaseCmd {
 
         public final int value;
 
-        private DriverSeatPostionCmd(int v1) {
-            this.value = v1;
+        private DriverSeatPostionCmd(int value) {
+            this.value = value;
         }
 
-        public static DriverSeatPostionCmd valueOf(int v) {
-            if(v == DriverSeatPostionCmd.SAVE.value) {
+        public static DriverSeatPostionCmd valueOf(int value) {
+            if(value == DriverSeatPostionCmd.SAVE.value) {
                 return DriverSeatPostionCmd.SAVE;
             }
-            return v == DriverSeatPostionCmd.RECALL.value ? DriverSeatPostionCmd.RECALL : DriverSeatPostionCmd.__UNKNOWN__;
+            return value == DriverSeatPostionCmd.RECALL.value ? DriverSeatPostionCmd.RECALL : DriverSeatPostionCmd.__UNKNOWN__;
         }
     }
 
@@ -101,12 +101,12 @@ public interface IProject extends IBaseCmd {
 
         public final int value;
 
-        private OpertionObject(int v1) {
-            this.value = v1;
+        private OpertionObject(int value) {
+            this.value = value;
         }
 
-        public static OpertionObject valueOf(int v) {
-            return v == OpertionObject.SEAT_POSITION.value ? OpertionObject.SEAT_POSITION : OpertionObject.__UNKNOWN__;
+        public static OpertionObject valueOf(int value) {
+            return value == OpertionObject.SEAT_POSITION.value ? OpertionObject.SEAT_POSITION : OpertionObject.__UNKNOWN__;
         }
     }
 
@@ -118,18 +118,18 @@ public interface IProject extends IBaseCmd {
 
         public final int value;
 
-        private OpertionType(int v1) {
-            this.value = v1;
+        private OpertionType(int value) {
+            this.value = value;
         }
 
-        public static OpertionType valueOf(int v) {
-            if(v == OpertionType.MEMORY.value) {
+        public static OpertionType valueOf(int value) {
+            if(value == OpertionType.MEMORY.value) {
                 return OpertionType.MEMORY;
             }
-            if(v == OpertionType.SEARCH.value) {
+            if(value == OpertionType.SEARCH.value) {
                 return OpertionType.SEARCH;
             }
-            return v == OpertionType.DELETE.value ? OpertionType.DELETE : OpertionType.__UNKNOWN__;
+            return value == OpertionType.DELETE.value ? OpertionType.DELETE : OpertionType.__UNKNOWN__;
         }
     }
 
@@ -140,47 +140,47 @@ public interface IProject extends IBaseCmd {
         public OpertionType opType;
         public byte puid;
 
-        public PersonalMemoryInfo(OpertionType iProject$OpertionType0, AccountCfg iProject$AccountCfg0) {
+        public PersonalMemoryInfo(OpertionType opType, AccountCfg accountCfg) {
             this.opObj = OpertionObject.SEAT_POSITION;
             this.opType = OpertionType.__UNKNOWN__;
             this.accountCfg = AccountCfg.__UNKNOWN__;
             this.puid = 0;
             this.currentPuid = 0;
-            this.opType = iProject$OpertionType0;
-            this.accountCfg = iProject$AccountCfg0;
+            this.opType = opType;
+            this.accountCfg = accountCfg;
             this.puid = this.puid;
         }
 
-        public PersonalMemoryInfo(OpertionType iProject$OpertionType0, AccountCfg iProject$AccountCfg0, byte b) {
+        public PersonalMemoryInfo(OpertionType opType, AccountCfg accountCfg, byte puid) {
             this.opObj = OpertionObject.SEAT_POSITION;
             this.opType = OpertionType.__UNKNOWN__;
             this.accountCfg = AccountCfg.__UNKNOWN__;
             this.puid = 0;
             this.currentPuid = 0;
-            this.opType = iProject$OpertionType0;
-            this.accountCfg = iProject$AccountCfg0;
-            this.puid = b;
+            this.opType = opType;
+            this.accountCfg = accountCfg;
+            this.puid = puid;
         }
 
-        public PersonalMemoryInfo(OpertionType iProject$OpertionType0, AccountCfg iProject$AccountCfg0, byte b, byte b1) {
+        public PersonalMemoryInfo(OpertionType opType, AccountCfg accountCfg, byte puid, byte currentPuid) {
             this.opObj = OpertionObject.SEAT_POSITION;
             this.opType = OpertionType.__UNKNOWN__;
             this.accountCfg = AccountCfg.__UNKNOWN__;
             this.puid = 0;
             this.currentPuid = 0;
-            this.opType = iProject$OpertionType0;
-            this.accountCfg = iProject$AccountCfg0;
-            this.puid = b;
-            this.currentPuid = b1;
+            this.opType = opType;
+            this.accountCfg = accountCfg;
+            this.puid = puid;
+            this.currentPuid = currentPuid;
         }
 
-        public byte[] parseByte(PersonalMemoryInfo iProject$PersonalMemoryInfo0) {
-            return new byte[]{(byte)0x86, 24, ((byte)iProject$PersonalMemoryInfo0.opObj.value), ((byte)iProject$PersonalMemoryInfo0.opType.value), ((byte)iProject$PersonalMemoryInfo0.accountCfg.value)};
+        public byte[] parseByte(PersonalMemoryInfo info) {
+            return new byte[]{(byte)0x86, 24, ((byte)info.opObj.value), ((byte)info.opType.value), ((byte)info.accountCfg.value)};
         }
 
-        public static PersonalMemoryInfo valueOf(byte[] arr_b) {
-            int v = arr_b[0];
-            return new PersonalMemoryInfo(OpertionType.valueOf(arr_b[1] & 0xFF), AccountCfg.valueOf(arr_b[2] & 0xFF), ((byte)(arr_b[3] & 0xFF)), ((byte)(arr_b[4] & 0xFF)));
+        public static PersonalMemoryInfo valueOf(byte[] value) {
+            int v = value[0];
+            return new PersonalMemoryInfo(OpertionType.valueOf(value[1] & 0xFF), AccountCfg.valueOf(value[2] & 0xFF), ((byte)(value[3] & 0xFF)), ((byte)(value[4] & 0xFF)));
         }
     }
 

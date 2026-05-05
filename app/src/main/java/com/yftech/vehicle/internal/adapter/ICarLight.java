@@ -8,15 +8,15 @@ public interface ICarLight extends IBaseApi {
 
         public final int value;
 
-        private AtmosphereLampDriveMode(int v1) {
-            this.value = v1;
+        private AtmosphereLampDriveMode(int value) {
+            this.value = value;
         }
 
-        public static AtmosphereLampDriveMode valueOf(int v) {
-            if(v == AtmosphereLampDriveMode.OFF.value) {
+        public static AtmosphereLampDriveMode valueOf(int value) {
+            if(value == AtmosphereLampDriveMode.OFF.value) {
                 return AtmosphereLampDriveMode.OFF;
             }
-            return v == AtmosphereLampDriveMode.OPEN.value ? AtmosphereLampDriveMode.OPEN : AtmosphereLampDriveMode.__UNKNOWN__;
+            return value == AtmosphereLampDriveMode.OPEN.value ? AtmosphereLampDriveMode.OPEN : AtmosphereLampDriveMode.__UNKNOWN__;
         }
     }
 
@@ -31,27 +31,27 @@ public interface ICarLight extends IBaseApi {
 
         public final int value;
 
-        private AtmosphereLampWorkMode(int v1) {
-            this.value = v1;
+        private AtmosphereLampWorkMode(int value) {
+            this.value = value;
         }
 
-        public static AtmosphereLampWorkMode valueOf(int v) {
-            if(v == AtmosphereLampWorkMode.OFF.value) {
+        public static AtmosphereLampWorkMode valueOf(int value) {
+            if(value == AtmosphereLampWorkMode.OFF.value) {
                 return AtmosphereLampWorkMode.OFF;
             }
-            if(v == AtmosphereLampWorkMode.COLOR_CHOOSE_MODE.value) {
+            if(value == AtmosphereLampWorkMode.COLOR_CHOOSE_MODE.value) {
                 return AtmosphereLampWorkMode.COLOR_CHOOSE_MODE;
             }
-            if(v == AtmosphereLampWorkMode.DRIVER_MODE.value) {
+            if(value == AtmosphereLampWorkMode.DRIVER_MODE.value) {
                 return AtmosphereLampWorkMode.DRIVER_MODE;
             }
-            if(v == AtmosphereLampWorkMode.COMBINED_COLOR_MODE1.value) {
+            if(value == AtmosphereLampWorkMode.COMBINED_COLOR_MODE1.value) {
                 return AtmosphereLampWorkMode.COMBINED_COLOR_MODE1;
             }
-            if(v == AtmosphereLampWorkMode.COMBINED_COLOR_MODE2.value) {
+            if(value == AtmosphereLampWorkMode.COMBINED_COLOR_MODE2.value) {
                 return AtmosphereLampWorkMode.COMBINED_COLOR_MODE2;
             }
-            return v == AtmosphereLampWorkMode.COMBINED_COLOR_MODE3.value ? AtmosphereLampWorkMode.COMBINED_COLOR_MODE3 : AtmosphereLampWorkMode.__UNKNOWN__;
+            return value == AtmosphereLampWorkMode.COMBINED_COLOR_MODE3.value ? AtmosphereLampWorkMode.COMBINED_COLOR_MODE3 : AtmosphereLampWorkMode.__UNKNOWN__;
         }
     }
 
@@ -64,21 +64,21 @@ public interface ICarLight extends IBaseApi {
 
         public final int value;
 
-        private HeadLightVirtualSwitch(int v1) {
-            this.value = v1;
+        private HeadLightVirtualSwitch(int value) {
+            this.value = value;
         }
 
-        public static HeadLightVirtualSwitch valueOf(int v) {
-            if(v == HeadLightVirtualSwitch.NOT_ACTIVE.value) {
+        public static HeadLightVirtualSwitch valueOf(int value) {
+            if(value == HeadLightVirtualSwitch.NOT_ACTIVE.value) {
                 return HeadLightVirtualSwitch.NOT_ACTIVE;
             }
-            if(v == HeadLightVirtualSwitch.POSITION_LIGHT.value) {
+            if(value == HeadLightVirtualSwitch.POSITION_LIGHT.value) {
                 return HeadLightVirtualSwitch.POSITION_LIGHT;
             }
-            if(v == HeadLightVirtualSwitch.LOW_BEAM.value) {
+            if(value == HeadLightVirtualSwitch.LOW_BEAM.value) {
                 return HeadLightVirtualSwitch.LOW_BEAM;
             }
-            return v == HeadLightVirtualSwitch.AUTO_LIGHT.value ? HeadLightVirtualSwitch.AUTO_LIGHT : HeadLightVirtualSwitch.__UNKNOWN__;
+            return value == HeadLightVirtualSwitch.AUTO_LIGHT.value ? HeadLightVirtualSwitch.AUTO_LIGHT : HeadLightVirtualSwitch.__UNKNOWN__;
         }
     }
 
@@ -90,18 +90,18 @@ public interface ICarLight extends IBaseApi {
 
         public final int value;
 
-        private LightShowFunCmd(int v1) {
-            this.value = v1;
+        private LightShowFunCmd(int value) {
+            this.value = value;
         }
 
-        public static LightShowFunCmd valueOf(int v) {
-            if(v == LightShowFunCmd.PREPARE.value) {
+        public static LightShowFunCmd valueOf(int value) {
+            if(value == LightShowFunCmd.PREPARE.value) {
                 return LightShowFunCmd.PREPARE;
             }
-            if(v == LightShowFunCmd.START.value) {
+            if(value == LightShowFunCmd.START.value) {
                 return LightShowFunCmd.START;
             }
-            return v == LightShowFunCmd.END.value ? LightShowFunCmd.END : LightShowFunCmd.__UNKNOWN__;
+            return value == LightShowFunCmd.END.value ? LightShowFunCmd.END : LightShowFunCmd.__UNKNOWN__;
         }
     }
 
@@ -116,23 +116,23 @@ public interface ICarLight extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private LightShowMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private LightShowMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static LightShowMode valueOf(int v) {
-            if(v == LightShowMode.OFF.rx) {
+        public static LightShowMode valueOf(int value) {
+            if(value == LightShowMode.OFF.rx) {
                 return LightShowMode.OFF;
             }
-            if(v == LightShowMode.MODLE1.rx) {
+            if(value == LightShowMode.MODLE1.rx) {
                 return LightShowMode.MODLE1;
             }
-            if(v == LightShowMode.MODEL2.rx) {
+            if(value == LightShowMode.MODEL2.rx) {
                 return LightShowMode.MODEL2;
             }
-            return v == LightShowMode.MODLE3.rx ? LightShowMode.MODLE3 : LightShowMode.__UNKNOWN__;
+            return value == LightShowMode.MODLE3.rx ? LightShowMode.MODLE3 : LightShowMode.__UNKNOWN__;
         }
     }
 
@@ -145,21 +145,21 @@ public interface ICarLight extends IBaseApi {
 
         public final int value;
 
-        private MainLampSwitchSt(int v1) {
-            this.value = v1;
+        private MainLampSwitchSt(int value) {
+            this.value = value;
         }
 
-        public static MainLampSwitchSt valueOf(int v) {
-            if(v == MainLampSwitchSt.OFF.value) {
+        public static MainLampSwitchSt valueOf(int value) {
+            if(value == MainLampSwitchSt.OFF.value) {
                 return MainLampSwitchSt.OFF;
             }
-            if(v == MainLampSwitchSt.AUTO.value) {
+            if(value == MainLampSwitchSt.AUTO.value) {
                 return MainLampSwitchSt.AUTO;
             }
-            if(v == MainLampSwitchSt.PARKING_LAMP.value) {
+            if(value == MainLampSwitchSt.PARKING_LAMP.value) {
                 return MainLampSwitchSt.PARKING_LAMP;
             }
-            return v == MainLampSwitchSt.LOW_BEAM.value ? MainLampSwitchSt.LOW_BEAM : MainLampSwitchSt.__UNKNOWN__;
+            return value == MainLampSwitchSt.LOW_BEAM.value ? MainLampSwitchSt.LOW_BEAM : MainLampSwitchSt.__UNKNOWN__;
         }
     }
 
@@ -174,23 +174,23 @@ public interface ICarLight extends IBaseApi {
         private final int tx;
         public final int value;
 
-        private WelLightMode(int v1, int v2) {
-            this.rx = v1;
-            this.tx = v2;
+        private WelLightMode(int rx, int tx) {
+            this.rx = rx;
+            this.tx = tx;
             this.value = this.tx;
         }
 
-        public static WelLightMode valueOf(int v) {
-            if(v == WelLightMode.DISABLE.rx) {
+        public static WelLightMode valueOf(int value) {
+            if(value == WelLightMode.DISABLE.rx) {
                 return WelLightMode.DISABLE;
             }
-            if(v == WelLightMode.MODLE1.rx) {
+            if(value == WelLightMode.MODLE1.rx) {
                 return WelLightMode.MODLE1;
             }
-            if(v == WelLightMode.MODEL2.rx) {
+            if(value == WelLightMode.MODEL2.rx) {
                 return WelLightMode.MODEL2;
             }
-            return v == WelLightMode.MODLE3.rx ? WelLightMode.MODLE3 : WelLightMode.__UNKNOWN__;
+            return value == WelLightMode.MODLE3.rx ? WelLightMode.MODLE3 : WelLightMode.__UNKNOWN__;
         }
     }
 
@@ -213,7 +213,7 @@ public interface ICarLight extends IBaseApi {
     public static final int ATMOSPHERE_LAMP_WORK_MODE_SETTING = 0x15F;
     public static final int AUTO_HOLD_LIGHT_ENABLE_SETTING = 0x1F0;
     public static final int AUTO_HOLD_LIGHT_ENABLE_STATE = 0x1EF;
-    public static final int AUTO_WEL_LIGHT_ENABLE_SETTING = 608;
+    public static final int AUTO_WEL_LIGHT_ENABLE_SETTING = 57;
     public static final int AUTO_WEL_LIGHT_ENABLE_STATE = 609;
     public static final int BRAKE_LAMP_STATE = 0xC6;
     public static final int DRIVER_MODE_MUSIC_MODE_SETTING = 658;

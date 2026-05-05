@@ -4,6 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
 
 public interface ICarDataService extends IInterface {
@@ -163,7 +164,7 @@ public interface ICarDataService extends IInterface {
                     reply.writeNoException();
                     if(carData0 != null) {
                         reply.writeInt(1);
-                        carData0.writeToParcel(reply, 1);
+                        carData0.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     reply.writeInt(0);

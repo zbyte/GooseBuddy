@@ -11,24 +11,24 @@ public interface IMpuAvm extends IBaseCmd {
 
         public final int value;
 
-        private AvmCalibrationState(int v1) {
-            this.value = v1;
+        private AvmCalibrationState(int value) {
+            this.value = value;
         }
 
-        public static AvmCalibrationState valueOf(int v) {
-            if(v == AvmCalibrationState.NONE.value) {
+        public static AvmCalibrationState valueOf(int value) {
+            if(value == AvmCalibrationState.NONE.value) {
                 return AvmCalibrationState.NONE;
             }
-            if(v == AvmCalibrationState.CLAIBRATING.value) {
+            if(value == AvmCalibrationState.CLAIBRATING.value) {
                 return AvmCalibrationState.CLAIBRATING;
             }
-            if(v == AvmCalibrationState.SUCCESS.value) {
+            if(value == AvmCalibrationState.SUCCESS.value) {
                 return AvmCalibrationState.SUCCESS;
             }
-            if(v == AvmCalibrationState.FAILURE.value) {
+            if(value == AvmCalibrationState.FAILURE.value) {
                 return AvmCalibrationState.FAILURE;
             }
-            return v == AvmCalibrationState.PARTIALLY.value ? AvmCalibrationState.PARTIALLY : AvmCalibrationState.__UNKNOWN__;
+            return value == AvmCalibrationState.PARTIALLY.value ? AvmCalibrationState.PARTIALLY : AvmCalibrationState.__UNKNOWN__;
         }
     }
 
@@ -47,15 +47,15 @@ public interface IMpuAvm extends IBaseCmd {
 
         public final int value;
 
-        private AvmDisplayState(int v1) {
-            this.value = v1;
+        private AvmDisplayState(int value) {
+            this.value = value;
         }
 
-        public static AvmDisplayState valueOf(int v) {
-            if(v == AvmDisplayState.OFF.value) {
+        public static AvmDisplayState valueOf(int value) {
+            if(value == AvmDisplayState.OFF.value) {
                 return AvmDisplayState.OFF;
             }
-            return v == AvmDisplayState.FULL_SCREEN.value ? AvmDisplayState.FULL_SCREEN : AvmDisplayState.__UNKNOWN__;
+            return value == AvmDisplayState.FULL_SCREEN.value ? AvmDisplayState.FULL_SCREEN : AvmDisplayState.__UNKNOWN__;
         }
     }
 
@@ -66,15 +66,15 @@ public interface IMpuAvm extends IBaseCmd {
 
         public final int value;
 
-        private AvmFullScreenSwtich(int v1) {
-            this.value = v1;
+        private AvmFullScreenSwtich(int value) {
+            this.value = value;
         }
 
-        public static AvmFullScreenSwtich valueOf(int v) {
-            if(v == AvmFullScreenSwtich.DISABLE.value) {
+        public static AvmFullScreenSwtich valueOf(int value) {
+            if(value == AvmFullScreenSwtich.DISABLE.value) {
                 return AvmFullScreenSwtich.DISABLE;
             }
-            return v == AvmFullScreenSwtich.ENABLE.value ? AvmFullScreenSwtich.ENABLE : AvmFullScreenSwtich.__UNKNOWN__;
+            return value == AvmFullScreenSwtich.ENABLE.value ? AvmFullScreenSwtich.ENABLE : AvmFullScreenSwtich.__UNKNOWN__;
         }
     }
 
@@ -85,15 +85,15 @@ public interface IMpuAvm extends IBaseCmd {
 
         public final int value;
 
-        private AvmHeartState(int v1) {
-            this.value = v1;
+        private AvmHeartState(int value) {
+            this.value = value;
         }
 
-        public static AvmHeartState valueOf(int v) {
-            if(v == AvmHeartState.FAULT.value) {
+        public static AvmHeartState valueOf(int value) {
+            if(value == AvmHeartState.FAULT.value) {
                 return AvmHeartState.FAULT;
             }
-            return v == AvmHeartState.NORMAL.value ? AvmHeartState.NORMAL : AvmHeartState.__UNKNOWN__;
+            return value == AvmHeartState.NORMAL.value ? AvmHeartState.NORMAL : AvmHeartState.__UNKNOWN__;
         }
     }
 
@@ -106,21 +106,21 @@ public interface IMpuAvm extends IBaseCmd {
 
         public final int value;
 
-        private AvmWorkMode(int v1) {
-            this.value = v1;
+        private AvmWorkMode(int value) {
+            this.value = value;
         }
 
-        public static AvmWorkMode valueOf(int v) {
-            if(v == AvmWorkMode.INVALID.value) {
+        public static AvmWorkMode valueOf(int value) {
+            if(value == AvmWorkMode.INVALID.value) {
                 return AvmWorkMode.INVALID;
             }
-            if(v == AvmWorkMode.UPGRADING.value) {
+            if(value == AvmWorkMode.UPGRADING.value) {
                 return AvmWorkMode.UPGRADING;
             }
-            if(v == AvmWorkMode.DEBUG.value) {
+            if(value == AvmWorkMode.DEBUG.value) {
                 return AvmWorkMode.DEBUG;
             }
-            return v == AvmWorkMode.NORMAL.value ? AvmWorkMode.NORMAL : AvmWorkMode.__UNKNOWN__;
+            return value == AvmWorkMode.NORMAL.value ? AvmWorkMode.NORMAL : AvmWorkMode.__UNKNOWN__;
         }
     }
 
@@ -143,51 +143,51 @@ public interface IMpuAvm extends IBaseCmd {
 
         public final int value;
 
-        private Language(int v1) {
-            this.value = v1;
+        private Language(int value) {
+            this.value = value;
         }
 
-        public static Language valueOf(int v) {
-            if(v == Language.CHINESE.value) {
+        public static Language valueOf(int value) {
+            if(value == Language.CHINESE.value) {
                 return Language.CHINESE;
             }
-            if(v == Language.ENGLISH.value) {
+            if(value == Language.ENGLISH.value) {
                 return Language.ENGLISH;
             }
-            if(v == Language.ARABIC_RESERVED.value) {
+            if(value == Language.ARABIC_RESERVED.value) {
                 return Language.ARABIC_RESERVED;
             }
-            if(v == Language.RUSSIAN_RESERVED.value) {
+            if(value == Language.RUSSIAN_RESERVED.value) {
                 return Language.RUSSIAN_RESERVED;
             }
-            if(v == Language.CHINESE_PLUSENGLISH.value) {
+            if(value == Language.CHINESE_PLUSENGLISH.value) {
                 return Language.CHINESE_PLUSENGLISH;
             }
-            if(v == Language.SPANISH.value) {
+            if(value == Language.SPANISH.value) {
                 return Language.SPANISH;
             }
-            if(v == Language.INDONESIAN.value) {
+            if(value == Language.INDONESIAN.value) {
                 return Language.INDONESIAN;
             }
-            if(v == Language.PORTUGUESE.value) {
+            if(value == Language.PORTUGUESE.value) {
                 return Language.PORTUGUESE;
             }
-            if(v == Language.CHINESE_TRADITIONAL.value) {
+            if(value == Language.CHINESE_TRADITIONAL.value) {
                 return Language.CHINESE_TRADITIONAL;
             }
-            if(v == Language.VIETNAMENSE.value) {
+            if(value == Language.VIETNAMENSE.value) {
                 return Language.VIETNAMENSE;
             }
-            if(v == Language.THAI.value) {
+            if(value == Language.THAI.value) {
                 return Language.THAI;
             }
-            if(v == Language.MALAY.value) {
+            if(value == Language.MALAY.value) {
                 return Language.MALAY;
             }
-            if(v == Language.FRENCH.value) {
+            if(value == Language.FRENCH.value) {
                 return Language.FRENCH;
             }
-            return v == Language.ITALIAN.value ? Language.ITALIAN : Language.__UNKNOWN__;
+            return value == Language.ITALIAN.value ? Language.ITALIAN : Language.__UNKNOWN__;
         }
     }
 

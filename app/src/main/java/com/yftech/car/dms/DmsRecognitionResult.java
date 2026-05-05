@@ -5,26 +5,22 @@ import android.os.Parcelable.Creator;
 import android.os.Parcelable;
 
 public class DmsRecognitionResult implements Parcelable {
-    public static final Parcelable.Creator CREATOR;
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public DmsRecognitionResult createFromParcel(Parcel in) {
+            DmsRecognitionResult mParam = new DmsRecognitionResult(in);
+            mParam.mErrorCode = in.readInt();
+            mParam.mFaceId = in.readLong();
+            mParam.mResult = in.readString();
+            return mParam;
+        }
+
+        public DmsRecognitionResult[] newArray(int size) {
+            return new DmsRecognitionResult[size];
+        }
+    };
     private int mErrorCode;
     private long mFaceId;
     private String mResult;
-
-    static {
-        DmsRecognitionResult.CREATOR = new Parcelable.Creator() {
-            public DmsRecognitionResult createFromParcel(Parcel in) {
-                DmsRecognitionResult mParam = new DmsRecognitionResult(in);
-                mParam.mErrorCode = in.readInt();
-                mParam.mFaceId = in.readLong();
-                mParam.mResult = in.readString();
-                return mParam;
-            }
-
-            public DmsRecognitionResult[] newArray(int size) {
-                return new DmsRecognitionResult[size];
-            }
-        };
-    }
 
     public DmsRecognitionResult(int mErrorCode, long mFaceId, String mResult) {
         this.mErrorCode = mErrorCode;

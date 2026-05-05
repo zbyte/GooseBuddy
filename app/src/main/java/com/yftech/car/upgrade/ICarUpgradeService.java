@@ -4,6 +4,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.os.IInterface;
 import android.os.Parcel;
+import android.os.Parcelable;
 import android.os.RemoteException;
 
 public interface ICarUpgradeService extends IInterface {
@@ -267,7 +268,7 @@ public interface ICarUpgradeService extends IInterface {
                     reply.writeNoException();
                     if(carUpgradeInfo0 != null) {
                         reply.writeInt(1);
-                        carUpgradeInfo0.writeToParcel(reply, 1);
+                        carUpgradeInfo0.writeToParcel(reply, Parcelable.PARCELABLE_WRITE_RETURN_VALUE);
                         return true;
                     }
                     reply.writeInt(0);

@@ -43,10 +43,10 @@ public interface ICarKey extends IBaseCmd {
         public final int keyCode;
         public final int stepNum;
 
-        public CarKeyEvent(int v, int v1, int v2) {
-            this.action = v1;
-            this.keyCode = v;
-            this.stepNum = v2;
+        public CarKeyEvent(int keyCode, int action, int stepNum) {
+            this.action = action;
+            this.keyCode = keyCode;
+            this.stepNum = stepNum;
         }
 
         @Override
@@ -54,8 +54,8 @@ public interface ICarKey extends IBaseCmd {
             return "CarKeyEvent{action=" + this.action + ", keyCode=" + this.keyCode + ", stepNum=" + this.stepNum + '}';
         }
 
-        public static CarKeyEvent valueOf(int v) {
-            return new CarKeyEvent(v >> 8 & 0xFF, v & 0xFF, v >> 16 & 0xFF);
+        public static CarKeyEvent valueOf(int value) {
+            return new CarKeyEvent(value >> 8 & 0xFF, value & 0xFF, value >> 16 & 0xFF);
         }
     }
 

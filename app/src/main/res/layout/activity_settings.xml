@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:background="@color/bg_color" android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginTop="@dimen/statusBarHeight" android:layout_marginBottom="@dimen/bottomBarHeight" android:layout_marginStart="@dimen/leftBarWidth">
+    <ScrollView android:layout_width="wrap_content" android:layout_height="wrap_content" style="@style/ScrollStyle">
+        <RelativeLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="40.0dp">
+            <LinearLayout android:layout_gravity="start" android:orientation="vertical" android:id="@+id/tab_bar" android:background="@mipmap/tab_bg" android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+                <RelativeLayout
+                    android:id="@+id/tabACHelpers"
+                    style="@style/TabLayoutTopStyle"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivACHelpers"
+                        style="@style/TabIconStyle"
+                        android:src="@drawable/ic_air_up_nor" />
+
+                    <TextView
+                        style="@style/TabTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_toEndOf="@+id/ivACHelpers"
+                        android:text="@string/tab_ac_helpers" />
+                    <View style="@style/TabLineStyle"  android:layout_width="10dp"  android:layout_height="match_parent"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tabAutomation"
+                    style="@style/TabLayoutStyle"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivAid"
+                        style="@style/TabIconStyle"
+                        android:src="@drawable/selector_tab_icon_aid" />
+
+                    <TextView
+                        style="@style/TabTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_toEndOf="@+id/ivAid"
+                        android:text="@string/tab_automation" />
+                    <View style="@style/TabLineStyle" android:layout_width="10dp"  android:layout_height="match_parent"/>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tabSystem"
+                    style="@style/TabLayoutBottomStyle"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/ivSystem"
+                        style="@style/TabIconStyle"
+                        android:src="@drawable/selector_tab_icon_system" />
+
+                    <TextView
+                        style="@style/TabTextStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_toEndOf="@+id/ivSystem"
+                        android:text="@string/tab_title_system" />
+                    <View style="@style/TabLineStyle" android:layout_width="10dp"  android:layout_height="match_parent"/>
+                </RelativeLayout>
+            </LinearLayout>
+            <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@mipmap/tab_light" android:layout_alignTop="@+id/tab_bar" android:layout_alignStart="@+id/tab_bar"/>
+        </RelativeLayout>
+    </ScrollView>
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent" android:layout_marginStart="56.0dp" android:layout_marginEnd="40.0dp">
+        <FrameLayout android:id="@+id/container" android:layout_width="match_parent" android:layout_height="match_parent"/>
+    </RelativeLayout>
+</LinearLayout>
