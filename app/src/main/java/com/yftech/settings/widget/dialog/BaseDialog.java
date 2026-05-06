@@ -11,6 +11,7 @@ import android.os.Looper;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 public class BaseDialog extends Dialog {
     class CarplayShowUIReceiver extends BroadcastReceiver {
@@ -48,7 +49,7 @@ public class BaseDialog extends Dialog {
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
         Log.i("BaseDialog", "onAttachedToWindow()");
-        this.getContext().registerReceiver(this.mCarplayShowUIReceiver, this.mIntentFilter);
+        ContextCompat.registerReceiver(this.getContext(), this.mCarplayShowUIReceiver, this.mIntentFilter, ContextCompat.RECEIVER_NOT_EXPORTED);
     }
 
     @Override  // android.app.Dialog

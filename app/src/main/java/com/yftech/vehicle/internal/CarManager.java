@@ -5,6 +5,8 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
 import com.yftech.car.utils.BinderUtils;
 import com.yftech.vehicle.internal.adapter.ICarBsp.DisplayDtc;
 import com.yftech.vehicle.internal.adapter.ICarDashBoard.SetItemUnitInfo;
@@ -22,6 +24,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 class CarManager {
     class SignalCallback extends ISignalCallback.Stub {
@@ -58,11 +61,11 @@ class CarManager {
         boolean valueToEnabledState;
 
         SignalReceiverHolder(Object receiver, Method method, Class class0, boolean needSignalId, boolean valueToEnabledState) {
-            receiver = new WeakReference(receiver);
-            method = method;
+            this.receiver = new WeakReference(receiver);
+            this.method = method;
             paramType = class0;
-            needSignalId = needSignalId;
-            valueToEnabledState = valueToEnabledState;
+            this.needSignalId = needSignalId;
+            this.valueToEnabledState = valueToEnabledState;
             if(class0.isEnum() || class0 == CarKeyEvent.class || class0 == KeyTestEvent.class || class0 == ErrorCodeInfo.class || class0 == DeviceNode.class || class0 == SetItemUnitInfo.class || class0 == DisplayDtc.class || class0 == PersonalMemoryInfo.class) {
                 try {
                     valueOfMethod = class0.getMethod("valueOf", Integer.TYPE);
@@ -97,7 +100,7 @@ class CarManager {
             else if(!receiver.get().equals(((SignalReceiverHolder)obj).receiver.get())) {
                 return false;
             }
-            return method == null ? ((SignalReceiverHolder)obj).method == null : method.equals(((SignalReceiverHolder)obj).method);
+            return Objects.equals(method, ((SignalReceiverHolder) obj).method);
         }
 
         @Override
@@ -109,6 +112,7 @@ class CarManager {
             return method == null ? (v + 0x1F) * 0x1F : (v + 0x1F) * 0x1F + method.hashCode();
         }
 
+        @NonNull
         @Override
         public String toString() {
             return "SignalReceiverHolder{receiver=" + receiver.getClass().getSimpleName() + ", method=" + method.getName() + '}';
@@ -119,7 +123,7 @@ class CarManager {
     private static final String TAG = "GooseCarManager";
     private SignalCallback mCallback;
     private IBinder.DeathRecipient mDeathRecipient;
-    private byte[] mL;
+    private final byte[] mL;
     private static ICarService mService;
     private Map mSignalReceivers;
     private static CarManager sMe;
@@ -407,7 +411,7 @@ class CarManager {
 
     private void sendSignalCallback(int signalId, byte[] values) {
         int v1 = 0;
-        List holders = (List)mSignalReceivers.get(Integer.valueOf(signalId));
+        List holders = (List)mSignalReceivers.get(signalId);
         if(holders != null) {
             v1 = holders.size();
         }
