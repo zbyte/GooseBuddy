@@ -1,3 +1,5 @@
+[![CI](https://github.com/zbyte/GooseBuddy/actions/workflows/ci.yml/badge.svg)](https://github.com/zbyte/GooseBuddy/actions/workflows/ci.yml)
+[![Release](https://github.com/zbyte/GooseBuddy/actions/workflows/release.yml/badge.svg)](https://github.com/zbyte/GooseBuddy/actions/workflows/release.yml)
 # GooseBuddy
 
 Android-приложение для головного устройства автомобиля GAC GS8 II, расширяющее штатную автоматизацию климата и обогревов.
@@ -6,8 +8,6 @@ Android-приложение для головного устройства ав
 Работает только на автомобилях с Android Auto и следующими прошивками:
 - A60_ZD_B_AVN_S0_250417_00.01_R (ОД дорест 2024 - 2025)
 
-[![CI](https://github.com/OWNER/GooseBuddy/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/GooseBuddy/actions/workflows/ci.yml)
-[![Release](https://github.com/OWNER/GooseBuddy/actions/workflows/release.yml/badge.svg)](https://github.com/OWNER/GooseBuddy/actions/workflows/release.yml)
 
 ## Возможности
 
@@ -19,6 +19,8 @@ Android-приложение для головного устройства ав
 
 ## Установка
 
+Скачать последнюю стабильную релизную версию apk можно вот тут: [![Latest Release](https://img.shields.io/github/v/release/zbyte/GooseBuddy)](https://github.com/zbyte/GooseBuddy/releases/latest)
+
 ### Вручную
 
 Программа должа быть установлена в системный раздел `/system/priv-app/`
@@ -26,7 +28,7 @@ Android-приложение для головного устройства ав
 ```bash
 adb root
 adb remount
-adb push app-debug.apk /system/priv-app/GooseBuddy/GooseBuddy.apk
+adb push GooseBuddy-latest.apk /system/priv-app/GooseBuddy/GooseBuddy.apk
 adb reboot
 ```
 
