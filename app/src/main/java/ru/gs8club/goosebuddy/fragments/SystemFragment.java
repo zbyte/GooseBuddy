@@ -61,7 +61,7 @@ public class SystemFragment extends BaseFragment {
     }
 
     private void initViewData() {
-        mListener = new CarSensorManager.OnSensorChangedListener() {
+        /*mListener = new CarSensorManager.OnSensorChangedListener() {
             @Override
             public void onSensorChanged(CarSensorEvent arg1) {
                 Log.d(TAG, "onSensorChanged " + arg1.toString());
@@ -119,7 +119,7 @@ public class SystemFragment extends BaseFragment {
 
         float intakeAir = CarInfoManager.get().getTemperatureOfIntakeAir();
         float engine = CarInfoManager.get().getTemperatureOfEngineWater();
-        intake.setText("Intake temperature: " + intakeAir + "\nEngine: " + engine);
+        intake.setText("Intake temperature: " + intakeAir + "\nEngine: " + engine);*/
     }
 
     @Override

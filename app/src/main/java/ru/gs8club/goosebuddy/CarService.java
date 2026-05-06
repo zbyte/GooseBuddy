@@ -96,13 +96,11 @@ public class CarService extends Service {
 
         startForeground(1, notification);
 
-        Log.d(TAG, "Service started in foreground");
+        Log.i(TAG, "Service started in foreground");
     }
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        CarMiscManager.get().setFactoryModeDevelopModeEnabled(true, false);
-        Log.d(TAG, "Wheel " + String.valueOf(CarSwcManager.get().getSwcAngle()));
         mCarInfoListener = new CarInfoManager.CarInfoListener() {
             @Override
             public void onTemperatureOfIntakeAirChanged(float value) {
