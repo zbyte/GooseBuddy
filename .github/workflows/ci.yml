@@ -31,6 +31,12 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x ./gradlew
 
+      - name: Resolve version
+        run: |
+          SHORT_SHA="${GITHUB_SHA::7}"
+          echo "VERSION_NAME=0.0.0-ci-${SHORT_SHA}" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=1" >> "$GITHUB_ENV"
+
       - name: Assemble debug APK
         run: ./gradlew assembleDebug --stacktrace
 

@@ -11,6 +11,12 @@ def hasReleaseSigning = releaseKeystorePath != null && !releaseKeystorePath.isEm
 def envVersionName = System.getenv("VERSION_NAME")
 def envVersionCode = System.getenv("VERSION_CODE")
 
+// Базовая версия для локальной сборки. Реальные релизные версии приходят из
+// CI через переменные окружения VERSION_NAME / VERSION_CODE (см. .github/workflows/release.yml).
+def baseVersionName = "1.0"
+def localVersionName = "${baseVersionName}-local"
+def localVersionCode = 1
+
 android {
     namespace 'ru.gs8club.goosebuddy'
     compileSdk 36
@@ -19,8 +25,8 @@ android {
         applicationId "ru.gs8club.goosebuddy"
         minSdk 28
         targetSdk 36
-        versionCode envVersionCode ? envVersionCode.toInteger() : 1
-        versionName envVersionName ?: "1.0"
+        versionCode envVersionCode ? envVersionCode.toInteger() : localVersionCode
+        versionName envVersionName ?: localVersionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
