@@ -19,6 +19,9 @@ app/build/
 # Signing keys
 *.jks
 *.keystore
+*.jdk
+*.p12
+*.pfx
 keystore.properties
 signing.properties
 
