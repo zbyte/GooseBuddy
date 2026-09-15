@@ -75,7 +75,7 @@ public class AutomationFragment extends BaseFragment {
 
         minTemperature = mRootView.findViewById(R.id.auto_heating_min_temperature);
         minTemperature.setSeekBarMin(-20);
-        minTemperature.setSeekBarMax(-1);
+        minTemperature.setSeekBarMax(10);
         minTemperature.setOnSeekBarChangeListener(new SeekBarNumber.OnSeekChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBarNumber seekBarNumber0, int v) {
