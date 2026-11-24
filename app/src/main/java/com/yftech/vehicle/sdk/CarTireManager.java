@@ -39,6 +39,38 @@ public class CarTireManager extends BaseApiManager implements ICarTire {
         @SignalReceiver(signalId = 346)
         public void onWheelSpeedRREnableStateChanged(IBaseApi.EnableState state) {
         }
+
+        @SignalReceiver(signalId = 1208)
+        public void onTyrePressureFLChanged(float pressure) {
+        }
+
+        @SignalReceiver(signalId = 1207)
+        public void onTyrePressureFRChanged(float pressure) {
+        }
+
+        @SignalReceiver(signalId = 1206)
+        public void onTyrePressureRLChanged(float pressure) {
+        }
+
+        @SignalReceiver(signalId = 1205)
+        public void onTyrePressureRRChanged(float pressure) {
+        }
+
+        @SignalReceiver(signalId = 1204)
+        public void onTyreTemperatureFLChanged(int temperature) {
+        }
+
+        @SignalReceiver(signalId = 1203)
+        public void onTyreTemperatureFRChanged(int temperature) {
+        }
+
+        @SignalReceiver(signalId = 1202)
+        public void onTyreTemperatureRLChanged(int temperature) {
+        }
+
+        @SignalReceiver(signalId = 1201)
+        public void onTyreTemperatureRRChanged(int temperature) {
+        }
     }
 
     private static final String TAG = "CarTireManager";
@@ -88,6 +120,38 @@ public class CarTireManager extends BaseApiManager implements ICarTire {
 
     public IBaseApi.EnableState getWheelSpeedRREnableState() {
         return IBaseApi.EnableState.valueOf(this.getSignalValue(346).intValue());
+    }
+
+    public float getTyrePressureFL() {
+        return this.getSignalValue(1208).floatValue();
+    }
+
+    public float getTyrePressureFR() {
+        return this.getSignalValue(1207).floatValue();
+    }
+
+    public float getTyrePressureRL() {
+        return this.getSignalValue(1206).floatValue();
+    }
+
+    public float getTyrePressureRR() {
+        return this.getSignalValue(1205).floatValue();
+    }
+
+    public int getTyreTemperatureFL() {
+        return this.getSignalValue(1204).intValue();
+    }
+
+    public int getTyreTemperatureFR() {
+        return this.getSignalValue(1203).intValue();
+    }
+
+    public int getTyreTemperatureRL() {
+        return this.getSignalValue(1202).intValue();
+    }
+
+    public int getTyreTemperatureRR() {
+        return this.getSignalValue(1201).intValue();
     }
 
     public void registerListener(CarTireListener listener) {

@@ -22,8 +22,60 @@ public class CarIcmManager extends BaseApiManager implements ICarIcm {
         public void onBackLightLevelChanged(ICarIcm.BackLightLevel level) {
         }
 
+        @SignalReceiver(signalId = 1559)
+        public void onAirbagLampFaultStateChanged(IBaseApi.EnableState state) {
+        }
+
+        @SignalReceiver(signalId = 1552)
+        public void onBFLWarningChanged(IBaseApi.EnableState state) {
+        }
+
+        @SignalReceiver(signalId = 1557)
+        public void onChargingStateChanged(IBaseApi.EnableState state) {
+        }
+
+        @SignalReceiver(signalId = 1554)
+        public void onOilPressureStateChanged(IBaseApi.EnableState state) {
+        }
+
+        @SignalReceiver(signalId = 1560)
+        public void onVehicleBrakeStateChanged(IBaseApi.EnableState state) {
+        }
+
+        @SignalReceiver(signalId = 1556)
+        public void onWFLWarningChanged(IBaseApi.EnableState state) {
+        }
+
         @SignalReceiver(signalId = 713)
         public void onDriveDistanceChanged(int distance) {
+        }
+
+        @SignalReceiver(signalId = 1544)
+        public void onFuelAverageConsumedChanged(float consumption) {
+        }
+
+        @SignalReceiver(signalId = 1537)
+        public void onFuelAvgConsumeTempChanged(float consumption) {
+        }
+
+        @SignalReceiver(signalId = 1548)
+        public void onTripAChanged(float distance) {
+        }
+
+        @SignalReceiver(signalId = 1545)
+        public void onTripBChanged(float distance) {
+        }
+
+        @SignalReceiver(signalId = 1551)
+        public void onVehAverageSpdChanged(int speed) {
+        }
+
+        @SignalReceiver(signalId = 1539)
+        public void onVehRunningTimeChanged(int seconds) {
+        }
+
+        @SignalReceiver(signalId = 1541)
+        public void onFuelInsConsumedChanged(float consumption) {
         }
 
         @SignalReceiver(signalId = 0x77)
@@ -96,8 +148,60 @@ public class CarIcmManager extends BaseApiManager implements ICarIcm {
         return ICarIcm.BackLightLevel.valueOf(this.getSignalValue(0x72).intValue());
     }
 
+    public IBaseApi.EnableState getAirbagLampFaultState() {
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(1559).intValue());
+    }
+
+    public IBaseApi.EnableState getBFLWarning() {
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(1552).intValue());
+    }
+
+    public IBaseApi.EnableState getChargingState() {
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(1557).intValue());
+    }
+
+    public IBaseApi.EnableState getOilPressureState() {
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(1554).intValue());
+    }
+
+    public IBaseApi.EnableState getVehicleBrakeState() {
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(1560).intValue());
+    }
+
+    public IBaseApi.EnableState getWFLWarning() {
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(1556).intValue());
+    }
+
     public int getDriveDistance() {
         return this.getSignalValue(713).intValue();
+    }
+
+    public float getFuelAverageConsumed() {
+        return this.getSignalValue(1544).floatValue();
+    }
+
+    public float getFuelAvgConsumeTemp() {
+        return this.getSignalValue(1537).floatValue();
+    }
+
+    public float getTripA() {
+        return this.getSignalValue(1548).floatValue();
+    }
+
+    public float getTripB() {
+        return this.getSignalValue(1545).floatValue();
+    }
+
+    public int getVehAverageSpd() {
+        return this.getSignalValue(1551).intValue();
+    }
+
+    public int getVehRunningTime() {
+        return this.getSignalValue(1539).intValue();
+    }
+
+    public float getFuelInsConsumed() {
+        return this.getSignalValue(1541).floatValue();
     }
 
     public ICarIcm.FuelEconomyAndDistanceUnit getFuelEconomyAndDistanceUnit() {

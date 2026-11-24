@@ -107,6 +107,10 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onTotalOdometerChanged(int total) {
         }
 
+        @SignalReceiver(signalId = 1536)
+        public void onTotalOdometerAccurateChanged(float total) {
+        }
+
         @SignalReceiver(signalId = 369, valueToEnabledState = true)
         public void onTransportationModeStateChanged(boolean isEnabled) {
         }
@@ -227,6 +231,10 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
 
     public int getTotalOdometer() {
         return this.getSignalValue(0x7B).intValue();
+    }
+
+    public float getTotalOdometerAccurate() {
+        return this.getSignalValue(1536).floatValue();
     }
 
     public ICarInfo.VehicleModeBroadcast getVehicleModeBroadcast() {
