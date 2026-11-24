@@ -66,19 +66,19 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onAutoModeChanged(IAirCondition.AutoMode mode) {
         }
 
-        @SignalReceiver(signalId = 0xC2)
+        @SignalReceiver(signalId = -1)
         public void onBatCoolStateChanged(float temp) {
         }
 
-        @SignalReceiver(signalId = 0xC0)
+        @SignalReceiver(signalId = -1)
         public void onBatFhWorkStateChanged(float temp) {
         }
 
-        @SignalReceiver(signalId = 0xC1)
+        @SignalReceiver(signalId = -1)
         public void onBatPtcWorkStateChanged(float temp) {
         }
 
-        @SignalReceiver(signalId = 0xBF, valueToEnabledState = true)
+        @SignalReceiver(signalId = -1, valueToEnabledState = true)
         public void onBodyDisalarmVentStateChanged(boolean isEnabled) {
         }
 
@@ -86,11 +86,11 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onComfortCurveModeChanged(IAirCondition.ComfortCurveMode mode) {
         }
 
-        @SignalReceiver(signalId = 557)
+        @SignalReceiver(signalId = -1)
         public void onCupholderAutoModeChanged(IAirCondition.CupholderAutoMode mode) {
         }
 
-        @SignalReceiver(signalId = 555)
+        @SignalReceiver(signalId = -1)
         public void onCupholderHeatCoolModeChanged(IAirCondition.CupholderHeatCoolMode mode) {
         }
 
@@ -98,7 +98,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onDriverTemperatureChanged(float temp) {
         }
 
-        @SignalReceiver(signalId = 680)
+        @SignalReceiver(signalId = 0x470)
         public void onDualCircuStChanged(IBaseApi.EnableState state) {
         }
 
@@ -110,7 +110,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onEcoModeChanged(IAirCondition.EcoMode mode) {
         }
 
-        @SignalReceiver(signalId = 0xC4)
+        @SignalReceiver(signalId = 0x484)
         public void onEnvironmentTemperatureChanged(float temp) {
         }
 
@@ -118,7 +118,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onFanSpeedOfAutoModeChanged(IAirCondition.FanSpeed speed) {
         }
 
-        @SignalReceiver(signalId = 404, valueToEnabledState = true)
+        @SignalReceiver(signalId = -1, valueToEnabledState = true)
         public void onFrontDefrostStateChanged(boolean isEnabled) {
         }
 
@@ -130,7 +130,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onHumiditySnsStateChanged(boolean isEnabled) {
         }
 
-        @SignalReceiver(signalId = 679)
+        @SignalReceiver(signalId = 0x472)
         public void onIonPopReqDisplayChanged(IAirCondition.IonPopReqDisplay display) {
         }
 
@@ -138,19 +138,19 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onIonStateChanged(boolean isEnabled) {
         }
 
-        @SignalReceiver(signalId = 419, valueToEnabledState = true)
+        @SignalReceiver(signalId = -1, valueToEnabledState = true)
         public void onOneBtnVentlaionStateChanged(boolean isEnabled) {
         }
 
-        @SignalReceiver(signalId = 0xC3)
+        @SignalReceiver(signalId = -1)
         public void onOutAirQualityLevelChanged(float temp) {
         }
 
-        @SignalReceiver(signalId = 676)
+        @SignalReceiver(signalId = 0x475)
         public void onPM25CleanReqDisplayChanged(IAirCondition.PM25CleanReqDisplay display) {
         }
 
-        @SignalReceiver(signalId = 677, valueToEnabledState = true)
+        @SignalReceiver(signalId = 0x476, valueToEnabledState = true)
         public void onPM25SnsStateChanged(boolean isEnabled) {
         }
 
@@ -158,7 +158,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onPM25ValueChanged(int pm25) {
         }
 
-        @SignalReceiver(signalId = 675, valueToEnabledState = true)
+        @SignalReceiver(signalId = 0x478, valueToEnabledState = true)
         public void onPM25ValueStateChanged(boolean isEnabled) {
         }
 
@@ -170,7 +170,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onPowerStateChanged(boolean isEnabled) {
         }
 
-        @SignalReceiver(signalId = 647, valueToEnabledState = true)
+        @SignalReceiver(signalId = 0x471, valueToEnabledState = true)
         public void onRearACFreezenStateStateChanged(boolean isEnabled) {
         }
 
@@ -194,7 +194,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
         public void onRearDefrostStateChanged(boolean isEnabled) {
         }
 
-        @SignalReceiver(signalId = 666)
+        @SignalReceiver(signalId = 0x473)
         public void onSceneDisplayStateChanged(IAirCondition.SceneDisplay scene) {
         }
 
@@ -257,15 +257,15 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public float getBatCoolState() {
-        return this.getSignalValue(0xC2).floatValue();
+        return this.getSignalValue(-1).floatValue();
     }
 
     public float getBatFhWorkState() {
-        return this.getSignalValue(0xC0).floatValue();
+        return this.getSignalValue(-1).floatValue();
     }
 
     public float getBatPtcWorkState() {
-        return this.getSignalValue(0xC1).floatValue();
+        return this.getSignalValue(-1).floatValue();
     }
 
     public IAirCondition.ComfortCurveMode getComfortCurveMode() {
@@ -273,11 +273,11 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public IAirCondition.CupholderAutoMode getCupholderAutoMode() {
-        return IAirCondition.CupholderAutoMode.valueOf(this.getSignalValue(557).intValue());
+        return IAirCondition.CupholderAutoMode.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public IAirCondition.CupholderHeatCoolMode getCupholderHeatCoolMode() {
-        return IAirCondition.CupholderHeatCoolMode.valueOf(this.getSignalValue(555).intValue());
+        return IAirCondition.CupholderHeatCoolMode.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public float getDriverTemperature() {
@@ -285,7 +285,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public IBaseApi.EnableState getDualCircuSt() {
-        return IBaseApi.EnableState.valueOf(this.getSignalValue(680).intValue());
+        return IBaseApi.EnableState.valueOf(this.getSignalValue(0x470).intValue());
     }
 
     public IAirCondition.EcoMode getEcoMode() {
@@ -293,7 +293,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public float getEnvironmentTemperature() {
-        return this.getSignalValue(0xC4).floatValue();
+        return this.getSignalValue(0x484).floatValue();
     }
 
     public IAirCondition.FanSpeed getFanSpeedOfAutoMode() {
@@ -305,15 +305,15 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public IAirCondition.IonPopReqDisplay getIonPopReqDisplay() {
-        return IAirCondition.IonPopReqDisplay.valueOf(this.getSignalValue(679).intValue());
+        return IAirCondition.IonPopReqDisplay.valueOf(this.getSignalValue(0x472).intValue());
     }
 
     public float getOutAirQualityLevel() {
-        return this.getSignalValue(0xC3).floatValue();
+        return this.getSignalValue(-1).floatValue();
     }
 
     public IAirCondition.PM25CleanReqDisplay getPM25CleanReqDisplay() {
-        return IAirCondition.PM25CleanReqDisplay.valueOf(this.getSignalValue(676).intValue());
+        return IAirCondition.PM25CleanReqDisplay.valueOf(this.getSignalValue(0x475).intValue());
     }
 
     public int getPM25Value() {
@@ -337,7 +337,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public IAirCondition.SceneDisplay getSceneDisplayState() {
-        return IAirCondition.SceneDisplay.valueOf(this.getSignalValue(666).intValue());
+        return IAirCondition.SceneDisplay.valueOf(this.getSignalValue(0x473).intValue());
     }
 
     public float getWORKINGPOWER() {
@@ -365,7 +365,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean isBodyDisalarmVentEnabled() {
-        return this.getSignalValue(0xBF).byteValue() == 1;
+        return this.getSignalValue(-1).byteValue() == 1;
     }
 
     public boolean isDualSyncEnabled() {
@@ -373,7 +373,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean isFrontDefrostEnabled() {
-        return this.getSignalValue(404).byteValue() == 1;
+        return this.getSignalValue(-1).byteValue() == 1;
     }
 
     public boolean isHumiditySnsEnabled() {
@@ -385,15 +385,15 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean isOneBtnVentlaionEnabled() {
-        return this.getSignalValue(419).byteValue() == 1;
+        return this.getSignalValue(-1).byteValue() == 1;
     }
 
     public boolean isPM25SnsEnabled() {
-        return this.getSignalValue(677).byteValue() == 1;
+        return this.getSignalValue(0x476).byteValue() == 1;
     }
 
     public boolean isPM25ValueEnabled() {
-        return this.getSignalValue(675).byteValue() == 1;
+        return this.getSignalValue(0x478).byteValue() == 1;
     }
 
     public boolean isPowerEnabled() {
@@ -401,7 +401,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean isRearACFreezenStateEnabled() {
-        return this.getSignalValue(647).byteValue() == 1;
+        return this.getSignalValue(0x471).byteValue() == 1;
     }
 
     public boolean isRearAcAutoModeEnabled() {
@@ -481,15 +481,15 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean performWindModeButtonClick() {
-        return this.setSignalValue(534, 1);
+        return this.setSignalValue(-1, 1);
     }
 
     public boolean performWindSpeedDecButtonClick() {
-        return this.setSignalValue(537, 1);
+        return this.setSignalValue(-1, 1);
     }
 
     public boolean performWindSpeedIncButtonClick() {
-        return this.setSignalValue(536, 1);
+        return this.setSignalValue(-1, 1);
     }
 
     public void registerListener(AirConditionListener listener) {
@@ -517,11 +517,11 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean setCupholderAutoMode(IAirCondition.CupholderAutoMode mode) {
-        return this.setSignalValue(558, mode.value);
+        return this.setSignalValue(-1, mode.value);
     }
 
     public boolean setCupholderHeatCoolMode(IAirCondition.CupholderHeatCoolMode mode) {
-        return this.setSignalValue(556, mode.value);
+        return this.setSignalValue(-1, mode.value);
     }
 
     public boolean setDriverTemperature(float temp) {
@@ -545,11 +545,11 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean setOneBtnVentlaionEnabled(boolean enabled) {
-        return enabled ? this.setSignalValue(420, 2) : this.setSignalValue(420, 1);
+        return enabled ? this.setSignalValue(-1, 2) : this.setSignalValue(-1, 1);
     }
 
     public boolean setPM25CleanReqCfg(IAirCondition.PM25CleanReqCfg cfg) {
-        return this.setSignalValue(678, cfg.value);
+        return this.setSignalValue(302, cfg.value);
     }
 
     public boolean setPassengerTemperature(float temp) {
@@ -557,7 +557,7 @@ public class AirConditionManager extends BaseApiManager implements IAirCondition
     }
 
     public boolean setRearACFreezenStateEnabled(boolean enabled) {
-        return enabled ? this.setSignalValue(648, 2) : this.setSignalValue(648, 1);
+        return enabled ? this.setSignalValue(296, 2) : this.setSignalValue(296, 1);
     }
 
     public boolean setRearAcTemperature(float temp) {

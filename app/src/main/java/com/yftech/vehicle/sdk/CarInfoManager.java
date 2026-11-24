@@ -23,11 +23,11 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onBatteryVoltageChanged(float voltage) {
         }
 
-        @SignalReceiver(signalId = 705)
+        @SignalReceiver(signalId = -1)
         public void onCarReadyIndicatorChanged(ICarInfo.CarReadyIndicator indicator) {
         }
 
-        @SignalReceiver(signalId = 0xBB)
+        @SignalReceiver(signalId = -1)
         public void onDayNightModeChanged(ICarInfo.DayNightMode mode) {
         }
 
@@ -35,7 +35,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onEngineCrankStateChanged(ICarInfo.EngineCrankState state) {
         }
 
-        @SignalReceiver(signalId = 443)
+        @SignalReceiver(signalId = -1)
         public void onEngineIgnAngleChanged(float value) {
         }
 
@@ -51,7 +51,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onGearPositionChanged(ICarInfo.GearPosition gear) {
         }
 
-        @SignalReceiver(signalId = 664)
+        @SignalReceiver(signalId = -1)
         public void onGearPositionHEVChanged(ICarInfo.GearPositionHEV gear) {
         }
 
@@ -59,7 +59,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onLowBatteryWarningLevelChanged(ICarInfo.LowBatteryWarningLevel level) {
         }
 
-        @SignalReceiver(signalId = 201)
+        @SignalReceiver(signalId = 820)
         public void onParkingBrakeStateChanged(ICarInfo.ParkingBrakeState state) {
         }
 
@@ -67,19 +67,19 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onPowerModeChanged(ICarInfo.PowerMode mode) {
         }
 
-        @SignalReceiver(signalId = 437)
+        @SignalReceiver(signalId = -1)
         public void onPressureOfAtmosphericChanged(int value) {
         }
 
-        @SignalReceiver(signalId = 438)
+        @SignalReceiver(signalId = -1)
         public void onPressureOfOilChanged(int value) {
         }
 
-        @SignalReceiver(signalId = 436)
+        @SignalReceiver(signalId = -1)
         public void onPressureOfTurbineChanged(int value) {
         }
 
-        @SignalReceiver(signalId = 0xB8)
+        @SignalReceiver(signalId = -1)
         public void onRearGearStateChanged(ICarInfo.RearGearState state) {
         }
 
@@ -87,19 +87,19 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onSleepWakeUpCommandChanged(ICarInfo.SleepWakeUpCommand cmd) {
         }
 
-        @SignalReceiver(signalId = 439)
+        @SignalReceiver(signalId = 921)
         public void onTemperatureOfEngineWaterChanged(int value) {
         }
 
-        @SignalReceiver(signalId = 440)
+        @SignalReceiver(signalId = -1)
         public void onTemperatureOfExhaustChanged(int value) {
         }
 
-        @SignalReceiver(signalId = 441)
+        @SignalReceiver(signalId = -1)
         public void onTemperatureOfIntakeAirChanged(float value) {
         }
 
-        @SignalReceiver(signalId = 442)
+        @SignalReceiver(signalId = -1)
         public void onTemperatureOfTransmissionOilChanged(int value) {
         }
 
@@ -111,7 +111,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onTransportationModeStateChanged(boolean isEnabled) {
         }
 
-        @SignalReceiver(signalId = 0x170)
+        @SignalReceiver(signalId = 786)
         public void onVehicleModeBroadcastChanged(ICarInfo.VehicleModeBroadcast mode) {
         }
 
@@ -119,7 +119,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
         public void onVehicleSpeedChanged(int speed) {
         }
 
-        @SignalReceiver(signalId = 0xBA)
+        @SignalReceiver(signalId = -1)
         public void onVehicleStateChanged(ICarInfo.VehicleState state) {
         }
     }
@@ -146,11 +146,11 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public ICarInfo.CarReadyIndicator getCarReadyIndicator() {
-        return ICarInfo.CarReadyIndicator.valueOf(this.getSignalValue(705).intValue());
+        return ICarInfo.CarReadyIndicator.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public ICarInfo.DayNightMode getDayNightMode() {
-        return ICarInfo.DayNightMode.valueOf(this.getSignalValue(0xBB).intValue());
+        return ICarInfo.DayNightMode.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public ICarInfo.EngineCrankState getEngineCrankState() {
@@ -158,7 +158,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public float getEngineIgnAngle() {
-        return this.getSignalValue(443).floatValue();
+        return this.getSignalValue(-1).floatValue();
     }
 
     public int getEngineSpeed() {
@@ -174,7 +174,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public ICarInfo.GearPositionHEV getGearPositionHEV() {
-        return ICarInfo.GearPositionHEV.valueOf(this.getSignalValue(664).intValue());
+        return ICarInfo.GearPositionHEV.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public ICarInfo.LowBatteryWarningLevel getLowBatteryWarningLevel() {
@@ -182,7 +182,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public ICarInfo.ParkingBrakeState getParkingBrakeState() {
-        return ICarInfo.ParkingBrakeState.valueOf(this.getSignalValue(201).intValue());
+        return ICarInfo.ParkingBrakeState.valueOf(this.getSignalValue(820).intValue());
     }
 
     public ICarInfo.PowerMode getPowerMode() {
@@ -190,19 +190,19 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public int getPressureOfAtmospheric() {
-        return this.getSignalValue(437).intValue();
+        return this.getSignalValue(-1).intValue();
     }
 
     public int getPressureOfOil() {
-        return this.getSignalValue(438).intValue();
+        return this.getSignalValue(-1).intValue();
     }
 
     public int getPressureOfTurbine() {
-        return this.getSignalValue(436).intValue();
+        return this.getSignalValue(-1).intValue();
     }
 
     public ICarInfo.RearGearState getRearGearState() {
-        return ICarInfo.RearGearState.valueOf(this.getSignalValue(0xB8).intValue());
+        return ICarInfo.RearGearState.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public ICarInfo.SleepWakeUpCommand getSleepWakeUpCommand() {
@@ -210,19 +210,19 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public int getTemperatureOfEngineWater() {
-        return this.getSignalValue(439).intValue();
+        return this.getSignalValue(921).intValue();
     }
 
     public int getTemperatureOfExhaust() {
-        return this.getSignalValue(440).intValue();
+        return this.getSignalValue(-1).intValue();
     }
 
     public float getTemperatureOfIntakeAir() {
-        return this.getSignalValue(441).floatValue();
+        return this.getSignalValue(-1).floatValue();
     }
 
     public int getTemperatureOfTransmissionOil() {
-        return this.getSignalValue(442).intValue();
+        return this.getSignalValue(-1).intValue();
     }
 
     public int getTotalOdometer() {
@@ -230,7 +230,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public ICarInfo.VehicleModeBroadcast getVehicleModeBroadcast() {
-        return ICarInfo.VehicleModeBroadcast.valueOf(this.getSignalValue(0x170).intValue());
+        return ICarInfo.VehicleModeBroadcast.valueOf(this.getSignalValue(786).intValue());
     }
 
     public int getVehicleSpeed() {
@@ -238,7 +238,7 @@ public class CarInfoManager extends BaseApiManager implements ICarInfo {
     }
 
     public ICarInfo.VehicleState getVehicleState() {
-        return ICarInfo.VehicleState.valueOf(this.getSignalValue(0xBA).intValue());
+        return ICarInfo.VehicleState.valueOf(this.getSignalValue(-1).intValue());
     }
 
     public boolean isTransportationModeEnabled() {
